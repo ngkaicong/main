@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= Financial Saviour - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -13,9 +13,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/cs2113-ay1819s2-t11-3/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `T11-3`      Since: `Jan 2019`      Licence: `MIT`
 
 == Setting up
 
