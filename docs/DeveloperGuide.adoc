@@ -811,13 +811,16 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to manage and keep track of his/her finances
+* has a need of a tool to keep track and work towards a financial goal
+* power user who would like to be rewarded by the use of the Command Line Interface (CLI)
 * prefer desktop apps over other types
+* likes using commands to accomplish tasks quickly but prefers having a good Graphical User Interface (GUI)
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: manage and tracks finances faster than a typical mouse/GUI driven app
 
 [appendix]
 == User Stories
@@ -829,15 +832,33 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |user |add income details |
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |user |delete income details |remove entries that I no longer need
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |user |modify income details |make changes to existing entries
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |user |add expense details |
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |user |delete expense details |remove entries that I no longer need
+
+|`* * *` |user |modify expense details |make changes to existing entries
+
+|`* * *` |user |give an income details a tag |categorize my income
+
+|`* * *` |user |give an expense details a tag |categorize my expenses
+
+|`* * *` |user |list income details based on tag |see my income belonging in a particular category
+
+|`* * *` |user |list expenses details based on tag |see my expenses belonging in a particular category
+
+|`* *` |user |add recurring income details |keep track of recurring income without having to key the information on a monthly basis
+
+|`* *` |user |add recurring expense details |keep track of recurring expense without having to key the information on a monthly basis
+
+|`* *` |user |generate a financial report |To view a consolidated report for the time period about income and expenditure
+
+|`*` |user |export financial report as an Microsoft Excel Spreadsheet |To generate an excel file of the report generated for further data visualisation / augmentation on the Microsoft Excel platform
 |=======================================================================
 
 _{More to be added}_
