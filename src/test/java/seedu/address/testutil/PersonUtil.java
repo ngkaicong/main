@@ -10,25 +10,25 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Entry.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code entry}.
      */
-    public static String getAddCommand(Person person) {
+    public static String getAddCommand(Entry person) {
         return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code entry}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Entry person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
