@@ -59,18 +59,26 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
-=== Adding a person: `add`
+=== Adding a person: `add` [DOM]
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME d/DATE c/CASHFLOW [t/TAG]...`
 
+CASHFLOW represents the input/output of the financial activity. It can be either a output(expense) or a input(income).
+To distinguish between an income and an expense, the user will need to enter a plus "+" or minus "-" sign before the money amount respectively.
+
+****
+* Typical format for a CASHFLOW:
+** Typical example of *income*: add n/Salary d/20-2-2019 m/*+50.00*
+** Typical example of *expense*: add n/BusFare d/20-2-2019 m/*-4.50*
+****
 [TIP]
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/DinnerWithKenneth d/20-02-2019 m/-5`
+* `add n/IncomeFromWork m/+100 d/01-01-2019 t/Work`
 
 === Listing all persons : `list`
 
