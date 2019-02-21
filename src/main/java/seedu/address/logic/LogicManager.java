@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Entry> getFilteredEntryList() {
-        return null;
+        return model.getFilteredEntryList();
     }
 
     @Override
@@ -94,12 +94,12 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyProperty<Entry> selectedEntryProperty() {
-        return null;
+        return  model.selectedEntryProperty();
     }
 
     @Override
     public void setSelectedEntry(Entry entry) {
-
+        model.setSelectedEntry(entry);
     }
 
     @Override
