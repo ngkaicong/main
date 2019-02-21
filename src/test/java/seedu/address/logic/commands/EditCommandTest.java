@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.logic.commands.CommandTestUtil.showEntryAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import org.junit.Test;
@@ -20,7 +20,7 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -39,14 +39,14 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Entry editedPerson = new EntryBuilder().build();
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        Entry editedEntry = new EntryBuilder().build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(editedEntry).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -54,21 +54,21 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Entry lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastEntry = Index.fromOneBased(model.getFilteredEntryList().size());
+        Entry lastEntry = model.getFilteredEntryList().get(indexLastEntry.getZeroBased());
 
-        EntryBuilder personInList = new EntryBuilder(lastPerson);
-        Entry editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        EntryBuilder entryInList = new EntryBuilder(lastEntry);
+        Entry editedEntry = entryInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastEntry, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
+        expectedModel.setEntry(lastEntry, editedEntry);
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -76,10 +76,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Entry editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, new EditEntryDescriptor());
+        Entry editedEntry = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.commitAddressBook();
@@ -89,50 +89,50 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Entry personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Entry editedPerson = new EntryBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+        Entry entryInFilteredList = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        Entry editedEntry = new EntryBuilder(entryInFilteredList).withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
                 new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Entry firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+    public void execute_duplicateEntryUnfilteredList_failure() {
+        Entry firstEntry = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(firstEntry).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_ENTRY, descriptor);
 
-        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_duplicateEntryFilteredList_failure() {
+        showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
         // edit entry in filtered list into a duplicate in address book
-        Entry personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditEntryDescriptorBuilder(personInList).build());
+        Entry entryInList = model.getAddressBook().getEntryList().get(INDEX_SECOND_ENTRY.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
+                new EditEntryDescriptorBuilder(entryInList).build());
 
-        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, commandHistory, EditCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB).build();
+    public void execute_invalidEntryIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     /**
@@ -140,32 +140,32 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+    public void execute_invalidEntryIndexFilteredList_failure() {
+        showEntryAtIndex(model, INDEX_FIRST_ENTRY);
+        Index outOfBoundIndex = INDEX_SECOND_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEntryList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
-        Entry editedPerson = new EntryBuilder().build();
-        Entry personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        Entry editedEntry = new EntryBuilder().build();
+        Entry entryToEdit = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(editedEntry).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(personToEdit, editedPerson);
+        expectedModel.setEntry(entryToEdit, editedEntry);
         expectedModel.commitAddressBook();
 
         // edit -> first entry edited
         editCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered entry list to show all persons
+        // undo -> reverts addressbook back to previous state and filtered entry list to show all entrys
         expectedModel.undoAddressBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
@@ -176,12 +176,12 @@ public class EditCommandTest {
 
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         // execution failed -> address book state not added into model
-        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, commandHistory, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
 
         // single address book state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -196,25 +196,25 @@ public class EditCommandTest {
      * 4. Redo the edit. This ensures {@code RedoCommand} edits the entry object regardless of indexing.
      */
     @Test
-    public void executeUndoRedo_validIndexFilteredList_samePersonEdited() throws Exception {
-        Entry editedPerson = new EntryBuilder().build();
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+    public void executeUndoRedo_validIndexFilteredList_sameEntryEdited() throws Exception {
+        Entry editedEntry = new EntryBuilder().build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(editedEntry).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        showPersonAtIndex(model, INDEX_SECOND_PERSON);
-        Entry personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        expectedModel.setPerson(personToEdit, editedPerson);
+        showEntryAtIndex(model, INDEX_SECOND_ENTRY);
+        Entry entryToEdit = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        expectedModel.setEntry(entryToEdit, editedEntry);
         expectedModel.commitAddressBook();
 
         // edit -> edits second entry in unfiltered entry list / first entry in filtered entry list
         editCommand.execute(model, commandHistory);
 
-        // undo -> reverts addressbook back to previous state and filtered entry list to show all persons
+        // undo -> reverts addressbook back to previous state and filtered entry list to show all entrys
         expectedModel.undoAddressBook();
         assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
-        assertNotEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), personToEdit);
+        assertNotEquals(model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased()), entryToEdit);
         // redo -> edits same second entry in unfiltered entry list
         expectedModel.redoAddressBook();
         assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
@@ -222,11 +222,11 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ENTRY, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditEntryDescriptor copyDescriptor = new EditEntryDescriptor(DESC_AMY);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ENTRY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -239,10 +239,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ENTRY, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ENTRY, DESC_BOB)));
     }
 
 }

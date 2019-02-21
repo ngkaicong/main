@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -56,17 +56,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_ENTRY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Entry person = new EntryBuilder().build();
-        EditPersonDescriptor descriptor = new EditEntryDescriptorBuilder(person).build();
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + EntryUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_ENTRY.getOneBased() + " " + EntryUtil.getEditEntryDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_ENTRY, descriptor), command);
     }
 
     @Test
@@ -111,8 +111,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_select() throws Exception {
         SelectCommand command = (SelectCommand) parser.parseCommand(
-                SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new SelectCommand(INDEX_FIRST_PERSON), command);
+                SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
+        assertEquals(new SelectCommand(INDEX_FIRST_ENTRY), command);
     }
 
     @Test

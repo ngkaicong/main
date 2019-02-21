@@ -57,8 +57,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditEntryDescriptor DESC_AMY;
+    public static final EditCommand.EditEntryDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditEntryDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -110,8 +110,8 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-        Entry expectedSelectedPerson = actualModel.getSelectedPerson();
+        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEntryList());
+        Entry expectedSelectedEntry = actualModel.getSelectedEntry();
 
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
@@ -121,8 +121,8 @@ public class CommandTestUtil {
         } catch (CommandException e) {
             assertEquals(expectedMessage, e.getMessage());
             assertEquals(expectedAddressBook, actualModel.getAddressBook());
-            assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-            assertEquals(expectedSelectedPerson, actualModel.getSelectedPerson());
+            assertEquals(expectedFilteredList, actualModel.getFilteredEntryList());
+            assertEquals(expectedSelectedEntry, actualModel.getSelectedEntry());
             assertEquals(expectedCommandHistory, actualCommandHistory);
         }
     }
@@ -131,22 +131,22 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showEntryAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEntryList().size());
 
-        Entry person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Entry entry = model.getFilteredEntryList().get(targetIndex.getZeroBased());
+        final String[] splitName = entry.getName().fullName.split("\\s+");
+        model.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredEntryList().size());
     }
 
     /**
      * Deletes the first entry in {@code model}'s filtered list from {@code model}'s address book.
      */
-    public static void deleteFirstPerson(Model model) {
-        Entry firstPerson = model.getFilteredPersonList().get(0);
-        model.deletePerson(firstPerson);
+    public static void deleteFirstEntry(Model model) {
+        Entry firstEntry = model.getFilteredEntryList().get(0);
+        model.deleteEntry(firstEntry);
         model.commitAddressBook();
     }
 
