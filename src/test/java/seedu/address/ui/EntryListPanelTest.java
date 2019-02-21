@@ -3,17 +3,17 @@ package seedu.address.ui;
 import static java.time.Duration.ofMillis;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
-import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysPerson;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static seedu.address.testutil.TypicalEntrys.getTypicalEntrys;
+import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEntry;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 
 import java.util.Collections;
 
+import guitests.guihandles.EntryCardHandle;
+import guitests.guihandles.EntryListPanelHandle;
 import org.junit.Test;
 
-import guitests.guihandles.PersonCardHandle;
-import guitests.guihandles.PersonListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,42 +21,42 @@ import seedu.address.model.entry.*;
 import seedu.address.model.entry.Entry;
 
 public class EntryListPanelTest extends GuiUnitTest {
-    private static final ObservableList<Entry> TYPICAL_PERSONS =
-            FXCollections.observableList(getTypicalPersons());
+    private static final ObservableList<Entry> TYPICAL_ENTRYS =
+            FXCollections.observableList(getTypicalEntrys());
 
     private static final long CARD_CREATION_AND_DELETION_TIMEOUT = 2500;
 
-    private final SimpleObjectProperty<Entry> selectedPerson = new SimpleObjectProperty<>();
-    private PersonListPanelHandle personListPanelHandle;
+    private final SimpleObjectProperty<Entry> selectedEntry = new SimpleObjectProperty<>();
+    private EntryListPanelHandle entryListPanelHandle;
 
     @Test
     public void display() {
-        initUi(TYPICAL_PERSONS);
+        initUi(TYPICAL_ENTRYS);
 
-        for (int i = 0; i < TYPICAL_PERSONS.size(); i++) {
-            personListPanelHandle.navigateToCard(TYPICAL_PERSONS.get(i));
-            Entry expectedPerson = TYPICAL_PERSONS.get(i);
-            PersonCardHandle actualCard = personListPanelHandle.getPersonCardHandle(i);
+        for (int i = 0; i < TYPICAL_ENTRYS.size(); i++) {
+            entryListPanelHandle.navigateToCard(TYPICAL_ENTRYS.get(i));
+            Entry expectedEntry = TYPICAL_ENTRYS.get(i);
+            EntryCardHandle actualCard = entryListPanelHandle.getEntryCardHandle(i);
 
-            assertCardDisplaysPerson(expectedPerson, actualCard);
+            assertCardDisplaysEntry(expectedEntry, actualCard);
             assertEquals(Integer.toString(i + 1) + ". ", actualCard.getId());
         }
     }
 
     @Test
-    public void selection_modelSelectedPersonChanged_selectionChanges() {
-        initUi(TYPICAL_PERSONS);
-        Entry secondPerson = TYPICAL_PERSONS.get(INDEX_SECOND_PERSON.getZeroBased());
-        guiRobot.interact(() -> selectedPerson.set(secondPerson));
+    public void selection_modelSelectedEntryChanged_selectionChanges() {
+        initUi(TYPICAL_ENTRYS);
+        Entry secondEntry = TYPICAL_ENTRYS.get(INDEX_SECOND_ENTRY.getZeroBased());
+        guiRobot.interact(() -> selectedEntry.set(secondEntry));
         guiRobot.pauseForHuman();
 
-        PersonCardHandle expectedPerson = personListPanelHandle.getPersonCardHandle(INDEX_SECOND_PERSON.getZeroBased());
-        PersonCardHandle selectedPerson = personListPanelHandle.getHandleToSelectedCard();
-        assertCardEquals(expectedPerson, selectedPerson);
+        EntryCardHandle expectedEntry = entryListPanelHandle.getEntryCardHandle(INDEX_SECOND_ENTRY.getZeroBased());
+        EntryCardHandle selectedEntry = entryListPanelHandle.getHandleToSelectedCard();
+        assertCardEquals(expectedEntry, selectedEntry);
     }
 
     /**
-     * Verifies that creating and deleting large number of persons in {@code EntryListPanel} requires lesser than
+     * Verifies that creating and deleting large number of entrys in {@code EntryListPanel} requires lesser than
      * {@code CARD_CREATION_AND_DELETION_TIMEOUT} milliseconds to execute.
      */
     @Test
@@ -70,32 +70,32 @@ public class EntryListPanelTest extends GuiUnitTest {
     }
 
     /**
-     * Returns a list of persons containing {@code personCount} persons that is used to populate the
+     * Returns a list of entrys containing {@code entryCount} entrys that is used to populate the
      * {@code EntryListPanel}.
      */
-    private ObservableList<Entry> createBackingList(int personCount) {
+    private ObservableList<Entry> createBackingList(int entryCount) {
         ObservableList<Entry> backingList = FXCollections.observableArrayList();
-        for (int i = 0; i < personCount; i++) {
+        for (int i = 0; i < entryCount; i++) {
             Name name = new Name(i + "a");
             Phone phone = new Phone("000");
             Email email = new Email("a@aa");
             Address address = new Address("a");
-            Entry person = new Entry(name, phone, email, address, Collections.emptySet());
-            backingList.add(person);
+            Entry entry = new Entry(name, phone, email, address, Collections.emptySet());
+            backingList.add(entry);
         }
         return backingList;
     }
 
     /**
-     * Initializes {@code personListPanelHandle} with a {@code EntryListPanel} backed by {@code backingList}.
+     * Initializes {@code entryListPanelHandle} with a {@code EntryListPanel} backed by {@code backingList}.
      * Also shows the {@code Stage} that displays only {@code EntryListPanel}.
      */
     private void initUi(ObservableList<Entry> backingList) {
         EntryListPanel entryListPanel =
-                new EntryListPanel(backingList, selectedPerson, selectedPerson::set);
+                new EntryListPanel(backingList, selectedEntry, selectedEntry::set);
         uiPartRule.setUiPart(entryListPanel);
 
-        personListPanelHandle = new PersonListPanelHandle(getChildNode(entryListPanel.getRoot(),
-                PersonListPanelHandle.PERSON_LIST_VIEW_ID));
+        entryListPanelHandle = new EntryListPanelHandle(getChildNode(entryListPanel.getRoot(),
+                EntryListPanelHandle.ENTRY_LIST_VIEW_ID));
     }
 }

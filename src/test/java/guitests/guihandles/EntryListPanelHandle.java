@@ -11,33 +11,33 @@ import seedu.address.model.entry.Entry;
 /**
  * Provides a handle for {@code EntryListPanel} containing the list of {@code EntryCard}.
  */
-public class PersonListPanelHandle extends NodeHandle<ListView<Entry>> {
-    public static final String PERSON_LIST_VIEW_ID = "#personListView";
+public class EntryListPanelHandle extends NodeHandle<ListView<Entry>> {
+    public static final String ENTRY_LIST_VIEW_ID = "#entryListView";
 
     private static final String CARD_PANE_ID = "#cardPane";
 
-    private Optional<Entry> lastRememberedSelectedPersonCard;
+    private Optional<Entry> lastRememberedSelectedEntryCard;
 
-    public PersonListPanelHandle(ListView<Entry> personListPanelNode) {
-        super(personListPanelNode);
+    public EntryListPanelHandle(ListView<Entry> entryListPanelNode) {
+        super(entryListPanelNode);
     }
 
     /**
-     * Returns a handle to the selected {@code PersonCardHandle}.
+     * Returns a handle to the selected {@code EntryCardHandle}.
      * A maximum of 1 item can be selected at any time.
      * @throws AssertionError if no card is selected, or more than 1 card is selected.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public PersonCardHandle getHandleToSelectedCard() {
-        List<Entry> selectedPersonList = getRootNode().getSelectionModel().getSelectedItems();
+    public EntryCardHandle getHandleToSelectedCard() {
+        List<Entry> selectedEntryList = getRootNode().getSelectionModel().getSelectedItems();
 
-        if (selectedPersonList.size() != 1) {
+        if (selectedEntryList.size() != 1) {
             throw new AssertionError("Entry list size expected 1.");
         }
 
         return getAllCardNodes().stream()
-                .map(PersonCardHandle::new)
-                .filter(handle -> handle.equals(selectedPersonList.get(0)))
+                .map(EntryCardHandle::new)
+                .filter(handle -> handle.equals(selectedEntryList.get(0)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
@@ -65,13 +65,13 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Entry>> {
     /**
      * Navigates the listview to display {@code entry}.
      */
-    public void navigateToCard(Entry person) {
-        if (!getRootNode().getItems().contains(person)) {
+    public void navigateToCard(Entry entry) {
+        if (!getRootNode().getItems().contains(entry)) {
             throw new IllegalArgumentException("Entry does not exist.");
         }
 
         guiRobot.interact(() -> {
-            getRootNode().scrollTo(person);
+            getRootNode().scrollTo(entry);
         });
         guiRobot.pauseForHuman();
     }
@@ -101,15 +101,15 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Entry>> {
      * Returns the entry card handle of a entry associated with the {@code index} in the list.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
-    public PersonCardHandle getPersonCardHandle(int index) {
+    public EntryCardHandle getEntryCardHandle(int index) {
         return getAllCardNodes().stream()
-                .map(PersonCardHandle::new)
-                .filter(handle -> handle.equals(getPerson(index)))
+                .map(EntryCardHandle::new)
+                .filter(handle -> handle.equals(getEntry(index)))
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
     }
 
-    private Entry getPerson(int index) {
+    private Entry getEntry(int index) {
         return getRootNode().getItems().get(index);
     }
 
@@ -125,28 +125,28 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Entry>> {
     /**
      * Remembers the selected {@code EntryCard} in the list.
      */
-    public void rememberSelectedPersonCard() {
+    public void rememberSelectedEntryCard() {
         List<Entry> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
-            lastRememberedSelectedPersonCard = Optional.empty();
+            lastRememberedSelectedEntryCard = Optional.empty();
         } else {
-            lastRememberedSelectedPersonCard = Optional.of(selectedItems.get(0));
+            lastRememberedSelectedEntryCard = Optional.of(selectedItems.get(0));
         }
     }
 
     /**
      * Returns true if the selected {@code EntryCard} is different from the value remembered by the most recent
-     * {@code rememberSelectedPersonCard()} call.
+     * {@code rememberSelectedEntryCard()} call.
      */
-    public boolean isSelectedPersonCardChanged() {
+    public boolean isSelectedEntryCardChanged() {
         List<Entry> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
-            return lastRememberedSelectedPersonCard.isPresent();
+            return lastRememberedSelectedEntryCard.isPresent();
         } else {
-            return !lastRememberedSelectedPersonCard.isPresent()
-                    || !lastRememberedSelectedPersonCard.get().equals(selectedItems.get(0));
+            return !lastRememberedSelectedEntryCard.isPresent()
+                    || !lastRememberedSelectedEntryCard.get().equals(selectedItems.get(0));
         }
     }
 
@@ -156,4 +156,5 @@ public class PersonListPanelHandle extends NodeHandle<ListView<Entry>> {
     public int getListSize() {
         return getRootNode().getItems().size();
     }
+    
 }
