@@ -5,11 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
-import seedu.address.model.entry.Address;
-import seedu.address.model.entry.Email;
 import seedu.address.model.entry.Name;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

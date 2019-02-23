@@ -17,22 +17,21 @@ public class Entry {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+
 
     // Data fields
-    private final Address address;
+    private final Date date;
+    private final CashFlow cashFlow;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Entry(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Entry(Name name, Date date, CashFlow cashFlow, Set<Tag> tags) {
+        requireAllNonNull(name, date, cashFlow, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.date = date;
+        this.cashFlow = cashFlow;
         this.tags.addAll(tags);
     }
 
@@ -40,16 +39,12 @@ public class Entry {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Date getDate() {
+        return date;
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public CashFlow getCashFlow() {
+        return cashFlow;
     }
 
     /**
@@ -71,7 +66,7 @@ public class Entry {
 
         return otherEntry != null
                 && otherEntry.getName().equals(getName())
-                && (otherEntry.getPhone().equals(getPhone()) || otherEntry.getEmail().equals(getEmail()));
+                && (otherEntry.getDate().equals(getDate()) || otherEntry.getCashFlow().equals(getCashFlow()));
     }
 
     /**
@@ -90,28 +85,25 @@ public class Entry {
 
         Entry otherEntry = (Entry) other;
         return otherEntry.getName().equals(getName())
-                && otherEntry.getPhone().equals(getPhone())
-                && otherEntry.getEmail().equals(getEmail())
-                && otherEntry.getAddress().equals(getAddress())
+                && otherEntry.getDate().equals(getDate())
+                && otherEntry.getCashFlow().equals(getCashFlow())
                 && otherEntry.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, date, cashFlow, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Date: ")
+                .append(getDate())
+                .append(" CashFlow: ")
+                .append(getCashFlow())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

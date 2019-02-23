@@ -31,11 +31,9 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label date;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label cashFlow;
     @FXML
     private FlowPane tags;
 
@@ -44,9 +42,8 @@ public class EntryCard extends UiPart<Region> {
         this.entry = entry;
         id.setText(displayedIndex + ". ");
         name.setText(entry.getName().fullName);
-        phone.setText(entry.getPhone().value);
-        address.setText(entry.getAddress().value);
-        email.setText(entry.getEmail().value);
+        date.setText(entry.getDate().value);
+        cashFlow.setText(entry.getCashFlow().value);
         entry.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 

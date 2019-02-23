@@ -11,10 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.Address;
-import seedu.address.model.entry.Email;
 import seedu.address.model.entry.Name;
-import seedu.address.model.entry.Phone;
 import seedu.address.testutil.Assert;
 
 public class JsonAdaptedEntryTest {
