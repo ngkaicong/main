@@ -19,19 +19,14 @@ public class SampleDataUtil {
             new Entry(new Name("Alex Yeoh"), new Date("12-12-2018"), new Income("+100"),
                 getTagSet("friends")),
             new Entry(new Name("Bernice Yu"), new Date("12-12-2018"), new Income("+100"),
-                
                 getTagSet("colleagues", "friends")),
             new Entry(new Name("Charlotte Oliveiro"), new Date("12-12-2018"), new Income("+100"),
-                
                 getTagSet("neighbours")),
             new Entry(new Name("David Li"), new Date("12-12-2018"), new Income("+100"),
-                
                 getTagSet("family")),
             new Entry(new Name("Irfan Ibrahim"), new Date("12-12-2018"), new Income("+100"),
-                
                 getTagSet("classmates")),
             new Entry(new Name("Roy Balakrishnan"), new Date("12-12-2018"), new Expense("-100"),
-                
                 getTagSet("colleagues"))
         };
     }

@@ -3,7 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Expense;
+import seedu.address.model.entry.Income;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Name;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -13,34 +17,30 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class EntryBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "Income";
+    public static final String DEFAULT_DATE = "11-01-2001";
+    public static final String DEFAULT_CASHFLOW = "+111.00";
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private Date date;
+    private CashFlow cashFlow;
     private Set<Tag> tags;
 
     public EntryBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        date = new Date(DEFAULT_DATE);
+        cashFlow = new Income(DEFAULT_CASHFLOW);
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the EntryBuilder with the data of {@code personToCopy}.
+     * Initializes the EntryBuilder with the data of {@code entryToCopy}.
      */
-    public EntryBuilder(Entry personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public EntryBuilder(Entry entryToCopy) {
+        name = entryToCopy.getName();
+        date = entryToCopy.getDate();
+        cashFlow = entryToCopy.getCashFlow();
+        tags = new HashSet<>(entryToCopy.getTags());
     }
 
     /**
@@ -60,31 +60,27 @@ public class EntryBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Entry} that we are building.
+     * Sets the {@code CashFlow} of the {@code Entry} that we are building.
      */
-    public EntryBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public EntryBuilder withCashFlow(String cashFlow) {
+        if (Expense.isValidExpense(cashFlow)) {
+            this.cashFlow = new Expense(cashFlow);
+        } else if (Income.isValidIncome(cashFlow)) {
+            this.cashFlow = new Income(cashFlow);
+        }
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Entry} that we are building.
+     * Sets the {@code date} of the {@code Entry} that we are building.
      */
-    public EntryBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Entry} that we are building.
-     */
-    public EntryBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public EntryBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
     public Entry build() {
-        return new Entry(name, phone, email, address, tags);
+        return new Entry(name, date, cashFlow, tags);
     }
 
 }

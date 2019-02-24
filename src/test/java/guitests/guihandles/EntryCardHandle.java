@@ -16,16 +16,14 @@ import seedu.address.model.entry.Entry;
 public class EntryCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String NAME_FIELD_ID = "#name";
-    private static final String ADDRESS_FIELD_ID = "#address";
-    private static final String PHONE_FIELD_ID = "#phone";
-    private static final String EMAIL_FIELD_ID = "#email";
+    private static final String DATE_FIELD_ID = "#date";
+    private static final String CASHFLOW_FIELD_ID = "#cashFlow";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
     private final Label nameLabel;
-    private final Label addressLabel;
-    private final Label phoneLabel;
-    private final Label emailLabel;
+    private final Label dateLabel;
+    private final Label cashFlowLabel;
     private final List<Label> tagLabels;
 
     public EntryCardHandle(Node cardNode) {
@@ -33,9 +31,8 @@ public class EntryCardHandle extends NodeHandle<Node> {
 
         idLabel = getChildNode(ID_FIELD_ID);
         nameLabel = getChildNode(NAME_FIELD_ID);
-        addressLabel = getChildNode(ADDRESS_FIELD_ID);
-        phoneLabel = getChildNode(PHONE_FIELD_ID);
-        emailLabel = getChildNode(EMAIL_FIELD_ID);
+        dateLabel = getChildNode(DATE_FIELD_ID);
+        cashFlowLabel = getChildNode(CASHFLOW_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         tagLabels = tagsContainer
@@ -52,17 +49,13 @@ public class EntryCardHandle extends NodeHandle<Node> {
     public String getName() {
         return nameLabel.getText();
     }
-
-    public String getAddress() {
-        return addressLabel.getText();
+    
+    public String getDate() {
+        return dateLabel.getText();
     }
 
-    public String getPhone() {
-        return phoneLabel.getText();
-    }
-
-    public String getEmail() {
-        return emailLabel.getText();
+    public String getCashFlow() {
+        return cashFlowLabel.getText();
     }
 
     public List<String> getTags() {
@@ -75,12 +68,11 @@ public class EntryCardHandle extends NodeHandle<Node> {
     /**
      * Returns true if this handle contains {@code entry}.
      */
-    public boolean equals(Entry person) {
-        return getName().equals(person.getName().fullName)
-                && getAddress().equals(person.getAddress().value)
-                && getPhone().equals(person.getPhone().value)
-                && getEmail().equals(person.getEmail().value)
-                && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(person.getTags().stream()
+    public boolean equals(Entry entry) {
+        return getName().equals(entry.getName().fullName)
+                && getDate().equals(entry.getDate().value)
+                && getCashFlow().equals(entry.getCashFlow().value)
+                && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(entry.getTags().stream()
                         .map(tag -> tag.tagName)
                         .collect(Collectors.toList())));
     }
