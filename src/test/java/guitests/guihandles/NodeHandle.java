@@ -41,4 +41,5 @@ public abstract class NodeHandle<T extends Node> {
     public void click() {
         guiRobot.clickOn(rootNode);
     }
+
 }

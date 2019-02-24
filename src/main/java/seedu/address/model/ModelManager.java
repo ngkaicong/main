@@ -15,8 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.exceptions.EntryNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,8 +26,8 @@ public class ModelManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-    private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
+    private final FilteredList<Entry> filteredEntrys;
+    private final SimpleObjectProperty<Entry> selectedEntry = new SimpleObjectProperty<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,8 +40,8 @@ public class ModelManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
-        filteredPersons.addListener(this::ensureSelectedPersonIsValid);
+        filteredEntrys = new FilteredList<>(versionedAddressBook.getEntryList());
+        filteredEntrys.addListener(this::ensureSelectedEntryIsValid);
     }
 
     public ModelManager() {
@@ -96,44 +96,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return versionedAddressBook.hasPerson(person);
+    public boolean hasEntry(Entry entry) {
+        requireNonNull(entry);
+        return versionedAddressBook.hasEntry(entry);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        versionedAddressBook.removePerson(target);
+    public void deleteEntry(Entry target) {
+        versionedAddressBook.removeEntry(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        versionedAddressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEntry(Entry entry) {
+        versionedAddressBook.addEntry(entry);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
 
-        versionedAddressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setEntry(target, editedEntry);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Entry List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Entry} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Entry> getFilteredEntryList() {
+        return filteredEntrys;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEntrys.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
@@ -163,51 +163,51 @@ public class ModelManager implements Model {
         versionedAddressBook.commit();
     }
 
-    //=========== Selected person ===========================================================================
+    //=========== Selected entry ===========================================================================
 
     @Override
-    public ReadOnlyProperty<Person> selectedPersonProperty() {
-        return selectedPerson;
+    public ReadOnlyProperty<Entry> selectedEntryProperty() {
+        return selectedEntry;
     }
 
     @Override
-    public Person getSelectedPerson() {
-        return selectedPerson.getValue();
+    public Entry getSelectedEntry() {
+        return selectedEntry.getValue();
     }
 
     @Override
-    public void setSelectedPerson(Person person) {
-        if (person != null && !filteredPersons.contains(person)) {
-            throw new PersonNotFoundException();
+    public void setSelectedEntry(Entry entry) {
+        if (entry != null && !filteredEntrys.contains(entry)) {
+            throw new EntryNotFoundException();
         }
-        selectedPerson.setValue(person);
+        selectedEntry.setValue(entry);
     }
 
     /**
-     * Ensures {@code selectedPerson} is a valid person in {@code filteredPersons}.
+     * Ensures {@code selectedEntry} is a valid entry in {@code filteredEntrys}.
      */
-    private void ensureSelectedPersonIsValid(ListChangeListener.Change<? extends Person> change) {
+    private void ensureSelectedEntryIsValid(ListChangeListener.Change<? extends Entry> change) {
         while (change.next()) {
-            if (selectedPerson.getValue() == null) {
-                // null is always a valid selected person, so we do not need to check that it is valid anymore.
+            if (selectedEntry.getValue() == null) {
+                // null is always a valid selected entry, so we do not need to check that it is valid anymore.
                 return;
             }
 
-            boolean wasSelectedPersonReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
-                    && change.getRemoved().contains(selectedPerson.getValue());
-            if (wasSelectedPersonReplaced) {
-                // Update selectedPerson to its new value.
-                int index = change.getRemoved().indexOf(selectedPerson.getValue());
-                selectedPerson.setValue(change.getAddedSubList().get(index));
+            boolean wasSelectedEntryReplaced = change.wasReplaced() && change.getAddedSize() == change.getRemovedSize()
+                    && change.getRemoved().contains(selectedEntry.getValue());
+            if (wasSelectedEntryReplaced) {
+                // Update selectedEntry to its new value.
+                int index = change.getRemoved().indexOf(selectedEntry.getValue());
+                selectedEntry.setValue(change.getAddedSubList().get(index));
                 continue;
             }
 
-            boolean wasSelectedPersonRemoved = change.getRemoved().stream()
-                    .anyMatch(removedPerson -> selectedPerson.getValue().isSamePerson(removedPerson));
-            if (wasSelectedPersonRemoved) {
-                // Select the person that came before it in the list,
-                // or clear the selection if there is no such person.
-                selectedPerson.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
+            boolean wasSelectedEntryRemoved = change.getRemoved().stream()
+                    .anyMatch(removedEntry -> selectedEntry.getValue().isSameEntry(removedEntry));
+            if (wasSelectedEntryRemoved) {
+                // Select the entry that came before it in the list,
+                // or clear the selection if there is no such entry.
+                selectedEntry.setValue(change.getFrom() > 0 ? change.getList().get(change.getFrom() - 1) : null);
             }
         }
     }
@@ -228,8 +228,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && Objects.equals(selectedPerson.get(), other.selectedPerson.get());
+                && filteredEntrys.equals(other.filteredEntrys)
+                && Objects.equals(selectedEntry.get(), other.selectedEntry.get());
     }
 
 }

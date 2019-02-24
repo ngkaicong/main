@@ -4,11 +4,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showEntryAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ENTRY;
+import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import org.junit.Test;
 
@@ -29,50 +29,50 @@ public class SelectCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Index lastPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+        Index lastEntryIndex = Index.fromOneBased(model.getFilteredEntryList().size());
 
-        assertExecutionSuccess(INDEX_FIRST_PERSON);
-        assertExecutionSuccess(INDEX_THIRD_PERSON);
-        assertExecutionSuccess(lastPersonIndex);
+        assertExecutionSuccess(INDEX_FIRST_ENTRY);
+        assertExecutionSuccess(INDEX_THIRD_ENTRY);
+        assertExecutionSuccess(lastEntryIndex);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_failure() {
-        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
 
-        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        showEntryAtIndex(model, INDEX_FIRST_ENTRY);
+        showEntryAtIndex(expectedModel, INDEX_FIRST_ENTRY);
 
-        assertExecutionSuccess(INDEX_FIRST_PERSON);
+        assertExecutionSuccess(INDEX_FIRST_ENTRY);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        showEntryAtIndex(model, INDEX_FIRST_ENTRY);
+        showEntryAtIndex(expectedModel, INDEX_FIRST_ENTRY);
 
-        Index outOfBoundsIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundsIndex = INDEX_SECOND_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundsIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundsIndex.getZeroBased() < model.getAddressBook().getEntryList().size());
 
-        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertExecutionFailure(outOfBoundsIndex, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        SelectCommand selectFirstCommand = new SelectCommand(INDEX_FIRST_PERSON);
-        SelectCommand selectSecondCommand = new SelectCommand(INDEX_SECOND_PERSON);
+        SelectCommand selectFirstCommand = new SelectCommand(INDEX_FIRST_ENTRY);
+        SelectCommand selectSecondCommand = new SelectCommand(INDEX_SECOND_ENTRY);
 
         // same object -> returns true
         assertTrue(selectFirstCommand.equals(selectFirstCommand));
 
         // same values -> returns true
-        SelectCommand selectFirstCommandCopy = new SelectCommand(INDEX_FIRST_PERSON);
+        SelectCommand selectFirstCommandCopy = new SelectCommand(INDEX_FIRST_ENTRY);
         assertTrue(selectFirstCommand.equals(selectFirstCommandCopy));
 
         // different types -> returns false
@@ -81,18 +81,18 @@ public class SelectCommandTest {
         // null -> returns false
         assertFalse(selectFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different entry -> returns false
         assertFalse(selectFirstCommand.equals(selectSecondCommand));
     }
 
     /**
      * Executes a {@code SelectCommand} with the given {@code index},
-     * and checks that the model's selected person is set to the person at {@code index} in the filtered person list.
+     * and checks that the model's selected entry is set to the entry at {@code index} in the filtered entry list.
      */
     private void assertExecutionSuccess(Index index) {
         SelectCommand selectCommand = new SelectCommand(index);
-        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_PERSON_SUCCESS, index.getOneBased());
-        expectedModel.setSelectedPerson(model.getFilteredPersonList().get(index.getZeroBased()));
+        String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_ENTRY_SUCCESS, index.getOneBased());
+        expectedModel.setSelectedEntry(model.getFilteredEntryList().get(index.getZeroBased()));
 
         assertCommandSuccess(selectCommand, model, commandHistory, expectedMessage, expectedModel);
     }

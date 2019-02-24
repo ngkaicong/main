@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CASHFLOW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,88 +19,85 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Name;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing entry in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entry identified "
+            + "by the index number used in the displayed entry list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_CASHFLOW + "CASHFLOW] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DATE + "91234567 "
+            + PREFIX_CASHFLOW + "+100";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditEntryDescriptor editEntryDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the entry in the filtered entry list to edit
+     * @param editEntryDescriptor details to edit the entry with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editEntryDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editEntryDescriptor = new EditEntryDescriptor(editEntryDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Entry> lastShownList = model.getFilteredEntryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Entry entryToEdit = lastShownList.get(index.getZeroBased());
+        Entry editedEntry = createEditedEntry(entryToEdit, editEntryDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!entryToEdit.isSameEntry(editedEntry) && model.hasEntry(editedEntry)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setEntry(entryToEdit, editedEntry);
+        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Entry} with the details of {@code entryToEdit}
+     * edited with {@code editEntryDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Entry createEditedEntry(Entry entryToEdit, EditEntryDescriptor editEntryDescriptor) {
+        assert entryToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editEntryDescriptor.getName().orElse(entryToEdit.getName());
+        Date updatedDate = editEntryDescriptor.getDate().orElse(entryToEdit.getDate());
+        CashFlow updatedCashFlow = editEntryDescriptor.getCashFlow().orElse(entryToEdit.getCashFlow());
+        Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Entry(updatedName, updatedDate, updatedCashFlow, updatedTags);
     }
 
     @Override
@@ -119,31 +115,29 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editEntryDescriptor.equals(e.editEntryDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the entry with. Each non-empty field value will replace the
+     * corresponding field value of the entry.
      */
-    public static class EditPersonDescriptor {
+    public static class EditEntryDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Date date;
+        private CashFlow cashFlow;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditEntryDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditEntryDescriptor(EditEntryDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setDate(toCopy.date);
+            setCashFlow(toCopy.cashFlow);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +145,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name,date, cashFlow, tags);
         }
 
         public void setName(Name name) {
@@ -162,28 +156,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setCashFlow(CashFlow cashFlow) {
+            this.cashFlow = cashFlow;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<CashFlow> getCashFlow() {
+            return Optional.ofNullable(cashFlow);
         }
 
         /**
@@ -211,17 +197,16 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditEntryDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditEntryDescriptor e = (EditEntryDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getDate().equals(e.getDate())
+                    && getCashFlow().equals(e.getCashFlow())
                     && getTags().equals(e.getTags());
         }
     }
