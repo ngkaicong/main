@@ -1,4 +1,4 @@
-= Financial Saviour - Developer Guide
+= Budgeter - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
