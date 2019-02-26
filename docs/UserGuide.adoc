@@ -259,7 +259,7 @@ e.g. `add n/Lunch with James Ho d/12-02-2019 c/+100.00 t/friend t/colleague`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
 * *Edit* : `edit INDEX [n/NAME] [d/DATE] [c/CASHFLOW] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
+e.g. `edit 2 n/James Lee c/+12`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *List* : `list`
