@@ -1,4 +1,4 @@
-= Financial Saviour - User Guide
+= Budgeter - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
