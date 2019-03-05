@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
@@ -69,4 +70,6 @@ public interface Logic {
      * @see seedu.address.model.Model#setSelectedEntry(Entry)
      */
     void setSelectedEntry(Entry entry);
+
+
 }

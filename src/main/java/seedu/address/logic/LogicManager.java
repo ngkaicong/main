@@ -39,6 +39,7 @@ public class LogicManager implements Logic {
 
         // Set addressBookModified to true whenever the models' address book is modified.
         model.getAddressBook().addListener(observable -> addressBookModified = true);
+
     }
 
     @Override
@@ -106,6 +107,5 @@ public class LogicManager implements Logic {
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
-
 
 }
