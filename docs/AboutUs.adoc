@@ -4,7 +4,7 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-Financial Saviour was developed by T11/3.
+Budgeter was developed by T11/3.
 
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
