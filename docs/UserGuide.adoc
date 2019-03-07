@@ -36,7 +36,7 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all entrys
+* *`list`* : lists all entries
 * **`add`**`n/John Doe's meal d/20-02-2019 c/+100 t/John street` : adds a entry named `John Doe` to the Address Book.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
@@ -91,9 +91,9 @@ Examples:
 * `add n/IncomeFromWork m/+100 d/01-01-2019 t/Work`
 
 <<<<<<< HEAD
-=== Listing all entrys : `list`
+=== Listing all entries : `list`
 
-Shows a list of all entrys in the address book. +
+Shows a list of all entries in the address book. +
 =======
 === Listing all entries : `list`
 
