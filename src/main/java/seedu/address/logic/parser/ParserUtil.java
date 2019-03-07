@@ -67,7 +67,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String cashFlow} into an {@code Income} or an {@code Expense}.
+     * Parses a {@code String cashFlow} into an {@code CashFlow}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code CashFlow} is invalid.
@@ -78,13 +78,7 @@ public class ParserUtil {
             if (!CashFlow.isValidCashFlow(trimmedCashFlow)) {
                 throw new ParseException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
             }
-            if (Income.isValidIncome(trimmedCashFlow)) {
-                return new Income(trimmedCashFlow);
-            } else if (Expense.isValidExpense(trimmedCashFlow)) {
-                return new Expense(trimmedCashFlow);
-            } else {
-                throw new ParseException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
-            }
+            return new CashFlow(trimmedCashFlow);
         }
 
     /**

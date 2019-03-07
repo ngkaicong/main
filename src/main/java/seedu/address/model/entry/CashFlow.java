@@ -3,7 +3,7 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-/* Shows the income and expense in the entry
+/* Shows the income and expense in the entry of budgeter
  * Guarantees: immutable; is valid as declared in {@link #isValidCashFlow(String)}
  */
 public class CashFlow {

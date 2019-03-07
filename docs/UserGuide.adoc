@@ -18,7 +18,7 @@ By: `T11-03`      Since: `Jan 2019`      Licence: `MIT`
 
 == Introduction
 
-Financial Saviour (FS) is for those who prefer to use a *desktop app to manage their finances.
+Budgeter is for those who prefer to use a *desktop app to manage their finances.
 It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still
 having the benefits of a Graphical User Interface (GUI).
 Interested? Jump to the <<Quick Start>> to get started. Enjoy!
@@ -36,8 +36,8 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* *`list`* : lists all entries
+* **`add`**`n/John Doe's meal d/20-02-2019 c/+100 t/John street` : adds a entry named `John Doe` to the Address Book.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
@@ -52,16 +52,22 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order e.g. if the command specifies `n/NAME p/DATE`, `p/DATE n/NAME` is also acceptable.
 ====
 
 === Viewing help : `help`
 
 Format: `help`
 
+<<<<<<< HEAD
+=== Adding a entry: `add` 
+
+Adds a entry to the address book +
+=======
 === Adding an entry: `add` [DOM]
 
 Adds an entry to the address book +
+>>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 Format: `add n/NAME d/DATE c/CASHFLOW [t/TAG]...`
 
 CASHFLOW represents the input/output of the financial activity. It can be either a output(expense) or a input(income).
@@ -73,25 +79,42 @@ To distinguish between an income and an expense, the user will need to enter a p
 ** Typical example of *expense*: add n/BusFare d/20-2-2019 m/*-4.50*
 ****
 [TIP]
+<<<<<<< HEAD
+A entry can have any number of tags (including 0)
+=======
 An entry can have any number of tags (including 0)
+>>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 
 Examples:
 
 * `add n/DinnerWithKenneth d/20-02-2019 m/-5`
 * `add n/IncomeFromWork m/+100 d/01-01-2019 t/Work`
 
+<<<<<<< HEAD
 === Listing all entries : `list`
 
 Shows a list of all entries in the address book. +
+=======
+=== Listing all entries : `list`
+
+Shows a list of all entries in the address book. +
+>>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 Format: `list`
 
 === Editing an entry : `edit`
 
 Edits an existing entry in the address book. +
+<<<<<<< HEAD
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/CASHFLOW] [a/ADDRESS] [t/TAG]...`
+
+****
+* Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed entry list. The index *must be a positive integer* 1, 2, 3, ...
+=======
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 ****
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
+>>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the entry will be removed i.e adding of tags is not cumulative.
@@ -105,9 +128,15 @@ Edits the phone number and email address of the 1st entry to be `91234567` and `
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd entry to be `Betsy Crower` and clears all existing tags.
 
+<<<<<<< HEAD
+=== Locating entrys by name: `find`
+
+Finds entrys whose names contain any of the given keywords. +
+=======
 === Locating entries by name: `find`
 
 Finds entries whose names contain any of the given keywords. +
+>>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
@@ -125,7 +154,11 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any entry having names `Betsy`, `Tim`, or `John`
 
+<<<<<<< HEAD
+=== Deleting a entry : `delete`
+=======
 === Deleting an entry : `delete`
+>>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 
 Deletes the specified entry from the address book. +
 Format: `delete INDEX`
@@ -253,13 +286,13 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+* *Add* `add n/NAME d/DATE c/CASHFLOW [t/TAG]...` +
+e.g. `add n/Lunch with James Ho d/12-02-2019 c/+100.00 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
+* *Edit* : `edit INDEX [n/NAME] [d/DATE] [c/CASHFLOW] [t/TAG]...` +
+e.g. `edit 2 n/James Lee c/+12`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *List* : `list`

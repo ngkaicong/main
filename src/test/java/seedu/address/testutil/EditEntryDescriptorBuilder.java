@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Name;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.tag.Tag;
@@ -30,9 +32,8 @@ public class EditEntryDescriptorBuilder {
     public EditEntryDescriptorBuilder(Entry entry) {
         descriptor = new EditEntryDescriptor();
         descriptor.setName(entry.getName());
-        descriptor.setPhone(entry.getPhone());
-        descriptor.setEmail(entry.getEmail());
-        descriptor.setAddress(entry.getAddress());
+        descriptor.setDate(entry.getDate());
+        descriptor.setCashFlow(entry.getCashFlow());
         descriptor.setTags(entry.getTags());
     }
 
@@ -45,28 +46,21 @@ public class EditEntryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditEntryDescriptor} that we are building.
+     * Sets the {@code Date} of the {@code EditEntryDescriptor} that we are building.
      */
-    public EditEntryDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditEntryDescriptorBuilder withDate(String date) {
+        descriptor.setDate(new Date(date));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditEntryDescriptor} that we are building.
+     * Sets the {@code CashFlow} of the {@code EditEntryDescriptor} that we are building.
      */
-    public EditEntryDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditEntryDescriptorBuilder withCashFlow(String cashFlow) {
+        descriptor.setCashFlow(new CashFlow(cashFlow));
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code EditEntryDescriptor} that we are building.
-     */
-    public EditEntryDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditEntryDescriptor}
