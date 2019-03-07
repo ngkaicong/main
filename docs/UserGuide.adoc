@@ -178,7 +178,7 @@ Deletes the 2nd entry in the address book.
 `delete 1` +
 Deletes the 1st entry in the results of the `find` command.
 
-=== Selecting a entry : `select`
+=== Selecting an entry : `select`
 
 Selects the entry identified by the index number used in the displayed entry list. +
 Format: `select INDEX`
