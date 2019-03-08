@@ -313,12 +313,19 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
+// tag::CommandsUISupport[]
+=== Commands UI Support
+The Commands UI Support feature displays the existing commands available when an alphabet is typed.
 
-_{Explain here how the data encryption feature will be implemented}_
+CommandBox takes in an incomplete user command, match it with a list of command words currently supported in the application, and returns corresponding command skeleton for the user to fill in.
+We have implemented dropdown menu UI for autocomplete with a list of commands prompts.
+                    **Alternative 1 (Current Choice):** Include dropdown menu to list all autocomplete options +
+                    **Pros:** Easier access for users at a glance, especially  for first time users.+
+                    **Cons:** Inteferes with up and down button for command history.
+                    **Alternative 2 :** No Dropdown Menu
+                    **Pros:** No need for additional UI component.
+                    **Cons:** May not be intuitive to users who have not worked with CLI before.
 
-// end::dataencryption[]
 
 === Logging
 
