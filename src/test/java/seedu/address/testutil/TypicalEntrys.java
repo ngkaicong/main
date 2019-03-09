@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_EXPENSE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_INCOME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -44,9 +44,9 @@ public class TypicalEntrys {
 
     // Manually added - Entry's details found in {@code CommandTestUtil}
     public static final Entry AMY = new EntryBuilder().withName(VALID_NAME_AMY).withDate(VALID_DATE_AMY)
-            .withCashFlow(VALID_CASHFLOW_INCOME_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withCashFlow(VALID_CASHFLOW_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Entry BOB = new EntryBuilder().withName(VALID_NAME_BOB).withDate(VALID_DATE_BOB)
-            .withCashFlow(VALID_CASHFLOW_EXPENSE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withCashFlow(VALID_CASHFLOW_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_BURSARY = "Income"; // A keyword that matches MEIER

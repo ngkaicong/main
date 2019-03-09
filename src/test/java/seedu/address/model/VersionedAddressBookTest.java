@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalEntrys.AMY;
 import static seedu.address.testutil.TypicalEntrys.BOB;
-import static seedu.address.testutil.TypicalEntrys.CARL;
 
 import java.util.Arrays;
 import java.util.Collections;
