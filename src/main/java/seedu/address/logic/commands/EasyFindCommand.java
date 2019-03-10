@@ -14,12 +14,12 @@ import static java.util.Objects.requireNonNull;
  * Keyword matching is case sensitive.
  */
 public class EasyFindCommand extends Command {
-    public static final String COMMAND_WORD = "finds";
+    public static final String COMMAND_WORD = "efind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all entrys who contain any of "
             + "the specified keywords (non case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n/John \n"
+            + "Example: " + COMMAND_WORD + " efind n/John \n"
             + "Example: " + COMMAND_WORD + " d/12-01-2019\n"
             + "Example: " + COMMAND_WORD + " t/[Friends]";
 
