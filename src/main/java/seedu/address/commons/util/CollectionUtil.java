@@ -1,5 +1,8 @@
 package seedu.address.commons.util;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.tag.Tag;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
@@ -32,4 +35,5 @@ public class CollectionUtil {
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
     }
+
 }
