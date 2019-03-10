@@ -74,6 +74,7 @@ public class AddressBookParser {
 
         case EasyFindCommand.COMMAND_WORD:
             return new EasyFindCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
