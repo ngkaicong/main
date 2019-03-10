@@ -325,8 +325,68 @@ We have implemented dropdown menu UI for autocomplete with a list of commands pr
                     **Alternative 2 :** No Dropdown Menu
                     **Pros:** No need for additional UI component.
                     **Cons:** May not be intuitive to users who have not worked with CLI before.
+// end::CommandsUISupport[]
 
+// tag::efind[]
+=== Easy Searching Of Relevant Data
+This command allows users to search through the large amount of entries and find the most relevant information they need.
+It allows user to retrieve using other details such as name, date and tag.
 
+The user can use this command with only ONE of the following prefixes
+
+* `n/` : To search by name(s)
+* `d/` : To search by date(s)
+* `t/` : To search by tag(s)
+
+[NOTE]
+The `predicate` used depends on which type of detail the user is using to find.
+
+The 4 predicates are as follow:
+
+* if search by `name` then `NameContainsKeywordsPredicate` is used
+* if search by `date` then `DateContainsSpecifiedKeywordsPredicate` is used
+* if search by `tag` then `TagContainsSpecifiedKeywordsPredicate` is used
+
+==== Design Considerations
+
+It is implemented to search with one type of detail only such that only the returned results will be
+shown. i.e. if a user search for an entry with date then only the date of the returned entry/s are relevant,
+and other details are irrelevant to the input date during the search.
+
+Alternative design considered was to allow user input multiple details during each search. It may help to streamline and shorten the list of entry/s
+that will be returned, but it is not useful as user may only recall some details of an entry only.
+
+*Example 1*
+
+* `Entry 1 : Name `Breakfast Joel Choo` and date `12-01-2019`
+* `Entry 2` : Name `Lunch Matt Dam` and date `12-01-2019`
+* `Entry 3` : Name `Dinner with Elis Yeo` and date `12-01-2019`
+* User wants to find `Joel` but do not recall surname and key in `Joel` only
+* User cannot recall the date and key in a random number `12-12-2019`
+* There will be no results returned in this scenario as input date does not match the phone numbers in `Entry 1`
+and `Entry 2` that contains `Joel`
+
+*Example two*
+
+* `Contact 1` : Name `Lisa Jo` and tag `friends`
+* User wants to find `Lisa Jo` and tag in `Lisa Jo`
+* User cannot recall the date and tag in a random number `123356890`
+* There will be no results returned in this scenario as input date does not match the date in the `Entry 1` although the name matches exactly.
+
+Hence, the user has to know at least 1 exact detail( out of name, date, tags ) that he can remember in order to have results returned.
+
+**Aspect:** Easy Search with other details. +
+
+**Alternative 1 (current choice):
+** Able to search with other details but only one type of data required for each search +
+**Pros:** Implementation is easier when only one type of detail is used. +
+**Cons:** Detail need to be exact. +
+
+**Alternative 2:** Able to find with vast different multiple details. +
+**Pros:** More chances of get the required results as there are more options available in case user forgets the details needed. +
+**Cons:** Harder to implement and increased complexity may affect efficiency.
+
+// end::efind[]
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
