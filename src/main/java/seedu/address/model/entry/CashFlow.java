@@ -8,7 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class CashFlow {
 
-        public static final String MESSAGE_CASH_FLOW_CONSTRAINTS =
+
+        public static final String MESSAGE_CONSTRAINTS =
                 "Any form of cash flow should consist of '+' or '-', "
                         + "followed by a digits and/or decimal points ('.')."
                         + "1. <number> cannot start from '0' unless it has only 1 digit. "
@@ -33,7 +34,7 @@ public class CashFlow {
 
         public CashFlow(String cashFlow) {
             requireNonNull(cashFlow);
-            checkArgument(isValidCashFlow(cashFlow), MESSAGE_CASH_FLOW_CONSTRAINTS);
+            checkArgument(isValidCashFlow(cashFlow), MESSAGE_CONSTRAINTS);
             this.value = cashFlow;
         }
 

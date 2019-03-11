@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Date {
 
 
-    public static final String MESSAGE_DATE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Date parameter should be in the format of dd-mm-yyyy with dd and mm as 2 digits, and yyyy as 4 digits.";
     public static final String DATE_VALIDATION_REGEX = "\\d{1,2}-\\d{1,2}-\\d{4}";
     public final String value;
@@ -26,7 +26,7 @@ public class Date {
      */
     public Date(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_DATE_CONSTRAINTS);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         // TODO: Change this part to split dates into dd, mm, yyyy.
         value = date;
         splitDate(date);
