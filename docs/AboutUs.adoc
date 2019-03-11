@@ -11,7 +11,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Pang Yu Shao
-image::shao.jpeg[width="150", align="left"]
+image::yushao2.png[width="150", align="left"]
 {empty}[https://github.com/yushao2[github]]
 
 Role: TBC
@@ -19,7 +19,7 @@ Role: TBC
 '''
 
 === Dominic
-image::dom.jpeg[width="150", align="left"]
+image::frankquekch.png[width="150", align="left"]
 {empty}[http://github.com/frankquekch[github]]
 
 Role: TBC
@@ -28,7 +28,7 @@ Responsibilities: TBC
 '''
 
 === Ng Kai Cong
-image::kc.jpeg[width="150", align="left"]
+image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
 
 Role: TBC
@@ -37,7 +37,7 @@ Responsibilities: TBC
 '''
 
 === Jacob
-image::jacob.jpeg[width="150", align="left"]
+image::jacobhan.png[width="150", align="left"]
 {empty}[http://github.com/jacobhan[github]]
 
 Role: TBC
