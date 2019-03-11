@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.address.testutil.EntryBuilder;
+import static seedu.address.testutil.TypicalEntrys.IDA;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -68,8 +69,8 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new EntryBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new EntryBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList(IDA.getName().toString(), IDA.getDate().toString(), IDA.getCashFlow().toString()));
+        assertFalse(predicate.test(new EntryBuilder().withName("Alice").withDate(IDA.getDate().toString())
+                .withCashFlow(IDA.getCashFlow().toString()).build()));
     }
 }

@@ -5,9 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEntrys.CARL;
-import static seedu.address.testutil.TypicalEntrys.ELLE;
-import static seedu.address.testutil.TypicalEntrys.FIONA;
+import static seedu.address.testutil.TypicalEntrys.MALA;
+import static seedu.address.testutil.TypicalEntrys.INDO;
+import static seedu.address.testutil.TypicalEntrys.IDA;
 import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -73,7 +73,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredEntryList());
+        assertEquals(Arrays.asList(MALA, INDO, IDA), model.getFilteredEntryList());
     }
 
     /**

@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_BOB;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
-import static seedu.address.testutil.TypicalEntrys.ALICE;
-import static seedu.address.testutil.TypicalEntrys.BENSON;
+import static seedu.address.testutil.TypicalEntrys.MALA;
+import static seedu.address.testutil.TypicalEntrys.CAIFAN;
 import static seedu.address.testutil.TypicalEntrys.BOB;
 
 import java.nio.file.Path;
@@ -93,39 +93,39 @@ public class ModelManagerTest {
 
     @Test
     public void hasEntry_entryNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasEntry(ALICE));
+        assertFalse(modelManager.hasEntry(MALA));
     }
 
     @Test
     public void hasEntry_entryInAddressBook_returnsTrue() {
-        modelManager.addEntry(ALICE);
-        assertTrue(modelManager.hasEntry(ALICE));
+        modelManager.addEntry(MALA);
+        assertTrue(modelManager.hasEntry(MALA));
     }
 
     @Test
     public void deleteEntry_entryIsSelectedAndFirstEntryInFilteredEntryList_selectionCleared() {
-        modelManager.addEntry(ALICE);
-        modelManager.setSelectedEntry(ALICE);
-        modelManager.deleteEntry(ALICE);
+        modelManager.addEntry(MALA);
+        modelManager.setSelectedEntry(MALA);
+        modelManager.deleteEntry(MALA);
         assertEquals(null, modelManager.getSelectedEntry());
     }
 
     @Test
     public void deleteEntry_entryIsSelectedAndSecondEntryInFilteredEntryList_firstEntrySelected() {
-        modelManager.addEntry(ALICE);
+        modelManager.addEntry(MALA);
         modelManager.addEntry(BOB);
-        assertEquals(Arrays.asList(ALICE, BOB), modelManager.getFilteredEntryList());
+        assertEquals(Arrays.asList(MALA, BOB), modelManager.getFilteredEntryList());
         modelManager.setSelectedEntry(BOB);
         modelManager.deleteEntry(BOB);
-        assertEquals(ALICE, modelManager.getSelectedEntry());
+        assertEquals(MALA, modelManager.getSelectedEntry());
     }
 
     @Test
     public void setEntry_entryIsSelected_selectedEntryUpdated() {
-        modelManager.addEntry(ALICE);
-        modelManager.setSelectedEntry(ALICE);
-        Entry updatedAlice = new EntryBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        modelManager.setEntry(ALICE, updatedAlice);
+        modelManager.addEntry(MALA);
+        modelManager.setSelectedEntry(MALA);
+        Entry updatedAlice = new EntryBuilder(MALA).withCashFlow(VALID_CASHFLOW_BOB).build();
+        modelManager.setEntry(MALA, updatedAlice);
         assertEquals(updatedAlice, modelManager.getSelectedEntry());
     }
 
@@ -138,20 +138,20 @@ public class ModelManagerTest {
     @Test
     public void setSelectedEntry_entryNotInFilteredEntryList_throwsEntryNotFoundException() {
         thrown.expect(EntryNotFoundException.class);
-        modelManager.setSelectedEntry(ALICE);
+        modelManager.setSelectedEntry(MALA);
     }
 
     @Test
     public void setSelectedEntry_entryInFilteredEntryList_setsSelectedEntry() {
-        modelManager.addEntry(ALICE);
-        assertEquals(Collections.singletonList(ALICE), modelManager.getFilteredEntryList());
-        modelManager.setSelectedEntry(ALICE);
-        assertEquals(ALICE, modelManager.getSelectedEntry());
+        modelManager.addEntry(MALA);
+        assertEquals(Collections.singletonList(MALA), modelManager.getFilteredEntryList());
+        modelManager.setSelectedEntry(MALA);
+        assertEquals(MALA, modelManager.getSelectedEntry());
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withEntry(ALICE).withEntry(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withEntry(MALA).withEntry(CAIFAN).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -173,7 +173,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = MALA.getName().fullName.split("\\s+");
         modelManager.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 

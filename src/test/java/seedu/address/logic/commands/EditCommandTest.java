@@ -58,11 +58,11 @@ public class EditCommandTest {
         Entry lastEntry = model.getFilteredEntryList().get(indexLastEntry.getZeroBased());
 
         EntryBuilder entryInList = new EntryBuilder(lastEntry);
-        Entry editedEntry = entryInList.withName(VALID_NAME_BOB).withPhone(VALID_DATE_BOB)
+        Entry editedEntry = entryInList.withName(VALID_NAME_BOB).withDate(VALID_DATE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withDate(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastEntry, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);

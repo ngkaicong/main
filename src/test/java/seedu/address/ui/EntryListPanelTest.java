@@ -77,10 +77,9 @@ public class EntryListPanelTest extends GuiUnitTest {
         ObservableList<Entry> backingList = FXCollections.observableArrayList();
         for (int i = 0; i < entryCount; i++) {
             Name name = new Name(i + "a");
-            Phone phone = new Phone("000");
-            Email email = new Email("a@aa");
-            Address address = new Address("a");
-            Entry entry = new Entry(name, phone, email, address, Collections.emptySet());
+            Date date = new Date("31-12-1996");
+            CashFlow cashflow = new CashFlow("-0.90");
+            Entry entry = new Entry(name, date, cashflow, Collections.emptySet());
             backingList.add(entry);
         }
         return backingList;
