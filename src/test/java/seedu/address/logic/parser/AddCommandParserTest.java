@@ -57,13 +57,13 @@ public class AddCommandParserTest {
                  + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB 
+        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB
                  + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Entry expectedPersonMultipleTags = new EntryBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB 
+        assertParseSuccess(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -103,19 +103,19 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + DATE_DESC_BOB + CASHFLOW_DESC_BOB 
+        assertParseFailure(parser, INVALID_NAME_DESC + DATE_DESC_BOB + CASHFLOW_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid date
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DATE_DESC + CASHFLOW_DESC_BOB 
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DATE_DESC + CASHFLOW_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
 
         // invalid cashflow
-        assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + INVALID_CASHFLOW_DESC 
+        assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + INVALID_CASHFLOW_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, CashFlow.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB 
+        assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported

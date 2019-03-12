@@ -127,5 +127,4 @@ public interface Model {
      * Sets the selected entry in the filtered entry list.
      */
     void setSelectedEntry(Entry entry);
-    
 }

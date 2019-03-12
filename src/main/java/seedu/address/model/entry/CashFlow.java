@@ -59,4 +59,4 @@ public class CashFlow {
         public int hashCode() {
             return value.hashCode();
         }
-    }
+}

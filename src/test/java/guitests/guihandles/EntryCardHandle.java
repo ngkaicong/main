@@ -49,7 +49,7 @@ public class EntryCardHandle extends NodeHandle<Node> {
     public String getName() {
         return nameLabel.getText();
     }
-    
+
     public String getDate() {
         return dateLabel.getText();
     }
