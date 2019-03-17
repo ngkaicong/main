@@ -38,8 +38,6 @@ public class CashFlowTest {
 
         // invalid parts
         assertFalse(CashFlow.isValidCashFlow("peterjack@-")); // invalid domain name
-        assertFalse(CashFlow.isValidCashFlow("-0.00")); // Zero
-        assertFalse(CashFlow.isValidCashFlow("+0.00")); // Zero
         assertFalse(CashFlow.isValidCashFlow("5.32")); // No +/- Sign
         assertFalse(CashFlow.isValidCashFlow("+1")); // No Decimal
         assertFalse(CashFlow.isValidCashFlow("+1.23123")); // Too much decimals
