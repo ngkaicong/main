@@ -14,7 +14,8 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 image::yushao2.png[width="150", align="left"]
 {empty}[https://github.com/yushao2[github]]
 
-Role: TBC
+Role: TBC +
+Responsibilities:
 
 '''
 
@@ -22,7 +23,7 @@ Role: TBC
 image::frankquekch.png[width="150", align="left"]
 {empty}[http://github.com/frankquekch[github]]
 
-Role: TBC
+Role: Developer +
 Responsibilities: TBC
 
 '''
@@ -31,7 +32,7 @@ Responsibilities: TBC
 image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
 
-Role: TBC
+Role: Developer +
 Responsibilities: TBC
 
 '''
@@ -40,7 +41,7 @@ Responsibilities: TBC
 image::jacobhan.png[width="150", align="left"]
 {empty}[http://github.com/jacobhan[github]]
 
-Role: TBC
+Role: Developer +
 Responsibilities: TBC
 
 '''
