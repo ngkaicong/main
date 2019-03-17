@@ -10,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,7 +83,8 @@ class JsonAdaptedEntry {
         final Date modelDate = new Date(date);
 
         if (cashFlow == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CashFlow.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CashFlow.class.getSimpleName()));
         }
         if (!CashFlow.isValidCashFlow(cashFlow)) {
             throw new IllegalValueException(CashFlow.MESSAGE_CONSTRAINTS);
