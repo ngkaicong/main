@@ -3,12 +3,12 @@ package seedu.address.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.testutil.TypicalEntrys.*;
+import static seedu.address.testutil.TypicalEntrys.AMY;
+import static seedu.address.testutil.TypicalEntrys.MALA;
+import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,8 +19,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.exceptions.DuplicateEntryException;
-import seedu.address.testutil.EntryBuilder;
+
 
 public class AddressBookTest {
 
