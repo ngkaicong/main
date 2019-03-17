@@ -19,7 +19,7 @@ public class CashFlow {
     // Any form of cash flow entered must follow the format defined above
     private static final String CASHFLOW_WHOLE_NUMBER_ZERO_REGEX = "0";
     private static final String CASHFLOW_WHOLE_NUMBER_NONZERO_REGEX = "[1-9]{1}\\d*";
-    private static final String CASHFLOW_DECIMAL_PART_REGEX = ".\\d+";
+    private static final String CASHFLOW_DECIMAL_PART_REGEX = ".\\d{2}";
     private static final String CASHFLOW_SIGN_PART_REGEX = "[\\+-]{1}";
     // This only represents the numerical part of the string pattern
     // UNSIGNED_CASHFLOW_VALIDATION_REGEX = "(0|[1-9]{1}\d*)($|.\d+)"
