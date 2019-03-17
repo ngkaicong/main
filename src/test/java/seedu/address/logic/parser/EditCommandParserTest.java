@@ -32,8 +32,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.model.entry.CashFlow;
-import seedu.address.model.entry.Name;
 import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 

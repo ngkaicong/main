@@ -10,11 +10,10 @@ import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 
 import java.util.Collections;
 
-import guitests.guihandles.EntryCardHandle;
-import guitests.guihandles.EntryListPanelHandle;
-
 import org.junit.Test;
 
+import guitests.guihandles.EntryCardHandle;
+import guitests.guihandles.EntryListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +21,8 @@ import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.Name;
+
+
 
 public class EntryListPanelTest extends GuiUnitTest {
     private static final ObservableList<Entry> TYPICAL_ENTRYS =
