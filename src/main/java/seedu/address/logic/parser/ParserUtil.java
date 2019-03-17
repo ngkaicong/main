@@ -70,14 +70,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CashFlow} is invalid.
      */
-        public static CashFlow parseCashFlow(String cashFlow) throws ParseException {
-            requireNonNull(cashFlow);
-            String trimmedCashFlow = cashFlow.trim();
-            if (!CashFlow.isValidCashFlow(trimmedCashFlow)) {
-                throw new ParseException(CashFlow.MESSAGE_CONSTRAINTS);
-            }
-            return new CashFlow(trimmedCashFlow);
+    public static CashFlow parseCashFlow(String cashFlow) throws ParseException {
+        requireNonNull(cashFlow);
+        String trimmedCashFlow = cashFlow.trim();
+        if (!CashFlow.isValidCashFlow(trimmedCashFlow)) {
+            throw new ParseException(CashFlow.MESSAGE_CONSTRAINTS);
         }
+        return new CashFlow(trimmedCashFlow);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
