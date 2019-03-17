@@ -49,7 +49,7 @@ public class TypicalEntrys {
             .withCashFlow(VALID_CASHFLOW_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
-    public static final String KEYWORD_MATCHING_BURSARY = "Income"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_BURSARY = "Income"; // A keyword that matches Bursary
 
     private TypicalEntrys() {} // prevents instantiation
 

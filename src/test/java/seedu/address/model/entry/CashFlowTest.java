@@ -38,27 +38,18 @@ public class CashFlowTest {
 
         // invalid parts
         assertFalse(CashFlow.isValidCashFlow("peterjack@-")); // invalid domain name
-        assertFalse(CashFlow.isValidCashFlow("peterjack@exam_ple.com")); // underscore in domain name
-        assertFalse(CashFlow.isValidCashFlow("peter jack@example.com")); // spaces in local part
-        assertFalse(CashFlow.isValidCashFlow("peterjack@exam ple.com")); // spaces in domain name
-        assertFalse(CashFlow.isValidCashFlow(" peterjack@example.com")); // leading space
-        assertFalse(CashFlow.isValidCashFlow("peterjack@example.com ")); // trailing space
-        assertFalse(CashFlow.isValidCashFlow("peterjack@@example.com")); // double '@' symbol
-        assertFalse(CashFlow.isValidCashFlow("peter@jack@example.com")); // '@' symbol in local part
-        assertFalse(CashFlow.isValidCashFlow("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(CashFlow.isValidCashFlow("peterjack@.example.com")); // domain name starts with a period
-        assertFalse(CashFlow.isValidCashFlow("peterjack@example.com.")); // domain name ends with a period
-        assertFalse(CashFlow.isValidCashFlow("peterjack@-example.com")); // domain name starts with a hyphen
-        assertFalse(CashFlow.isValidCashFlow("peterjack@example.com-")); // domain name ends with a hyphen
+        assertFalse(CashFlow.isValidCashFlow("-0.00")); // Zero
+        assertFalse(CashFlow.isValidCashFlow("+0.00")); // Zero
+        assertFalse(CashFlow.isValidCashFlow("5.32")); // No +/- Sign
+        assertFalse(CashFlow.isValidCashFlow("+1")); // No Decimal
+        assertFalse(CashFlow.isValidCashFlow("+1.23123")); // Too much decimals
+        assertFalse(CashFlow.isValidCashFlow("+1 300 230")); // Spaces
 
         // valid email
-        assertTrue(CashFlow.isValidCashFlow("PeterJack_1190@example.com"));
-        assertTrue(CashFlow.isValidCashFlow("a@bc")); // minimal
-        assertTrue(CashFlow.isValidCashFlow("test@localhost")); // alphabets only
-        assertTrue(CashFlow.isValidCashFlow("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
-        assertTrue(CashFlow.isValidCashFlow("123@145")); // numeric local part and domain name
-        assertTrue(CashFlow.isValidCashFlow("a1+be!@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(CashFlow.isValidCashFlow("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(CashFlow.isValidCashFlow("if.you.dream.it_you.can.do.it@example.com")); // long local part
+        assertTrue(CashFlow.isValidCashFlow("+5.00"));
+        assertTrue(CashFlow.isValidCashFlow("-5.00")); // negative value
+        assertTrue(CashFlow.isValidCashFlow("+194324.00")); // high value only
+
+
     }
 }
