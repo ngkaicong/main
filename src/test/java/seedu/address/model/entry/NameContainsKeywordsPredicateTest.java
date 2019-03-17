@@ -2,6 +2,7 @@ package seedu.address.model.entry;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.testutil.TypicalEntrys.IDA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,7 +11,6 @@ import java.util.List;
 import org.junit.Test;
 
 import seedu.address.testutil.EntryBuilder;
-import static seedu.address.testutil.TypicalEntrys.IDA;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -69,7 +69,8 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new EntryBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList(IDA.getName().toString(), IDA.getDate().toString(), IDA.getCashFlow().toString()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList(IDA.getName().toString(), IDA.getDate().toString(),
+                IDA.getCashFlow().toString()));
         assertFalse(predicate.test(new EntryBuilder().withName("Alice").withDate(IDA.getDate().toString())
                 .withCashFlow(IDA.getCashFlow().toString()).build()));
     }

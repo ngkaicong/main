@@ -4,9 +4,9 @@ import static org.junit.Assert.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.TypicalEntrys.CAIFAN;
-import static seedu.address.testutil.TypicalEntrys.MALA;
 import static seedu.address.testutil.TypicalEntrys.IDA;
 import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.address.testutil.TypicalEntrys.MALA;
 
 import java.util.ArrayList;
 import java.util.List;

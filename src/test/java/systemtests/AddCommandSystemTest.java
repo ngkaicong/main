@@ -5,9 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.CASHFLOW_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CASHFLOW_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CASHFLOW_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -16,8 +15,12 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.testutil.TypicalEntrys.*;
+import static seedu.address.testutil.TypicalEntrys.AMY;
+import static seedu.address.testutil.TypicalEntrys.BOB;
+import static seedu.address.testutil.TypicalEntrys.CHICKENRICE;
+import static seedu.address.testutil.TypicalEntrys.IDA;
+import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.address.testutil.TypicalEntrys.MALA;
 
 import org.junit.Test;
 
@@ -120,7 +123,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, Date.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid cashflow -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY +  INVALID_DATE_DESC + CASHFLOW_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INVALID_DATE_DESC + CASHFLOW_DESC_AMY;
         assertCommandFailure(command, CashFlow.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */

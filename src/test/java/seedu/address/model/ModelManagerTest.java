@@ -5,9 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_BOB;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
-import static seedu.address.testutil.TypicalEntrys.MALA;
-import static seedu.address.testutil.TypicalEntrys.CAIFAN;
 import static seedu.address.testutil.TypicalEntrys.BOB;
+import static seedu.address.testutil.TypicalEntrys.CAIFAN;
+import static seedu.address.testutil.TypicalEntrys.MALA;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

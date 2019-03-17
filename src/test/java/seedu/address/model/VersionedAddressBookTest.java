@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalEntrys.AMY;
 import static seedu.address.testutil.TypicalEntrys.BOB;
 import static seedu.address.testutil.TypicalEntrys.IDA;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
