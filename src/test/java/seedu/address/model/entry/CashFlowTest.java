@@ -41,7 +41,6 @@ public class CashFlowTest {
         //assertFalse(CashFlow.isValidCashFlow("-0.00")); // Zero
         //assertFalse(CashFlow.isValidCashFlow("+0.00")); // Zero
         assertFalse(CashFlow.isValidCashFlow("5.32")); // No +/- Sign
-        assertFalse(CashFlow.isValidCashFlow("+1")); // No Decimal
         assertFalse(CashFlow.isValidCashFlow("+1.23123")); // Too much decimals
         assertFalse(CashFlow.isValidCashFlow("+1 300 230")); // Spaces
 
