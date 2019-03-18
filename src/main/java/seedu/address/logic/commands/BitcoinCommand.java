@@ -24,10 +24,10 @@ public class BitcoinCommand extends Command {
         return null;
     }
 
-    @Override
+    /*@Override
     public CommandResult execute() {
         return null;
-    }
+    }*/
 
 
 }
