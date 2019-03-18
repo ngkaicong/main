@@ -55,6 +55,10 @@ test {
 }
 
 dependencies {
+
+    compile 'org.json:json:20171018'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
+
     String testFxVersion = '4.0.12-alpha'
     String jUnitVersion = '5.1.0'
 
