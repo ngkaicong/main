@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.UniqueEntryList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Wraps all data at the address-book level
@@ -99,6 +100,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         entrys.remove(key);
         indicateModified();
     }
+
 
     @Override
     public void addListener(InvalidationListener listener) {

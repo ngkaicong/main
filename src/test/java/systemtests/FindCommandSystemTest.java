@@ -3,10 +3,10 @@ package systemtests;
 import static org.junit.Assert.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalEntrys.BENSON;
-import static seedu.address.testutil.TypicalEntrys.CARL;
-import static seedu.address.testutil.TypicalEntrys.DANIEL;
-import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_MEIER;
+import static seedu.address.testutil.TypicalEntrys.CAIFAN;
+import static seedu.address.testutil.TypicalEntrys.IDA;
+import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.address.testutil.TypicalEntrys.MALA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,28 +28,28 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         /* Case: find multiple entrys in address book, command with leading spaces and trailing spaces
          * -> 2 entrys found
          */
-        String command = "   " + FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER + "   ";
+        String command = "   " + FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_BURSARY + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
+        ModelHelper.setFilteredList(expectedModel, CAIFAN, IDA); // first names of Benson and Daniel are "Meier"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: repeat previous find command where entry list is displaying the entrys we are finding
          * -> 2 entrys found
          */
-        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER;
+        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_BURSARY;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find entry where entry list is not displaying the entry we are finding -> 1 entry found */
         command = FindCommand.COMMAND_WORD + " Carl";
-        ModelHelper.setFilteredList(expectedModel, CARL);
+        ModelHelper.setFilteredList(expectedModel, MALA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple entrys in address book, 2 keywords -> 2 entrys found */
         command = FindCommand.COMMAND_WORD + " Benson Daniel";
-        ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL);
+        ModelHelper.setFilteredList(expectedModel, CAIFAN, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -82,10 +82,10 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: find same entrys in address book after deleting 1 of them -> 1 entry found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
-        assertFalse(getModel().getAddressBook().getEntryList().contains(BENSON));
-        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER;
+        assertFalse(getModel().getAddressBook().getEntryList().contains(CAIFAN));
+        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_BURSARY;
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setFilteredList(expectedModel, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -112,22 +112,18 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find phone number of entry in address book -> 0 entrys found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getPhone().value;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: find address of entry in address book -> 0 entrys found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getAddress().value;
+        command = FindCommand.COMMAND_WORD + " " + IDA.getDate().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find email of entry in address book -> 0 entrys found */
-        command = FindCommand.COMMAND_WORD + " " + DANIEL.getEmail().value;
+        // TODO: Might have problem here
+        command = FindCommand.COMMAND_WORD + " " + IDA.getCashFlow().value;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find tags of entry in address book -> 0 entrys found */
-        List<Tag> tags = new ArrayList<>(DANIEL.getTags());
+        List<Tag> tags = new ArrayList<>(IDA.getTags());
         command = FindCommand.COMMAND_WORD + " " + tags.get(0).tagName;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -135,17 +131,17 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         /* Case: find while a entry is selected -> selected card deselected */
         showAllEntrys();
         selectEntry(Index.fromOneBased(1));
-        assertFalse(getEntryListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName));
+        assertFalse(getEntryListPanel().getHandleToSelectedCard().getName().equals(IDA.getName().fullName));
         command = FindCommand.COMMAND_WORD + " Daniel";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setFilteredList(expectedModel, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
 
         /* Case: find entry in empty address book -> 0 entrys found */
         deleteAllEntrys();
-        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER;
+        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_BURSARY;
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
+        ModelHelper.setFilteredList(expectedModel, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

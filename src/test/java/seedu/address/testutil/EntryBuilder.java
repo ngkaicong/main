@@ -3,12 +3,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.Expense;
 import seedu.address.model.entry.Income;
-import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Name;
-import seedu.address.model.entry.Entry;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

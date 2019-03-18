@@ -3,22 +3,26 @@ package seedu.address.ui;
 import static java.time.Duration.ofMillis;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static seedu.address.testutil.TypicalEntrys.getTypicalEntrys;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysEntry;
 import static seedu.address.ui.testutil.GuiTestAssert.assertCardEquals;
 
 import java.util.Collections;
 
-import guitests.guihandles.EntryCardHandle;
-import guitests.guihandles.EntryListPanelHandle;
 import org.junit.Test;
 
+import guitests.guihandles.EntryCardHandle;
+import guitests.guihandles.EntryListPanelHandle;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Name;
+
+
 
 public class EntryListPanelTest extends GuiUnitTest {
     private static final ObservableList<Entry> TYPICAL_ENTRYS =
@@ -39,7 +43,7 @@ public class EntryListPanelTest extends GuiUnitTest {
             EntryCardHandle actualCard = entryListPanelHandle.getEntryCardHandle(i);
 
             assertCardDisplaysEntry(expectedEntry, actualCard);
-            assertEquals(Integer.toString(i + 1) + ". ", actualCard.getId());
+            assertEquals((i + 1) + ". ", actualCard.getId());
         }
     }
 
@@ -77,10 +81,9 @@ public class EntryListPanelTest extends GuiUnitTest {
         ObservableList<Entry> backingList = FXCollections.observableArrayList();
         for (int i = 0; i < entryCount; i++) {
             Name name = new Name(i + "a");
-            Phone phone = new Phone("000");
-            Email email = new Email("a@aa");
-            Address address = new Address("a");
-            Entry entry = new Entry(name, phone, email, address, Collections.emptySet());
+            Date date = new Date("31-12-1996");
+            CashFlow cashflow = new CashFlow("-0.90");
+            Entry entry = new Entry(name, date, cashflow, Collections.emptySet());
             backingList.add(entry);
         }
         return backingList;

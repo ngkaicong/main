@@ -95,7 +95,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyProperty<Entry> selectedEntryProperty() {
-        return  model.selectedEntryProperty();
+        return model.selectedEntryProperty();
     }
 
     @Override

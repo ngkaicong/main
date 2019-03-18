@@ -12,8 +12,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Name;
-import seedu.address.model.entry.Income;
-import seedu.address.model.entry.Expense;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,7 +44,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_NAME_CONSTRAINTS);
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -61,7 +59,7 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_DATE_CONSTRAINTS);
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);
     }
@@ -72,14 +70,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CashFlow} is invalid.
      */
-        public static CashFlow parseCashFlow(String cashFlow) throws ParseException {
-            requireNonNull(cashFlow);
-            String trimmedCashFlow = cashFlow.trim();
-            if (!CashFlow.isValidCashFlow(trimmedCashFlow)) {
-                throw new ParseException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
-            }
-            return new CashFlow(trimmedCashFlow);
+    public static CashFlow parseCashFlow(String cashFlow) throws ParseException {
+        requireNonNull(cashFlow);
+        String trimmedCashFlow = cashFlow.trim();
+        if (!CashFlow.isValidCashFlow(trimmedCashFlow)) {
+            throw new ParseException(CashFlow.MESSAGE_CONSTRAINTS);
         }
+        return new CashFlow(trimmedCashFlow);
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

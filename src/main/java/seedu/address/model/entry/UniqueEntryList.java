@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.entry.exceptions.DuplicateEntryException;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 
 /**
@@ -42,9 +41,11 @@ public class UniqueEntryList implements Iterable<Entry> {
      */
     public void add(Entry toAdd) {
         requireNonNull(toAdd);
+        /*
         if (contains(toAdd)) {
             throw new DuplicateEntryException();
         }
+        */
         internalList.add(toAdd);
     }
 
@@ -60,11 +61,11 @@ public class UniqueEntryList implements Iterable<Entry> {
         if (index == -1) {
             throw new EntryNotFoundException();
         }
-
+        /*
         if (!target.isSameEntry(editedEntry) && contains(editedEntry)) {
             throw new DuplicateEntryException();
         }
-
+        */
         internalList.set(index, editedEntry);
     }
 
@@ -90,10 +91,11 @@ public class UniqueEntryList implements Iterable<Entry> {
      */
     public void setEntrys(List<Entry> entrys) {
         requireAllNonNull(entrys);
+        /*
         if (!entrysAreUnique(entrys)) {
             throw new DuplicateEntryException();
         }
-
+        */
         internalList.setAll(entrys);
     }
 
