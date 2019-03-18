@@ -4,7 +4,6 @@ import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import seedu.address.model.entry.Entry;
 
-import java.util.List;
 
 /**
  * Unmodifiable view of an address book

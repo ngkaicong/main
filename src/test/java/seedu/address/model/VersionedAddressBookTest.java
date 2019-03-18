@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalEntrys.AMY;
 import static seedu.address.testutil.TypicalEntrys.BOB;
-import static seedu.address.testutil.TypicalEntrys.CARL;
+import static seedu.address.testutil.TypicalEntrys.IDA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +20,7 @@ public class VersionedAddressBookTest {
 
     private final ReadOnlyAddressBook addressBookWithAmy = new AddressBookBuilder().withEntry(AMY).build();
     private final ReadOnlyAddressBook addressBookWithBob = new AddressBookBuilder().withEntry(BOB).build();
-    private final ReadOnlyAddressBook addressBookWithCarl = new AddressBookBuilder().withEntry(CARL).build();
+    private final ReadOnlyAddressBook addressBookWithCarl = new AddressBookBuilder().withEntry(IDA).build();
     private final ReadOnlyAddressBook emptyAddressBook = new AddressBookBuilder().build();
 
     @Test

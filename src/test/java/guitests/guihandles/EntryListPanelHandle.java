@@ -156,5 +156,5 @@ public class EntryListPanelHandle extends NodeHandle<ListView<Entry>> {
     public int getListSize() {
         return getRootNode().getItems().size();
     }
-    
+
 }

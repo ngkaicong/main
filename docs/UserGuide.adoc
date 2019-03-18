@@ -60,7 +60,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 Format: `help`
 
 <<<<<<< HEAD
-=== Adding a entry: `add` 
+=== Adding a entry: `add`
 
 Adds a entry to the address book +
 =======

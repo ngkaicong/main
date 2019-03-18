@@ -5,15 +5,15 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEntryAtIndex;
+import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
-import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import org.junit.Test;
 
@@ -58,11 +58,11 @@ public class EditCommandTest {
         Entry lastEntry = model.getFilteredEntryList().get(indexLastEntry.getZeroBased());
 
         EntryBuilder entryInList = new EntryBuilder(lastEntry);
-        Entry editedEntry = entryInList.withName(VALID_NAME_BOB).withPhone(VALID_DATE_BOB)
+        Entry editedEntry = entryInList.withName(VALID_NAME_BOB).withDate(VALID_DATE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withDate(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastEntry, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);

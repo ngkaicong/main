@@ -19,10 +19,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.entry.Date;
 import seedu.address.model.entry.CashFlow;
-import seedu.address.model.entry.Name;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -145,7 +145,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name,date, cashFlow, tags);
+            return CollectionUtil.isAnyNonNull(name, date, cashFlow, tags);
         }
 
         public void setName(Name name) {

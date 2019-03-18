@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CASHFLOW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -16,8 +16,8 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 
 /**
@@ -25,12 +25,12 @@ import seedu.address.testutil.EditEntryDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Payment from Amy";
+    public static final String VALID_NAME_AMY = "Allowance from Amy";
     public static final String VALID_NAME_BOB = "Payment from Bob";
     public static final String VALID_DATE_AMY = "11-10-2004";
     public static final String VALID_DATE_BOB = "11-02-2004";
-    public static final String VALID_CASHFLOW_INCOME_AMY = "+10.90";
-    public static final String VALID_CASHFLOW_EXPENSE_BOB = "-11.50";
+    public static final String VALID_CASHFLOW_AMY = "+10.90";
+    public static final String VALID_CASHFLOW_BOB = "-11.50";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -38,8 +38,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String CASHFLOW_INCOME_DESC_AMY = " " + PREFIX_CASHFLOW + VALID_CASHFLOW_INCOME_AMY;
-    public static final String CASHFLOW_EXPENSE_DESC_BOB = " " + PREFIX_CASHFLOW + VALID_CASHFLOW_EXPENSE_BOB;
+    public static final String CASHFLOW_DESC_AMY = " " + PREFIX_CASHFLOW + VALID_CASHFLOW_AMY;
+    public static final String CASHFLOW_DESC_BOB = " " + PREFIX_CASHFLOW + VALID_CASHFLOW_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -57,9 +57,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditEntryDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDate(VALID_DATE_AMY).withCashFlow(VALID_CASHFLOW_INCOME_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withDate(VALID_DATE_AMY).withCashFlow(VALID_CASHFLOW_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditEntryDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withDate(VALID_DATE_BOB).withCashFlow(VALID_CASHFLOW_EXPENSE_BOB)
+                .withDate(VALID_DATE_BOB).withCashFlow(VALID_CASHFLOW_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
@@ -74,7 +74,7 @@ public class CommandTestUtil {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
             CommandResult result = command.execute(actualModel, actualCommandHistory);
-            assertEquals(expectedMessage, result.feedbackToUser);
+            assertEquals(expectedMessage, result.getFeedbackToUser());
             assertEquals(expectedModel, actualModel);
             assertEquals(expectedCommandHistory, actualCommandHistory);
         } catch (CommandException ce) {
