@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.EasyFindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.model.entry.DateContainsSpecifiedKeywordsPredicate;
+import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.model.entry.TagContainsSpecifiedKeywordsPredicate;
 
 /**
