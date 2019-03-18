@@ -349,6 +349,16 @@ The 4 predicates are as follow:
 
 ==== Design Considerations
 
+===== Aspect: How to deal with the API call
+
+* **Alternative 1 (current choice):** Save the entire call.
+** Pros: Easy to implement.
+** Cons: May have performance issues in terms of memory usage.
+* **Alternative 2:** Only save the information of related crypto assets.
+** Pros: Will use less memory.
+** Cons: If changes are made to the list of interested crypto assets, must make frequent calls.
+
+
 It is implemented to search with one type of detail only such that only the returned results will be
 shown. i.e. if a user search for an entry with date then only the date of the returned entry/s are relevant,
 and other details are irrelevant to the input date during the search.
@@ -409,21 +419,23 @@ Certain properties of the application can be controlled (e.g user prefs file loc
 
 === Crypto Tracker
 ==== Current Implementation
-This feature will be a command facilitated by 'BitcoinCommand'. It returns how much bitcoin you can buy with your current balance with real-time market prices.
+This feature will be a command facilitated by `BitcoinCommand`. It returns how much bitcoin you can buy with your current balance with real-time market prices.
 This feature is to be extended towards additional cryptocurrencies, and is planned to have more functionality rather than just simply viewing prices.
 
-* 'BitcoinCommand#execute()' - Display a message regarding the current bitcoin price and how much you will be able to purchase
-* 'BitcoinCommand#switch' - This is a planned method of possibly switching to another cryptocurrency
+* `BitcoinCommand#execute()` - Display a message regarding the current bitcoin price and how much you will be able to purchase
+* `BitcoinCommand#switch` - This is a planned method of possibly switching to another cryptocurrency
 
 Given below is an example scenario of how the bitcoin command mechanism behaves at each step.
 
-Step 1. The user launches the application, and changes are made to the 'Budgeter' object.
+Step 1. The user launches the application, and changes are made to the `Budgeter` object.
 
-Step 2. The user inputs the bitcoin command, and in the 'BitcoinCommand#execute()' method, it pulls the current balance from the 'Budgeter object'.
+Step 2. The user inputs the bitcoin command, and in the `BitcoinCommand#execute()` method, it pulls the current balance from the `Budgeter object`.
 
 Step 3. The method calls the CryptoCompare API to return current market prices of bitcoin, and stores that data.
 
 Step 4. The resulting information is displayed to the user with a message.
+
+==== Design Considerations
 
 == Documentation
 
