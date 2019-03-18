@@ -10,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,7 +70,7 @@ class JsonAdaptedEntry {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_NAME_CONSTRAINTS);
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
 
@@ -76,15 +78,16 @@ class JsonAdaptedEntry {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
         if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_DATE_CONSTRAINTS);
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
 
         if (cashFlow == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CashFlow.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CashFlow.class.getSimpleName()));
         }
         if (!CashFlow.isValidCashFlow(cashFlow)) {
-            throw new IllegalValueException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
+            throw new IllegalValueException(CashFlow.MESSAGE_CONSTRAINTS);
         }
         final CashFlow modelCashFlow = new CashFlow(cashFlow);
 

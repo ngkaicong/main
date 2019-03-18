@@ -2,9 +2,9 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.testutil.TypicalEntrys.ALICE;
-import static seedu.address.testutil.TypicalEntrys.HOON;
+import static seedu.address.testutil.TypicalEntrys.CAIFAN;
 import static seedu.address.testutil.TypicalEntrys.IDA;
+import static seedu.address.testutil.TypicalEntrys.MALA;
 import static seedu.address.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -84,8 +84,8 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addEntry(HOON);
-        original.removeEntry(ALICE);
+        original.addEntry(CAIFAN);
+        original.removeEntry(MALA);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));

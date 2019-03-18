@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Date;
-import seedu.address.model.entry.Name;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.Name;
 import seedu.address.model.tag.Tag;
 
 /**

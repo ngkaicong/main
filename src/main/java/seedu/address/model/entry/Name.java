@@ -14,8 +14,10 @@ public class Name {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
+    //TODO: May need to change the constraints
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String MESSAGE_NAME_CONSTRAINTS = "Names can only contain alphanumeric characters and spaces, and it should not be blank"; ;
+    public static final String MESSAGE_CONSTRAINTS = "Names can only contain alphanumeric characters and spaces, "
+            + "and it should not be blank";
 
     public final String fullName;
 
@@ -26,7 +28,7 @@ public class Name {
      */
     public Name(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_NAME_CONSTRAINTS);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
 

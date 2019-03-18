@@ -7,8 +7,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.SelectCommand.MESSAGE_SELECT_ENTRY_SUCCESS;
 import static seedu.address.testutil.TestUtil.getLastIndex;
 import static seedu.address.testutil.TestUtil.getMidIndex;
+import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
-import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
 
@@ -57,7 +57,7 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
         /* Case: filtered entry list, select index within bounds of address book but out of bounds of entry list
          * -> rejected
          */
-        showEntrysWithName(KEYWORD_MATCHING_MEIER);
+        showEntrysWithName(KEYWORD_MATCHING_BURSARY);
         int invalidIndex = getModel().getAddressBook().getEntryList().size();
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
 

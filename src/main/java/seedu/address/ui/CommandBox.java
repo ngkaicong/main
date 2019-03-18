@@ -23,6 +23,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -63,6 +64,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleKeyPress(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
+
             case UP:
                 // As up and down buttons will alter the position of the caret,
                 // consuming it causes the caret's position to remain unchanged
@@ -178,6 +180,8 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+}
+
     /**
      * Creates a list of Matched Suggestions based on User Input
      */
@@ -224,3 +228,4 @@ public class CommandBox extends UiPart<Region> {
     }
 
 }
+
