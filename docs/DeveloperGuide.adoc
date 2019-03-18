@@ -349,15 +349,6 @@ The 4 predicates are as follow:
 
 ==== Design Considerations
 
-===== Aspect: How to deal with the API call
-
-* **Alternative 1 (current choice):** Save the entire call.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Only save the information of related crypto assets.
-** Pros: Will use less memory.
-** Cons: If changes are made to the list of interested crypto assets, must make frequent calls.
-
 
 It is implemented to search with one type of detail only such that only the returned results will be
 shown. i.e. if a user search for an entry with date then only the date of the returned entry/s are relevant,
@@ -436,6 +427,8 @@ Step 3. The method calls the CryptoCompare API to return current market prices o
 Step 4. The resulting information is displayed to the user with a message.
 
 ==== Design Considerations
+
+===== Aspect: How to deal with the API call
 
 * **Alternative 1 (current choice):** Save the entire call.
 ** Pros: Easy to implement.
