@@ -15,7 +15,7 @@ image::yushao2.png[width="150", align="left"]
 {empty}[https://github.com/yushao2[github]]
 
 Role: TBC +
-Responsibilities:
+Responsibilities: TBC
 
 '''
 
@@ -33,7 +33,7 @@ image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
 
 Role: Developer +
-Responsibilities: TBC
+Responsibilities: Spending Limits features
 
 '''
 
