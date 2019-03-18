@@ -7,7 +7,7 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entry.Entry;
-
+import seedu.address.model.tag.Tag;
 /**
  * The API of the Model component.
  */
@@ -127,4 +127,5 @@ public interface Model {
      * Sets the selected entry in the filtered entry list.
      */
     void setSelectedEntry(Entry entry);
+
 }
