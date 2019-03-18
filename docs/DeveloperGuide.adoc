@@ -407,6 +407,24 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
+=== Crypto Tracker
+==== Current Implementation
+This feature will be a command facilitated by 'BitcoinCommand'. It returns how much bitcoin you can buy with your current balance with real-time market prices.
+This feature is to be extended towards additional cryptocurrencies, and is planned to have more functionality rather than just simply viewing prices.
+
+* 'BitcoinCommand#execute()' - Display a message regarding the current bitcoin price and how much you will be able to purchase
+* 'BitcoinCommand#switch' - This is a planned method of possibly switching to another cryptocurrency
+
+Given below is an example scenario of how the bitcoin command mechanism behaves at each step.
+
+Step 1. The user launches the application, and changes are made to the 'Budgeter' object.
+
+Step 2. The user inputs the bitcoin command, and in the 'BitcoinCommand#execute()' method, it pulls the current balance from the 'Budgeter object'.
+
+Step 3. The method calls the CryptoCompare API to return current market prices of bitcoin, and stores that data.
+
+Step 4. The resulting information is displayed to the user with a message.
+
 == Documentation
 
 We use asciidoc for writing documentation.
