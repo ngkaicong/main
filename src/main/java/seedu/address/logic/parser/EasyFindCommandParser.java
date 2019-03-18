@@ -15,7 +15,7 @@ import seedu.address.model.entry.TagContainsSpecifiedKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class EasyFindCommandParser implements Parser<EasyFindCommand>{
+public class EasyFindCommandParser implements Parser<EasyFindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindSpecificCommand
      * and returns an FindSpecificCommand object for execution.
