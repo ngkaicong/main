@@ -47,9 +47,9 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasEntry(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
-        }
+//        if (model.hasEntry(toAdd)) {
+//            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+//        }
 
         model.addEntry(toAdd);
         model.commitAddressBook();

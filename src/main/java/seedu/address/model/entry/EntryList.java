@@ -14,14 +14,14 @@ import seedu.address.model.entry.exceptions.EntryNotFoundException;
  * A list of entrys that enforces uniqueness between its elements and does not allow nulls.
  * A entry is considered unique by comparing using {@code Entry#isSameEntry(Entry)}. As such, adding and updating of
  * entrys uses Entry#isSameEntry(Entry) for equality so as to ensure that the entry being added or updated is
- * unique in terms of identity in the UniqueEntryList. However, the removal of a entry uses Entry#equals(Object) so
+ * unique in terms of identity in the EntryList. However, the removal of a entry uses Entry#equals(Object) so
  * as to ensure that the entry with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Entry#isSameEntry(Entry)
  */
-public class UniqueEntryList implements Iterable<Entry> {
+public class EntryList implements Iterable<Entry> {
 
     private final ObservableList<Entry> internalList = FXCollections.observableArrayList();
     private final ObservableList<Entry> internalUnmodifiableList =
@@ -80,7 +80,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         }
     }
 
-    public void setEntrys(UniqueEntryList replacement) {
+    public void setEntrys(EntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -114,8 +114,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueEntryList // instanceof handles nulls
-                        && internalList.equals(((UniqueEntryList) other).internalList));
+                || (other instanceof EntryList // instanceof handles nulls
+                        && internalList.equals(((EntryList) other).internalList));
     }
 
     @Override

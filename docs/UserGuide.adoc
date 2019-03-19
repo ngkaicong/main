@@ -59,15 +59,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 Format: `help`
 
-<<<<<<< HEAD
-=== Adding a entry: `add`
 
-Adds a entry to the address book +
-=======
-=== Adding an entry: `add` [DOM]
+=== Adding an entry: `add`
 
 Adds an entry to the address book +
->>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 Format: `add n/NAME d/DATE c/CASHFLOW [t/TAG]...`
 
 CASHFLOW represents the input/output of the financial activity. It can be either a output(expense) or a input(income).
@@ -79,42 +74,27 @@ To distinguish between an income and an expense, the user will need to enter a p
 ** Typical example of *expense*: add n/BusFare d/20-2-2019 m/*-4.50*
 ****
 [TIP]
-<<<<<<< HEAD
-A entry can have any number of tags (including 0)
-=======
+
 An entry can have any number of tags (including 0)
->>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 
 Examples:
 
 * `add n/DinnerWithKenneth d/20-02-2019 m/-5`
 * `add n/IncomeFromWork m/+100 d/01-01-2019 t/Work`
 
-<<<<<<< HEAD
 === Listing all entries : `list`
 
 Shows a list of all entries in the address book. +
-=======
-=== Listing all entries : `list`
 
-Shows a list of all entries in the address book. +
->>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 Format: `list`
 
 === Editing an entry : `edit`
 
 Edits an existing entry in the address book. +
-<<<<<<< HEAD
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/CASHFLOW] [a/ADDRESS] [t/TAG]...`
 
 ****
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed entry list. The index *must be a positive integer* 1, 2, 3, ...
-=======
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-****
-* Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
->>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the entry will be removed i.e adding of tags is not cumulative.
@@ -154,11 +134,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any entry having names `Betsy`, `Tim`, or `John`
 
-<<<<<<< HEAD
-=== Deleting a entry : `delete`
-=======
 === Deleting an entry : `delete`
->>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 
 Deletes the specified entry from the address book. +
 Format: `delete INDEX`
