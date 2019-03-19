@@ -31,7 +31,7 @@ public class EntryUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + entry.getName().fullName + " ");
         sb.append(PREFIX_DATE + entry.getDate().value + " ");
-        sb.append(PREFIX_CASHFLOW + entry.getCashFlow().value + " ");
+        sb.append(PREFIX_CASHFLOW + entry.getCashFlow().value.toString() + " ");
         entry.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

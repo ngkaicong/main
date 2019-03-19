@@ -29,11 +29,12 @@ public class CashFlow {
     public static final String CASHFLOW_VALIDATION_REGEX = "^" + CASHFLOW_SIGN_PART_REGEX
             + UNSIGNED_CASHFLOW_VALIDATION_REGEX;
 
-    public final String value;
+    public final Float value;
 
-    public CashFlow(String cashFlow) {
-        requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow), MESSAGE_CONSTRAINTS);
+    public CashFlow(String cashFlowStr) {
+        requireNonNull(cashFlowStr);
+        checkArgument(isValidCashFlow(cashFlowStr), MESSAGE_CONSTRAINTS);
+        Float cashFlow = Float.parseFloat(cashFlowStr);
         this.value = cashFlow;
     }
 
@@ -45,7 +46,7 @@ public class CashFlow {
     }
 
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override
