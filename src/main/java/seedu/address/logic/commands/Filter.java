@@ -12,19 +12,19 @@ import seedu.address.model.Model;
  * Finds and lists all entrys in address book who contain any of the specified argument keywords.
  * Keyword matching is case sensitive.
  */
-public class EasyFindCommand extends Command {
-    public static final String COMMAND_WORD = "efind";
+public class Filter extends Command {
+    public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all entrys who contain any of "
             + "the specified keywords (non case-sensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " efind n/John \n"
+            + "Example: " + COMMAND_WORD + " filter n/John \n"
             + "Example: " + COMMAND_WORD + " d/12-01-2019\n"
             + "Example: " + COMMAND_WORD + " t/[Friends]";
 
     private final Predicate predicate;
 
-    public EasyFindCommand(Predicate predicate) {
+    public Filter(Predicate predicate) {
         this.predicate = predicate;
     }
 
@@ -38,8 +38,8 @@ public class EasyFindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EasyFindCommand // instanceof handles nulls
-                && this.predicate.equals(((EasyFindCommand) other).predicate)); // state check
+                || (other instanceof Filter // instanceof handles nulls
+                && this.predicate.equals(((Filter) other).predicate)); // state check
     }
 
 }

@@ -327,9 +327,9 @@ We have implemented dropdown menu UI for autocomplete with a list of commands pr
                     **Cons:** May not be intuitive to users who have not worked with CLI before.
 // end::CommandsUISupport[]
 
-// tag::efind[]
-=== Easy Searching Of Relevant Data
-This command allows users to search through the large amount of entries and find the most relevant information they need.
+// tag::filter[]
+=== Filter
+This command allows users to filter through the large amount of entries and find the most relevant information they need.
 It allows user to retrieve using other details such as name, date and tag.
 
 The user can use this command with only ONE of the following prefixes
