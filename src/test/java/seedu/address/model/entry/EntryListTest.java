@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalEntrys.AMY;
 import static seedu.address.testutil.TypicalEntrys.BOB;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import seedu.address.model.entry.exceptions.DuplicateEntryException;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 import seedu.address.testutil.EntryBuilder;
 
@@ -58,13 +56,13 @@ public class EntryListTest {
         entryList.add(null);
     }
 
-//    @Test
-//    //TODO Check if want to retain test case -- there might be duplicate entries with same parameters
-//    public void add_duplicateEntry_throwsDuplicateEntryException() {
-//        entryList.add(AMY);
-//        thrown.expect(DuplicateEntryException.class);
-//        entryList.add(AMY);
-//    }
+    //    @Test
+    //    //TODO Check if want to retain test case -- there might be duplicate entries with same parameters
+    //    public void add_duplicateEntry_throwsDuplicateEntryException() {
+    //        entryList.add(AMY);
+    //        thrown.expect(DuplicateEntryException.class);
+    //        entryList.add(AMY);
+    //    }
 
     @Test
     public void setEntry_nullTargetEntry_throwsNullPointerException() {
@@ -114,13 +112,13 @@ public class EntryListTest {
         assertEquals(expectedEntryList, entryList);
     }
 
-//    @Test
-//    public void setEntry_editedEntryHasNonUniqueIdentity_throwsDuplicateEntryException() {
-//        entryList.add(AMY);
-//        entryList.add(BOB);
-//        thrown.expect(DuplicateEntryException.class);
-//        entryList.setEntry(AMY, BOB);
-//    }
+    //    @Test
+    //    public void setEntry_editedEntryHasNonUniqueIdentity_throwsDuplicateEntryException() {
+    //        entryList.add(AMY);
+    //        entryList.add(BOB);
+    //        thrown.expect(DuplicateEntryException.class);
+    //        entryList.setEntry(AMY, BOB);
+    //    }
 
     @Test
     public void remove_nullEntry_throwsNullPointerException() {
@@ -173,12 +171,12 @@ public class EntryListTest {
         assertEquals(expectedEntryList, this.entryList);
     }
 
-//    @Test
-//    public void setEntrys_listWithDuplicateEntrys_throwsDuplicateEntryException() {
-//        List<Entry> listWithDuplicateEntrys = Arrays.asList(AMY, AMY);
-//        thrown.expect(DuplicateEntryException.class);
-//        entryList.setEntrys(listWithDuplicateEntrys);
-//    }
+    //    @Test
+    //    public void setEntrys_listWithDuplicateEntrys_throwsDuplicateEntryException() {
+    //        List<Entry> listWithDuplicateEntrys = Arrays.asList(AMY, AMY);
+    //        thrown.expect(DuplicateEntryException.class);
+    //        entryList.setEntrys(listWithDuplicateEntrys);
+    //    }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
