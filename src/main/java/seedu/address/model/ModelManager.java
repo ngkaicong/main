@@ -17,7 +17,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
-import seedu.address.model.tag.Tag;
+
 /**
  * Represents the in-memory model of the address book data.
  */
