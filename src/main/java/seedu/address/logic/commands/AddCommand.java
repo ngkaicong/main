@@ -18,7 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a entry to the Budgeter. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a entry to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "DATE "
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends ";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the Budgeter";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the address book";
 
     private final Entry toAdd;
 
