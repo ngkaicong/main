@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,18 +9,19 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.Entry;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
+
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -31,10 +31,10 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private static final String[] allSuggestions = {"add", "add n/ d/ c/ t/", "clear", "delete",
-            "find", "find n/ d/ c/ t/",
-            "efind", "find n/ or d/ or c/ or t/",
-            "edit", "edit n/ d/ c/ t/", "help",
-            "list", "select", "undo", "redo" };
+        "find", "find n/ d/ c/ t/",
+        "efind", "find n/ or d/ or c/ or t/",
+        "edit", "edit n/ d/ c/ t/", "help",
+        "list", "select", "undo", "redo" };
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private final CommandExecutor commandExecutor;
     private final List<String> history;
@@ -63,24 +63,24 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleKeyPress(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
-            case UP:
-                // As up and down buttons will alter the position of the caret,
-                // consuming it causes the caret's position to remain unchanged
-                keyEvent.consume();
+        case UP:
+            // As up and down buttons will alter the position of the caret,
+            // consuming it causes the caret's position to remain unchanged
+            keyEvent.consume();
 
-                navigateToPreviousInput();
-                break;
-            case DOWN:
-                keyEvent.consume();
-                navigateToNextInput();
-                break;
-            case ESCAPE:
-                keyEvent.consume();
-                suggestionsMenu.hide();
-                break;
+            navigateToPreviousInput();
+            break;
+        case DOWN:
+            keyEvent.consume();
+            navigateToNextInput();
+            break;
+        case ESCAPE:
+            keyEvent.consume();
+            suggestionsMenu.hide();
+            break;
 
-            default:
-                // let JavaFx handle the keypress
+        default:
+            // let JavaFx handle the keypress
         }
     }
 

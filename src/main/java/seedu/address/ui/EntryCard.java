@@ -43,7 +43,7 @@ public class EntryCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(entry.getName().fullName);
         date.setText(entry.getDate().value);
-        cashFlow.setText(entry.getCashFlow().value);
+        cashFlow.setText(entry.getCashFlow().value.toString());
         entry.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
