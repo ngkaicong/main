@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
 import seedu.address.model.entry.DateContainsSpecifiedKeywordsPredicate;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.model.entry.TagContainsSpecifiedKeywordsPredicate;
@@ -45,6 +46,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyWords)));
         } else if (prefix.equals("d/")) {
             return new FilterCommand(new DateContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
+        }
+          else if (prefix.equals("c/")) {
+            return new FilterCommand(new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
         } else if (prefix.equals("t/")) {
             return new FilterCommand(new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
         } else {

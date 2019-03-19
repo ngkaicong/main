@@ -20,6 +20,7 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " filter n/John \n"
             + "Example: " + COMMAND_WORD + " d/12-01-2019\n"
+            + "Example: " + COMMAND_WORD + " c/+100\n"
             + "Example: " + COMMAND_WORD + " t/[Friends]";
 
     private final Predicate predicate;
