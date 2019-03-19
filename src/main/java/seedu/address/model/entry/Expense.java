@@ -43,7 +43,7 @@ public class Expense extends CashFlow {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override
