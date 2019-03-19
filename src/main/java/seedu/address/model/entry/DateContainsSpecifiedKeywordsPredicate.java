@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code ReadOnlyEntry}'s {@code Phone} matches any of the keywords given.
+ * Tests that a {@code Entry}'s {@code Date} matches any of the keywords given.
  */
 public class DateContainsSpecifiedKeywordsPredicate implements Predicate<Entry> {
     private final List<String> keywords;

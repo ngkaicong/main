@@ -9,10 +9,10 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all entrys in address book who contain any of the specified argument keywords.
+ * Filters all entrys in address book who contain any of the specified argument keywords.
  * Keyword matching is case sensitive.
  */
-public class Filter extends Command {
+public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all entrys who contain any of "
@@ -24,7 +24,7 @@ public class Filter extends Command {
 
     private final Predicate predicate;
 
-    public Filter(Predicate predicate) {
+    public FilterCommand(Predicate predicate) {
         this.predicate = predicate;
     }
 
@@ -38,8 +38,8 @@ public class Filter extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Filter // instanceof handles nulls
-                && this.predicate.equals(((Filter) other).predicate)); // state check
+                || (other instanceof FilterCommand // instanceof handles nulls
+                && this.predicate.equals(((FilterCommand) other).predicate)); // state check
     }
 
 }
