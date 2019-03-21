@@ -108,15 +108,9 @@ Edits the date and cashflow of the 1st entry to be `12-12-2019` and `johndoe@exa
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd entry to be `Betsy Crower` and clears all existing tags.
 
-<<<<<<< HEAD
-=== Locating entrys by name: `find`
-
-Finds entrys whose names contain any of the given keywords. +
-=======
 === Locating entries by name: `find`
 
 Finds entries whose names contain any of the given keywords. +
->>>>>>> 7d89c26185b6d7fb458fb930d2ca8e66681c8949
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
@@ -290,10 +284,12 @@ Address book data are saved in the hard disk automatically after any command tha
 There is no need to save manually.
 
 // tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
+=== Generating Financial Report `[coming in v2.0]`
 
-_{explain how the user can enable/disable data encryption}_
+_{explain how the user can Generate a Financial Report}_
 // end::dataencryption[]
+
+
 
 == FAQ
 
