@@ -36,7 +36,8 @@ public class BitcoinCommand extends Command {
 
     /*  public static void main(String[] args) {
         try {
-            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR");
+            URL url = new URL("https://min-api.crypt
+            ocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");

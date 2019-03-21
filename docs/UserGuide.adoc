@@ -103,8 +103,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/CASHFLOW] [a/ADDRESS] [t/TAG]...`
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st entry to be `91234567` and `johndoe@example.com` respectively.
+* `edit 1 d/12-12-2019 c/+100.0 +
+Edits the date and cashflow of the 1st entry to be `12-12-2019` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd entry to be `Betsy Crower` and clears all existing tags.
 
@@ -173,6 +173,46 @@ Selects the 2nd entry in the address book.
 * `find Betsy` +
 `select 1` +
 Selects the 1st entry in the results of the `find` command.
+
+// tag::filter[]
+=== Filtering entrys by names or cashflows or dates or tags: `filters`
+
+Finds entrys who contain any of the given keywords. +
+Format: `filter n/[MORE_KEYWORDS] or d/[MORE_KEYWORDS] or c/[MORE_KEYWORDS] or t/[MORE_KEYWORDS]`
+
+[NOTE]
+Filtering using one type of details each time. +
+E.g. If `filter d/12-01-2019` then `n/` and `t/` should not be included since
+there is only one data information is used to filter accordingly
+
+****
+* The search for name is case insensitive. e.g `Income from John` will match `income from John`
+* The search for cashflow is -/+ sensitive. e.g `-100` will not match `+100`
+* The search for tag is case sensitive. e.g `waste` will match `waste` but not `Waste`
+* The order of the keywords for name does not matter. e.g. `Alex Jo` will match `Jo Alex`
+* The order of the keywords when searching a few tags does not matter. e.g. `[friends] [colleagues]` will match `[colleagues] [friends]`
+* Only full words will be matched e.g. `friend` will not match `friends`
+* Name matching at least one keyword will be returned e.g. `Ming Jun` will return `Ming Ho`, `Jun Xang`
+****
+
+Examples:
+
+* `filter n/Food with Alex` +
+Returns `food with alex` and `Food with Alex John `
+* `filter n/Income from AIA` +
+Returns any entry having names `AIA` or `Income`
+* `filter d/12-01-2019` +
+Returns any entry having date `12-01-2019` exactly
+* `filter d/12-01-2019 12-02-2019` +
+Returns any entry having dates `12-01-2019` or `12-02-2019` exactly
+* `filter c/+100` +
+Returns any entry having cashflow `+100` exactly
+* `filter t/[friends]` +
+Returns any entry having tag `[friends]` exactly
+* `filter t/[family] [colleagues]` +
+Returns any entry having tags `[family]` or `[colleagues]` exactly
+//end::filter[]
+
 
 === Listing entered commands : `history`
 
@@ -278,3 +318,4 @@ e.g.`select 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+

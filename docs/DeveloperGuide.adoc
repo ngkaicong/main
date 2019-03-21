@@ -327,14 +327,17 @@ We have implemented dropdown menu UI for autocomplete with a list of commands pr
                     **Cons:** May not be intuitive to users who have not worked with CLI before.
 // end::CommandsUISupport[]
 
-// tag::efind[]
-=== Easy Searching Of Relevant Data
-This command allows users to search through the large amount of entries and find the most relevant information they need.
+// tag::filter[]
+=== Filter
+This command allows users to filter through the large amount of entries and find the most relevant information they need.
 It allows user to retrieve using other details such as name, date and tag.
+
+image::Filter.PNG[width="800"]
 
 The user can use this command with only ONE of the following prefixes
 
 * `n/` : To search by name(s)
+* `c/` : To search by cashflow(s)
 * `d/` : To search by date(s)
 * `t/` : To search by tag(s)
 
@@ -345,6 +348,7 @@ The 4 predicates are as follow:
 
 * if search by `name` then `NameContainsKeywordsPredicate` is used
 * if search by `date` then `DateContainsSpecifiedKeywordsPredicate` is used
+* if search by `cashflow` then `CashFlowContainsSpecifiedKeywordsPredicate` is used
 * if search by `tag` then `TagContainsSpecifiedKeywordsPredicate` is used
 
 ==== Design Considerations
@@ -387,7 +391,7 @@ Hence, the user has to know at least 1 exact detail( out of name, date, tags ) t
 **Pros:** More chances of get the required results as there are more options available in case user forgets the details needed. +
 **Cons:** Harder to implement and increased complexity may affect efficiency.
 
-// end::efind[]
+// end::filter[]
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.

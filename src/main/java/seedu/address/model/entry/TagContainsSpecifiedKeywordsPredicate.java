@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Tests that a {@code ReadOnlyEntry}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code Entry}'s {@code Tag} matches any of the keywords given.
  */
 public class TagContainsSpecifiedKeywordsPredicate implements Predicate<Entry> {
     private final List<String> keywords;
