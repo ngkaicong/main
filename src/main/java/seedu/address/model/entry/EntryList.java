@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.CompareUtil;
+import seedu.address.logic.commands.DisplayCommand;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 
 /**
@@ -135,5 +137,38 @@ public class EntryList implements Iterable<Entry> {
             }
         }
         return true;
+    }
+
+    public void sortEntrys(String category, Boolean ascending) {
+        switch (category) {
+
+            case DisplayCommand.CATEGORY_NAME:
+                if (!ascending) {
+                    internalList.sort(CompareUtil.compareNameAttribute().reversed());
+                } else {
+                    internalList.sort(CompareUtil.compareNameAttribute());
+                }
+                break;
+
+            case DisplayCommand.CATEGORY_DATE:
+                if (!ascending) {
+                    internalList.sort(CompareUtil.compareDateAttribute().reversed());
+                } else {
+                    internalList.sort(CompareUtil.compareDateAttribute());
+                }
+                break;
+
+            case DisplayCommand.CATEGORY_CASHFLOW:
+            case DisplayCommand.CATEGORY_CASH:
+                if (!ascending) {
+                    internalList.sort(CompareUtil.compareCashflowAttribute().reversed());
+                } else {
+                    internalList.sort(CompareUtil.compareCashflowAttribute());
+                }
+                break;
+
+            default: break;
+        }
+
     }
 }

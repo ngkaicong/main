@@ -328,7 +328,8 @@ We have implemented dropdown menu UI for autocomplete with a list of commands pr
 // end::CommandsUISupport[]
 
 // tag::filter[]
-=== Filter
+=== Filter Mechanism
+==== Current Implementation
 This command allows users to filter through the large amount of entries and find the most relevant information they need.
 It allows user to retrieve using other details such as name, date and tag.
 
@@ -392,6 +393,66 @@ Hence, the user has to know at least 1 exact detail( out of name, date, tags ) t
 **Cons:** Harder to implement and increased complexity may affect efficiency.
 
 // end::filter[]
+
+
+=== Display entries Mechanism
+==== Current Implementation
+The display command function is facilitated by `ModelManager`.
+
+The command is 'display' followed by the parameters such as name, date or cashflow and the order of the sorted data.
+
+It represents an in-memory model of the AddressBook and is the component which manages the interactions between
+the commands and the `VersionedAddressBook`.
+DisplayCommand calls `ModelManager#displayFilteredEntryList` and passes in the tag to be displayed by and whether the display
+order is to be in reversed.
+
+ This feature has one keyword `display` and takes in arguments of either tag or order of display. Keywords are
+case insensitive.
+
+Category can be either of the following keywords:
+
+ * `name` - To display in lexicographical order by the name attribute of the entry
+* `date` - To display by the date attribute of the entry
+* `cashflow` - To display by the income or expense of the entry
+
+ Order can be either of the following:
+
+ * `des` - To display in descending order
+* `asc` - To display in ascending order
+
+This feature has 2 available selections as follows:
+
+ . Single Input Parameter Mode - Input parameter can be either the tag or the order of display
+* If tag specified, entries are displayed in ascending order of that tag
+* If order specified, entries will be displayed by name in the specified order
+
+ . Two Input Parameters Mode - Input  parameters must contain only 1 tag and only 1 order,
+ and can be input in no particular order
+
+The input given by the user is passed to `DisplayCommandParser` to split the input separated by whitespaces to ensure
+there is either only one or two arguments input by the user. These arguments are then stored in an array of strings and
+the size of the array determines the mode of the command.
+The strings are compared to two sets of strings containing the supported categories and orders of the function.
+The string of the tag and a boolean representing whether the entrys are to be reversed will then be passed to
+`ModelManager` to display the entrys.
+
+The following sequence diagram shows how the display operation works:
+
+image::DisplaySeqDg.PNG[width:800]
+
+==== Design Considerations
+===== Aspect: Method of displaying sorted data
+
+* **Current Choice:** Displays the observable array list in the underlying data structure in `EntryList`
+** Pros: Easy to implement, displaying of sorted entries will be permanent, user may not sort again with every following command
+** Cons: User may want to have multiple data entries sorted in order beside only use one parameter.
+
+* **Alternative 2:** Sort the FilteredList of entrys obtained after filtering the underlying array list
+** Pros: Does not allow the user to alter the arrangement of the underlying data, and only obtains a sorted version of
+the read only data.
+** Cons: Unable to sort a FilteredList as it does not support it, implementations could instead use SortedList but it
+will not be able to perform the filtering function
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -949,9 +1010,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |give an expense details a tag |categorize my expenses
 
-|`* * *` |user |list income details based on tag |see my income belonging in a particular category
+|`* * *` |user |list income details based on tag |see my income belonging in a particular tag
 
-|`* * *` |user |list expenses details based on tag |see my expenses belonging in a particular category
+|`* * *` |user |list expenses details based on tag |see my expenses belonging in a particular tag
 
 |`* *` |user |add recurring income details |keep track of recurring income without having to key the information on a monthly basis
 
@@ -998,7 +1059,7 @@ Use case ends.
 +
 Use case ends.
 [none]
-* 1c. The record to be added is a duplicate of an existing record
+* 1c. The entry to be added is a duplicate of an existing entry
 +
 [none]
 ** 1c1. System displays a warning message of the possible duplication.
