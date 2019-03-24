@@ -77,8 +77,8 @@ class JsonAdaptedEntry {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDateFormat(date)) {
-            throw new IllegalValueException(Date.MESSAGE_DATE_CONSTRAINTS);
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
 
@@ -87,7 +87,7 @@ class JsonAdaptedEntry {
                     CashFlow.class.getSimpleName()));
         }
         if (!CashFlow.isValidCashFlow(cashFlow)) {
-            throw new IllegalValueException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
+            throw new IllegalValueException(CashFlow.MESSAGE_CONSTRAINTS);
         }
         final CashFlow modelCashFlow = new CashFlow(cashFlow);
 
