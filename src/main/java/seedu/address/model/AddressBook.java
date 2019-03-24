@@ -123,7 +123,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return entrys.asUnmodifiableObservableList().size() + " entrys";
-        // TODO: refine later
     }
 
     @Override
@@ -141,5 +140,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return entrys.hashCode();
+    }
+
+    /**
+     * Displays sorted data records in AddressBook
+     */
+    public void sortEntrys(String category, Boolean ascending) {
+        entrys.sortEntrys(category, ascending);
     }
 }

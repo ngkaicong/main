@@ -111,6 +111,13 @@ public interface Model {
      */
     void commitAddressBook();
 
+
+    /**
+     * Updates the filtered record list to sort by the given {@code category}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void sortFilteredEntryList(String category, Boolean reversed);
+
     /**
      * Selected entry in the filtered entry list.
      * null if no entry is selected.
