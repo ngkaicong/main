@@ -58,8 +58,8 @@ public class ParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!Date.isValidDateFormat(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_DATE_CONSTRAINTS);
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);
     }
@@ -74,7 +74,7 @@ public class ParserUtil {
         requireNonNull(cashFlow);
         String trimmedCashFlow = cashFlow.trim();
         if (!CashFlow.isValidCashFlow(trimmedCashFlow)) {
-            throw new ParseException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
+            throw new ParseException(CashFlow.MESSAGE_CONSTRAINTS);
         }
         return new CashFlow(trimmedCashFlow);
     }

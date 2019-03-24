@@ -169,15 +169,6 @@ public class ModelManager implements Model {
         versionedAddressBook.commit();
     }
 
-    //=========== Modifying Entry List Accessors =============================================================
-
-    @Override
-    public void sortFilteredEntryList(String category, Boolean ascending) {
-        requireAllNonNull(category, ascending);
-        versionedAddressBook.sortEntrys(category, ascending);
-    }
-
-
     //=========== Selected entry ===========================================================================
 
     @Override
