@@ -143,7 +143,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts the records in this {@code FinancialPlanner}.
+     * Displays sorted data records in AddressBook
      */
     public void sortEntrys(String category, Boolean ascending) {
         entrys.sortEntrys(category, ascending);
