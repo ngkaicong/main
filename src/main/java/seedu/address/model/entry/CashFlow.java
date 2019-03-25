@@ -33,21 +33,6 @@ public class CashFlow {
     public final String value;
     public final Double valueDouble;
 
-    public static CashFlow getCashFlow (Object cashFlow) {
-        CashFlow cashFlowInstance;
-        if (cashFlow instanceof String){
-            String cashFlowStr = (String) cashFlow;
-            cashFlowInstance = new CashFlow(cashFlowStr);
-        }
-        else if (cashFlow instanceof Double){
-            Double cashFlowDbl = (Double) cashFlow;
-            cashFlowInstance = new CashFlow(cashFlowDbl);
-        }
-
-        requireNonNull(cashFlow);
-        throw new IllegalArgumentException("CashFlow requires a double/ string argument for its constructor");
-    }
-
     private CashFlow(String cashFlow) {
         requireNonNull(cashFlow);
         checkArgument(isValidCashFlow(cashFlow), MESSAGE_CONSTRAINTS);
@@ -61,6 +46,32 @@ public class CashFlow {
         checkArgument(isValidCashFlow(cashFlow.toString()), MESSAGE_CONSTRAINTS);
         this.valueDouble = cashFlow;
         value = cashFlow.toString();
+    }
+
+    /**
+     * Static method to get an instance of CashFlow using the class's private constructors
+     * Checks whether the supplied argument cashFlow is of type String or Double and calls the correct constructor
+     * for it.
+     *
+     * If the supplied argument is not an instance of String or Double, Throws an IllegalArgumentException.
+     * @param cashFlow (Float/String) -- The value of the CashFlow
+     * @return the generated CashFlow Instance
+     */
+    public static CashFlow getCashFlow (Object cashFlow) {
+        CashFlow cashFlowInstance;
+        if (cashFlow instanceof String){
+            String cashFlowStr = (String) cashFlow;
+            cashFlowInstance = new CashFlow(cashFlowStr);
+            return cashFlowInstance;
+        }
+        else if (cashFlow instanceof Double){
+            Double cashFlowDbl = (Double) cashFlow;
+            cashFlowInstance = new CashFlow(cashFlowDbl);
+            return cashFlowInstance;
+        }
+
+        requireNonNull(cashFlow);
+        throw new IllegalArgumentException("CashFlow requires a double/ string argument for its constructor");
     }
     /**
      * Returns if a given string is a valid cashflow parameter.
