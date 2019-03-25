@@ -3,18 +3,16 @@ package seedu.address.logic.commands;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-//import org.json.*;
-
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.net.HttpURLConnection;
-//import java.net.MalformedURLException;
-//import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 /**
@@ -31,13 +29,8 @@ public class BitcoinCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-    /*  public static void main(String[] args) {
         try {
-            URL url = new URL("https://min-api.crypt
-            ocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR");
+            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -47,8 +40,7 @@ public class BitcoinCommand extends Command {
                         + conn.getResponseCode());
             }
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
             String output;
             System.out.println("Output from Server .... \n");
@@ -65,7 +57,6 @@ public class BitcoinCommand extends Command {
         }
 
         System.out.println("Hello World!");
-
-        }
-    */
+        return new CommandResult(MESSAGE_SUCCESS);
+    }
 }
