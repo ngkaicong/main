@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidCashFlow(String)}
  */
 public class CashFlow {
-    public static final String MESSAGE_CASH_FLOW_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Any form of cash flow should consist of '+' or '-', "
                     + "followed by a sequence of characters consisting of only digits and/or decimal points ('.')."
                     + "It must be of the following form <number>.<number>:\n"
@@ -33,17 +33,32 @@ public class CashFlow {
     public final String value;
     public final Double valueDouble;
 
-    public CashFlow(String cashFlow) {
+    public static CashFlow getCashFlow (Object cashFlow) {
+        CashFlow cashFlowInstance;
+        if (cashFlow instanceof String){
+            String cashFlowStr = (String) cashFlow;
+            cashFlowInstance = new CashFlow(cashFlowStr);
+        }
+        else if (cashFlow instanceof Double){
+            Double cashFlowDbl = (Double) cashFlow;
+            cashFlowInstance = new CashFlow(cashFlowDbl);
+        }
+
         requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow), MESSAGE_CASH_FLOW_CONSTRAINTS);
-        this.value = cashFlow;
-        valueDouble = Double.valueOf(cashFlow);
-        checkArgument(isFinite(valueDouble), MESSAGE_CASH_FLOW_CONSTRAINTS);
+        throw new IllegalArgumentException("CashFlow requires a double/ string argument for its constructor");
     }
 
-    public CashFlow(Double cashFlow) {
+    private CashFlow(String cashFlow) {
         requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow.toString()), MESSAGE_CASH_FLOW_CONSTRAINTS);
+        checkArgument(isValidCashFlow(cashFlow), MESSAGE_CONSTRAINTS);
+        this.value = cashFlow;
+        valueDouble = Double.valueOf(cashFlow);
+        checkArgument(isFinite(valueDouble), MESSAGE_CONSTRAINTS);
+    }
+
+    private CashFlow(Double cashFlow) {
+        requireNonNull(cashFlow);
+        checkArgument(isValidCashFlow(cashFlow.toString()), MESSAGE_CONSTRAINTS);
         this.valueDouble = cashFlow;
         value = cashFlow.toString();
     }

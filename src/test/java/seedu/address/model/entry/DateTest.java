@@ -25,19 +25,19 @@ public class DateTest {
     @Test
     public void isValidDate() {
         // null phone number
-        Assert.assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
+        Assert.assertThrows(NullPointerException.class, () -> Date.isValidDateFormat(null));
 
         // invalid phone numbers
-        assertFalse(Date.isValidDate("")); // empty string
-        assertFalse(Date.isValidDate(" ")); // spaces only
-        assertFalse(Date.isValidDate("91")); // less than 3 numbers
-        assertFalse(Date.isValidDate("phone")); // non-numeric
-        assertFalse(Date.isValidDate("9011p041")); // alphabets within digits
-        assertFalse(Date.isValidDate("9312 1534")); // spaces within digits
+        assertFalse(Date.isValidDateFormat("")); // empty string
+        assertFalse(Date.isValidDateFormat(" ")); // spaces only
+        assertFalse(Date.isValidDateFormat("91")); // less than 3 numbers
+        assertFalse(Date.isValidDateFormat("phone")); // non-numeric
+        assertFalse(Date.isValidDateFormat("70/01/2019")); // alphabets within digits
+        assertFalse(Date.isValidDateFormat("31/02/2019")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Date.isValidDate("911")); // exactly 3 numbers
-        assertTrue(Date.isValidDate("93121534"));
-        assertTrue(Date.isValidDate("124293842033123")); // long phone numbers
+        assertTrue(Date.isValidDateFormat("12/12/2018")); // exactly 3 numbers
+        assertTrue(Date.isValidDateFormat("31/01/2019"));
+        assertTrue(Date.isValidDateFormat("20/03/2019")); // long phone numbers
     }
 }

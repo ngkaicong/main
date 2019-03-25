@@ -110,7 +110,7 @@ public class AddCommandParserTest {
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_DATE_DESC + CASHFLOW_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_DATE_CONSTRAINTS);
 
         // invalid cashflow
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + INVALID_CASHFLOW_DESC

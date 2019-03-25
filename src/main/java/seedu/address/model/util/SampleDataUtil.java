@@ -18,17 +18,17 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Entry[] getSampleEntrys() {
         return new Entry[] {
-            new Entry(new Name("Salary from Alex Yeoh"), new Date("11-11-2019"), new CashFlow("+100"),
+            new Entry(new Name("Salary from Alex Yeoh"), new Date("11-11-2019"), CashFlow.getCashFlow("+100"),
                 getTagSet("friends")),
-            new Entry(new Name("Lunch with Bernice Yu"), new Date("12-12-2018"), new CashFlow("+100"),
+            new Entry(new Name("Lunch with Bernice Yu"), new Date("12-12-2018"), CashFlow.getCashFlow("+100"),
                 getTagSet("colleagues", "friends")),
-            new Entry(new Name("Burger with Charlotte Oliveiro"), new Date("11-11-2019"), new CashFlow("+100"),
+            new Entry(new Name("Burger with Charlotte Oliveiro"), new Date("11-11-2019"), CashFlow.getCashFlow("+100"),
                 getTagSet("neighbours")),
-            new Entry(new Name("School Loan"), new Date("12-12-2018"), new CashFlow("+100"),
+            new Entry(new Name("School Loan"), new Date("12-12-2018"), CashFlow.getCashFlow("+100"),
                 getTagSet("personal")),
-            new Entry(new Name("Income"), new Date("12-12-2019"), new CashFlow("+100"),
+            new Entry(new Name("Income"), new Date("12-12-2019"), CashFlow.getCashFlow("+100"),
                 getTagSet("work")),
-            new Entry(new Name("Dinner with Roy Balakrishnan"), new Date("11-11-2019"), new CashFlow("+100"),
+            new Entry(new Name("Dinner with Roy Balakrishnan"), new Date("11-11-2019"), CashFlow.getCashFlow("+100"),
                 getTagSet("colleagues"))
         };
     }

@@ -13,13 +13,13 @@ public class CashFlowTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new CashFlow(null));
+        Assert.assertThrows(NullPointerException.class, () -> CashFlow.getCashFlow(null));
     }
 
     @Test
     public void constructor_invalidCashFlow_throwsIllegalArgumentException() {
         String invalidCashFlow = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new CashFlow(invalidCashFlow));
+        Assert.assertThrows(IllegalArgumentException.class, () -> CashFlow.getCashFlow(invalidCashFlow));
     }
 
     @Test
