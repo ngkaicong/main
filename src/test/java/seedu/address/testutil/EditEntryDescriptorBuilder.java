@@ -57,7 +57,7 @@ public class EditEntryDescriptorBuilder {
      * Sets the {@code CashFlow} of the {@code EditEntryDescriptor} that we are building.
      */
     public EditEntryDescriptorBuilder withCashFlow(String cashFlow) {
-        descriptor.setCashFlow(new CashFlow(cashFlow));
+        descriptor.setCashFlow(CashFlow.getCashFlow(cashFlow));
         return this;
     }
 

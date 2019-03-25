@@ -82,7 +82,7 @@ public class EntryListPanelTest extends GuiUnitTest {
         for (int i = 0; i < entryCount; i++) {
             Name name = new Name(i + "a");
             Date date = new Date("31-12-1996");
-            CashFlow cashflow = new CashFlow("-0.90");
+            CashFlow cashflow = CashFlow.getCashFlow("-0.90");
             Entry entry = new Entry(name, date, cashflow, Collections.emptySet());
             backingList.add(entry);
         }

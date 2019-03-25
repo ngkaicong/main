@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidCashFlow(String)}
  */
 public class CashFlow {
-    public static final String MESSAGE_CASH_FLOW_CONSTRAINTS =
-            "Any form of cash flow should consist of '+' or '-', "
+    public static final String MESSAGE_CONSTRAINTS =
+            "Any form of cash flow should consist of '+' or '-' (Optional), "
                     + "followed by a sequence of characters consisting of only digits and/or decimal points ('.')."
                     + "It must be of the following form <number>.<number>:\n"
                     + "1. <number> cannot start from '0' unless it has only 1 digit. "
@@ -28,24 +28,46 @@ public class CashFlow {
     public static final String FORMAT_STANDARD_CASH = "%.2f";
     public static final Double MAX_CASH = 99999999999.99;
 
-    private static final String CASHFLOW_VALIDATION_REGEX = "^[+-](0|[1-9]\\d{0,11})(\\.\\d{1,2})?";
+    private static final String CASHFLOW_VALIDATION_REGEX = "^[+-]?(0|[1-9]\\d{0,11})(\\.\\d{1,2})?";
 
     public final String value;
     public final Double valueDouble;
 
-    public CashFlow(String cashFlow) {
-        requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow), MESSAGE_CASH_FLOW_CONSTRAINTS);
-        this.value = cashFlow;
-        valueDouble = Double.valueOf(cashFlow);
-        checkArgument(isFinite(valueDouble), MESSAGE_CASH_FLOW_CONSTRAINTS);
+    private CashFlow(String cashFlow) {
+        this(Double.parseDouble(cashFlow));
     }
 
-    public CashFlow(Double cashFlow) {
+    private CashFlow(Double cashFlow) {
         requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow.toString()), MESSAGE_CASH_FLOW_CONSTRAINTS);
+        checkArgument(isValidCashFlow(cashFlow.toString()), MESSAGE_CONSTRAINTS);
         this.valueDouble = cashFlow;
         value = cashFlow.toString();
+    }
+
+    /**
+     * Static method to get an instance of CashFlow using the class's private constructors
+     * Checks whether the supplied argument cashFlow is of type String or Double and calls the correct constructor
+     * for it.
+     *
+     * If the supplied argument is not an instance of String or Double, Throws an IllegalArgumentException.
+     * @param cashFlow (Float/String) -- The value of the CashFlow
+     * @return the generated CashFlow Instance
+     */
+    public static CashFlow getCashFlow (Object cashFlow) {
+        CashFlow cashFlowInstance;
+        if (cashFlow instanceof String){
+            String cashFlowStr = (String) cashFlow;
+            cashFlowInstance = new CashFlow(cashFlowStr);
+            return cashFlowInstance;
+        }
+        else if (cashFlow instanceof Double){
+            Double cashFlowDbl = (Double) cashFlow;
+            cashFlowInstance = new CashFlow(cashFlowDbl);
+            return cashFlowInstance;
+        }
+
+        requireNonNull(cashFlow);
+        throw new IllegalArgumentException("CashFlow requires a double/ string argument for its constructor");
     }
     /**
      * Returns if a given string is a valid cashflow parameter.

@@ -1,12 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import seedu.address.logic.CommandHistory;
+import seedu.address.model.Model;
 
 /**
  * Returns how many Bitcoin you can buy at the current market price.
@@ -25,7 +20,7 @@ public class BitcoinCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much bitcoin you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static String MESSAGE_SUCCESS = "You are able to buy .";
+    public static final String MESSAGE_SUCCESS = "You are able to buy .";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
@@ -46,12 +41,12 @@ public class BitcoinCommand extends Command {
             System.out.println("Output from Server .... \n");
             String output = br.readLine();
             System.out.println(output);
-//            while ((output = br.readLine()) != null) {
-//                System.out.println(output);
-//                temp = output;
-//            }
-            System.out.println(output.substring(14,21));
-            price = Float.parseFloat(output.substring(14,21));
+            //            while ((output = br.readLine()) != null) {
+            //                System.out.println(output);
+            //                temp = output;
+            //            }
+            System.out.println(output.substring(14, 21));
+            price = Float.parseFloat(output.substring(14, 21));
             System.out.println(price);
 
             conn.disconnect();

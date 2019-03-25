@@ -87,9 +87,9 @@ class JsonAdaptedEntry {
                     CashFlow.class.getSimpleName()));
         }
         if (!CashFlow.isValidCashFlow(cashFlow)) {
-            throw new IllegalValueException(CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
+            throw new IllegalValueException(CashFlow.MESSAGE_CONSTRAINTS);
         }
-        final CashFlow modelCashFlow = new CashFlow(cashFlow);
+        final CashFlow modelCashFlow = CashFlow.getCashFlow(cashFlow);
 
 
         final Set<Tag> modelTags = new HashSet<>(entryTags);

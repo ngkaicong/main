@@ -121,14 +121,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCashFlow_validValueWithoutWhitespace_returnsCashFlow() throws Exception {
-        CashFlow expectedCashFlow = new CashFlow(VALID_CASHFLOW);
+        CashFlow expectedCashFlow = CashFlow.getCashFlow(VALID_CASHFLOW);
         assertEquals(expectedCashFlow, ParserUtil.parseCashFlow(VALID_CASHFLOW));
     }
 
     @Test
     public void parseCashFlow_validValueWithWhitespace_returnsTrimmedCashFlow() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_CASHFLOW + WHITESPACE;
-        CashFlow expectedCashFlow = new CashFlow(VALID_CASHFLOW);
+        CashFlow expectedCashFlow = CashFlow.getCashFlow(VALID_CASHFLOW);
         assertEquals(expectedCashFlow, ParserUtil.parseCashFlow(emailWithWhitespace));
     }
 

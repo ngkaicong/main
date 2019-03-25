@@ -162,7 +162,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: invalid date -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
-                        + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
+                        + INVALID_DATE_DESC, Date.MESSAGE_DATE_CONSTRAINTS);
 
         /* Case: invalid cashflow -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
