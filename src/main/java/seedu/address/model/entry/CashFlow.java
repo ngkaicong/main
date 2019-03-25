@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class CashFlow {
     public static final String MESSAGE_CONSTRAINTS =
-            "Any form of cash flow should consist of '+' or '-', "
+            "Any form of cash flow should consist of '+' or '-' (Optional), "
                     + "followed by a sequence of characters consisting of only digits and/or decimal points ('.')."
                     + "It must be of the following form <number>.<number>:\n"
                     + "1. <number> cannot start from '0' unless it has only 1 digit. "
@@ -28,17 +28,13 @@ public class CashFlow {
     public static final String FORMAT_STANDARD_CASH = "%.2f";
     public static final Double MAX_CASH = 99999999999.99;
 
-    private static final String CASHFLOW_VALIDATION_REGEX = "^[+-](0|[1-9]\\d{0,11})(\\.\\d{1,2})?";
+    private static final String CASHFLOW_VALIDATION_REGEX = "^[+-]?(0|[1-9]\\d{0,11})(\\.\\d{1,2})?";
 
     public final String value;
     public final Double valueDouble;
 
     private CashFlow(String cashFlow) {
-        requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow), MESSAGE_CONSTRAINTS);
-        this.value = cashFlow;
-        valueDouble = Double.valueOf(cashFlow);
-        checkArgument(isFinite(valueDouble), MESSAGE_CONSTRAINTS);
+        this(Double.parseDouble(cashFlow));
     }
 
     private CashFlow(Double cashFlow) {
