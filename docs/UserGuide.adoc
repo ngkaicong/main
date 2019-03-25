@@ -207,6 +207,21 @@ Returns any entry having tag `[friends]` exactly
 Returns any entry having tags `[family]` or `[colleagues]` exactly
 //end::filter[]
 
+// tag::bitcoin[]
+=== Returns purchasing power regarding bitcoin: `bitcoin`
+
+Returns how much bitcoin you can buy with your current balance with real-time market prices. +
+Format: `bitcoin`
+
+[NOTE]
+You must have a balance, or else the amount will just return 0. +
+E.g. If no inputs have been made, the method will just return 0.
+
+Examples:
+Coming soon
+
+//end::bitcoin[]
+
 
 === Listing entered commands : `history`
 
