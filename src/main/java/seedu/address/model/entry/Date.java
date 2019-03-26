@@ -3,6 +3,10 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.commons.util.DateUtil;
 
 /**
@@ -31,16 +35,31 @@ public class Date {
     private int month;
     private int year;
 
+    private static DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private LocalDate localDate;
+
     /**
      * Constructs a {@code Date}.
      * @param date A valid date.
      */
     public Date(String date) {
         requireNonNull(date);
+        // Get Representation for today and yesterday
+        if (date.equalsIgnoreCase(DATE_INPUT_TODAY)) {
+            LocalDate todayDate = LocalDate.now();
+            date = todayDate.format(dtFormat);
+        }
+
+        else if (date.equalsIgnoreCase(DATE_INPUT_YESTERDAY)) {
+            LocalDate ytdDate = LocalDate.now().minusDays(1L);
+            date = ytdDate.format(dtFormat);
+        }
+
         checkArgument(isValidDateFormat(date), MESSAGE_DATE_CONSTRAINTS);
         splitDate(date);
         value = getStandardValue();
         checkArgument(DateUtil.isValidDate(day, month, year), MESSAGE_DATE_LOGICAL_CONSTRAINTS);
+        localDate = LocalDate.parse(date, dtFormat);
     }
 
 
@@ -88,7 +107,8 @@ public class Date {
     }
 
     public static boolean isValidDateFormat(String test) {
-        return test.matches(DATE_VALIDATION_REGEX);
+        return (test.matches(DATE_VALIDATION_REGEX)||test.equalsIgnoreCase(DATE_INPUT_YESTERDAY)
+                ||test.equalsIgnoreCase(DATE_INPUT_TODAY));
     }
 
     @Override
@@ -112,6 +132,10 @@ public class Date {
         return year;
     }
 
+    public LocalDate getLocalDate(){
+        return localDate;
+    }
+
     @Override
     public String toString() {
         return value;
@@ -124,5 +148,17 @@ public class Date {
                 && day == ((Date) other).getDay()
                 && month == ((Date) other).getMonth()
                 && year == ((Date) other).getYear()); // state check
+    }
+
+    public boolean isBefore(Date other){
+        return(this.localDate.isBefore(other.getLocalDate()));
+    }
+
+    public boolean isAfter(Date other){
+        return(this.localDate.isAfter(other.getLocalDate()));
+    }
+
+    public boolean isBetween(Date startDate, Date endDate){
+        return(this.localDate.isAfter(startDate.getLocalDate()) && this.localDate.isBefore(endDate.getLocalDate()));
     }
 }

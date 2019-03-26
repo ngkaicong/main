@@ -35,12 +35,15 @@ public class ReportCommandParser implements Parser<ReportCommand> {
         }
 
         if(arePrefixesPresent(argMultimap, PREFIX_STARTDATE, PREFIX_ENDDATE)){
+            //Get Entries within these fixed dates
             //TODO
         }
         else if(!arePrefixesPresent(argMultimap, PREFIX_STARTDATE)){
+            //Get Entries from this date onwards
             //TODO
         }
         else if(!arePrefixesPresent(argMultimap, PREFIX_ENDDATE)){
+            //Get Entries until this date
             //TODO
         }
 
@@ -55,7 +58,7 @@ public class ReportCommandParser implements Parser<ReportCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
+//    FOR REFERENCE:
 //    /**
 //     * Parses the given {@code String} of arguments in the context of the AddCommand
 //     * and returns an AddCommand object for execution.
