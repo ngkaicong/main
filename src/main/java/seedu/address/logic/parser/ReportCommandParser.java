@@ -4,16 +4,21 @@ import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.DateAfterGivenPredicate;
+import seedu.address.model.entry.DateBeforeGivenPredicate;
 import seedu.address.model.entry.DateContainsSpecifiedKeywordsPredicate;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.model.entry.TagContainsSpecifiedKeywordsPredicate;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
@@ -27,6 +32,9 @@ public class ReportCommandParser implements Parser<ReportCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ReportCommand parse(String args) throws ParseException {
+        Predicate afterStartPredicate = null;
+        Predicate beforeEndPredicate = null;
+        Predicate finalPredicate = null;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STARTDATE, PREFIX_ENDDATE);
 
@@ -34,21 +42,30 @@ public class ReportCommandParser implements Parser<ReportCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
         }
 
-        if(arePrefixesPresent(argMultimap, PREFIX_STARTDATE, PREFIX_ENDDATE)){
-            //Get Entries within these fixed dates
-            //TODO
-        }
-        else if(!arePrefixesPresent(argMultimap, PREFIX_STARTDATE)){
+
+        if(arePrefixesPresent(argMultimap, PREFIX_STARTDATE)){
             //Get Entries from this date onwards
             //TODO
+            Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+            afterStartPredicate = new DateAfterGivenPredicate(startDate);
+
         }
-        else if(!arePrefixesPresent(argMultimap, PREFIX_ENDDATE)){
+        if(arePrefixesPresent(argMultimap, PREFIX_ENDDATE)){
             //Get Entries until this date
             //TODO
+            Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+            beforeEndPredicate = new DateBeforeGivenPredicate(endDate);
         }
 
+        if (afterStartPredicate != null && beforeEndPredicate != null)
+            finalPredicate = afterStartPredicate.and(beforeEndPredicate);
 
-        return new ReportCommand();
+        else
+            finalPredicate = (afterStartPredicate == null) ? beforeEndPredicate : afterStartPredicate;
+
+
+
+        return new ReportCommand(finalPredicate);
     }
 
     /**
