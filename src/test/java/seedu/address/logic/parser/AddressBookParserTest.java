@@ -25,6 +25,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.DisplayCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -69,6 +71,14 @@ public class AddressBookParserTest {
         assertEquals(new EditCommand(INDEX_FIRST_ENTRY, descriptor), command);
     }
 
+    @Test
+    public void parseCommand_filter() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + "n/" + keywords.stream().collect(
+                        Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);

@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private String passwordFilePath = "data/password.txt";
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -84,4 +85,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return sb.toString();
     }
 
+    public String getPasswordFilePath() {
+        return passwordFilePath;
+    }
+
+    public void setPasswordFilePath(String passwordFilePath) {
+        this.passwordFilePath = passwordFilePath;
+    }
 }

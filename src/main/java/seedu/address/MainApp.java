@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
-
+import java.io.File;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
@@ -28,6 +28,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.commons.util.EncryptionUtil;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -91,7 +93,15 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-
+        File file = new File(userPrefs.getPasswordFilePath());
+        try {
+            if (FileUtil.isPassExists(file)) {
+                File book = new File(String.valueOf(userPrefs.getAddressBookFilePath()));
+                EncryptionUtil.encrypt(book);
+            }
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the password file");
+        }
         return new ModelManager(initialData, userPrefs);
     }
 

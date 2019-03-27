@@ -166,7 +166,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: invalid cashflow -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
-                        + INVALID_CASHFLOW_DESC, CashFlow.MESSAGE_CONSTRAINTS);
+                        + INVALID_CASHFLOW_DESC, CashFlow.MESSAGE_CASH_FLOW_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
         assertCommandFailure(EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
