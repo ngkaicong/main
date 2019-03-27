@@ -69,7 +69,7 @@ public class JsonAdaptedEntryTest {
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedEntry person =
                 new JsonAdaptedEntry(VALID_NAME, INVALID_DATE, VALID_CASHFLOW, VALID_TAGS);
-        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Date.MESSAGE_DATE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

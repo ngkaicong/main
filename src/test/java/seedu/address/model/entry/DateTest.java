@@ -52,6 +52,7 @@ public class DateTest {
      */
     @Test
     public void isValidDate() {
+      
         // invalid dates
         assertFalse(DateUtil.isValidDate(39, 2, 2019)); // The number of days in the specified month is wrong
         assertFalse((DateUtil.isValidDate(10, 23, 2019))); // The month does not exist
@@ -71,5 +72,22 @@ public class DateTest {
         assertEquals(new Date("10-1-2019"), new Date("10-01-2019"));
         assertEquals(new Date("1-10-2019"), new Date("01-10-2019"));
         assertEquals(new Date("1-1-2019"), new Date("01-01-2019"));
+
+        // null date
+        Assert.assertThrows(NullPointerException.class, () -> Date.isValidDateFormat(null));
+
+        // invalid dates
+        assertFalse(Date.isValidDateFormat("")); // empty string
+        assertFalse(Date.isValidDateFormat(" ")); // spaces only
+        assertFalse(Date.isValidDateFormat("91")); // less than 3 numbers
+        assertFalse(Date.isValidDateFormat("phone")); // non-numeric
+        assertFalse(Date.isValidDateFormat("70/01/2019")); // alphabets within digits
+        assertFalse(Date.isValidDateFormat("31/02/2019")); // spaces within digits
+
+        // valid dates
+        assertTrue(Date.isValidDateFormat("12/12/2018")); // exactly 3 numbers
+        assertTrue(Date.isValidDateFormat("31/01/2019"));
+        assertTrue(Date.isValidDateFormat("20/03/2019")); // long phone numbers
+
     }
 }

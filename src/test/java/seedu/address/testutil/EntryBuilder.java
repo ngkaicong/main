@@ -27,7 +27,7 @@ public class EntryBuilder {
     public EntryBuilder() {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
-        cashFlow = new Income(DEFAULT_CASHFLOW);
+        cashFlow = CashFlow.getCashFlow(DEFAULT_CASHFLOW);
         tags = new HashSet<>();
     }
 
@@ -61,10 +61,10 @@ public class EntryBuilder {
      * Sets the {@code CashFlow} of the {@code Entry} that we are building.
      */
     public EntryBuilder withCashFlow(String cashFlow) {
-        if (Expense.isValidExpense(cashFlow)) {
-            this.cashFlow = new Expense(cashFlow);
-        } else if (Income.isValidIncome(cashFlow)) {
-            this.cashFlow = new Income(cashFlow);
+        if (CashFlow.isValidCashFlow(cashFlow)) {
+            this.cashFlow = CashFlow.getCashFlow(cashFlow);
+        } else if (CashFlow.isValidCashFlow(cashFlow)) {
+            this.cashFlow = CashFlow.getCashFlow(cashFlow);
         }
         return this;
     }

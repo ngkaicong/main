@@ -10,6 +10,20 @@ import seedu.address.testutil.Assert;
 
 public class CashFlowTest {
 
+    // TODO: COME UP WITH TESTCASES FOR CASHFLOW
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> CashFlow.getCashFlow(null));
+    }
+
+    @Test
+    public void constructor_invalidCashFlow_throwsIllegalArgumentException() {
+        String invalidCashFlow = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> CashFlow.getCashFlow(invalidCashFlow));
+    }
+
+
     @Test
     public void isValidCashFlow() {
         // null cash flow
