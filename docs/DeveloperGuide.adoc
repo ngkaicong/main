@@ -395,7 +395,7 @@ Hence, the user has to know at least 1 exact detail( out of name, date, tags ) t
 // end::filter[]
 
 
-=== Display entries Mechanism
+=== Display Entries Mechanism
 ==== Current Implementation
 The display command function is facilitated by `ModelManager`.
 
@@ -447,11 +447,94 @@ image::DisplaySeqDg.PNG[width:800]
 ** Pros: Easy to implement, displaying of sorted entries will be permanent, user may not sort again with every following command
 ** Cons: User may want to have multiple data entries sorted in order beside only use one parameter.
 
-* **Alternative 2:** Sort the FilteredList of entrys obtained after filtering the underlying array list
+* **Alternative :** Sort the FilteredList of entrys obtained after filtering the underlying array list
 ** Pros: Does not allow the user to alter the arrangement of the underlying data, and only obtains a sorted version of
 the read only data.
 ** Cons: Unable to sort a FilteredList as it does not support it, implementations could instead use SortedList but it
 will not be able to perform the filtering function
+
+// tag::encryption[]
+=== Data Encryption
+
+==== Current Implementation
+Currently, persons' data is stored in an XML file in plain text is not secure, hence the need to encrypt XML data.
+
+Data is encrypted using a AES-256 bits encryption. File is automatically encrypted when the Budgeter closes and decrypted when the Budgeter is started.
+
+The current implementation is just a proof of concept and will be improved upon in upcoming version.
+
+[NOTE]
+The standard version of the JRE/JDK are under export restrictions. That also includes that some cryptographic algorithms are not allowed to be shipped in the standard version.
+Replace files in library with Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files.
+
+==== Design Considerations
+
+===== Aspect: Implementation of EncryptedPassKey
+
+* **Current Design:** Using a password based encryption key
+** Pros: Data Encryption will be easier for developers to implement this way. Encrypted Pass key will not be exposed.
+** Cons: Password for the key is fixed and predetermined.
+
+* **Alternative :** Use the Java Cryptography Extension KeyStore
+** Pros: Encryption keys will not be exposed
+** Cons: Harder for developers to code
+
+===== Aspect: Strength of the encryption
+
+* **Alternative 1 (Current):** 128-bits encryption
+** Pros: Using 128-bits encryption will be much faster and requires less computation resources
+** Cons: Less stronger but still secure encryption
+* **Alternative 2 (Prospective):** 256-bits encryption
+** Pros: 256-bits provide much stronger encryption
+** Cons: Requires more computation resources and might be a tad slower, albeit negligible
+
+
+// end::encryption[]
+
+// tag::lock]
+=== Lock feature
+
+==== Current Implementation
+As Budgeter contains sensitive personal financial data, apart from encrypting the XML data files, we have to keep it away from spying and stealing of data.
+
+As such, we could implement a password to protect the data. The password will be encrypted and store as a local copy.
+
+In addition the XML file will be unlocked when the password is entered to allow power users to edit the XML file.
+
+The password feature will be created as a class of it's own. There will be no default password for ease of use of the program.
+
+Users can decide whether to set a password. The current implementation is just a proof of concept and will be improved upon in upcoming version.
+
+The sequence diagram shows how the password command works. In the following diagram, the `password set/123` is executed.
+
+The following sequence diagram shows how the display operation works:
+
+image::lock.PNG[width="800"]
+
+==== Design Considerations
+
+===== Aspect: Password length and strength
+
+* **Current Design:** Password will be stored using Strings.
+** Pros: Users will be able to key in alphanumeric password and developers can encoded the Strings easily.
+** Cons: Harder to implement than a purely numerical password
+
+* **Alternative :** Password will be numerical
+** Pros: Developer will be able to code it easily
+** Cons: Password will be weaker, able to brute force through
+
+===== Aspect: Storage of password file
+
+* **Current Design:** Password will be stored in a encrypted file
+** Pros: File will be accessible but encrypted, making it safer
+** Cons: Developer will need to encrypt the file
+* **Alternative :** Password will be stored in a plain text file
+** Pros: Easier to store and retrieve password
+** Cons: Data folder with the password need to be locked with shell file otherwise it is accessible for developers
+
+
+//end:: lock[]
+
 
 === Logging
 
