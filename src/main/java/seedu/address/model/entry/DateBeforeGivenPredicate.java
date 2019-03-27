@@ -18,7 +18,7 @@ public class DateBeforeGivenPredicate implements Predicate<Entry> {
     @Override
     public boolean test(Entry entry) {
         Date entryDate = entry.getDate();
-        return entryDate.isBefore(specifiedDate);
+        return entryDate.isBefore(specifiedDate) || entryDate.equals(specifiedDate);
     }
 
     @Override

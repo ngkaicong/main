@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.commands.ReportCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
 import seedu.address.model.entry.Date;
@@ -18,7 +19,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
@@ -32,6 +32,8 @@ public class ReportCommandParser implements Parser<ReportCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ReportCommand parse(String args) throws ParseException {
+        Date startDate = null;
+        Date endDate = null;
         Predicate afterStartPredicate = null;
         Predicate beforeEndPredicate = null;
         Predicate finalPredicate = null;
@@ -46,23 +48,27 @@ public class ReportCommandParser implements Parser<ReportCommand> {
         if(arePrefixesPresent(argMultimap, PREFIX_STARTDATE)){
             //Get Entries from this date onwards
             //TODO
-            Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+            startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
             afterStartPredicate = new DateAfterGivenPredicate(startDate);
 
         }
         if(arePrefixesPresent(argMultimap, PREFIX_ENDDATE)){
             //Get Entries until this date
             //TODO
-            Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
+            endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
             beforeEndPredicate = new DateBeforeGivenPredicate(endDate);
         }
 
-        if (afterStartPredicate != null && beforeEndPredicate != null)
+        if (endDate != null && startDate != null && startDate.isAfter(endDate))
+
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
+
+        else if (!startDate.isAfter(endDate))
+
             finalPredicate = afterStartPredicate.and(beforeEndPredicate);
 
         else
             finalPredicate = (afterStartPredicate == null) ? beforeEndPredicate : afterStartPredicate;
-
 
 
         return new ReportCommand(finalPredicate);

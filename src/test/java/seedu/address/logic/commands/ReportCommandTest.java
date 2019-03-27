@@ -13,11 +13,11 @@ public class ReportCommandTest {
     private Model expectedModel = new ModelManager();
     private CommandHistory commandHistory = new CommandHistory();
 
-    @Test
-    public void execute_report_throwsCommandException() {
-        ReportCommand reportCommand = new ReportCommand();
-
-        assertCommandFailure(reportCommand, model, commandHistory, Messages.MESSAGE_UNKNOWN_COMMAND);
-    }
+//    @Test
+//    public void execute_report_throwsCommandException() {
+//        ReportCommand reportCommand = new ReportCommand();
+//
+//        assertCommandFailure(reportCommand, model, commandHistory, Messages.MESSAGE_UNKNOWN_COMMAND);
+//    }
 }
 

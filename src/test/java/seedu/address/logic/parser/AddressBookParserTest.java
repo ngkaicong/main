@@ -116,12 +116,12 @@ public class AddressBookParserTest {
         assertEquals(new SelectCommand(INDEX_FIRST_ENTRY), command);
     }
 
-    @Test
-    public void parseCommand_report() throws Exception {
-        ReportCommand command = (ReportCommand) parser.parseCommand(
-                ReportCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
-        assertEquals(new ReportCommand(), command);
-    }
+//    @Test
+//    public void parseCommand_report() throws Exception {
+//        ReportCommand command = (ReportCommand) parser.parseCommand(
+//                ReportCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
+//        assertEquals(new ReportCommand(), command);
+//    }
 
     @Test
     public void parseCommand_redoCommandWord_returnsRedoCommand() throws Exception {

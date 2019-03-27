@@ -15,7 +15,7 @@ public class DateAfterGivenPredicate implements Predicate<Entry> {
     @Override
     public boolean test(Entry entry) {
         Date entryDate = entry.getDate();
-        return entryDate.isAfter(specifiedDate);
+        return entryDate.isAfter(specifiedDate) || entryDate.equals(specifiedDate);
     }
 
     @Override

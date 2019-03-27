@@ -6,6 +6,8 @@ import seedu.address.model.Model;
 
 import java.util.function.Predicate;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Filters all entrys in address book who contain any of the specified argument keywords.
  * Keyword matching is case sensitive.
@@ -29,6 +31,8 @@ public class ReportCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        throw new CommandException("Not Implemented");
+        requireNonNull(model);
+        model.updateFilteredEntryList(this.predicate);
+        return new CommandResult("Nice");
     }
 }

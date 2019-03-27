@@ -147,7 +147,9 @@ public class Date {
                 || (other instanceof Date // instanceof handles nulls
                 && day == ((Date) other).getDay()
                 && month == ((Date) other).getMonth()
-                && year == ((Date) other).getYear()); // state check
+                && year == ((Date) other).getYear())
+                || (other instanceof Date)
+                && this.localDate.equals(((Date) other).getLocalDate()); // state check
     }
 
     public boolean isBefore(Date other){

@@ -11,7 +11,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_STARTDATE = new Prefix("s/");
-    public static final Prefix PREFIX_ENDDATE = new Prefix("s/");
+    public static final Prefix PREFIX_ENDDATE = new Prefix("e/");
 
 
     //TODO: MIGHT REMOVE
