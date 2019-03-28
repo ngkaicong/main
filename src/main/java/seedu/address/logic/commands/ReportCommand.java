@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.ReportEntryList;
 
 import java.util.function.Predicate;
 
@@ -33,6 +36,10 @@ public class ReportCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         model.updateFilteredEntryList(this.predicate);
-        return new CommandResult("Nice");
+        ObservableList<Entry> filteredList = model.getFilteredEntryList();
+        ReportEntryList reportList = new ReportEntryList(filteredList);
+        return new CommandResult("Overview (Income - Expenses): " + reportList.getTotal().toString()
+                + "\n" + "Total Income: " + reportList.getTotalIncome().toString()
+                + "\n" + "Total Expenses: " + reportList.getTotalExpense().toString());
     }
 }

@@ -4,6 +4,7 @@ import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entry.AlwaysTruePredicate;
 import seedu.address.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.DateAfterGivenPredicate;
@@ -21,6 +22,7 @@ import java.util.stream.Stream;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -63,9 +65,13 @@ public class ReportCommandParser implements Parser<ReportCommand> {
 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
 
-        else if (!startDate.isAfter(endDate))
+        else if (endDate != null && startDate != null && !startDate.isAfter(endDate))
 
             finalPredicate = afterStartPredicate.and(beforeEndPredicate);
+
+        else if (endDate == null && startDate == null)
+
+            finalPredicate = PREDICATE_SHOW_ALL_ENTRYS;
 
         else
             finalPredicate = (afterStartPredicate == null) ? beforeEndPredicate : afterStartPredicate;

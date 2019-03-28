@@ -16,9 +16,9 @@ public class ReportEntryList {
     private Double total;
     private Double totalIncome;
     private Double totalExpense;
-    private FilteredList<Entry> filteredEntries;
+    private ObservableList<Entry>  filteredEntries;
 
-    public ReportEntryList(FilteredList<Entry> filteredEntries) {
+    public ReportEntryList(ObservableList<Entry>  filteredEntries) {
         this.total = 0.0;
         this.totalIncome = 0.0;
         this.totalExpense = 0.0;
