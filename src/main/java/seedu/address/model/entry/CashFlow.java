@@ -87,9 +87,6 @@ public class CashFlow {
         }
     }
 
-    public double toDouble () {
-        return valueDouble;
-    }
 
     public boolean isNotLarger (double cashin) {
         return (cashin >= valueDouble);

@@ -49,7 +49,7 @@ class JsonAdaptedEntry {
     public JsonAdaptedEntry(Entry source) {
         name = source.getName().fullName;
         date = source.getDate().value;
-        cashFlow = source.getCashFlow().value;
+        cashFlow = source.getCashFlow().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
