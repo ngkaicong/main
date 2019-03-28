@@ -1,22 +1,12 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ReportCommand;
-import seedu.address.logic.commands.ReportCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.AlwaysTruePredicate;
-import seedu.address.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.DateAfterGivenPredicate;
 import seedu.address.model.entry.DateBeforeGivenPredicate;
-import seedu.address.model.entry.DateContainsSpecifiedKeywordsPredicate;
-import seedu.address.model.entry.NameContainsKeywordsPredicate;
-import seedu.address.model.entry.TagContainsSpecifiedKeywordsPredicate;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
