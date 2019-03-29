@@ -22,7 +22,7 @@ public class DisplayCommand extends Command {
     public static final String DESCENDING_CONDITION = "des";
     public static final String ASCENDING_CONDITION = "asc";
 
-    public static final String MESSAGE_SUCCESS = "Entrys classifed by ";
+    public static final String MESSAGE_SUCCESS = "Entrys displayed by ";
 
     public static final String CATEGORY_NAME = "name";
     public static final String CATEGORY_CASHFLOW = "cashflow";
@@ -32,7 +32,7 @@ public class DisplayCommand extends Command {
     public static final String ORDER_ASCENDING = "in ascending order";
     public static final String ORDER_DESCENDING = "in descending order";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all entrys in the currently displayed list "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays sorted entrys in the currently list "
             + "by the specified category and order.\n"
             + "Parameters: [CATEGORY] [ORDER]\n"
             + "Example: " + COMMAND_WORD + " " + CATEGORY_NAME + " " + DESCENDING_CONDITION;

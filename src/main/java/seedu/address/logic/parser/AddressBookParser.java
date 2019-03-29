@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BitcoinCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -100,6 +102,9 @@ public class AddressBookParser {
 
         case ReportCommand.COMMAND_WORD:
             return new ReportCommandParser().parse(arguments);
+
+        case LockCommand.COMMAND_WORD:
+                return new LockCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

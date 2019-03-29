@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -8,14 +9,18 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.EncryptionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.LockCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
+import seedu.address.storage.PasswordManager;
 import seedu.address.storage.Storage;
 
 /**
@@ -29,6 +34,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final CommandHistory history;
     private final AddressBookParser addressBookParser;
+    private boolean isLocked;
     private boolean addressBookModified;
 
     public LogicManager(Model model, Storage storage) {
@@ -36,6 +42,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         history = new CommandHistory();
         addressBookParser = new AddressBookParser();
+        this.isLocked = PasswordManager.passwordExists();
 
         // Set addressBookModified to true whenever the models' address book is modified.
         model.getAddressBook().addListener(observable -> addressBookModified = true);
@@ -48,6 +55,17 @@ public class LogicManager implements Logic {
         addressBookModified = false;
 
         CommandResult commandResult;
+
+        if (isLocked) {
+            tryUnlock(commandText);
+            if (isLocked) {
+                throw new CommandException(LockCommand.MESSAGE_WRONG_PASSWORD);
+            } else {
+                decryptFile();
+                return new CommandResult("Welcome to Budgeter");
+            }
+        }
+
         try {
             Command command = addressBookParser.parseCommand(commandText);
             commandResult = command.execute(model, history);
@@ -66,6 +84,34 @@ public class LogicManager implements Logic {
 
         return commandResult;
     }
+
+    /**
+     * Method to decrypt file
+     */
+    private void decryptFile() {
+        try {
+            UserPrefs userPrefs = new UserPrefs();
+            File file = new File(String.valueOf(userPrefs.getAddressBookFilePath()));
+            EncryptionUtil.decrypt(file);
+        } catch (IOException ioe) {
+            logger.warning("File not found" + ioe.getMessage());
+        }
+    }
+
+    /**
+     * Checks with the PasswordManger on whether to unlock the program
+     * @param commandText password provided
+     * @throws CommandException if password file is corrupted
+     */
+    private void tryUnlock(String commandText) throws  CommandException {
+
+        try {
+            isLocked = !PasswordManager.verifyPassword(commandText);
+        } catch (IOException ioe) {
+            throw new CommandException("Unable to open password file");
+        }
+    }
+
 
 
     @Override
