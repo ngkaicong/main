@@ -25,6 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.ReportCommand;
 import seedu.address.logic.commands.DisplayCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.SelectCommand;
@@ -124,6 +125,13 @@ public class AddressBookParserTest {
                 SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
         assertEquals(new SelectCommand(INDEX_FIRST_ENTRY), command);
     }
+
+//    @Test
+//    public void parseCommand_report() throws Exception {
+//        ReportCommand command = (ReportCommand) parser.parseCommand(
+//                ReportCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
+//        assertEquals(new ReportCommand(), command);
+//    }
 
     @Test
     public void parseCommand_redoCommandWord_returnsRedoCommand() throws Exception {

@@ -6,13 +6,17 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_CASHFLOW = new Prefix("c/");
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+
+    public static final Prefix PREFIX_STARTDATE = new Prefix("s/");
+    public static final Prefix PREFIX_ENDDATE = new Prefix("e/");
 
     public static final Prefix PREFIX_SET = new Prefix("set/");
     public static final Prefix PREFIX_CHANGE = new Prefix("change/");
     public static final Prefix PREFIX_REMOVE = new Prefix("remove/");
+
 
 }

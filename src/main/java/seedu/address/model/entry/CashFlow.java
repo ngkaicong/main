@@ -39,7 +39,8 @@ public class CashFlow {
 
     private CashFlow(Double cashFlow) {
         requireNonNull(cashFlow);
-        checkArgument(isValidCashFlow(cashFlow.toString()), MESSAGE_CONSTRAINTS);
+        String cashFlowStr = String.format("%.2f", cashFlow);
+        checkArgument(isValidCashFlow(cashFlowStr), MESSAGE_CONSTRAINTS);
         this.valueDouble = cashFlow;
         value = cashFlow.toString();
     }
@@ -87,9 +88,6 @@ public class CashFlow {
         }
     }
 
-    public double toDouble () {
-        return valueDouble;
-    }
 
     public boolean isNotLarger (double cashin) {
         return (cashin >= valueDouble);
