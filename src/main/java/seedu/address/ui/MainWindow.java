@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private EntryListPanel entryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ReportWindow reportWindow = null;
 
     @FXML
     private StackPane browserPlaceholder;
@@ -152,6 +153,20 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the report window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleReport() {
+        if (reportWindow == null)
+            reportWindow = new ReportWindow(logic) ;
+        if (!reportWindow.isShowing()) {
+            reportWindow.show();
+        } else {
+            reportWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -165,6 +180,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        reportWindow.hide();
         primaryStage.hide();
     }
 
@@ -185,6 +201,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowReport()) {
+                handleReport();
             }
 
             if (commandResult.isExit()) {
