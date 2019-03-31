@@ -7,12 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.ReportEntryList;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -30,6 +32,9 @@ public class ReportWindow extends UiPart<Stage> {
 
     @FXML
     private PieChart pieChart;
+
+    @FXML
+    private Label tLabel, eLabel, iLabel;
 
     /**
      * Creates a new HelpWindow.
@@ -54,8 +59,17 @@ public class ReportWindow extends UiPart<Stage> {
 
     private void refresh() {
         ObservableList<Entry> filteredReportList = logic.getFilteredEntryList();
-        ObservableList<PieChart.Data> pieChartData = getExpenseIncomePieChartData(filteredReportList);
+        ReportEntryList reportEntryList = new ReportEntryList(filteredReportList);
+
+        Double total = reportEntryList.getTotal();
+        Double income = reportEntryList.getTotalIncome();
+        Double expense = reportEntryList.getTotalExpense();
+
+        ObservableList<PieChart.Data> pieChartData = getExpenseIncomePieChartData(reportEntryList);
         pieChart.setData(pieChartData);
+        tLabel.setText("Total (Income - Expenses): " + String.format("%.02f", total));
+        iLabel.setText("Total Income: " + String.format("%.02f", income));
+        eLabel.setText("Total Expense: " + String.format("%.02f", expense));
 
     }
 
@@ -107,20 +121,9 @@ public class ReportWindow extends UiPart<Stage> {
 
 
 
-    private ObservableList<PieChart.Data> getExpenseIncomePieChartData(ObservableList<Entry> filteredReportList){
-        Double expense = 0.0;
-        Double income = 0.0;
-
-        for (Entry e: filteredReportList){
-            Double cf = e.getCashFlow().valueDouble;
-            if (cf > 0){
-                income += cf;
-            }
-            else{
-                expense += (-1*cf);
-            }
-        }
-
+    private ObservableList<PieChart.Data> getExpenseIncomePieChartData(ReportEntryList reportEntryList){
+        Double income = reportEntryList.getTotalIncome();
+        Double expense = reportEntryList.getTotalExpense();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Income", income),
                 new PieChart.Data("Expense", expense)

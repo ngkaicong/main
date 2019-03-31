@@ -15,7 +15,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_FILE_PATH = "/docs/HelpWindow.html";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "ReportWindow.fxml";
+    private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private WebView browser;
