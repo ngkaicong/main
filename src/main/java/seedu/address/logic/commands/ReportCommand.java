@@ -40,6 +40,7 @@ public class ReportCommand extends Command {
         ReportEntryList reportList = new ReportEntryList(filteredList);
         return new CommandResult("Overview (Income - Expenses): " + reportList.getTotal().toString()
                 + "\n" + "Total Income: " + reportList.getTotalIncome().toString()
-                + "\n" + "Total Expenses: " + reportList.getTotalExpense().toString());
+                + "\n" + "Total Expenses: " + reportList.getTotalExpense().toString(),
+                false, true, false);
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.image.Image?>
+
+<!-- TODO: set a more appropriate initial size -->
+<?import javafx.scene.chart.PieChart?>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         title="Report" maximized="true">
+  <icons>
+    <Image url="@/images/help_icon.png" />
+  </icons>
+  <scene>
+    <Scene>
+      <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
+    </Scene>
+  </scene>
+</fx:root>
