@@ -4,6 +4,10 @@ package seedu.address.model.entry;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.ModelManager;
+import seedu.address.model.tag.Tag;
+
+import java.util.HashMap;
+import java.util.Set;
 
 
 /**
@@ -17,6 +21,8 @@ public class ReportEntryList {
     private Double totalIncome;
     private Double totalExpense;
     private ObservableList<Entry>  filteredEntries;
+    private HashMap<String, Double> expenseCompositionMap;
+    private HashMap<String, Double> incomeCompositionMap;
 
     public ReportEntryList(ObservableList<Entry>  filteredEntries) {
         this.total = 0.0;
@@ -42,6 +48,11 @@ public class ReportEntryList {
         return this.totalExpense;
     }
 
+    public HashMap<String, Double> getExpenseCompositionMap() { return this.expenseCompositionMap; }
+
+    public HashMap<String, Double> getIncomeCompositionMap() { return this.incomeCompositionMap; }
+
+
     /**
      * Returns the size of the internal map
      */
@@ -63,12 +74,45 @@ public class ReportEntryList {
      * Update the total moneyflow, total income and total expense
      */
     private void updateTotals() {
+        HashMap<String, Double> incomeComposition = new HashMap<String, Double>();
+        HashMap<String, Double> expenseComposition = new HashMap<String, Double>();
+
         for (Entry i : this.filteredEntries) {
             CashFlow icf = i.getCashFlow();
+            Set<Tag> iTags = i.getTags();
+            String tagStr = iTags.toString();
+            if (tagStr.equalsIgnoreCase("[]"))
+                tagStr = "Uncategorized";
+            tagStr = tagStr.replaceAll("\\[", "").replaceAll("\\]", "");
+
             Double value = icf.valueDouble;
             total += value;
-            totalExpense += (value < 0) ? -1 * value : 0;
-            totalIncome += (value >= 0) ? value : 0;
+            if (value < 0) {
+                totalExpense +=  (-1 * value);
+                if (expenseComposition.containsKey(tagStr)) {
+                    Double oldVal = expenseComposition.get(tagStr);
+                    expenseComposition.replace(tagStr, (oldVal + (-1*value)));
+                }
+                else {
+                    expenseComposition.put(tagStr, (-1 * value));
+                }
+            }
+
+            else {
+                totalIncome += value;
+                if (incomeComposition.containsKey(tagStr)) {
+                    Double oldVal = incomeComposition.get(tagStr);
+                    incomeComposition.replace(tagStr, (oldVal + value));
+                }
+                else {
+                    incomeComposition.put(tagStr, value);
+                }
+            }
         }
+
+        this.incomeCompositionMap = incomeComposition;
+        this.expenseCompositionMap = expenseComposition;
     }
+
+
 }

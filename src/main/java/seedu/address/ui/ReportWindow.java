@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -11,11 +12,18 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -31,7 +39,7 @@ public class ReportWindow extends UiPart<Stage> {
     private Logic logic;
 
     @FXML
-    private PieChart pieChart;
+    private PieChart pieChart, expenseInsightPieChart, incomeInsightPieChart;
 
     @FXML
     private Label tLabel, eLabel, iLabel;
@@ -66,7 +74,12 @@ public class ReportWindow extends UiPart<Stage> {
         Double expense = reportEntryList.getTotalExpense();
 
         ObservableList<PieChart.Data> pieChartData = getExpenseIncomePieChartData(reportEntryList);
+        ObservableList<PieChart.Data> expenseInsightPieChartData = getExpenseInsightPieChartData(reportEntryList);
+        ObservableList<PieChart.Data> incomeInsightPieChartData = getIncomeInsightPieChartData(reportEntryList);
+
         pieChart.setData(pieChartData);
+        expenseInsightPieChart.setData(expenseInsightPieChartData);
+        incomeInsightPieChart.setData(incomeInsightPieChartData);
         tLabel.setText("Total (Income - Expenses): " + String.format("%.02f", total));
         iLabel.setText("Total Income: " + String.format("%.02f", income));
         eLabel.setText("Total Expense: " + String.format("%.02f", expense));
@@ -138,5 +151,51 @@ public class ReportWindow extends UiPart<Stage> {
         );
 
         return pieChartData;
+    }
+
+    private ObservableList<PieChart.Data> getIncomeInsightPieChartData(ReportEntryList reportEntryList) {
+        ArrayList<PieChart.Data> pieChartDataArr = new ArrayList<>();
+        HashMap<String, Double> incomeInsight = reportEntryList.getIncomeCompositionMap();
+        Iterator it = incomeInsight.entrySet().iterator();
+        while (it.hasNext()) {
+            HashMap.Entry pair = (HashMap.Entry)it.next();
+            PieChart.Data pieData = new PieChart.Data((String)pair.getKey(), (Double)pair.getValue());
+            pieChartDataArr.add(pieData);
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(pieChartDataArr);
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), " $", data.pieValueProperty()
+                        )
+                )
+        );
+
+        return pieChartData;
+
+    }
+
+    private ObservableList<PieChart.Data> getExpenseInsightPieChartData(ReportEntryList reportEntryList) {
+        ArrayList<PieChart.Data> pieChartDataArr = new ArrayList<>();
+        HashMap<String, Double> expenseInsight = reportEntryList.getExpenseCompositionMap();
+        Iterator it = expenseInsight.entrySet().iterator();
+        while (it.hasNext()) {
+            HashMap.Entry pair = (HashMap.Entry)it.next();
+            PieChart.Data pieData = new PieChart.Data((String)pair.getKey(), (Double)pair.getValue());
+            pieChartDataArr.add(pieData);
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(pieChartDataArr);
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), " $", data.pieValueProperty()
+                        )
+                )
+        );
+
+        return pieChartData;
+
     }
 }

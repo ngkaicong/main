@@ -24,6 +24,13 @@
         <Label fx:id="eLabel" text="" />
 
         <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
+        <Label fx:id="incomeBreakdownLabel" text="Breakdown of Income by tags" />
+        <PieChart id="incomeInsightPieChart" fx:id="incomeInsightPieChart" layoutX="10" layoutY="110" />
+        <Label fx:id="expenseBreakdownLabel" text="Breakdown of Expense by tags" />
+        <PieChart id="expenseInsightPieChart" fx:id="expenseInsightPieChart" layoutX="10" layoutY="110" />
+
+
+
       </VBox>
     </Scene>
   </scene>
