@@ -38,9 +38,12 @@ public class ReportCommand extends Command {
         model.updateFilteredEntryList(this.predicate);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
         ReportEntryList reportList = new ReportEntryList(filteredList);
-        return new CommandResult("Overview (Income - Expenses): " + reportList.getTotal().toString()
-                + "\n" + "Total Income: " + reportList.getTotalIncome().toString()
-                + "\n" + "Total Expenses: " + reportList.getTotalExpense().toString(),
+        Double total = reportList.getTotal();
+        Double income = reportList.getTotalIncome();
+        Double expense = reportList.getTotalExpense();
+        return new CommandResult("Overview (Income - Expenses): " + String.format("%.02f", total)
+                + "\n" + "Total Income: " + String.format("%.02f", income)
+                + "\n" + "Total Expenses: " + String.format("%.02f", expense),
                 false, true, false);
     }
 }

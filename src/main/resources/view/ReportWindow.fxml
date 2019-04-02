@@ -2,17 +2,36 @@
 
 <?import javafx.scene.Scene?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.VBox?>
 
 <!-- TODO: set a more appropriate initial size -->
-<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Report" maximized="true">
+         title="Report" maximized="false">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
+
+
+
   <scene>
     <Scene>
-      <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
+      <VBox id="vbox" fx:id="vbox">
+
+        <Label fx:id="tLabel" text="" />
+        <Label fx:id="iLabel" text="" />
+        <Label fx:id="eLabel" text="" />
+
+        <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
+        <Label fx:id="incomeBreakdownLabel" text="Breakdown of Income by tags" />
+        <PieChart id="incomeInsightPieChart" fx:id="incomeInsightPieChart" layoutX="10" layoutY="110" />
+        <Label fx:id="expenseBreakdownLabel" text="Breakdown of Expense by tags" />
+        <PieChart id="expenseInsightPieChart" fx:id="expenseInsightPieChart" layoutX="10" layoutY="110" />
+
+
+
+      </VBox>
     </Scene>
   </scene>
 </fx:root>
