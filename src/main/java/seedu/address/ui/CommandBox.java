@@ -31,8 +31,12 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
     private static final String[] allSuggestions = {"add", "add n/ d/ c/ t/", "clear", "delete",
-        "find", "find n/ d/ c/ t/",
-        "efind", "find n/ or d/ or c/ or t/",
+        "filter", "find n/ d/ c/ t/",
+        "display", "display n/ or d/ or c/ or t/",
+            "report", "report n/ or d/ or c/ or t/",
+            "report insight", "report n/ or d/ or c/ or t/",
+            "find", "find n/ or d/ or c/ or t/",
+            "find n/ or d/ or c/ or t/",
         "edit", "edit n/ d/ c/ t/", "help",
         "list", "select", "undo", "redo" };
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
