@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.ModelManager;
 import seedu.address.model.tag.Tag;
-
+import seedu.address.logic.commands.BitcoinCommand;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -17,6 +17,7 @@ import java.util.Set;
  */
 public class ReportEntryList {
 
+    private final double bitcoin;
     private Double total;
     private Double totalIncome;
     private Double totalExpense;
@@ -29,6 +30,7 @@ public class ReportEntryList {
         this.totalIncome = 0.0;
         this.totalExpense = 0.0;
         this.filteredEntries = filteredEntries;
+        this.bitcoin=0;
 
         updateTotals();
     }
@@ -115,4 +117,8 @@ public class ReportEntryList {
     }
 
 
+    public Double getBitcoin() {
+        //TODO: sample
+        return 99.9;
+    }
 }
