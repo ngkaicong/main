@@ -6,9 +6,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
+import seedu.address.model.entry.CashFlow;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.ReportEntryList;
 
 /**
  * Returns how many Bitcoin you can buy at the current market price.
@@ -21,6 +26,12 @@ public class BitcoinCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "You are able to buy .";
+
+    private final Predicate predicate;
+
+    public BitcoinCommand(Predicate predicate) {
+        this.predicate = predicate;
+    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
@@ -46,6 +57,13 @@ public class BitcoinCommand extends Command {
             //                temp = output;
             //            }
             System.out.println(output.substring(14, 21));
+
+            model.updateFilteredEntryList(this.predicate);
+            ObservableList<Entry> filteredList = model.getFilteredEntryList();
+            ReportEntryList reportList = new ReportEntryList(filteredList);
+            Double total = reportList.getTotal();
+            System.out.println(total);
+
             price = Float.parseFloat(output.substring(14, 21));
             System.out.println(price);
 

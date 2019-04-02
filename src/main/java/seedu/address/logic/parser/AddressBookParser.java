@@ -87,7 +87,7 @@ public class AddressBookParser {
             return new HistoryCommand();
 
         case BitcoinCommand.COMMAND_WORD:
-            return new BitcoinCommand();
+            return new BitcoinCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
