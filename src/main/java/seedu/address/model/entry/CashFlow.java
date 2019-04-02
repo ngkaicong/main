@@ -26,6 +26,7 @@ public class CashFlow {
     public static final String NEGATIVE_SIGN = "-";
     public static final String REPRESENTATION_ZERO = "-0";
     public static final String FORMAT_STANDARD_CASH = "%.2f";
+    public static final String FORMAT_STANDARD_MONEY = "%.2f";
     public static final Double MAX_CASH = 99999999999.99;
 
     private static final String CASHFLOW_VALIDATION_REGEX = "^[+-]?(0|[1-9]\\d{0,11})(\\.\\d{1,2})?";
@@ -33,16 +34,23 @@ public class CashFlow {
     public final String value;
     public final Double valueDouble;
 
-    private CashFlow(String cashFlow) {
-        this(Double.parseDouble(cashFlow));
+    public CashFlow(String cashFlow) {
+        requireNonNull(cashFlow);
+        checkArgument(isValidMoneyFlow(cashFlow), MESSAGE_CONSTRAINTS);
+        this.value = cashFlow;
+        valueDouble = Double.valueOf(cashFlow);
+        checkArgument(isFinite(valueDouble), MESSAGE_CONSTRAINTS);
     }
 
-    private CashFlow(Double cashFlow) {
+    public CashFlow(Double cashFlow) {
         requireNonNull(cashFlow);
-        String cashFlowStr = String.format("%.2f", cashFlow);
-        checkArgument(isValidCashFlow(cashFlowStr), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMoneyFlow(cashFlow.toString()), MESSAGE_CONSTRAINTS);
         this.valueDouble = cashFlow;
         value = cashFlow.toString();
+    }
+
+    public static boolean isValidMoneyFlow(String test) {
+        return test.matches(CASHFLOW_VALIDATION_REGEX);
     }
 
     /**
@@ -86,12 +94,12 @@ public class CashFlow {
         } else {
             return NEGATIVE_SIGN + CURRENCY + String.format(FORMAT_STANDARD_CASH, Math.abs(valueDouble));
         }
+
+    }
+    public double toDouble () {
+        return valueDouble;
     }
 
-
-    public boolean isNotLarger (double cashin) {
-        return (cashin >= valueDouble);
-    }
 
     @Override
     public boolean equals(Object other) {
