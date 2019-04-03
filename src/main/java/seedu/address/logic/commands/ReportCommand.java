@@ -41,9 +41,11 @@ public class ReportCommand extends Command {
         Double total = reportList.getTotal();
         Double income = reportList.getTotalIncome();
         Double expense = reportList.getTotalExpense();
+        Double bitcoin= reportList.getBitcoin();
         return new CommandResult("Overview (Income - Expenses): " + String.format("%.02f", total)
                 + "\n" + "Total Income: " + String.format("%.02f", income)
-                + "\n" + "Total Expenses: " + String.format("%.02f", expense),
+                + "\n" + "Total Expenses: " + String.format("%.02f", expense)
+                + "\n" + "Total Bitcoin you can buy: " + String.format("%.02f", bitcoin),
                 false, true, false);
     }
 }
