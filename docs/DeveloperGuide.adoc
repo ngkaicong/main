@@ -533,8 +533,23 @@ image::lock.PNG[width="800"]
 ** Cons: Data folder with the password need to be locked with shell file otherwise it is accessible for developers
 
 
-//end:: lock[]
+//end:: report[]
 
+=== Report feature
+
+==== Current Implementation
+The Budgeter allows a report command that can generate a report.
+
+Type detailed report and u will find a detailed report.
+
+==== Design Considerations
+
+===== Aspect: Password length and strength
+
+* **Current Design:** Report will show a piechart
+
+
+//end:: report[]
 
 === Logging
 
