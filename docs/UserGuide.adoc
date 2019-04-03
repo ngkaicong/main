@@ -329,4 +329,8 @@ e.g.`select 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
-
+* *Report* : `report`
+* *Report insight* : `Report insight`
+* *Filter* : `filter`
+* *Display* : `display`
+* *Lock* : `lock`
