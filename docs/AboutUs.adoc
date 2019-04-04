@@ -23,7 +23,7 @@ Respobsibilities:
 image::frankquekch.png[width="150", align="left"]
 {empty}[http://github.com/frankquekch[github]]
 
-Role: Developer
+Role: Developer +
 Responsibilities:
 
 '''
@@ -32,7 +32,7 @@ Responsibilities:
 image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
 
-Role: Developer
+Role: Developer +
 Responsibilities: Summary Features
 
 '''
@@ -41,7 +41,7 @@ Responsibilities: Summary Features
 image::jacobhan.png[width="150", align="left"]
 {empty}[http://github.com/jacobhan[github]]
 
-Role: Developer
+Role: Developer +
 Responsibilities: TBC
 
 '''
