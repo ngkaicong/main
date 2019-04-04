@@ -25,7 +25,7 @@ public class BitcoinCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much bitcoin you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "You are able to buy .";
+    public static String MESSAGE_SUCCESS = "You are able to buy ";
 
     private final Predicate predicate;
 
@@ -49,23 +49,28 @@ public class BitcoinCommand extends Command {
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-            System.out.println("Output from Server .... \n");
+//            System.out.println("Output from Server .... \n");
             String output = br.readLine();
-            System.out.println(output);
+//            System.out.println(output);
             //            while ((output = br.readLine()) != null) {
             //                System.out.println(output);
             //                temp = output;
             //            }
-            System.out.println(output.substring(14, 21));
+//            System.out.println(output.substring(14, 21));
 
             model.updateFilteredEntryList(this.predicate);
             ObservableList<Entry> filteredList = model.getFilteredEntryList();
             ReportEntryList reportList = new ReportEntryList(filteredList);
             Double total = reportList.getTotal();
-            System.out.println(total);
+//            System.out.println(total);
 
             price = Float.parseFloat(output.substring(14, 21));
-            System.out.println(price);
+//            System.out.println(price);
+
+            Double amount = total / price;
+            amount = (double) Math.round(amount * 100.0) / 100.0;
+
+            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " bitcoin.";
 
             conn.disconnect();
 
@@ -79,7 +84,9 @@ public class BitcoinCommand extends Command {
 
         // This is where you divide the cashflow by the price of bitcoin, and add it to the message
 
-        System.out.println("The current price of bitcoin is $" + roundOff);
+        String currentPrice = " The current price of bitcoin is $" + roundOff + ".";
+        MESSAGE_SUCCESS = MESSAGE_SUCCESS + currentPrice;
+//        System.out.println("The current price of bitcoin is $" + roundOff ".");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

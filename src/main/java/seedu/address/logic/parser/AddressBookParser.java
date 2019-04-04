@@ -89,6 +89,9 @@ public class AddressBookParser {
         case BitcoinCommand.COMMAND_WORD:
             return new BitcoinCommandParser().parse(arguments);
 
+        case EthereumCommand.COMMAND_WORD:
+            return new EthereumCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
