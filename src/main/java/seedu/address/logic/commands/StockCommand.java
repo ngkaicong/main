@@ -1,43 +1,37 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.CommandHistory;
+import seedu.address.model.Model;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.function.Predicate;
-
-import javafx.collections.ObservableList;
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
-import seedu.address.model.entry.CashFlow;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.ReportEntryList;
 
 /**
  * Returns how many Bitcoin you can buy at the current market price.
  */
-public class BitcoinCommand extends Command {
+public class StockCommand extends Command {
 
-    public static final String COMMAND_WORD = "bitcoin";
+    public static final String COMMAND_WORD = "stock";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much bitcoin you can buy.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain stock you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "You are able to buy .";
 
-    private final Predicate predicate;
-
-    public BitcoinCommand(Predicate predicate) {
-        this.predicate = predicate;
-    }
+    public String firstURL = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=";
+    public String stock = "temp";
+    public String secondURL = "&interval=5min&apikey=demo";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
         try {
-            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD");
+            String temp = firstURL + stock + secondURL;
+            URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -57,13 +51,6 @@ public class BitcoinCommand extends Command {
             //                temp = output;
             //            }
             System.out.println(output.substring(14, 21));
-
-            model.updateFilteredEntryList(this.predicate);
-            ObservableList<Entry> filteredList = model.getFilteredEntryList();
-            ReportEntryList reportList = new ReportEntryList(filteredList);
-            Double total = reportList.getTotal();
-            System.out.println(total);
-
             price = Float.parseFloat(output.substring(14, 21));
             System.out.println(price);
 
@@ -79,7 +66,7 @@ public class BitcoinCommand extends Command {
 
         // This is where you divide the cashflow by the price of bitcoin, and add it to the message
 
-        System.out.println("The current price of bitcoin is $" + roundOff);
+        System.out.println("The current price of your stock is $" + roundOff);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

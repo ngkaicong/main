@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BitcoinCommand;
+import seedu.address.logic.commands.EthereumCommand;
+import seedu.address.logic.commands.LitecoinCommand;
+import seedu.address.logic.commands.StockCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -84,7 +87,7 @@ public class AddressBookParser {
             return new HistoryCommand();
 
         case BitcoinCommand.COMMAND_WORD:
-            return new BitcoinCommand();
+            return new BitcoinCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
