@@ -42,7 +42,7 @@ public class ReportWindow extends UiPart<Stage> {
     private PieChart pieChart, expenseInsightPieChart, incomeInsightPieChart;
 
     @FXML
-    private Label tLabel, eLabel, iLabel;
+    private Label tLabel, eLabel, iLabel, bitcoinLabel;
 
     /**
      * Creates a new HelpWindow.
@@ -72,6 +72,7 @@ public class ReportWindow extends UiPart<Stage> {
         Double total = reportEntryList.getTotal();
         Double income = reportEntryList.getTotalIncome();
         Double expense = reportEntryList.getTotalExpense();
+        Double bitcoin = reportEntryList.getBitcoin();
 
         ObservableList<PieChart.Data> pieChartData = getExpenseIncomePieChartData(reportEntryList);
         ObservableList<PieChart.Data> expenseInsightPieChartData = getExpenseInsightPieChartData(reportEntryList);
@@ -83,6 +84,7 @@ public class ReportWindow extends UiPart<Stage> {
         tLabel.setText("Total (Income - Expenses): " + String.format("%.02f", total));
         iLabel.setText("Total Income: " + String.format("%.02f", income));
         eLabel.setText("Total Expense: " + String.format("%.02f", expense));
+        bitcoinLabel.setText("Bitcoin Purchasing Power: " + String.format("%.02f", bitcoin));
 
     }
 

@@ -25,7 +25,7 @@ public class EthereumCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much ethereum you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static String MESSAGE_SUCCESS = "You are able to buy ";
+    public String MESSAGE_SUCCESS = "You are able to buy ";
 
     private final Predicate predicate;
 
@@ -64,13 +64,13 @@ public class EthereumCommand extends Command {
             Double total = reportList.getTotal();
 //            System.out.println(total);
 
-            price = Float.parseFloat(output.substring(14, 20));
+            price = Float.parseFloat(output.substring(14, 19));
 //            System.out.println(price);
 
             Double amount = total / price;
             amount = (double) Math.round(amount * 100.0) / 100.0;
 
-            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " ethereum.";
+            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " ETH.";
 
             conn.disconnect();
 

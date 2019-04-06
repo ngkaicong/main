@@ -4,8 +4,15 @@ package seedu.address.model.entry;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.ModelManager;
-import seedu.address.model.tag.Tag;
 import seedu.address.logic.commands.BitcoinCommand;
+import seedu.address.model.tag.Tag;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -17,20 +24,19 @@ import java.util.Set;
  */
 public class ReportEntryList {
 
-    private final double bitcoin;
     private Double total;
     private Double totalIncome;
     private Double totalExpense;
     private ObservableList<Entry>  filteredEntries;
     private HashMap<String, Double> expenseCompositionMap;
     private HashMap<String, Double> incomeCompositionMap;
+    private double bitcoin;
 
     public ReportEntryList(ObservableList<Entry>  filteredEntries) {
         this.total = 0.0;
         this.totalIncome = 0.0;
         this.totalExpense = 0.0;
         this.filteredEntries = filteredEntries;
-        this.bitcoin=0;
 
         updateTotals();
     }
@@ -116,9 +122,35 @@ public class ReportEntryList {
         this.expenseCompositionMap = expenseComposition;
     }
 
-
     public Double getBitcoin() {
-        //TODO: sample
-        return 99.9;
+        double price = 0.0;
+        try {
+            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            String output = br.readLine();
+
+            price = Float.parseFloat(output.substring(14, 21));
+
+            Double amount = total / price;
+            price = (double) Math.round(amount * 100.0) / 100.0;
+
+            conn.disconnect();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return price;
     }
+
 }
