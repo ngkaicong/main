@@ -13,6 +13,7 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_STARTDATE = new Prefix("s/");
     public static final Prefix PREFIX_ENDDATE = new Prefix("e/");
+    public static final Prefix PREFIX_INSIGHT = new Prefix("insight/");
 
     public static final Prefix PREFIX_SET = new Prefix("set/");
     public static final Prefix PREFIX_CHANGE = new Prefix("change/");

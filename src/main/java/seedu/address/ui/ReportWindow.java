@@ -6,15 +6,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.parser.ReportCommandParser;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
@@ -38,11 +41,13 @@ public class ReportWindow extends UiPart<Stage> {
 
     private Logic logic;
 
+    private Boolean isDetailsHidden = false;
+
     @FXML
     private PieChart pieChart, expenseInsightPieChart, incomeInsightPieChart;
 
     @FXML
-    private Label tLabel, eLabel, iLabel;
+    private Label tLabel, eLabel, iLabel, incomeBreakdownLabel, expenseBreakdownLabel;
 
     /**
      * Creates a new HelpWindow.
@@ -52,6 +57,7 @@ public class ReportWindow extends UiPart<Stage> {
     public ReportWindow(Stage root, Logic logic) {
         super(FXML, root);
         this.logic = logic;
+
 
         refresh();
 
@@ -83,6 +89,29 @@ public class ReportWindow extends UiPart<Stage> {
         tLabel.setText("Total (Income - Expenses): " + String.format("%.02f", total));
         iLabel.setText("Total Income: " + String.format("%.02f", income));
         eLabel.setText("Total Expense: " + String.format("%.02f", expense));
+
+        if (!ReportCommandParser.isRequireDetailedReport() && !isDetailsHidden){
+            expenseInsightPieChart.setVisible(false);
+            incomeInsightPieChart.setVisible(false);
+            expenseBreakdownLabel.setVisible(false);
+            incomeBreakdownLabel.setVisible(false);
+            expenseInsightPieChart.setManaged(false);
+            incomeInsightPieChart.setManaged(false);
+            expenseBreakdownLabel.setManaged(false);
+            incomeBreakdownLabel.setManaged(false);
+            isDetailsHidden = true;
+        }
+        else if (ReportCommandParser.isRequireDetailedReport() && isDetailsHidden){
+            expenseInsightPieChart.setVisible(true);
+            incomeInsightPieChart.setVisible(true);
+            expenseBreakdownLabel.setVisible(true);
+            incomeBreakdownLabel.setVisible(true);
+            expenseInsightPieChart.setManaged(true);
+            incomeInsightPieChart.setManaged(true);
+            expenseBreakdownLabel.setManaged(true);
+            incomeBreakdownLabel.setManaged(true);
+            isDetailsHidden = false;
+        }
 
     }
 

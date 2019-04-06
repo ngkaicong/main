@@ -7,6 +7,9 @@
 
 <!-- TODO: set a more appropriate initial size -->
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import java.net.URL?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Report" maximized="false">
   <icons>
@@ -17,21 +20,30 @@
 
   <scene>
     <Scene>
-      <VBox id="vbox" fx:id="vbox">
+      <stylesheets>
+        <URL value="@DarkTheme.css" />
+        <URL value="@Extensions.css" />
+      </stylesheets>
 
-        <Label fx:id="tLabel" text="" />
-        <Label fx:id="iLabel" text="" />
-        <Label fx:id="eLabel" text="" />
-
-        <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
-        <Label fx:id="incomeBreakdownLabel" text="Breakdown of Income by tags" />
-        <PieChart id="incomeInsightPieChart" fx:id="incomeInsightPieChart" layoutX="10" layoutY="110" />
-        <Label fx:id="expenseBreakdownLabel" text="Breakdown of Expense by tags" />
-        <PieChart id="expenseInsightPieChart" fx:id="expenseInsightPieChart" layoutX="10" layoutY="110" />
+      <ScrollPane fx:id ="scrollPane" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" >
+        <VBox id="vbox" fx:id="vbox">
+          <Label fx:id="tLabel" text="" translateX="10"/>
+          <Label fx:id="iLabel" text="" translateX="10"/>
+          <Label fx:id="eLabel" text="" translateX="10"/>
+          <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
 
 
+          <Label fx:id="incomeBreakdownLabel" text="Breakdown of Income by tags" translateX="10"/>
 
-      </VBox>
+          <PieChart id="incomeInsightPieChart" fx:id="incomeInsightPieChart" layoutX="10" layoutY="110" />
+
+
+          <Label fx:id="expenseBreakdownLabel" text="Breakdown of Expense by tags" translateX="10"/>
+          <PieChart id="expenseInsightPieChart" fx:id="expenseInsightPieChart" layoutX="10" layoutY="110" />
+
+        </VBox>
+      </ScrollPane>
+
     </Scene>
   </scene>
 </fx:root>
