@@ -22,6 +22,7 @@
         <Label fx:id="tLabel" text="" />
         <Label fx:id="iLabel" text="" />
         <Label fx:id="eLabel" text="" />
+        <Label fx:id="bLabel" text="" />
 
         <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
         <Label fx:id="incomeBreakdownLabel" text="Breakdown of Income by tags" />
