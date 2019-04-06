@@ -25,7 +25,7 @@ public class BitcoinCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much bitcoin you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static String MESSAGE_SUCCESS = "You are able to buy ";
+    public String MESSAGE_SUCCESS = "You are able to buy ";
 
     private final Predicate predicate;
 
