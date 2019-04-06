@@ -79,8 +79,8 @@ An entry can have any number of tags (including 0)
 
 Examples:
 
-* `add n/DinnerWithKenneth d/20-02-2019 m/-5`
-* `add n/IncomeFromWork m/+100 d/01-01-2019 t/Work`
+* `add n/DinnerWithKenneth d/20-02-2019 c/-5`
+* `add n/IncomeFromWork c/+100 d/01-01-2019 t/Work`
 
 === Listing all entries : `list`
 
@@ -91,7 +91,7 @@ Format: `list`
 === Editing an entry : `edit`
 
 Edits an existing entry in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/CASHFLOW] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [d/DATE] [e/CASHFLOW] [t/TAG]...`
 
 ****
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed entry list. The index *must be a positive integer* 1, 2, 3, ...
@@ -329,4 +329,8 @@ e.g.`select 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
-
+* *Report* : `report`
+* *Report insight* : `Report insight`
+* *Filter* : `filter`
+* *Display* : `display`
+* *Lock* : `lock`
