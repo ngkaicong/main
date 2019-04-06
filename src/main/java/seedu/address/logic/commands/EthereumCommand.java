@@ -64,13 +64,13 @@ public class EthereumCommand extends Command {
             Double total = reportList.getTotal();
 //            System.out.println(total);
 
-            price = Float.parseFloat(output.substring(14, 20));
+            price = Float.parseFloat(output.substring(14, 19));
 //            System.out.println(price);
 
             Double amount = total / price;
             amount = (double) Math.round(amount * 100.0) / 100.0;
 
-            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " ethereum.";
+            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " ETH.";
 
             conn.disconnect();
 
