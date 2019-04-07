@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
+import seedu.address.commons.util.CryptoUtil;
 import seedu.address.commons.util.EncryptionUtil;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
@@ -65,6 +66,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        CryptoUtil.getInstance(); //Initialize the crypto prices
 
         initLogging(config);
 
