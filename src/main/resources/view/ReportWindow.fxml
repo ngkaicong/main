@@ -30,6 +30,8 @@
           <Label fx:id="tLabel" text="" translateX="10"/>
           <Label fx:id="iLabel" text="" translateX="10"/>
           <Label fx:id="eLabel" text="" translateX="10"/>
+          <Label fx:id="bitcoinLabel" text="" />
+
           <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
 
 
@@ -37,13 +39,11 @@
 
           <PieChart id="incomeInsightPieChart" fx:id="incomeInsightPieChart" layoutX="10" layoutY="110" />
 
-
           <Label fx:id="expenseBreakdownLabel" text="Breakdown of Expense by tags" translateX="10"/>
           <PieChart id="expenseInsightPieChart" fx:id="expenseInsightPieChart" layoutX="10" layoutY="110" />
 
         </VBox>
       </ScrollPane>
-
     </Scene>
   </scene>
 </fx:root>

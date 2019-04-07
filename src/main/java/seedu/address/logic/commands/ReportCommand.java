@@ -35,15 +35,16 @@ public class ReportCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredEntryList(this.predicate);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();
         Double income = reportList.getTotalIncome();
         Double expense = reportList.getTotalExpense();
+        Double bitcoin = reportList.getBitcoin();
         return new CommandResult("Overview (Income - Expenses): " + String.format("%.02f", total)
                 + "\n" + "Total Income: " + String.format("%.02f", income)
-                + "\n" + "Total Expenses: " + String.format("%.02f", expense),
+                + "\n" + "Total Expenses: " + String.format("%.02f", expense)
+                + "\n" + "Bitcoin Purchasing Power: " + String.format("%.02f", bitcoin),
                 false, true, false);
     }
 }

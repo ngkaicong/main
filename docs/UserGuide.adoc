@@ -30,7 +30,7 @@ Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Report.png[width="790"]
+image::ui2.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -304,7 +304,48 @@ There is no need to save manually.
 _{explain how the user can Generate a Financial Report}_
 // end::dataencryption[]
 
+=== Showing a summary table of all financial activity by category: `summary`
 
+Shows a summary table listing by categories. +
+A `summary` is an item that contains information on the *date or month that is represented*, the *total expense calculated*, the *total income calculated* and
+the *net cash flow calculated.* A `category` refers to any `set of tags` that are assigned to any entries in the application. +
+
+The summary command supports both listing categories. +
+Format: +
+
+* By Category: `summary category d/START_DATE END_DATE`
+
+****
+* Note that there are specific formats required for the dates and months entered.
+* For the command *"summary category"*, START_DATE/END_DATE must be in the format of
+`dd-mm-yyyy` where `dd` represents day, `mm` represents month, `yyyy` represents year.
+* For command *"summary month"*, START_MONTH/END_MONTH must in the format of `mmm-yyyy`, `mmm` represents the month with its three letter representations, and
+`yyyy` represents the year in its numerical form.
+* Refer to <<constraints>> for the more information on the parameters.
+* Note that for mmm, it is case-insensitive, meaning both *"APR"* and *"apr"* are accepted.
+****
+// end::summary[]
+Once the command has been executed, a panel will appear showing the summary table containing data that is relevant in the range. +
+The table entries are sorted according to category depending on the mode used in ascending order. +
+At the same time, currently selected entry will be unselected to reduce confusion for the user.
+
+[NOTE]
+The table listing is currently non-resizable. If category is too long, the default behaviour of this app is to truncate
+those words and replace the parts truncated with ellipses("...").
+
+// tag::summary[]
+Examples:
+
+* `summary category d/1-1-2018 12-12-2018`
+// end::summary[]
+
+=== Lock
+
+=== Display
+
+=== Report
+
+=== Report Insight
 
 == FAQ
 
@@ -334,3 +375,5 @@ e.g.`select 2`
 * *Filter* : `filter`
 * *Display* : `display`
 * *Lock* : `lock`
+* *Summary by category* : `summary category [d/Start date End date]`
+=======

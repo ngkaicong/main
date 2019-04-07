@@ -16,20 +16,20 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
 /**
- * Returns how many Bitcoin you can buy at the current market price.
+ * Returns how many Litecoin you can buy at the current market price.
  */
-public class BitcoinCommand extends Command {
+public class LitecoinCommand extends Command {
 
-    public static final String COMMAND_WORD = "bitcoin";
+    public static final String COMMAND_WORD = "litecoin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much bitcoin you can buy.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much litecoin you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
     public String MESSAGE_SUCCESS = "You are able to buy ";
 
     private final Predicate predicate;
 
-    public BitcoinCommand(Predicate predicate) {
+    public LitecoinCommand(Predicate predicate) {
         this.predicate = predicate;
     }
 
@@ -37,7 +37,7 @@ public class BitcoinCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
         try {
-            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD");
+            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=LTC&tsyms=USD");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -64,13 +64,13 @@ public class BitcoinCommand extends Command {
             Double total = reportList.getTotal();
 //            System.out.println(total);
 
-            price = Float.parseFloat(output.substring(14, 20));
+            price = Float.parseFloat(output.substring(14, 18));
 //            System.out.println(price);
 
             Double amount = total / price;
             amount = (double) Math.round(amount * 100.0) / 100.0;
 
-            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " BTC.";
+            MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " LTC.";
 
             conn.disconnect();
 
@@ -82,11 +82,11 @@ public class BitcoinCommand extends Command {
 
         double roundOff = (double) Math.round(price * 100.0) / 100.0;
 
-        // This is where you divide the cashflow by the price of bitcoin, and add it to the message
+        // This is where you divide the cashflow by the price of litecoin, and add it to the message
 
-        String currentPrice = " The current price of bitcoin is $" + roundOff + ".";
+        String currentPrice = " The current price of litecoin is $" + roundOff + ".";
         MESSAGE_SUCCESS = MESSAGE_SUCCESS + currentPrice;
-//        System.out.println("The current price of bitcoin is $" + roundOff ".");
+//        System.out.println("The current price of litecoin is $" + roundOff ".");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
