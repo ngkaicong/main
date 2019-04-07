@@ -1,22 +1,14 @@
 package seedu.address.logic.commands;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.function.Predicate;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.CryptoUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
-import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 /**
  * Returns how many Ethereum you can buy at the current market price.
@@ -34,7 +26,7 @@ public class EthereumCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
         CryptoUtil cryptoUtil = CryptoUtil.getInstance();
-        price = cryptoUtil.getETH();
+        price = cryptoUtil.getEth();
 
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
