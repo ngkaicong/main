@@ -38,6 +38,7 @@ public class ReportCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredEntryList(this.predicate);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();
