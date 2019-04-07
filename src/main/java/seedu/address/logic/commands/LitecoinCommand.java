@@ -51,11 +51,7 @@ public class LitecoinCommand extends Command {
 
 //            System.out.println("Output from Server .... \n");
             String output = br.readLine();
-//            System.out.println(output);
-            //            while ((output = br.readLine()) != null) {
-            //                System.out.println(output);
-            //                temp = output;
-            //            }
+            System.out.println(output);
 //            System.out.println(output.substring(14, 21));
 
             model.updateFilteredEntryList(this.predicate);
