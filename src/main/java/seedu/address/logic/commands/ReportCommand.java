@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
+
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Filters all entrys in address book who contain any of the specified argument keywords.

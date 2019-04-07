@@ -50,8 +50,8 @@ public class LockCommand extends Command {
     /**
      * Set password if it does not exists
      */
-    public static class setLock extends LockMode {
-        public setLock(String password) {
+    public static class SetLock extends LockMode {
+        public SetLock(String password) {
             super(password);
         }
 
@@ -69,8 +69,8 @@ public class LockCommand extends Command {
     /**
      * Removes password if it exists
      */
-    public static class clearLock extends LockMode {
-        public clearLock(String password) {
+    public static class ClearLock extends LockMode {
+        public ClearLock(String password) {
             super(password);
         }
 
@@ -92,10 +92,10 @@ public class LockCommand extends Command {
     /**
      * Changes password if it exists
      */
-    public static class changeLock extends LockMode {
+    public static class ChangeLock extends LockMode {
 
         private String newPass;
-        public changeLock(String newPassword) {
+        public ChangeLock(String newPassword) {
             super(newPassword);
             newPass = newPassword;
         }
