@@ -64,7 +64,7 @@ public class LitecoinCommand extends Command {
             Double total = reportList.getTotal();
 //            System.out.println(total);
 
-            price = Float.parseFloat(output.substring(14, 18));
+            price = Float.parseFloat(output.substring(14, 17));
 //            System.out.println(price);
 
             Double amount = total / price;
@@ -80,7 +80,7 @@ public class LitecoinCommand extends Command {
             e.printStackTrace();
         }
 
-        double roundOff = (double) Math.round(price * 100.0) / 100.0;
+        int roundOff = (int) Math.round(price);
 
         // This is where you divide the cashflow by the price of litecoin, and add it to the message
 

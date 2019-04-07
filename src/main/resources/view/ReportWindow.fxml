@@ -30,7 +30,7 @@
           <Label fx:id="tLabel" text="" translateX="10"/>
           <Label fx:id="iLabel" text="" translateX="10"/>
           <Label fx:id="eLabel" text="" translateX="10"/>
-          <Label fx:id="bitcoinLabel" text="" />
+          <Label fx:id="bitcoinLabel" text="" translateX="10"/>
 
           <PieChart id="pieChart" fx:id="pieChart" layoutX="10" layoutY="110" />
 
