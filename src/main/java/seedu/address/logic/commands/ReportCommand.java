@@ -19,8 +19,8 @@ public class ReportCommand extends Command {
     public static final String COMMAND_WORD = "report";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates a report of the finances incurred "
-            + "During the specified timeframe.\n"
-            + "Parameters: KEYWORD s/[start_date] e/[end_date]...\n"
+            + "During the specified timeframe. Using the prefix insight/ gives a more detailed report.\n"
+            + "Parameters: KEYWORD s/[start_date] e/[end_date] [insight/]...\n"
             + "Example: " + COMMAND_WORD + " report \n"
             + "Example: " + COMMAND_WORD + " report s/21-01-2019\n"
             + "Example: " + COMMAND_WORD + " report e/25-03-2019\n"

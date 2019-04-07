@@ -52,7 +52,6 @@ public class DateTest {
      */
     @Test
     public void isValidDate() {
-      
         // invalid dates
         assertFalse(DateUtil.isValidDate(39, 2, 2019)); // The number of days in the specified month is wrong
         assertFalse((DateUtil.isValidDate(10, 23, 2019))); // The month does not exist
