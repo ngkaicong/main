@@ -78,7 +78,6 @@ public class ReportWindow extends UiPart<Stage> {
         Double total = reportEntryList.getTotal();
         Double income = reportEntryList.getTotalIncome();
         Double expense = reportEntryList.getTotalExpense();
-        Double bitcoin = reportEntryList.getBitcoin();
 
         ObservableList<PieChart.Data> pieChartData = getExpenseIncomePieChartData(reportEntryList);
         ObservableList<PieChart.Data> expenseInsightPieChartData = getExpenseInsightPieChartData(reportEntryList);
@@ -90,7 +89,7 @@ public class ReportWindow extends UiPart<Stage> {
         tLabel.setText("Total (Income - Expenses): " + String.format("%.02f", total));
         iLabel.setText("Total Income: " + String.format("%.02f", income));
         eLabel.setText("Total Expense: " + String.format("%.02f", expense));
-        bitcoinLabel.setText("Bitcoin Purchasing Power: " + String.format("%.02f", bitcoin));
+        //bitcoinLabel.setText("Bitcoin Purchasing Power: " + String.format("%.02f", bitcoin));
 
         if (!ReportCommandParser.isRequireDetailedReport() && !isDetailsHidden){
             expenseInsightPieChart.setVisible(false);
