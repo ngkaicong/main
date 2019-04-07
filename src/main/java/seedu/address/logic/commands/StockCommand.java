@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
+import seedu.address.model.entry.Name;
+import seedu.address.model.entry.NameContainsKeywordsPredicate;
+import java.util.function.Predicate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Returns how many Bitcoin you can buy at the current market price.
+ * Returns how much stock you can buy at the current market price.
  */
 public class StockCommand extends Command {
 
@@ -20,17 +23,25 @@ public class StockCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain stock you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "You are able to buy .";
+    public static String MESSAGE_SUCCESS = "The price of the stock ";
 
-    public String firstURL = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=";
-    public String stock = "temp";
-    public String secondURL = "&interval=5min&apikey=demo";
+    public String firstURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
+    public String stock = "MSFT";
+    public String secondURL = "&apikey=Y6G36I3BIPQL5I2";
+
+    private final Name name;
+
+    public StockCommand(Name name) {
+        this.name = name;
+    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
         try {
+            stock = name.fullName;
             String temp = firstURL + stock + secondURL;
+//            System.out.println(temp);
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -43,16 +54,29 @@ public class StockCommand extends Command {
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-            System.out.println("Output from Server .... \n");
-            String output = br.readLine();
-            System.out.println(output);
-            //            while ((output = br.readLine()) != null) {
-            //                System.out.println(output);
-            //                temp = output;
-            //            }
-            System.out.println(output.substring(14, 21));
-            price = Float.parseFloat(output.substring(14, 21));
-            System.out.println(price);
+            String full = "temp";
+            String output;
+            int y = 7;
+            while (y > 0) {
+                output = br.readLine();
+                full = output;
+//                System.out.println(output);
+                y -= 1;
+            }
+
+            if (full == null) {
+                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock.";
+            } else if (full.length() < 30) {
+                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock.";
+            } else {
+                price = Float.parseFloat(full.substring(22, 30));
+
+                Double amount = (double) Math.round(price * 100.0) / 100.0;
+//                System.out.println(amount);
+
+//                System.out.println(name);
+                MESSAGE_SUCCESS = "The price of the stock " + name.fullName + " is $" + amount.toString() + ".";
+            }
 
             conn.disconnect();
 
@@ -62,11 +86,6 @@ public class StockCommand extends Command {
             e.printStackTrace();
         }
 
-        double roundOff = (double) Math.round(price * 100.0) / 100.0;
-
-        // This is where you divide the cashflow by the price of bitcoin, and add it to the message
-
-        System.out.println("The current price of your stock is $" + roundOff);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

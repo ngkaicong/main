@@ -94,6 +94,9 @@ public class AddressBookParser {
         case LitecoinCommand.COMMAND_WORD:
             return new LitecoinCommandParser().parse(arguments);
 
+        case StockCommand.COMMAND_WORD:
+            return new StockCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
