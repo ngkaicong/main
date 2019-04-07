@@ -541,7 +541,7 @@ image::lock.PNG[width="800"]
 ==== Current Implementation
 The Budgeter allows a report command that can generate a report.
 
-Type detailed report and u will find a detailed report.
+Type detailed report and you will find a detailed report.
 
 ==== Design Considerations
 
