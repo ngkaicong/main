@@ -1,19 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.ReportCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.Date;
-import seedu.address.model.entry.DateAfterGivenPredicate;
-import seedu.address.model.entry.DateBeforeGivenPredicate;
-
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
+
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.ReportCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.DateAfterGivenPredicate;
+import seedu.address.model.entry.DateBeforeGivenPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,9 +27,16 @@ public class ReportCommandParser implements Parser<ReportCommand> {
 
     private static Boolean showDetailedReport = false;
 
-    public static Boolean isRequireDetailedReport(){
+    public static Boolean isRequireDetailedReport() {
         return showDetailedReport;
     }
+
+    /**
+     * Parses the ReportCommand with the arguments given in order to determine predicates needed to filter the list
+     * @param args
+     * @return ReportCommand object initialized with the predicates
+     * @throws ParseException
+     */
 
     public ReportCommand parse(String args) throws ParseException {
         Date startDate = null;
@@ -38,48 +45,52 @@ public class ReportCommandParser implements Parser<ReportCommand> {
         Predicate beforeEndPredicate = null;
         Predicate finalPredicate = null;
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_INSIGHT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STARTDATE, PREFIX_ENDDATE,
+                PREFIX_INSIGHT);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
         }
 
 
-        if(arePrefixesPresent(argMultimap, PREFIX_STARTDATE)){
+        if (arePrefixesPresent(argMultimap, PREFIX_STARTDATE)) {
             //Get Entries from this date onwards
             //TODO
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
             afterStartPredicate = new DateAfterGivenPredicate(startDate);
 
         }
-        if(arePrefixesPresent(argMultimap, PREFIX_ENDDATE)){
+
+        if (arePrefixesPresent(argMultimap, PREFIX_ENDDATE)) {
             //Get Entries until this date
             //TODO
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
             beforeEndPredicate = new DateBeforeGivenPredicate(endDate);
         }
 
-        if(arePrefixesPresent(argMultimap, PREFIX_INSIGHT)){
+        if (arePrefixesPresent(argMultimap, PREFIX_INSIGHT)) {
             showDetailedReport = true;
         }
+
         else {
             showDetailedReport = false;
         }
 
-        if (endDate != null && startDate != null && startDate.isAfter(endDate))
-
+        if (endDate != null && startDate != null && startDate.isAfter(endDate)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
+        }
 
-        else if (endDate != null && startDate != null && !startDate.isAfter(endDate))
-
+        else if (endDate != null && startDate != null && !startDate.isAfter(endDate)) {
             finalPredicate = afterStartPredicate.and(beforeEndPredicate);
+        }
 
-        else if (endDate == null && startDate == null)
-
+        else if (endDate == null && startDate == null) {
             finalPredicate = PREDICATE_SHOW_ALL_ENTRYS;
+        }
 
-        else
+        else {
             finalPredicate = (afterStartPredicate == null) ? beforeEndPredicate : afterStartPredicate;
+        }
 
 
         return new ReportCommand(finalPredicate);

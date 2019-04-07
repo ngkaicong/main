@@ -201,7 +201,7 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(
                 new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+"))));
         return command;
-    } 
+    }
 
     /**
      * Asserts that {@code command} is successfully executed, and<br>

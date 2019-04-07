@@ -1,6 +1,5 @@
 package seedu.address.model.entry;
 
-import static java.lang.Double.isFinite;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -64,12 +63,14 @@ public class CashFlow {
      */
     public static CashFlow getCashFlow (Object cashFlow) {
         CashFlow cashFlowInstance;
-        if (cashFlow instanceof String){
+
+        if (cashFlow instanceof String) {
             String cashFlowStr = (String) cashFlow;
             cashFlowInstance = new CashFlow(cashFlowStr);
             return cashFlowInstance;
         }
-        else if (cashFlow instanceof Double){
+
+        else if (cashFlow instanceof Double) {
             Double cashFlowDbl = (Double) cashFlow;
             cashFlowInstance = new CashFlow(cashFlowDbl);
             return cashFlowInstance;
@@ -89,9 +90,13 @@ public class CashFlow {
     public String toString() {
         if (String.format(FORMAT_STANDARD_CASH, Math.abs(valueDouble)).equals("0.00")) {
             return CURRENCY + String.format(FORMAT_STANDARD_CASH, Math.abs(valueDouble));
-        } else if (valueDouble > 0) {
+        }
+
+        else if (valueDouble > 0) {
             return POSITIVE_SIGN + CURRENCY + String.format(FORMAT_STANDARD_CASH, Math.abs(valueDouble));
-        } else {
+        }
+
+        else {
             return NEGATIVE_SIGN + CURRENCY + String.format(FORMAT_STANDARD_CASH, Math.abs(valueDouble));
         }
 

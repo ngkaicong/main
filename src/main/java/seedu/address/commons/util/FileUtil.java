@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,6 +14,14 @@ import java.nio.file.Paths;
 public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
+
+    public static boolean isPassExists(File file) {
+        return file.exists();
+    }
+
+    public static boolean isFileExists(File file) {
+        return file.exists() && file.isFile();
+    }
 
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
@@ -44,6 +53,16 @@ public class FileUtil {
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
+     * @throws IOException if the file or directory cannot be created.
+     */
+    public static void createIfMissing(File file) throws IOException {
+        if (!isFileExists(file)) {
+            createFile(file);
+        }
+    }
+
+    /**
+     * Creates a file if it does not exist along with its missing parent directories.
      */
     public static void createFile(Path file) throws IOException {
         if (Files.exists(file)) {
@@ -53,50 +72,6 @@ public class FileUtil {
         createParentDirsOfFile(file);
 
         Files.createFile(file);
-    }
-
-    /**
-     * Creates parent directories of file if it has a parent directory
-     */
-    public static void createParentDirsOfFile(Path file) throws IOException {
-        Path parentDir = file.getParent();
-
-        if (parentDir != null) {
-            Files.createDirectories(parentDir);
-        }
-    }
-
-    /**
-     * Assumes file exists
-     */
-    public static String readFromFile(Path file) throws IOException {
-        return new String(Files.readAllBytes(file), CHARSET);
-    }
-
-    /**
-     * Writes given string to a file.
-     * Will create the file if it does not exist yet.
-     */
-    public static void writeToFile(Path file, String content) throws IOException {
-        Files.write(file, content.getBytes(CHARSET));
-    }
-
-    public static boolean isPassExists(File file) {
-        return file.exists();
-    }
-
-    public static boolean isFileExists(File file) {
-        return file.exists() && file.isFile();
-    }
-
-    /**
-     * Creates a file if it does not exist along with its missing parent directories.
-     * @throws IOException if the file or directory cannot be created.
-     */
-    public static void createIfMissing(File file) throws IOException {
-        if (!isFileExists(file)) {
-            createFile(file);
-        }
     }
 
     /**
@@ -115,14 +90,13 @@ public class FileUtil {
     }
 
     /**
-     * Creates the given directory along with its parent directories
-     *
-     * @param dir the directory to be created; assumed not null
-     * @throws IOException if the directory or a parent directory cannot be created
+     * Creates parent directories of file if it has a parent directory
      */
-    public static void createDirs(File dir) throws IOException {
-        if (!dir.exists() && !dir.mkdirs()) {
-            throw new IOException("Failed to make directories of " + dir.getName());
+    public static void createParentDirsOfFile(Path file) throws IOException {
+        Path parentDir = file.getParent();
+
+        if (parentDir != null) {
+            Files.createDirectories(parentDir);
         }
     }
 
@@ -140,8 +114,23 @@ public class FileUtil {
     /**
      * Assumes file exists
      */
+    public static String readFromFile(Path file) throws IOException {
+        return new String(Files.readAllBytes(file), CHARSET);
+    }
+
+    /**
+     * Assumes file exists
+     */
     public static String readFromFile(File file) throws IOException {
         return new String(Files.readAllBytes(file.toPath()), CHARSET);
+    }
+
+    /**
+     * Writes given string to a file.
+     * Will create the file if it does not exist yet.
+     */
+    public static void writeToFile(Path file, String content) throws IOException {
+        Files.write(file, content.getBytes(CHARSET));
     }
 
     /**
@@ -151,6 +140,20 @@ public class FileUtil {
     public static void writeToFile(File file, String content) throws IOException {
         Files.write(file.toPath(), content.getBytes(CHARSET));
     }
+
+
+    /**
+     * Creates the given directory along with its parent directories
+     *
+     * @param dir the directory to be created; assumed not null
+     * @throws IOException if the directory or a parent directory cannot be created
+     */
+    public static void createDirs(File dir) throws IOException {
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("Failed to make directories of " + dir.getName());
+        }
+    }
+
 
     /**
      * Converts a string to a platform-specific file path

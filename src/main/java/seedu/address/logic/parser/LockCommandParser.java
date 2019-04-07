@@ -25,9 +25,9 @@ public class LockCommandParser implements Parser<LockCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SET, PREFIX_CHANGE, PREFIX_REMOVE);
 
         if (arePrefixesPresent(argumentMultimap, PREFIX_SET)) {
-            return new LockCommand(new LockCommand.setLock(argumentMultimap.getValue(PREFIX_SET).get()));
+            return new LockCommand(new LockCommand.SetLock(argumentMultimap.getValue(PREFIX_SET).get()));
         } else if (arePrefixesPresent(argumentMultimap, PREFIX_REMOVE)) {
-            return new LockCommand(new LockCommand.clearLock(
+            return new LockCommand(new LockCommand.ClearLock(
                     argumentMultimap.getValue(PREFIX_REMOVE).get()));
         } else if (arePrefixesPresent(argumentMultimap, PREFIX_CHANGE)) {
             final String newPassword = argumentMultimap.getValue(PREFIX_CHANGE).get();
@@ -35,7 +35,7 @@ public class LockCommandParser implements Parser<LockCommand> {
             if (newPassword.length() == 0) {
                 throw new ParseException("Password cannot be blank!");
             }
-            return new LockCommand(new LockCommand.changeLock(newPassword));
+            return new LockCommand(new LockCommand.ChangeLock(newPassword));
 
         }
 

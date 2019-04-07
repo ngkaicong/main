@@ -127,7 +127,7 @@ public class EncryptionUtil {
             MessageDigest digester = MessageDigest.getInstance("SHA-256");
             digester.update(password.getBytes("UTF-8"));
             byte[] key = digester.digest();
-            secretKeySpec = new SecretKeySpec(key , 0 , 16 ,  "AES");
+            secretKeySpec = new SecretKeySpec(key, 0, 16, "AES");
         } catch (NoSuchAlgorithmException nae) {
             logger.info("Algorithm Unsupported " + nae.getMessage());
         } catch (UnsupportedEncodingException use) {

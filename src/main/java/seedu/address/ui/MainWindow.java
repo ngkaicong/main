@@ -68,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        reportWindow = new ReportWindow(logic) ;
     }
 
     public Stage getPrimaryStage() {
@@ -158,8 +159,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleReport() {
-        if (reportWindow == null)
-            reportWindow = new ReportWindow(logic) ;
         if (!reportWindow.isShowing()) {
             reportWindow.show();
         } else {

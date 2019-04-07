@@ -20,6 +20,7 @@ public class DisplayUtil {
     public static Comparator<Entry> compareCashflowAttribute() {
         return Comparator.comparing(a -> a.getCashFlow().valueDouble);
     }
+
     public static Comparator<Date> compareDate() {
         return (date1, date2) -> {
             if (date1.getYear() < date2.getYear()) {

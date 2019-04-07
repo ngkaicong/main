@@ -103,7 +103,7 @@ public class LogicManager implements Logic {
      * @param commandText password provided
      * @throws CommandException if password file is corrupted
      */
-    private void tryUnlock(String commandText) throws  CommandException {
+    private void tryUnlock(String commandText) throws CommandException {
 
         try {
             isLocked = !PasswordManager.verifyPassword(commandText);
