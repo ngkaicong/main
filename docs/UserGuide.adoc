@@ -91,7 +91,7 @@ Format: `list`
 === Editing an entry : `edit`
 
 Edits an existing entry in the address book. +
-Format: `edit INDEX [n/NAME] [d/DATE] [e/CASHFLOW] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [d/DATE] [c/CASHFLOW] [t/TAG]...`
 
 ****
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed entry list. The index *must be a positive integer* 1, 2, 3, ...
@@ -169,7 +169,7 @@ Selects the 2nd entry in the address book.
 Selects the 1st entry in the results of the `find` command.
 
 // tag::filter[]
-=== Filtering entrys by names or cashflows or dates or tags: `filters`
+=== Filtering entrys by names or cashflows or dates or tags: `filter`
 
 Finds entrys who contain any of the given keywords. +
 Format: `filter n/[MORE_KEYWORDS] or d/[MORE_KEYWORDS] or c/[MORE_KEYWORDS] or t/[MORE_KEYWORDS]`
@@ -207,7 +207,37 @@ Returns any entry having tag `[friends]` exactly
 Returns any entry having tags `[family]` or `[colleagues]` exactly
 //end::filter[]
 
-// tag::bitcoin[]
+//tag:report[]
+=== Generates Report
+
+Shows a visual pie chart listing specified by the user when user type the command report. +
+A `report` is an item that contains information on the *date or month that is represented*, the *total expense calculated*, the *total income calculated* and
+the *net cash flow calculated.*
+
+****
+* Note that there are specific formats required for the dates and months entered.
+Capital letters of  REPORT is not allowed, instead report is used.
+* For the commands *"report"* and *"summary category"*, START_DATE/END_DATE must be in the format of
+`dd-mm-yyyy` where `dd` represents day, `mm` represents month, `yyyy` represents year.
+* For command *"report"*, START_MONTH/END_MONTH must in the format of `mmm-yyyy`, `mmm` represents the month with its three letter representations, and
+`yyyy` represents the year in its numerical form.
+
+****
+
+The screenshots below are examples of what you can see once the command has been accepted. The commands entered have been left
+in for visualisation purposes. These screenshots are taken in *fullscreen mode*  at 1080p resolution.
+
+*Screenshot of app when `report` is run*
+
+image::ReportD.PNG[width="790"]
+
+*Screenshot of app when `report s/12-12-2018 e/today` is run*
+
+image::Report2.PNG[width="790"]
+
+//end::report[]
+
+//tag:bitcoin[]
 === Returns purchasing power regarding bitcoin: `bitcoin`
 
 Returns how much bitcoin you can buy with your current balance with real-time market prices. +

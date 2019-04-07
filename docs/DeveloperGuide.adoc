@@ -319,12 +319,13 @@ The Commands UI Support feature displays the existing commands available when an
 
 CommandBox takes in an incomplete user command, match it with a list of command words currently supported in the application, and returns corresponding command skeleton for the user to fill in.
 We have implemented dropdown menu UI for autocomplete with a list of commands prompts.
-                    **Alternative 1 (Current Choice):** Include dropdown menu to list all autocomplete options +
-                    **Pros:** Easier access for users at a glance, especially  for first time users.+
-                    **Cons:** Inteferes with up and down button for command history.
-                    **Alternative 2 :** No Dropdown Menu
-                    **Pros:** No need for additional UI component.
-                    **Cons:** May not be intuitive to users who have not worked with CLI before.
+You can click on it and it will have the options automatically keyed into the command box for you. Simply type the respective data and you are ready to go.
+**Current Design:** Include dropdown menu to list all autocomplete options +
+**Pros:** Easier access for users at a glance, especially  for first time users.+
+ **Cons:** Inteferes with up and down button for command history.
+**Alternative :** No Dropdown Menu
+**Pros:** No need for additional UI component.
+**Cons:** May not be intuitive to users who have not worked with CLI before.
 // end::CommandsUISupport[]
 
 // tag::filter[]
@@ -1092,6 +1093,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
+|`* * *` |user |protect my data from hackers | have a private and secure usage of app
+
+|`* * *` |user |encrypt my data from hackers | my local copy is less hackable
+
 |`* * *` |user |add income details |
 
 |`* * *` |user |delete income details |remove entries that I no longer need
@@ -1101,6 +1106,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* * *` |user |add expense details |
 
 |`* * *` |user |delete expense details |remove entries that I no longer need
+
+|`* * *` |user |filter data acordingly by name or cashflow or date or tags | dont waste time finding one by one
+
+|`* * *` |user |display sorted data by descending or ascending order by name or cashflow or date or tags | get the most relevant data that matter to me most and understand the data
 
 |`* * *` |user |modify expense details |make changes to existing entries
 
@@ -1116,9 +1125,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |add recurring expense details |keep track of recurring expense without having to key the information on a monthly basis
 
-|`* *` |user |generate a financial report |To view a consolidated report for the time period about income and expenditure
+|`* *` |user |generate a financial report |To understand my income and expenditure patterns and make necessary changes
 
-|`*` |user |export financial report as an Microsoft Excel Spreadsheet |To generate an excel file of the report generated for further data visualisation / augmentation on the Microsoft Excel platform
 |=======================================================================
 
 _{More to be added}_
