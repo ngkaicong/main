@@ -91,7 +91,7 @@ Format: `list`
 === Editing an entry : `edit`
 
 Edits an existing entry in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/CASHFLOW] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [d/DATE] [e/CASHFLOW] [t/TAG]...`
 
 ****
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed entry list. The index *must be a positive integer* 1, 2, 3, ...
@@ -376,3 +376,4 @@ e.g.`select 2`
 * *Display* : `display`
 * *Lock* : `lock`
 * *Summary by category* : `summary category [d/Start date End date]`
+=======

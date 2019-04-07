@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CASHFLOW + "CASHFLOW] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + "91234567 "
+            + PREFIX_DATE + "01-01-2019 "
             + PREFIX_CASHFLOW + "+100";
 
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Entry: %1$s";

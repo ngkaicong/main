@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
@@ -23,6 +24,13 @@ public class ReportCommandParser implements Parser<ReportCommand> {
      * and returns an ReportCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+
+    private static Boolean showDetailedReport = false;
+
+    public static Boolean isRequireDetailedReport(){
+        return showDetailedReport;
+    }
+
     public ReportCommand parse(String args) throws ParseException {
         Date startDate = null;
         Date endDate = null;
@@ -30,7 +38,7 @@ public class ReportCommandParser implements Parser<ReportCommand> {
         Predicate beforeEndPredicate = null;
         Predicate finalPredicate = null;
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STARTDATE, PREFIX_ENDDATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STARTDATE, PREFIX_ENDDATE, PREFIX_INSIGHT);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
@@ -49,6 +57,13 @@ public class ReportCommandParser implements Parser<ReportCommand> {
             //TODO
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
             beforeEndPredicate = new DateBeforeGivenPredicate(endDate);
+        }
+
+        if(arePrefixesPresent(argMultimap, PREFIX_INSIGHT)){
+            showDetailedReport = true;
+        }
+        else {
+            showDetailedReport = false;
         }
 
         if (endDate != null && startDate != null && startDate.isAfter(endDate))
@@ -77,37 +92,5 @@ public class ReportCommandParser implements Parser<ReportCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-//    FOR REFERENCE:
-//    /**
-//     * Parses the given {@code String} of arguments in the context of the AddCommand
-//     * and returns an AddCommand object for execution.
-//     * @throws ParseException if the user input does not conform the expected format
-//     */
-//    public AddCommand parse(String args) throws ParseException {
-//        ArgumentMultimap argMultimap =
-//                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_CASHFLOW, PREFIX_TAG);
-//
-//        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE, PREFIX_CASHFLOW)
-//                || !argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-//        }
-//
-//        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-//        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-//        CashFlow cashFlow = ParserUtil.parseCashFlow(argMultimap.getValue(PREFIX_CASHFLOW).get());
-//        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-//
-//        Entry person = new Entry(name, date, cashFlow, tagList);
-//
-//        return new AddCommand(person);
-//    }
-//
-//    /**
-//     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-//     * {@code ArgumentMultimap}.
-//     */
-//    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-//        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-//    }
 
 }
