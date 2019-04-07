@@ -90,7 +90,7 @@ public class CryptoUtil {
         long diff = currentTime.getTime() - lastUpdated.getTime();
         long diffMinutes = diff / (60 * 1000);
 
-        if (diffMinutes > 5) {
+        if (diffMinutes > 15) {
             updateCryptoPrices();
         }
 
