@@ -16,6 +16,8 @@ import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
+
 /**
  * Returns how many Ethereum you can buy at the current market price.
  */
@@ -28,19 +30,13 @@ public class EthereumCommand extends Command {
 
     public String MESSAGE_SUCCESS = "You are able to buy ";
 
-    private final Predicate predicate;
-
-    public EthereumCommand(Predicate predicate) {
-        this.predicate = predicate;
-    }
-
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
         CryptoUtil cryptoUtil = CryptoUtil.getInstance();
         price = cryptoUtil.getETH();
 
-        model.updateFilteredEntryList(this.predicate);
+        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();

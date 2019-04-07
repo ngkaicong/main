@@ -14,7 +14,10 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.entry.CashFlow;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryList;
 import seedu.address.model.entry.ReportEntryList;
+
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 /**
  * Returns how many Bitcoin you can buy at the current market price.
@@ -28,11 +31,6 @@ public class BitcoinCommand extends Command {
 
     public String MESSAGE_SUCCESS = "You are able to buy ";
 
-    private final Predicate predicate;
-
-    public BitcoinCommand(Predicate predicate) {
-        this.predicate = predicate;
-    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
@@ -40,13 +38,10 @@ public class BitcoinCommand extends Command {
         CryptoUtil cryptoUtil = CryptoUtil.getInstance();
         price = cryptoUtil.getBTC();
 
-        model.updateFilteredEntryList(this.predicate);
+        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();
-//            System.out.println(total);
-
-//            System.out.println(price);
 
         Double amount = total / price;
         amount = (double) Math.round(amount * 100.0) / 100.0;
