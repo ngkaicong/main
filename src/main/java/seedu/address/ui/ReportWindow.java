@@ -1,20 +1,12 @@
 package seedu.address.ui;
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
-import javafx.scene.web.WebView;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-//import org.jetbrains.annotations.NotNull;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.parser.ReportCommandParser;
@@ -22,12 +14,8 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.ReportEntryList;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -44,10 +32,23 @@ public class ReportWindow extends UiPart<Stage> {
     private Boolean isDetailsHidden = false;
 
     @FXML
-    private PieChart pieChart, expenseInsightPieChart, incomeInsightPieChart;
-
+    private PieChart pieChart;
     @FXML
-    private Label tLabel, eLabel, iLabel, bitcoinLabel, incomeBreakdownLabel, expenseBreakdownLabel;
+    private PieChart expenseInsightPieChart;
+    @FXML
+    private PieChart incomeInsightPieChart;
+    @FXML
+    private Label tLabel;
+    @FXML
+    private Label eLabel;
+    @FXML
+    private Label iLabel;
+    @FXML
+    private Label bitcoinLabel;
+    @FXML
+    private Label incomeBreakdownLabel;
+    @FXML
+    private Label expenseBreakdownLabel;
 
     /**
      * Creates a new HelpWindow.
@@ -58,10 +59,7 @@ public class ReportWindow extends UiPart<Stage> {
         super(FXML, root);
         this.logic = logic;
 
-
         refresh();
-
-
     }
 
     /**
@@ -89,9 +87,8 @@ public class ReportWindow extends UiPart<Stage> {
         tLabel.setText("Total (Income - Expenses): " + String.format("%.02f", total));
         iLabel.setText("Total Income: " + String.format("%.02f", income));
         eLabel.setText("Total Expense: " + String.format("%.02f", expense));
-        //bitcoinLabel.setText("Bitcoin Purchasing Power: " + String.format("%.02f", bitcoin));
 
-        if (!ReportCommandParser.isRequireDetailedReport() && !isDetailsHidden){
+        if (!ReportCommandParser.isRequireDetailedReport() && !isDetailsHidden) {
             expenseInsightPieChart.setVisible(false);
             incomeInsightPieChart.setVisible(false);
             expenseBreakdownLabel.setVisible(false);
@@ -102,7 +99,7 @@ public class ReportWindow extends UiPart<Stage> {
             incomeBreakdownLabel.setManaged(false);
             isDetailsHidden = true;
         }
-        else if (ReportCommandParser.isRequireDetailedReport() && isDetailsHidden){
+        else if (ReportCommandParser.isRequireDetailedReport() && isDetailsHidden) {
             expenseInsightPieChart.setVisible(true);
             incomeInsightPieChart.setVisible(true);
             expenseBreakdownLabel.setVisible(true);
@@ -164,7 +161,7 @@ public class ReportWindow extends UiPart<Stage> {
 
 
 
-    private ObservableList<PieChart.Data> getExpenseIncomePieChartData(ReportEntryList reportEntryList){
+    private ObservableList<PieChart.Data> getExpenseIncomePieChartData(ReportEntryList reportEntryList) {
         Double income = reportEntryList.getTotalIncome();
         Double expense = reportEntryList.getTotalExpense();
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
