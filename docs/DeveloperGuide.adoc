@@ -539,9 +539,32 @@ image::lock.PNG[width="800"]
 === Report feature
 
 ==== Current Implementation
-The Budgeter allows a report command that can generate a report.
+This feature allows the user to view a report (in the form of a pop-up window)
+of all their financial activity within a period of time.
 
-Type detailed report and you will find a detailed report.
+The corresponding command required for this feature is `report`.
+
+The command takes in three optional arguments: `s/`, `e/` and `insight/`
+
+`s/` (Start Date): Report takes into consideration of all entries that are on or after the given start date
+
+`e/` (End Date): Report takes into consideration of all entries that are on or before the given end date
+
+Note: If both dates are given, the start date shall be before or on the same date as end date.
+Otherwise the command will fail.
+
+`insight/` (Additional Insights): If this parameter is provided, the produced report window will provide the user with
+additional information such as what their spending or income is composed of (which is based on the tags of the entries).
+
+The start and end dates that are passed into the command are processed by the ReportCommandParser, which also generates
+the predicates used to filter the list of entries based on the dates.
+
+To get a predicate that matches the dates between the start and end dates, the .and(predicate) method is used to make
+a new predicate which is an and operation of the two predicates.
+
+If the `insight/` parameter is supplied, it will trigger a flag which is then used to determine if more information
+should be provided to the user or not.
+
 
 ==== Design Considerations
 

@@ -55,7 +55,6 @@ public class ReportCommandParser implements Parser<ReportCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_STARTDATE)) {
             //Get Entries from this date onwards
-            //TODO
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_STARTDATE).get());
             afterStartPredicate = new DateAfterGivenPredicate(startDate);
 
@@ -63,7 +62,6 @@ public class ReportCommandParser implements Parser<ReportCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_ENDDATE)) {
             //Get Entries until this date
-            //TODO
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ENDDATE).get());
             beforeEndPredicate = new DateBeforeGivenPredicate(endDate);
         }
