@@ -121,11 +121,11 @@ public class ReportEntryList {
         this.incomeCompositionMap = incomeComposition;
         this.expenseCompositionMap = expenseComposition;
     }
-
+    /*
     public Double getBitcoin() {
         double price = 0.0;
         try {
-            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD");
+            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=SGD");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -152,5 +152,6 @@ public class ReportEntryList {
         }
         return price;
     }
+    */
 
 }
