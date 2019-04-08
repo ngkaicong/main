@@ -207,8 +207,33 @@ Returns any entry having tag `[friends]` exactly
 Returns any entry having tags `[family]` or `[colleagues]` exactly
 //end::filter[]
 
+// tag::display[]
+=== Displaying sorted entries : `display`
+
+Sorts the list of entries in the entry book by a category.
+There are 3 categories to sort by `name`, `date`, `cashflow` and
+entrys can be sorted in either ascending order `asc` or descending order `des`. +
+Format: `sort [TAG] [ORDER]`
+
+****
+* Only the abovementioned keywords for category and order are supported.
+* Keyword matching is case insensitive, e.g `sort Name Des` will work the same as `sort name desc`.
+* Either one or both of the optionals fields are to be provided.
+* Order of the input fields is not significant, e.g. `sort name asc` will work the same as `sort
+asc name`.
+* If order is not specified, default sort order is ascending.
+* If category is not specified, default sort category is by name.
+****
+
+Examples:
+
+* `display date` - Sorts entries by date in ascending order.
+* `display desc` - Sorts entries by name in descending order.
+* `display cashflow des` - Sorts entries by cashflow in descending order.
+// end::display[]
+
 //tag:report[]
-=== Generates Report
+=== Generates Report : `report`
 
 Shows a visual pie chart listing specified by the user when user type the command report. +
 A `report` is an item that contains information on the *date or month that is represented*, the *total expense calculated*, the *total income calculated* and
@@ -236,6 +261,61 @@ image::ReportD.PNG[width="790"]
 image::Report2.PNG[width="790"]
 
 //end::report[]
+// tag::report insight[]
+=== Report Insight : `report insight/`
+Further to report feature, users want to know more and understand their spending pattern so as to
+improve on what they can consume or earn.
+Hence, we developed this to aid in this problem.
+
+Similar to report, this will show a breakdown of total expenses and income into categories and displays these information in a pie chart. +
+There is 2 format for this command:
+
+First, Format: `report insight/` where it will show the piechart in terms of the current entries available in the Budgeter.
+Second, Format:`report insight/ d/START_DATE END_DATE`where it will show the piechart in terms of the start and end dates input into the the Budgeter.
+
+****
+* START_DATE/END_DATE follow the same configurations as date parameters required when adding records. It is in the form of
+*dd-mm-yyyy* where *dd* represents day, *mm* represents month and *yyyy* represents the year. *dd* and *mm* both require 1 to 2 digits while
+*yyyy* requires exactly 4 digits.
+* START_DATE and END_DATE can be 'today'.
+****
+
+Once the command has been executed, a window will appear showing a pie chart containing data that is relevant in the range. +
+At the same time, currently selected entries will be unselected to reduce confusion for the user. If there are many categories shown and
+the box is not large enough, you can use the scroll bar at the side of each legend to view the other categories which are not in view.
+
+
+[NOTE]
+Due to label constraints, some labels may not be displaying correctly if they are overlapping with other labels. This happens when the pie slice
+is too small. To improve readability, we have decided to hide some labels in such scenarios. Also, when the label is too long, since the pie charts
+need to fit the labels, the pie chart may become small as a result. To prevent such situations, please keep your labels short. This will be improved in
+later versions of the product to remove the labels completely and use a mouse over input instead.
+
+Examples:
+
+* `report insight`
+
+Below are some screenshots of what you can see when the command has been accepted. The commands entered have been left
+in for visualisation purposes. These screenshots are taken in *fullscreen mode* at 1080p resolution.
+
+image::RI1.PNG[width="790"]
+*Screenshot of app displaying income breakdown when `report insight` is run*
+
+image::RI2.PNG[width="790"]
+*Screenshot of app displaying expense breakdown when `report insight` is run*
+
+* `report insight d/11-11-2018 12-12-2019`
+
+Below are some screenshots of what you can see when the command has been accepted. The commands entered have been left
+in for visualisation purposes. These screenshots are taken in *fullscreen mode* at 1080p resolution.
+
+image::RI3.PNG[width="790"]
+*Screenshot of app displaying income breakdown when `report insight d/11-11-2018 12-12-2019` is run*
+
+image::RI4.PNG[width="790"]
+*Screenshot of app displaying expense breakdown when `report insight d/11-11-2018 12-12-2019` is run*
+
+// end::report insight[]
 
 //tag:bitcoin[]
 === Returns purchasing power regarding bitcoin: `bitcoin`
@@ -251,6 +331,34 @@ Examples:
 Coming soon
 
 //end::bitcoin[]
+
+
+// tag::lcok[]
+=== Lock : `lock`
+
+Set a password for Budgeter to protect data entry, privacy and unwanted tampering.
+No password required to access the program when using for the first time. +
+Format: `lock`
+
+Examples:
+
+* `lock set/yourpassword` +
+Password will be set as yourpassword.
+
+* `lock change/yournewpassword` +
+Password will be changed to yournewpassword.
+
+* `lock remove/yourexistingpassword` +
+Password will be removed.
+
+[NOTE]
+====
+* Currently, there are no password recovery mechanism in place.
+* If users forget their password, please delete the password.txt file in the data folder to remove the password.
+* The password.txt is encrypted, hence, no one can see the exact password.
+* Default destination file is at the data folder.
+====
+// end::lock[]
 
 
 === Listing entered commands : `history`
@@ -328,54 +436,6 @@ Format: `exit`
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Generating Financial Report `[coming in v2.0]`
-
-_{explain how the user can Generate a Financial Report}_
-// end::dataencryption[]
-
-=== Showing a summary table of all financial activity by category: `summary`
-
-Shows a summary table listing by categories. +
-A `summary` is an item that contains information on the *date or month that is represented*, the *total expense calculated*, the *total income calculated* and
-the *net cash flow calculated.* A `category` refers to any `set of tags` that are assigned to any entries in the application. +
-
-The summary command supports both listing categories. +
-Format: +
-
-* By Category: `summary category d/START_DATE END_DATE`
-
-****
-* Note that there are specific formats required for the dates and months entered.
-* For the command *"summary category"*, START_DATE/END_DATE must be in the format of
-`dd-mm-yyyy` where `dd` represents day, `mm` represents month, `yyyy` represents year.
-* For command *"summary month"*, START_MONTH/END_MONTH must in the format of `mmm-yyyy`, `mmm` represents the month with its three letter representations, and
-`yyyy` represents the year in its numerical form.
-* Refer to <<constraints>> for the more information on the parameters.
-* Note that for mmm, it is case-insensitive, meaning both *"APR"* and *"apr"* are accepted.
-****
-// end::summary[]
-Once the command has been executed, a panel will appear showing the summary table containing data that is relevant in the range. +
-The table entries are sorted according to category depending on the mode used in ascending order. +
-At the same time, currently selected entry will be unselected to reduce confusion for the user.
-
-[NOTE]
-The table listing is currently non-resizable. If category is too long, the default behaviour of this app is to truncate
-those words and replace the parts truncated with ellipses("...").
-
-// tag::summary[]
-Examples:
-
-* `summary category d/1-1-2018 12-12-2018`
-// end::summary[]
-
-=== Lock
-
-=== Display
-
-=== Report
-
-=== Report Insight
 
 == FAQ
 
@@ -405,5 +465,5 @@ e.g.`select 2`
 * *Filter* : `filter`
 * *Display* : `display`
 * *Lock* : `lock`
-* *Summary by category* : `summary category [d/Start date End date]`
-=======
+
+
