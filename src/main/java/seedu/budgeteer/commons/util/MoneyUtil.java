@@ -1,10 +1,10 @@
 package seedu.budgeteer.commons.util;
 
-import seedu.budgeteer.model.entry.CashFlow;
-
 import static seedu.budgeteer.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.budgeteer.model.entry.CashFlow.FORMAT_STANDARD_MONEY;
 import static seedu.budgeteer.model.entry.CashFlow.REPRESENTATION_ZERO;
+
+import seedu.budgeteer.model.entry.CashFlow;
 
 /**
  * Contains helper methods to process data of {@code CashFlow}

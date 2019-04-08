@@ -44,17 +44,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         if (prefix.equals("n/")) {
             return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyWords)));
-        }
-        else if (prefix.equals("d/")) {
+        } else if (prefix.equals("d/")) {
             return new FilterCommand(new DateContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
-        }
-        else if (prefix.equals("c/")) {
+        } else if (prefix.equals("c/")) {
             return new FilterCommand(new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
-        }
-        else if (prefix.equals("t/")) {
+        } else if (prefix.equals("t/")) {
             return new FilterCommand(new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
-        }
-        else {
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
     }

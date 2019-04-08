@@ -1,15 +1,15 @@
 package seedu.budgeteer.logic.commands;
 
-import seedu.budgeteer.logic.CommandHistory;
-import seedu.budgeteer.model.Model;
-import seedu.budgeteer.model.entry.Name;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import seedu.budgeteer.logic.CommandHistory;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Name;
 
 /**
  * Returns how much stock you can buy at the current market price.
@@ -21,13 +21,13 @@ public class StockCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain stock you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static String MESSAGE_SUCCESS = "The price of the stock ";
-
-    public String firstURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
-    public String stock = "MSFT";
-    public String secondURL = "&apikey=Y6G36I3BIPQL5I2";
+    private static final String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
+    private static final String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
 
     private final Name name;
+
+    private String stock = "MSFT";
+
 
     public StockCommand(Name name) {
         this.name = name;
@@ -36,10 +36,10 @@ public class StockCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
+        String successMessage = "";
         try {
             stock = name.fullName;
-            String temp = firstURL + stock + secondURL;
-//            System.out.println(temp);
+            String temp = firstUrl + stock + secondUrl;
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -58,22 +58,18 @@ public class StockCommand extends Command {
             while (y > 0) {
                 output = br.readLine();
                 full = output;
-//                System.out.println(output);
                 y -= 1;
             }
 
+
             if (full == null) {
-                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock.";
+                successMessage = "Sorry, your input is not a valid stock.";
             } else if (full.length() < 30) {
-                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock.";
+                successMessage = "Sorry, your input is not a valid stock.";
             } else {
                 price = Float.parseFloat(full.substring(22, 30));
-
                 Double amount = (double) Math.round(price * 100.0) / 100.0;
-//                System.out.println(amount);
-
-//                System.out.println(name);
-                MESSAGE_SUCCESS = "The price of the stock " + name.fullName + " is $" + amount.toString() + ".";
+                successMessage = "The price of the stock " + name.fullName + " is $" + amount.toString() + ".";
             }
 
             conn.disconnect();
@@ -84,6 +80,6 @@ public class StockCommand extends Command {
             e.printStackTrace();
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(successMessage);
     }
 }

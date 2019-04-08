@@ -20,7 +20,7 @@ public class BitcoinCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much bitcoin you can buy.\n"
             + "Example: " + COMMAND_WORD;
 
-    public String MESSAGE_SUCCESS = "You are able to buy ";
+    public static final String MESSAGE_SUCCESS_HEADER = "You are able to buy ";
 
 
     @Override
@@ -37,15 +37,12 @@ public class BitcoinCommand extends Command {
         Double amount = total / price;
         amount = (double) Math.round(amount * 100.0) / 100.0;
 
-        MESSAGE_SUCCESS = MESSAGE_SUCCESS + amount.toString() + " BTC.";
+        String successMessage = MESSAGE_SUCCESS_HEADER + amount.toString() + " BTC.";
 
         int roundOff = (int) Math.round(price);
 
-        // This is where you divide the cashflow by the price of bitcoin, and add it to the message
-
         String currentPrice = " The current price of bitcoin is $" + roundOff + ".";
-        MESSAGE_SUCCESS = MESSAGE_SUCCESS + currentPrice;
-//        System.out.println("The current price of bitcoin is $" + roundOff ".");
-        return new CommandResult(MESSAGE_SUCCESS);
+        successMessage = successMessage + currentPrice;
+        return new CommandResult(successMessage);
     }
 }

@@ -1,7 +1,7 @@
 package seedu.budgeteer.logic.parser;
 
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgeteer.logic.parser.CliSyntax.*;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 

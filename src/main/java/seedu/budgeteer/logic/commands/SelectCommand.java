@@ -16,7 +16,7 @@ import seedu.budgeteer.model.entry.Entry;
  */
 public class SelectCommand extends Command {
 
-     public static final String COMMAND_WORD = "select";
+    public static final String COMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Selects the entry identified by the index number used in the displayed entry list.\n"
