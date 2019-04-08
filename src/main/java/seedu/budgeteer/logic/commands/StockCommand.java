@@ -1,8 +1,13 @@
 package seedu.budgeteer.logic.commands;
 
+import javafx.collections.ObservableList;
 import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.ReportEntryList;
+
+import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +42,11 @@ public class StockCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
         try {
+            model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
+            ObservableList<Entry> filteredList = model.getFilteredEntryList();
+            ReportEntryList reportList = new ReportEntryList(filteredList);
+            Double total = reportList.getTotal();
+
             stock = name.fullName;
             String temp = firstURL + stock + secondURL;
 //            System.out.println(temp);
@@ -63,17 +73,21 @@ public class StockCommand extends Command {
             }
 
             if (full == null) {
-                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock.";
+                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock. Please try again.";
             } else if (full.length() < 30) {
-                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock.";
+                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock. Please try again.";
             } else {
                 price = Float.parseFloat(full.substring(22, 30));
+                Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
-                Double amount = (double) Math.round(price * 100.0) / 100.0;
 //                System.out.println(amount);
+                String first = "You are able to buy ";
+                Double amount = total/price;
+                amount = (double) Math.round(amount * 100.0) / 100.0;
+                String second = first + amount + " " + stock + " stock. ";
 
 //                System.out.println(name);
-                MESSAGE_SUCCESS = "The price of the stock " + name.fullName + " is $" + amount.toString() + ".";
+                MESSAGE_SUCCESS = second + "The price of the stock " + name.fullName + " is $" + printPrice.toString() + ".";
             }
 
             conn.disconnect();
