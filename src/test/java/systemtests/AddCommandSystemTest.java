@@ -1,43 +1,43 @@
 package systemtests;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.CASHFLOW_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.CASHFLOW_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CASHFLOW_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.testutil.TypicalEntrys.AMY;
-import static seedu.address.testutil.TypicalEntrys.BOB;
-import static seedu.address.testutil.TypicalEntrys.CHICKENRICE;
-import static seedu.address.testutil.TypicalEntrys.IDA;
-import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
-import static seedu.address.testutil.TypicalEntrys.MALA;
+import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.CASHFLOW_DESC_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.CASHFLOW_DESC_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.DATE_DESC_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.DATE_DESC_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_CASHFLOW_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_CASHFLOW_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.budgeteer.testutil.TypicalEntrys.AMY;
+import static seedu.budgeteer.testutil.TypicalEntrys.BOB;
+import static seedu.budgeteer.testutil.TypicalEntrys.CHICKENRICE;
+import static seedu.budgeteer.testutil.TypicalEntrys.IDA;
+import static seedu.budgeteer.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.budgeteer.testutil.TypicalEntrys.MALA;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.model.Model;
-import seedu.address.model.entry.CashFlow;
-import seedu.address.model.entry.Date;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EntryBuilder;
-import seedu.address.testutil.EntryUtil;
+import seedu.budgeteer.commons.core.Messages;
+import seedu.budgeteer.commons.core.index.Index;
+import seedu.budgeteer.logic.commands.AddCommand;
+import seedu.budgeteer.logic.commands.RedoCommand;
+import seedu.budgeteer.logic.commands.UndoCommand;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.CashFlow;
+import seedu.budgeteer.model.entry.Date;
+import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.tag.Tag;
+import seedu.budgeteer.testutil.EntryBuilder;
+import seedu.budgeteer.testutil.EntryUtil;
 
-public class AddCommandSystemTest extends AddressBookSystemTest {
+public class AddCommandSystemTest extends EntriesBookSystemTest {
 
     @Test
     public void add() {
@@ -45,7 +45,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
 
         /* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- */
 
-        /* Case: add a entry without tags to a non-empty address book, command with leading spaces and trailing spaces
+        /* Case: add a entry without tags to a non-empty budgeteer book, command with leading spaces and trailing spaces
          * -> added
          */
         Entry toAdd = AMY;
@@ -64,19 +64,19 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a entry with all fields same as another entry in the address book except name -> added */
+        /* Case: add a entry with all fields same as another entry in the budgeteer book except name -> added */
         toAdd = new EntryBuilder(AMY).withName(VALID_NAME_BOB).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + CASHFLOW_DESC_AMY + DATE_DESC_AMY + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add a entry with all fields same as another entry in the address book except phone and email
+        /* Case: add a entry with all fields same as another entry in the budgeteer book except phone and email
          * -> added
          */
         toAdd = new EntryBuilder(AMY).withCashFlow(VALID_CASHFLOW_BOB).withDate(VALID_DATE_BOB).build();
         command = EntryUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
 
-        /* Case: add to empty address book -> added */
+        /* Case: add to empty budgeteer book -> added */
         deleteAllEntrys();
         assertCommandSuccess(CHICKENRICE);
 
@@ -144,8 +144,8 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
      * 5. Browser url and selected card remain unchanged.<br>
      * 6. Status bar's sync status changes.<br>
      * Verifications 1, 3 and 4 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * {@code EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(Entry toAdd) {
         assertCommandSuccess(EntryUtil.getAddCommand(toAdd), toAdd);
@@ -188,8 +188,8 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
      * 4. {@code Storage} and {@code EntryListPanel} remain unchanged.<br>
      * 5. Browser url, selected card and status bar remain unchanged.<br>
      * Verifications 1, 3 and 4 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * {@code EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

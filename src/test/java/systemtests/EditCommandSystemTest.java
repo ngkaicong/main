@@ -2,47 +2,47 @@ package systemtests;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.CASHFLOW_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.CASHFLOW_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CASHFLOW_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CASHFLOW_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
-import static seedu.address.testutil.TypicalEntrys.AMY;
-import static seedu.address.testutil.TypicalEntrys.BOB;
-import static seedu.address.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.CASHFLOW_DESC_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.CASHFLOW_DESC_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.DATE_DESC_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.DATE_DESC_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_CASHFLOW_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_CASHFLOW_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
+import static seedu.budgeteer.testutil.TypicalEntrys.AMY;
+import static seedu.budgeteer.testutil.TypicalEntrys.BOB;
+import static seedu.budgeteer.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.budgeteer.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.budgeteer.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.model.Model;
-import seedu.address.model.entry.CashFlow;
-import seedu.address.model.entry.Date;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.Name;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EntryBuilder;
+import seedu.budgeteer.commons.core.Messages;
+import seedu.budgeteer.commons.core.index.Index;
+import seedu.budgeteer.logic.commands.EditCommand;
+import seedu.budgeteer.logic.commands.RedoCommand;
+import seedu.budgeteer.logic.commands.UndoCommand;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.CashFlow;
+import seedu.budgeteer.model.entry.Date;
+import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.tag.Tag;
+import seedu.budgeteer.testutil.EntryBuilder;
 
-public class EditCommandSystemTest extends AddressBookSystemTest {
+public class EditCommandSystemTest extends EntriesBookSystemTest {
 
     @Test
     public void edit() {
@@ -102,7 +102,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
-        /* Case: filtered entry list, edit index within bounds of address book and entry list -> edited */
+        /* Case: filtered entry list, edit index within bounds of budgeteer book and entry list -> edited */
         showEntrysWithName(KEYWORD_MATCHING_BURSARY);
         index = INDEX_FIRST_ENTRY;
         assertTrue(index.getZeroBased() < getModel().getFilteredEntryList().size());
@@ -111,7 +111,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         editedEntry = new EntryBuilder(entryToEdit).withName(VALID_NAME_BOB).build();
         assertCommandSuccess(command, index, editedEntry);
 
-        /* Case: filtered entry list, edit index within bounds of address book but out of bounds of entry list
+        /* Case: filtered entry list, edit index within bounds of budgeteer book but out of bounds of entry list
          * -> rejected
          */
         showEntrysWithName(KEYWORD_MATCHING_BURSARY);
@@ -220,9 +220,9 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
      * 4. Asserts that the status bar's sync status changes.<br>
      * 5. Asserts that the command box has the default style class.<br>
      * Verifications 1 and 2 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
-     * @see AddressBookSystemTest#assertSelectedCardChanged(Index)
+     * {@code EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * @see EntriesBookSystemTest#assertSelectedCardChanged(Index)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
             Index expectedSelectedCardIndex) {
@@ -245,8 +245,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
      * 3. Asserts that the browser url, selected card and status bar remain unchanged.<br>
      * 4. Asserts that the command box has the error style.<br>
      * Verifications 1 and 2 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * {@code EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see EntriesBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import seedu.address.model.entry.Entry;
+import seedu.budgeteer.model.entry.Entry;
 
 /**
  * Provides a handle for {@code EntryListPanel} containing the list of {@code EntryCard}.

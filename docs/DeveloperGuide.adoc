@@ -54,7 +54,7 @@ This will generate all resources required by the application and tests.
 
 === Verifying the setup
 
-. Run the `seedu.address.MainApp` and try a few commands
+. Run the `seedu.budgeteer.MainApp` and try a few commands
 . <<Testing,Run the tests>> to ensure they all pass.
 
 === Configurations to do before writing code
@@ -539,9 +539,34 @@ image::lock.PNG[width="800"]
 === Report feature
 
 ==== Current Implementation
-The Budgeter allows a report command that can generate a report.
+This feature allows the user to view a report (in the form of a pop-up window)
+of all their financial activity within a period of time.
 
-Type detailed report and u will find a detailed report.
+The corresponding command required for this feature is `report`.
+
+The command takes in three optional arguments: `s/`, `e/` and `insight/`
+
+`s/` (Start Date): Report takes into consideration of all entries that are on or after the given start date
+
+`e/` (End Date): Report takes into consideration of all entries that are on or before the given end date
+
+Note: If both dates are given, the start date shall be before or on the same date as end date.
+Otherwise the command will fail.
+
+`insight/` (Additional Insights): If this parameter is provided, the produced report window will provide the user with
+additional information such as what their spending or income is composed of (which is based on the tags of the entries).
+
+image::ReportSequenceDiagram.png[width="800"]
+
+The start and end dates that are passed into the command are processed by the ReportCommandParser, which also generates
+the predicates used to filter the list of entries based on the dates.
+
+To get a predicate that matches the dates between the start and end dates, the .and(predicate) method is used to make
+a new predicate which is an and operation of the two predicates.
+
+If the `insight/` parameter is supplied, it will trigger a flag which is then used to determine if more information
+should be provided to the user or not.
+
 
 ==== Design Considerations
 
@@ -739,14 +764,14 @@ We have two types of tests:
 
 .  *GUI Tests* - These are tests involving the GUI. They include,
 .. _System Tests_ that test the entire App by simulating user actions on the GUI. These are in the `systemtests` package.
-.. _Unit tests_ that test the individual components. These are in `seedu.address.ui` package.
+.. _Unit tests_ that test the individual components. These are in `seedu.budgeteer.ui` package.
 .  *Non-GUI Tests* - These are tests not involving the GUI. They include,
 ..  _Unit tests_ targeting the lowest level methods/classes. +
-e.g. `seedu.address.commons.StringUtilTest`
+e.g. `seedu.budgeteer.commons.StringUtilTest`
 ..  _Integration tests_ that are checking the integration of multiple code units (those code units are assumed to be working). +
-e.g. `seedu.address.storage.StorageManagerTest`
+e.g. `seedu.budgeteer.storage.StorageManagerTest`
 ..  Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together. +
-e.g. `seedu.address.logic.LogicManagerTest`
+e.g. `seedu.budgeteer.logic.LogicManagerTest`
 
 
 === Troubleshooting Testing
@@ -1031,7 +1056,7 @@ We now have `Remark` s for `Person` s, but they will be gone when we exit the ap
 
 **Tests:**
 
-. Fix `invalidAndValidPersonAddressBook.json`, `typicalPersonsAddressBook.json`, `validAddressBook.json` etc., such that the JSON tests will not fail due to a missing `remark` field.
+. Fix `invalidAndValidPersonAddressBook.json`, `typicalPersonsEntriesBook.json`, `validAddressBook.json` etc., such that the JSON tests will not fail due to a missing `remark` field.
 
 ===== [Step 6b] Test: Add withRemark() for `PersonBuilder`
 Since `Person` can now have a `Remark`, we should add a helper method to link:{repoURL}/src/test/java/seedu/address/testutil/PersonBuilder.java[`PersonBuilder`], so that users are able to create remarks when building a link:{repoURL}/src/main/java/seedu/address/model/person/Person.java[`Person`].
