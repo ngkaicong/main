@@ -556,6 +556,8 @@ Otherwise the command will fail.
 `insight/` (Additional Insights): If this parameter is provided, the produced report window will provide the user with
 additional information such as what their spending or income is composed of (which is based on the tags of the entries).
 
+image::ReportSequenceDiagram.png[width="800"]
+
 The start and end dates that are passed into the command are processed by the ReportCommandParser, which also generates
 the predicates used to filter the list of entries based on the dates.
 
