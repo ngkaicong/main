@@ -3,9 +3,9 @@ package systemtests;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.budgeteer.testutil.TypicalEntrys.CAIFAN;
-import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 import static seedu.budgeteer.testutil.TypicalEntrys.CHICKENRICE;
 import static seedu.budgeteer.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +95,7 @@ public class FilterCommandSystemTest extends EntriesBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: find entry in budgeteer book, keyword is same as name but of different case -> 1 entry found */
-        command = FilterCommand.COMMAND_WORD +  " " + NAME_PREFIX_WORD + "bursu";
+        command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "bursu";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

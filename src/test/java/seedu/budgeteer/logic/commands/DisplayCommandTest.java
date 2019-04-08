@@ -59,7 +59,8 @@ public class DisplayCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS, DisplayCommand.CATEGORY_DATE,
                 DisplayCommand.ORDER_DESCENDING);
         // sort the initial model
-        Model expectedDisplayedModel = getDisplayedModel(model, DisplayCommand.CATEGORY_DATE, DisplayCommand.ORDER_DESCENDING);
+        Model expectedDisplayedModel = getDisplayedModel(model, DisplayCommand.CATEGORY_DATE,
+                DisplayCommand.ORDER_DESCENDING);
 
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedDisplayedModel);
     }
@@ -70,7 +71,8 @@ public class DisplayCommandTest {
         String expectedMessage = String.format(DisplayCommand.MESSAGE_SUCCESS, DisplayCommand.CATEGORY_CASH,
                 DisplayCommand.ORDER_ASCENDING);
         // obtain a sorted model
-        Model initialDisplayedModel = getDisplayedModel(model, DisplayCommand.CATEGORY_CASH, DisplayCommand.ORDER_ASCENDING);
+        Model initialDisplayedModel = getDisplayedModel(model, DisplayCommand.CATEGORY_CASH,
+                DisplayCommand.ORDER_ASCENDING);
         /// try to sorted it again, result should be identical model
         Model expectedModel = getDisplayedModel(initialDisplayedModel, DisplayCommand.CATEGORY_CASH,
                 DisplayCommand.ORDER_ASCENDING);

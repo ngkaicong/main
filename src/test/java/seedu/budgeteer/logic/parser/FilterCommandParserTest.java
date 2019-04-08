@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import seedu.budgeteer.logic.commands.FilterCommand;
 import seedu.budgeteer.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
-import seedu.budgeteer.model.entry.NameContainsKeywordsPredicate;
 import seedu.budgeteer.model.entry.DateContainsSpecifiedKeywordsPredicate;
+import seedu.budgeteer.model.entry.NameContainsKeywordsPredicate;
 import seedu.budgeteer.model.entry.TagContainsSpecifiedKeywordsPredicate;
 
 

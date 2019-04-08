@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
-import static seedu.budgeteer.testutil.TypicalEntrys.INDO;
 import static seedu.budgeteer.testutil.TypicalEntrys.CAIFAN;
-import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 import static seedu.budgeteer.testutil.TypicalEntrys.CHICKENRICE;
+import static seedu.budgeteer.testutil.TypicalEntrys.INDO;
+import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -20,8 +20,12 @@ import seedu.budgeteer.model.EntriesBook;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.ModelManager;
 import seedu.budgeteer.model.UserPrefs;
-import seedu.budgeteer.model.entry.*;
+import seedu.budgeteer.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
+import seedu.budgeteer.model.entry.DateContainsSpecifiedKeywordsPredicate;
 import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.entry.NameContainsKeywordsPredicate;
+import seedu.budgeteer.model.entry.TagContainsSpecifiedKeywordsPredicate;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
