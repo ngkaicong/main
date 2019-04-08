@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import seedu.address.model.Model;
-import seedu.address.model.entry.Entry;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Entry;
 
 /**
  * Contains helper methods to set up {@code Model} for testing.

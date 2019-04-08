@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMultiset;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.entry.Entry;
+import seedu.budgeteer.model.entry.Entry;
 
 /**
  * Provides a handle to a entry card in the entry list panel.
