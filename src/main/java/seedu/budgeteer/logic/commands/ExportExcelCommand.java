@@ -32,14 +32,14 @@ public class ExportExcelCommand extends Command {
             + "START_DATE should be equal to or smaller than END_DATE.\n"
             + "You can specifically type what you want to conform. Date/period start with d/ "
             + "and Directory path start with dir/.\n"
-            + "Example 1: You want to export all the records in the Budgeteer to Excel file"
+            + "Example 1: You want to export all the records in the Budgeter to Excel file"
             + "and store them in the Working directory: " + DirectoryPath.WORKING_DIRECTORY_STRING
             + "Example 1: You want to set Directory: "
             + COMMAND_WORD + " dir/" + DirectoryPath.WORKING_DIRECTORY_STRING + "\n"
             + "Example 2: You want to set records have only 1 date: " + COMMAND_WORD + " d/31-3-1999\n"
             + "Example 3: You want to set records whose date lies within the period: "
             + COMMAND_WORD + "d/31-3-1999 31-3-2019\n"
-            + "Example 4: You want to export all the records in the Budgeteer: " + COMMAND_WORD + "\n"
+            + "Example 4: You want to export all the records in the Budgeter: " + COMMAND_WORD + "\n"
             + "Example 5: You want to export records lies within the period and set specific Directory: "
             + COMMAND_WORD + " d/31-3-1999 31-3-2019" + " dir/" + DirectoryPath.WORKING_DIRECTORY_STRING + "\n";
     public static final int SINGLE_MODE = 1;

@@ -317,9 +317,9 @@ public class ExcelUtil {
      */
     public static String setNameExcelFile (Date startDate, Date endDate) {
         return (startDate == null && endDate == null)
-                ? "Financial_Planner_ALL.xlsx"
+                ? "ENTRIES_ALL.xlsx"
                 : ((startDate.equals(endDate))
-                ? String.format("Financial_Planner_%1$s.xlsx", startDate.getValue())
-                : String.format("Financial_Planner_%1$s_%2$s.xlsx", startDate.getValue(), endDate.getValue()));
+                ? String.format("ENTRIES_%1$s.xlsx", startDate.getValue())
+                : String.format("ENTRIES_%1$s_%2$s.xlsx", startDate.getValue(), endDate.getValue()));
     }
 }
