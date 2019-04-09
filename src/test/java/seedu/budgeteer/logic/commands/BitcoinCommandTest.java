@@ -1,7 +1,7 @@
 package seedu.budgeteer.logic.commands;
 
-import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
+import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import org.junit.Test;
 
