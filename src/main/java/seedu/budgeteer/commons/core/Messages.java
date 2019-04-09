@@ -25,5 +25,14 @@ public class Messages {
             "Please enter exact TWO Dates, Start_Date and End_Date.\n";
     public static final String MESSAGE_INVALID_STARTDATE_ENDDATE =
             "Please enter the Start_Date smaller than or equal to the End_Date.\n";
+    public static final String MESSAGE_INVALID_ENTRY_EXCEL_FILE =
+            "The cells for Name, Date, Money Received/Spent, Tags should be in correct order."
+                    + " The Cell should only be String or Numeric type."
+                    + " The first row of your table should come with 4 columns, namely, "
+                    + "NAME, DATE,  MONEY SPENT/RECEIVED and TAGS (case in-sensitive).\n";
+    public static final String MESSAGE_RECORD_ADDED_SUCCESSFULLY =
+            "All records from the %1$s are read"
+                    + " and only non-existing records are added to the current Financial Planner.\n";
+
 
 }

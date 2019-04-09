@@ -1,5 +1,5 @@
 package seedu.budgeteer.commons.util;
-import org.
+
 import org.apache.poi.ss.excelant.util;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.charts.*;
@@ -70,71 +70,6 @@ public class ExcelUtil {
     private static Logger logger = LogsCenter.getLogger(ExcelUtil.class);
 
     //==========================================MAIN METHOD============================================================
-
-    /**
-     * Read the Excel file.
-     */
-    public static List<Entry> readExcelSheet (String filePath) throws ParseException {
-        try {
-            if (!DirectoryPath.isValidFilePath(filePath)) {
-                throw new ParseException(Messages.MESSAGE_UNREALISTIC_DIRECTORY);
-            }
-            FileInputStream targetFile = new FileInputStream(new File(filePath));
-            XSSFWorkbook workbook = new XSSFWorkbook(targetFile);
-
-            boolean isRightSheet;
-
-            List<Entry> entries = new ArrayList<>();
-
-            workbook.setMissingCellPolicy(Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
-
-            for (int sn = STARTING_SHEET; sn < workbook.getNumberOfSheets(); sn++) {
-                XSSFSheet sheet = workbook.getSheetAt(sn);
-                isRightSheet = true;
-                for (int rn = sheet.getFirstRowNum(); rn <= sheet.getLastRowNum() && isRightSheet; rn++) {
-                    Row row = sheet.getRow(rn);
-                    if (row == null) {
-                        continue;
-                    }
-                    if (row.getLastCellNum() - row.getFirstCellNum() > MAXIMUM_GAP_BETWEEN_COLUMN) {
-                        throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_EXCEL_FILE);
-                    }
-                    String nameString = null;
-                    String dateString = null;
-                    String tagsString = null;
-                    String moneyString = null;
-
-                    for (int cn = row.getFirstCellNum(); cn < row.getLastCellNum(); cn++) {
-                        Cell cell = row.getCell(cn);
-                        if (cn == row.getFirstCellNum() + FIRST_COLUMN) {
-                            nameString = retrieveDataFromOneRow(row, cell, FIRST_COLUMN);
-                        } else if (cn == row.getFirstCellNum() + SECOND_COLUMN) {
-                            dateString = retrieveDataFromOneRow(row, cell, SECOND_COLUMN);
-                        } else if (cn == row.getFirstCellNum() + THIRD_COLUMN) {
-                            moneyString = retrieveDataFromOneRow(row, cell, THIRD_COLUMN);
-                        } else if (cn == row.getFirstCellNum() + FOURTH_COLUMN) {
-                            tagsString = retrieveDataFromOneRow(row, cell, FOURTH_COLUMN);
-                        }
-                    }
-                    if (nameString == null || dateString == null || moneyString == null) {
-                        throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_EXCEL_FILE);
-                    }
-                    if (rn == sheet.getFirstRowNum()) {
-                        if (!isFirstRowTitleExist(nameString, dateString, moneyString, tagsString)) {
-                            isRightSheet = false;
-                        }
-                        continue;
-                    }
-                    moneyString = checkMoneyString(moneyString);
-                    entries.add(createRecord(nameString, dateString, moneyString, tagsString));
-                }
-            }
-            return entries;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_EXCEL_FILE);
-        }
-    }
 
     /**
      * Write the excel sheet into Directory.
@@ -220,41 +155,6 @@ public class ExcelUtil {
             e.printStackTrace();
         }
     }
-    //==========================================SUB METHOD FOR READ EXCEL===============================================
-    //TODO: coloring the over-limit records.
-
-    /**
-     * Check is the file is being used, if yes, then we cannot read/write the Excel file.
-     */
-    public static Boolean checkIfFileOpen (String filePath) {
-        try {
-            File filexssf = new File(filePath);
-            File filexssfCopy = new File(filePath);
-            if (filexssf.renameTo(filexssfCopy)) {
-                logger.info("READ EXCEL: FILE CLOSED");
-                return false;
-            } else {
-                logger.info("READ EXCEL: FILE OPENED");
-                return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    /**
-     * Check if the first row has the appropriate title.
-     */
-    private static Boolean isFirstRowTitleExist(String nameString,
-                                                String dateString,
-                                                String moneyString,
-                                                String tagsString) {
-        return (nameString.equalsIgnoreCase(NAME_TITLE)
-                && dateString.equalsIgnoreCase(DATE_TITLE)
-                && moneyString.equalsIgnoreCase(MONEY_TITLE)
-                && tagsString.equalsIgnoreCase(TAG_TITLE));
-    }
 
     /**
      * Change the String of Money into appropriate format, as positive number won't have + sign, so we have to add it.
@@ -286,7 +186,7 @@ public class ExcelUtil {
             throws ParseException {
         Name nameParse = ParserUtil.parseName(nameString);
         Date dateParse = ParserUtil.parseDate(dateString);
-        CashFlow cashFlow = ParserUtil.parseMoneyFlow(moneyString);
+        CashFlow cashFlow = ParserUtil.parseCashFlow(moneyString);
         Set<Tag> tagList = new HashSet<>();
         if (tagsString != null) {
             String processedTags = tagsString.replace(TAG_SEPARATOR, WHITE_SPACE + PREFIX_TAG);

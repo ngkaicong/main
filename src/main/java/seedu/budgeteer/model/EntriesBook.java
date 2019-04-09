@@ -155,4 +155,5 @@ public class EntriesBook implements ReadOnlyEntriesBook {
     public void sortEntrys(String category, Boolean ascending) {
         entrys.sortEntrys(category, ascending);
     }
+
 }
