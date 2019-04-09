@@ -47,8 +47,9 @@ public class DisplayCommandTest {
 
     @Test
     public void execute_emptyList_listIsUnchanged() {
-        DisplayCommand command = new DisplayCommand("name", true);
-        String expectedMessage = String.format(DisplayCommand.MESSAGE_SUCCESS, "name", "ascending");
+        DisplayCommand command = new DisplayCommand(DisplayCommand.CATEGORY_NAME, true);
+        String expectedMessage = String.format(DisplayCommand.MESSAGE_SUCCESS + DisplayCommand.CATEGORY_NAME
+                + DisplayCommand.ORDER_ASCENDING);
 
         assertCommandSuccess(command, emptyModel, commandHistory, expectedMessage, expectedEmptyModel);
     }
@@ -56,8 +57,8 @@ public class DisplayCommandTest {
     @Test
     public void execute_unsortedList_listIsDisplayed() {
         DisplayCommand command = new DisplayCommand(DisplayCommand.CATEGORY_DATE, false);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, DisplayCommand.CATEGORY_DATE,
-                DisplayCommand.ORDER_DESCENDING);
+        String expectedMessage = String.format(MESSAGE_SUCCESS + DisplayCommand.CATEGORY_DATE
+                + DisplayCommand.ORDER_DESCENDING);
         // sort the initial model
         Model expectedDisplayedModel = getDisplayedModel(model, DisplayCommand.CATEGORY_DATE,
                 DisplayCommand.ORDER_DESCENDING);
@@ -68,8 +69,8 @@ public class DisplayCommandTest {
     @Test
     public void execute_sortedList_listIsUnchanged() {
         DisplayCommand command = new DisplayCommand(DisplayCommand.CATEGORY_CASH, true);
-        String expectedMessage = String.format(DisplayCommand.MESSAGE_SUCCESS, DisplayCommand.CATEGORY_CASH,
-                DisplayCommand.ORDER_ASCENDING);
+        String expectedMessage = String.format(DisplayCommand.MESSAGE_SUCCESS + DisplayCommand.CATEGORY_CASH
+                + DisplayCommand.ORDER_ASCENDING);
         // obtain a sorted model
         Model initialDisplayedModel = getDisplayedModel(model, DisplayCommand.CATEGORY_CASH,
                 DisplayCommand.ORDER_ASCENDING);

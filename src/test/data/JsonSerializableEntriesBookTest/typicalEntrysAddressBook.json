@@ -1,0 +1,44 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalEntrys#getTypicalAddressBook()",
+  "entrys" : [ {
+    "name" : "Indo",
+    "date" : "19-02-2019",
+    "cashFlow" : "-5.60",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "caifan with Benson Daniel",
+    "date" : "18-02-2019",
+    "cashFlow" : "-3.80",
+    "tagged" : [ "owesCash", "friends" ]
+  }, {
+    "name" : "Income from work",
+    "date" : "10-02-2019",
+    "cashFlow" : "+60.00",
+    "tagged" : [ ]
+  }, {
+    "name" : "Payment from ZT",
+    "date" : "10-02-2019",
+    "cashFlow" :"+5.90",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Payment for mala to Carl",
+    "date" : "10-02-2019",
+    "cashFlow" : "-10.50",
+    "tagged" : [ ]
+  }, {
+    "name" : "Payment for chicken rice",
+    "date" : "20-12-2018",
+    "cashFlow" : "-0.90",
+    "tagged" : [ ]
+  }, {
+    "name" : "Income from bursary",
+    "date" : "31-03-2018",
+    "cashFlow" : "+110.50",
+    "tagged" : [ ]
+  }, {
+    "name" : "Payment to Ida and Benson Daniel",
+    "date" : "04-10-2019",
+    "cashFlow" : "-12.30",
+    "tagged" : [ ]
+  } ]
+}

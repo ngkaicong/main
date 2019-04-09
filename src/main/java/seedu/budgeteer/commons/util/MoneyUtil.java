@@ -17,7 +17,7 @@ public class MoneyUtil {
     public static CashFlow add(CashFlow money1, CashFlow money2) {
         requireAllNonNull(money1, money2);
         Double newMoney = money1.toDouble() + money2.toDouble();
-        return new CashFlow(formatIntoMoneyFlowFormat(newMoney));
+        return CashFlow.getCashFlow(formatIntoMoneyFlowFormat(newMoney));
     }
 
     /**

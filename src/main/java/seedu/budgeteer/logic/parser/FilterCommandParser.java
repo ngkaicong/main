@@ -1,10 +1,15 @@
 package seedu.budgeteer.logic.parser;
 
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_CASHFLOW;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.budgeteer.logic.commands.FilterCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
@@ -24,35 +29,63 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
 
-        String trimmedArgs = args.trim();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_CASHFLOW, PREFIX_TAG);
 
-        /**
-         * Used for initial separation of prefix and args.
-         */
-
-        final Pattern prefixFormat = Pattern.compile("(?<prefix>\\w/)(?<arguments>.*)");
-
-        final Matcher matcher = prefixFormat.matcher(trimmedArgs);
-        if (!matcher.matches()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argMultimap, PREFIX_DATE)
+                && !arePrefixesPresent(argMultimap, PREFIX_CASHFLOW)
+                && !arePrefixesPresent(argMultimap, PREFIX_TAG)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        final String prefix = matcher.group("prefix");
-        final String arguments = matcher.group("arguments");
-
-        String[] keyWords = arguments.split("\\s+");
-
-        if (prefix.equals("n/")) {
-            return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(keyWords)));
-        } else if (prefix.equals("d/")) {
-            return new FilterCommand(new DateContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
-        } else if (prefix.equals("c/")) {
-            return new FilterCommand(new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
-        } else if (prefix.equals("t/")) {
-            return new FilterCommand(new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        Predicate finalPredicate = PREDICATE_SHOW_ALL_ENTRYS;
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            String arguments = argMultimap.getValue(PREFIX_NAME).get();
+            if (arguments.equalsIgnoreCase("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] keyWords = arguments.split("\\s+");
+            finalPredicate = (new NameContainsKeywordsPredicate(Arrays.asList(keyWords)));
         }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+            String arguments = argMultimap.getValue(PREFIX_DATE).get();
+            if (arguments.equalsIgnoreCase("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] keyWords = arguments.split("\\s+");
+            finalPredicate = (new DateContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_CASHFLOW)) {
+            String arguments = argMultimap.getValue(PREFIX_CASHFLOW).get();
+            if (arguments.equalsIgnoreCase("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] keyWords = arguments.split("\\s+");
+            finalPredicate = (new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            String arguments = argMultimap.getValue(PREFIX_TAG).get();
+            if (arguments.equalsIgnoreCase("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] keyWords = arguments.split("\\s+");
+            finalPredicate = (new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(keyWords)));
+        }
+
+        return new FilterCommand(finalPredicate);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

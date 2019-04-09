@@ -3,13 +3,12 @@ package systemtests;
 import static org.junit.Assert.assertFalse;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.budgeteer.testutil.TypicalEntrys.BURSARY;
 import static seedu.budgeteer.testutil.TypicalEntrys.CAIFAN;
 import static seedu.budgeteer.testutil.TypicalEntrys.IDA;
 import static seedu.budgeteer.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
 import static seedu.budgeteer.testutil.TypicalEntrys.MALA;
-
-import java.util.ArrayList;
-import java.util.List;
+import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 
 import org.junit.Test;
 
@@ -19,7 +18,6 @@ import seedu.budgeteer.logic.commands.FindCommand;
 import seedu.budgeteer.logic.commands.RedoCommand;
 import seedu.budgeteer.logic.commands.UndoCommand;
 import seedu.budgeteer.model.Model;
-import seedu.budgeteer.model.tag.Tag;
 
 public class FindCommandSystemTest extends EntriesBookSystemTest {
 
@@ -30,7 +28,10 @@ public class FindCommandSystemTest extends EntriesBookSystemTest {
          */
         String command = "   " + FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_BURSARY + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CAIFAN, IDA); // first names of Benson and Daniel are "Meier"
+        ModelHelper.setFilteredList(expectedModel, BURSARY, WORK
+
+        ); // first names of Benson and Daniel are "Meier"
+
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -83,25 +84,25 @@ public class FindCommandSystemTest extends EntriesBookSystemTest {
         /* Case: find same entrys in budgeteer book after deleting 1 of them -> 1 entry found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
         assertFalse(getModel().getAddressBook().getEntryList().contains(CAIFAN));
-        command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_BURSARY;
+        command = FindCommand.COMMAND_WORD + " Benson Daniel";
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find entry in budgeteer book, keyword is same as name but of different case -> 1 entry found */
-        command = FindCommand.COMMAND_WORD + " MeIeR";
+        command = FindCommand.COMMAND_WORD + " IdA";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find entry in budgeteer book, keyword is substring of name -> 0 entrys found */
-        command = FindCommand.COMMAND_WORD + " Mei";
+        command = FindCommand.COMMAND_WORD + " dA";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find entry in budgeteer book, name is substring of keyword -> 0 entrys found */
-        command = FindCommand.COMMAND_WORD + " Meiers";
+        command = FindCommand.COMMAND_WORD + " bensS";
         ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -113,18 +114,6 @@ public class FindCommandSystemTest extends EntriesBookSystemTest {
 
         /* Case: find phone number of entry in budgeteer book -> 0 entrys found */
         command = FindCommand.COMMAND_WORD + " " + IDA.getDate().value;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: find email of entry in budgeteer book -> 0 entrys found */
-        // TODO: Might have problem here
-        command = FindCommand.COMMAND_WORD + " " + IDA.getCashFlow().value;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: find tags of entry in budgeteer book -> 0 entrys found */
-        List<Tag> tags = new ArrayList<>(IDA.getTags());
-        command = FindCommand.COMMAND_WORD + " " + tags.get(0).tagName;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

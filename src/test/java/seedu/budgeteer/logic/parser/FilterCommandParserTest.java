@@ -49,7 +49,7 @@ public class FilterCommandParserTest {
         // Parse names with no leading and trailing whitespaces
         FilterCommand expectedFilterCommand =
                 new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "n/Alice Bob", expectedFilterCommand);
+        assertParseSuccess(parser, " n/Alice Bob", expectedFilterCommand);
 
         // Parse names with multiple whitespaces between keywords
         assertParseSuccess(parser, " n/ Alice  Bob    ", expectedFilterCommand);
@@ -57,18 +57,18 @@ public class FilterCommandParserTest {
         // Parse date numbers with no leading and trailing whitespaces
         expectedFilterCommand =
                 new FilterCommand(
-                        new DateContainsSpecifiedKeywordsPredicate(Arrays.asList("12-12-2018", "12-12-2018")));
+                        new DateContainsSpecifiedKeywordsPredicate(Arrays.asList("12-12-2018", "12-12-2019")));
 
         // Parse date numbers with multiple white spaces between keywords
-        assertParseSuccess(parser, "   d/ 12-12-2019 12-12-2019 ", expectedFilterCommand);
+        assertParseSuccess(parser, "   d/ 12-12-2018 12-12-2019 ", expectedFilterCommand);
 
         // Parse  cashflows with no leading and trailing whitespaces
         expectedFilterCommand =
                 new FilterCommand(new CashFlowContainsSpecifiedKeywordsPredicate(
-                        Arrays.asList("+100", "+100")));
+                        Arrays.asList("+100.0", "-100.9")));
 
         // Parse cashflows with multiple white spaces between keywords
-        assertParseSuccess(parser, "   c/  +100.0 +100.9",
+        assertParseSuccess(parser, "   c/  +100.0 -100.9",
                 expectedFilterCommand);
 
         // Parse  tags with no leading and trailing whitespaces

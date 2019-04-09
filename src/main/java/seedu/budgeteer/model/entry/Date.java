@@ -23,7 +23,7 @@ public class Date {
                     + "For e.g, February has only 28 days for the non-Leap year "
                     + "so the day parameter must be less than or equal to 28 if the month "
                     + "parameter is 2.";
-    public static final String DATE_VALIDATION_REGEX = "\\d{1,2}-\\d{1,2}-\\d{4}";
+    public static final String DATE_VALIDATION_REGEX = "[0-3]?\\d{1}-[0-1]?\\d{1}-\\d{4}";
 
     public static final String DATE_INPUT_TODAY = "today";
     public static final String DATE_INPUT_YESTERDAY = "ytd";
@@ -57,7 +57,7 @@ public class Date {
         splitDate(date);
         value = getStandardValue();
         checkArgument(DateUtil.isValidDate(day, month, year), MESSAGE_DATE_LOGICAL_CONSTRAINTS);
-        localDate = LocalDate.parse(date, dtFormat);
+        localDate = LocalDate.of(year, month, day);
     }
 
 
@@ -102,6 +102,7 @@ public class Date {
         day = Integer.parseInt(dateParams[0]);
         month = Integer.parseInt(dateParams[1]);
         year = Integer.parseInt(dateParams[2]);
+
     }
 
     /**

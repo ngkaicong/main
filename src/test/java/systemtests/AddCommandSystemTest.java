@@ -120,11 +120,11 @@ public class AddCommandSystemTest extends EntriesBookSystemTest {
         assertCommandFailure(command, Messages.MESSAGE_UNKNOWN_COMMAND);
 
         /* Case: invalid date -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INVALID_CASHFLOW_DESC + DATE_DESC_AMY + CASHFLOW_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + CASHFLOW_DESC_AMY + INVALID_DATE_DESC + CASHFLOW_DESC_AMY;
         assertCommandFailure(command, Date.MESSAGE_DATE_CONSTRAINTS);
 
         /* Case: invalid cashflow -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INVALID_DATE_DESC + CASHFLOW_DESC_AMY;
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + DATE_DESC_AMY + INVALID_CASHFLOW_DESC;
         assertCommandFailure(command, CashFlow.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */

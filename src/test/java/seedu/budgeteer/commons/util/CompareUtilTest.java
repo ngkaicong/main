@@ -51,15 +51,15 @@ public class CompareUtilTest {
 
     @Test
     public void compareDateAttribute_lessThanTest() { // test different names
-        Entry entry = new EntryBuilder(INDO).withDate((CAIFAN.getDate().value)).build();
-        int compareResult = CompareUtil.compareDateAttribute().compare(INDO, entry);
+        Entry entry = new EntryBuilder(CAIFAN).withDate((INDO.getDate().value)).build();
+        int compareResult = CompareUtil.compareDateAttribute().compare(CAIFAN, entry);
         assertTrue(compareResult <= -1);
     }
 
     @Test
     public void compareDateAttribute_greaterThanTest() {
-        Entry entry = new EntryBuilder(CAIFAN).withDate((INDO.getDate().value)).build();
-        int compareResult = CompareUtil.compareDateAttribute().compare(CAIFAN, entry);
+        Entry entry = new EntryBuilder(INDO).withDate((CAIFAN.getDate().value)).build();
+        int compareResult = CompareUtil.compareDateAttribute().compare(INDO, entry);
         assertTrue(compareResult >= 1);
     }
 
@@ -86,7 +86,7 @@ public class CompareUtilTest {
 
     @Test
     public void compareDate_equalsTest() {
-        int compareResult = compareDate().compare(CAIFAN.getDate(), new Date("26-04-2018"));
+        int compareResult = compareDate().compare(CAIFAN.getDate(), new Date("18-02-2019"));
         assertTrue(compareResult == 0);
     }
 
@@ -94,9 +94,9 @@ public class CompareUtilTest {
     public void compareDate_lessThanTest() {
         int compareResult = compareDate().compare(CAIFAN.getDate(), new Date("26-04-2019"));
         assertTrue(compareResult <= -1);
-        compareResult = compareDate().compare(CAIFAN.getDate(), new Date("26-05-2018"));
+        compareResult = compareDate().compare(CAIFAN.getDate(), new Date("26-05-2019"));
         assertTrue(compareResult <= -1);
-        compareResult = compareDate().compare(CAIFAN.getDate(), new Date("27-04-2018"));
+        compareResult = compareDate().compare(CAIFAN.getDate(), new Date("19-02-2019"));
         assertTrue(compareResult <= -1);
     }
 

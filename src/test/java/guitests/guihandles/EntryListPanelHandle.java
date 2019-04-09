@@ -110,6 +110,7 @@ public class EntryListPanelHandle extends NodeHandle<ListView<Entry>> {
     }
 
     private Entry getEntry(int index) {
+
         return getRootNode().getItems().get(index);
     }
 
