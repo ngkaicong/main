@@ -17,8 +17,6 @@ import seedu.budgeteer.model.entry.Name;
 import seedu.budgeteer.model.entry.ReportEntryList;
 
 
-
-
 /**
  * Returns how much stock you can buy at the current market price.
  */
