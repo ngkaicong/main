@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TAG = "Tag Not Found in Budgeter";
     public static final String MESSAGE_UNREALISTIC_DIRECTORY = "Please choose existing directory/file path.\n";
     public static final String MESSAGE_EXCEL_FILE_WRITTEN_SUCCESSFULLY =
-            "The Excel file named %1$s has been written successfully in path: %2$s.\n";
+            "The Excel file has been written successfully in path: %2$s.\n";
     public static final String MESSAGE_EXPORT_COMMAND_ERRORS = "There is error to export.\n";
 
     public static final String MESSAGE_ARCHIVE_COMMAND_ERRORS = "There is error to archive.\n";
@@ -32,7 +32,7 @@ public class Messages {
                     + "NAME, DATE,  MONEY SPENT/RECEIVED and TAGS (case in-sensitive).\n";
     public static final String MESSAGE_RECORD_ADDED_SUCCESSFULLY =
             "All records from the %1$s are read"
-                    + " and only non-existing records are added to the current Financial Planner.\n";
+                    + " and only non-existing records are added to the current Budgeteer.\n";
 
 
 }
