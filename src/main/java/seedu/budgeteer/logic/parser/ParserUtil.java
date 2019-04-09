@@ -6,9 +6,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.budgeteer.commons.core.Messages;
 import seedu.budgeteer.commons.core.index.Index;
 import seedu.budgeteer.commons.util.StringUtil;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
+import seedu.budgeteer.model.DirectoryPath;
 import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Date;
 import seedu.budgeteer.model.entry.Name;
@@ -104,5 +106,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static String parseDirectoryString(String dirPath) throws ParseException {
+        requireNonNull(dirPath);
+        if (!DirectoryPath.isValidDirectory(dirPath)) {
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, Messages.MESSAGE_UNREALISTIC_DIRECTORY));
+        }
+        return dirPath;
     }
 }

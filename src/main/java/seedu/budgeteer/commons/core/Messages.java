@@ -21,5 +21,9 @@ public class Messages {
 
     public static final String MESSAGE_ARCHIVE_SUCCESSFULLY =
             " The records in the Excel file will be no longer in the current Budgeter.\n";
+    public static final String MESSAGE_INVALID_DATE_REQUIRED =
+            "Please enter exact TWO Dates, Start_Date and End_Date.\n";
+    public static final String MESSAGE_INVALID_STARTDATE_ENDDATE =
+            "Please enter the Start_Date smaller than or equal to the End_Date.\n";
 
 }
