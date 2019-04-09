@@ -370,7 +370,7 @@ that will be returned, but it is not useful as user may only recall some details
 * `Entry 3` : Name `Dinner with Elis Yeo` and date `12-01-2019`
 * User wants to find `Joel` but do not recall surname and key in `Joel` only
 * User cannot recall the date and key in a random number `12-12-2019`
-* There will be no results returned in this scenario as input date does not match the phone numbers in `Entry 1`
+* There will be no results returned in this scenario as input date does not match the dates in `Entry 1`
 and `Entry 2` that contains `Joel`
 
 *Example two*
@@ -544,6 +544,9 @@ of all their financial activity within a period of time.
 
 The corresponding command required for this feature is `report`.
 
+For this feature, users have to enter 2 dates, one starting date and one ending date.
+This feature is facilitated by a few key components of Bugeteer, `Logic`, `Model`, `UI` and function executions can be split into 2 phases, the `Logic phase` and the `UI phase`.
+
 The command takes in three optional arguments: `s/`, `e/` and `insight/`
 
 `s/` (Start Date): Report takes into consideration of all entries that are on or after the given start date
@@ -566,14 +569,24 @@ a new predicate which is an and operation of the two predicates.
 
 If the `insight/` parameter is supplied, it will trigger a flag which is then used to determine if more information
 should be provided to the user or not.
+It provides information about the each spending and earning breakdown for the current month, presenting income and expense statistics together in one panel.
 
 
 ==== Design Considerations
 
-===== Aspect: Password length and strength
+===== Aspect: Generating report
 
-* **Current Design:** Report will show a piechart
+* **Current Design:** Report will show a piechart when report command is called.
+** Pros: Easier to implement and maintain. Visual much more efficient and effective to understand.
+Reduce overhead during normal operations like adding, deleting and editing if we do not have to update the statistics in real time.
+** Cons: This requires looping through each entry in the filtered entry list obtained from the `Model`.
+To aid in the time complexity, the internal implementation of EntryList was done using hash maps instead which allowed for
+constant time random access.. However, the initial filtering is close to linear time complexity which could slow down the app if many entries are inside.
+Also, the list had to be created every time `summary` is called which could be slow if the command is called multiple times.
 
+* **Alternative:** Use a data structure to store the  information when there is mutation of data
+** Pros:  Since the data are constantly updated, whenever the command is called, system can read directly and not have to recompute.
+** Cons: Adds overhead to usual operations. Benefits may not be visible if the command is not called frequently.
 
 //end:: report[]
 
