@@ -324,16 +324,73 @@ Returns how much bitcoin you can buy with your current balance with real-time ma
 Format: `bitcoin`
 
 [NOTE]
-You must have a balance, or else the amount will just return 0. +
-E.g. If no inputs have been made, the method will just return 0.
+Calling 'bitcoin' without any entries will just return 0 as you don't have a balance, as well as the current price of bitcoin.
 
 Examples:
-Coming soon
+
+* `bitcoin` +
+Returns your bitcoin purchasing power, as well as the current price of bitcoin in SGD.
 
 //end::bitcoin[]
 
+//tag:ethereum[]
+=== Returns purchasing power regarding ethereum: `ethereum`
 
-// tag::lcok[]
+Returns how much ethereum you can buy with your current balance with real-time market prices. +
+Format: `ethereum`
+
+[NOTE]
+Calling 'ethereum' without any entries will just return 0 as you don't have a balance, as well as the current price of ethereum.
+
+Examples:
+
+* `ethereum` +
+Returns your ethereum purchasing power, as well as the current price of ethereum in SGD.
+
+//end::ethereum[]
+
+//tag:litecoin[]
+=== Returns purchasing power regarding litecoin: `litecoin`
+
+Returns how much litecoin you can buy with your current balance with real-time market prices. +
+Format: `litecoin`
+
+[NOTE]
+Calling 'litecoin' without any entries will just return 0 as you don't have a balance, as well as the current price of litecoin.
+
+Examples:
+
+* `litecoin` +
+Returns your litecoin purchasing power, as well as the current price of litecoin in SGD.
+
+//end::litecoin[]
+
+//tag:stock[]
+=== Returns purchasing power regarding an inputted stock: `stock`
+
+Returns how much stock you can buy with your current balance with real-time market prices. +
+Format: `stock n/NAME"
+
+[NOTE]
+====
+* Lower and upper case do not matter when inputting the stock names. Calling 'stock' with an invalid stock name will return "Sorry, your input is not a valid stock. Please try again."
+====
+
+Examples:
+
+* `stock n/MSFT` +
+Returns your purchasing power of the stock for Microsoft, as well as the current price of stock. +
+
+* `stock n/nflx` +
+Returns your purchasing power of the stock for Netflix, as well as the current price of stock. +
+
+* `stock n/asdfasdf` +
+Returns "Sorry, your input is not a valid stock. Please try again." as this is not a valid stock name
+
+//end::stock[]
+
+
+// tag::lock[]
 === Lock : `lock`
 
 Set a password for Budgeter to protect data entry, privacy and unwanted tampering.
@@ -458,6 +515,11 @@ e.g. `find James Jake`
 * *Select* : `select INDEX` +
 e.g.`select 2`
 * *History* : `history`
+* *Bitcoin* : `bitcoin`
+* *Ethereum* : `ethereum`
+* *Litecoin* : `litecoin`
+* *Stock* `stock n/NAME` +
+e.g. `stock n/MSFT`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Report* : `report`
@@ -465,5 +527,3 @@ e.g.`select 2`
 * *Filter* : `filter`
 * *Display* : `display`
 * *Lock* : `lock`
-
-
