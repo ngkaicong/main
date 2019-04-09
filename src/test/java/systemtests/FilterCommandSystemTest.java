@@ -2,10 +2,13 @@ package systemtests;
 
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.budgeteer.testutil.TypicalEntrys.BURSARY;
 import static seedu.budgeteer.testutil.TypicalEntrys.CAIFAN;
-import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 import static seedu.budgeteer.testutil.TypicalEntrys.CHICKENRICE;
+import static seedu.budgeteer.testutil.TypicalEntrys.IDA;
 import static seedu.budgeteer.testutil.TypicalEntrys.KEYWORD_MATCHING_BURSARY;
+import static seedu.budgeteer.testutil.TypicalEntrys.MALA;
+import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,8 @@ public class FilterCommandSystemTest extends EntriesBookSystemTest {
         String command = "   " + FilterCommand.COMMAND_WORD + " "
                 + NAME_PREFIX_WORD + KEYWORD_MATCHING_BURSARY + "   ";
         Model expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CAIFAN, CHICKENRICE); // first names of Benson and Daniel are "Meier"
+        ModelHelper.setFilteredList(expectedModel, BURSARY, WORK
+        ); // first names of Benson and Daniel are "Meier"
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -48,13 +52,13 @@ public class FilterCommandSystemTest extends EntriesBookSystemTest {
 
         /* Case: find entry where entry list is not displaying the entry we are finding -> 1 entry found */
         command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "Carl";
-        ModelHelper.setFilteredList(expectedModel, WORK);
+        ModelHelper.setFilteredList(expectedModel, MALA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find multiple entrys in budgeteer book, 2 keywords -> 2 entrys found */
         command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "Benson Daniel";
-        ModelHelper.setFilteredList(expectedModel, CAIFAN, CHICKENRICE);
+        ModelHelper.setFilteredList(expectedModel, CAIFAN, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -88,47 +92,29 @@ public class FilterCommandSystemTest extends EntriesBookSystemTest {
         /* Case: find same entrys in budgeteer book after deleting 1 of them -> 1 entry found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
         assert !getModel().getAddressBook().getEntryList().contains(CAIFAN);
-        command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + KEYWORD_MATCHING_BURSARY;
+        command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "Benson Daniel";
         expectedModel = getModel();
-        ModelHelper.setFilteredList(expectedModel, CHICKENRICE);
+        ModelHelper.setFilteredList(expectedModel, IDA);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find entry in budgeteer book, keyword is same as name but of different case -> 1 entry found */
-        command = FilterCommand.COMMAND_WORD +  " " + NAME_PREFIX_WORD + "bursu";
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: find entry in budgeteer book, keyword is substring of name -> 0 entrys found */
-        command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "Bur";
-        ModelHelper.setFilteredList(expectedModel);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: find entry in budgeteer book, name is substring of keyword -> 0 entrys found */
+        /* Case: find entry in budgeteer book, keyword is substring of name -> 1 entrys found */
         command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "bursary";
-        ModelHelper.setFilteredList(expectedModel);
+        ModelHelper.setFilteredList(expectedModel, BURSARY);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
         /* Case: find entry not in budgeteer book -> 0 entrys found */
         command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "Mark";
+        ModelHelper.setFilteredList(expectedModel);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find phone number of entry in budgeteer book -> 1 entry found */
+        /* Case: find date of entry in budgeteer book -> 1 entry found */
         command = FilterCommand.COMMAND_WORD + " " + DATE_PREFIX_WORD + CHICKENRICE.getDate().value;
         ModelHelper.setFilteredList(expectedModel, CHICKENRICE);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
-        /* Case: find multiple phone numbers of entrys in budgeteer book -> 2 entrys found */
-        command = FilterCommand.COMMAND_WORD + " " + DATE_PREFIX_WORD
-                + CAIFAN.getDate().value + " " + WORK.getDate().value;
-        ModelHelper.setFilteredList(expectedModel, CAIFAN, WORK);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
 
         /* Case: find cashflow of entry in budgeteer book -> 1 entrys found */
         command = FilterCommand.COMMAND_WORD + " " + CASH_FLOW_PREFIX_WORD + CHICKENRICE.getCashFlow().value;
@@ -150,21 +136,11 @@ public class FilterCommandSystemTest extends EntriesBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: find multiple tags of entrys in budgeteer book -> 2 entrys found */
-        tags = new ArrayList<>(WORK.getTags());
-        String firstTag = "[" + tags.get(0).tagName + "]";
-        tags = new ArrayList<>(CAIFAN.getTags());
-        String secondTag = "[" + tags.get(0).tagName + "]";
-        command = FilterCommand.COMMAND_WORD + " " + TAG_PREFIX_WORD + firstTag + " " + secondTag;
-        ModelHelper.setFilteredList(expectedModel, CAIFAN, WORK);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
         /* Case: find while a entry is selected -> selected card deselected */
         showAllEntrys();
         selectEntry(Index.fromOneBased(1));
         assert !getEntryListPanel().getHandleToSelectedCard().getName().equals(CHICKENRICE.getName().fullName);
-        command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "Daniel";
+        command = FilterCommand.COMMAND_WORD + " " + NAME_PREFIX_WORD + "rice";
         ModelHelper.setFilteredList(expectedModel, CHICKENRICE);
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardDeselected();
@@ -179,7 +155,7 @@ public class FilterCommandSystemTest extends EntriesBookSystemTest {
         assertSelectedCardUnchanged();
 
         /* Case: mixed case command word -> rejected */
-        command = "FiNds " + NAME_PREFIX_WORD + KEYWORD_MATCHING_BURSARY;
+        command = "fiLtEr " + NAME_PREFIX_WORD + KEYWORD_MATCHING_BURSARY;
         assertCommandFailure(command, MESSAGE_UNKNOWN_COMMAND);
     } //@@author
 

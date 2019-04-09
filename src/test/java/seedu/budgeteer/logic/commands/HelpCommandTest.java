@@ -17,8 +17,10 @@ public class HelpCommandTest {
     @Test
     public void execute_help_success() {
 
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
-        assertCommandSuccess(new HelpCommand(), model, commandHistory, expectedCommandResult.toString(), expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true,
+                false, false);
+        assertCommandSuccess(new HelpCommand(), model, commandHistory, expectedCommandResult.getFeedbackToUser(),
+                expectedModel);
         //TODO: Not sure if expectedcommandresult.toString() works
     }
 }

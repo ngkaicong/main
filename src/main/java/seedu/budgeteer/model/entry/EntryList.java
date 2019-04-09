@@ -139,35 +139,40 @@ public class EntryList implements Iterable<Entry> {
         return true;
     }
 
+    /**
+     * Sort the entries in the list according to their category, in ascending or descending order
+     * @param category category to sort the entries with
+     * @param ascending set to true to sort in ascending order, false for descending order
+     */
     public void sortEntrys(String category, Boolean ascending) {
         switch (category) {
 
-            case DisplayCommand.CATEGORY_NAME:
-                if (!ascending) {
-                    internalList.sort(CompareUtil.compareNameAttribute().reversed());
-                } else {
-                    internalList.sort(CompareUtil.compareNameAttribute());
-                }
-                break;
+        case DisplayCommand.CATEGORY_NAME:
+            if (!ascending) {
+                internalList.sort(CompareUtil.compareNameAttribute().reversed());
+            } else {
+                internalList.sort(CompareUtil.compareNameAttribute());
+            }
+            break;
 
-            case DisplayCommand.CATEGORY_DATE:
-                if (!ascending) {
-                    internalList.sort(CompareUtil.compareDateAttribute().reversed());
-                } else {
-                    internalList.sort(CompareUtil.compareDateAttribute());
-                }
-                break;
+        case DisplayCommand.CATEGORY_DATE:
+            if (!ascending) {
+                internalList.sort(CompareUtil.compareDateAttribute().reversed());
+            } else {
+                internalList.sort(CompareUtil.compareDateAttribute());
+            }
+            break;
 
-            case DisplayCommand.CATEGORY_CASHFLOW:
-            case DisplayCommand.CATEGORY_CASH:
-                if (!ascending) {
-                    internalList.sort(CompareUtil.compareCashflowAttribute().reversed());
-                } else {
-                    internalList.sort(CompareUtil.compareCashflowAttribute());
-                }
-                break;
+        case DisplayCommand.CATEGORY_CASHFLOW:
+        case DisplayCommand.CATEGORY_CASH:
+            if (!ascending) {
+                internalList.sort(CompareUtil.compareCashflowAttribute().reversed());
+            } else {
+                internalList.sort(CompareUtil.compareCashflowAttribute());
+            }
+            break;
 
-            default: break;
+        default: break;
         }
 
     }

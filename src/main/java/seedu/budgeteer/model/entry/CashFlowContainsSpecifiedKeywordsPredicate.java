@@ -2,6 +2,7 @@ package seedu.budgeteer.model.entry;
 
 import java.util.List;
 import java.util.function.Predicate;
+
 import seedu.budgeteer.commons.util.StringUtil;
 
 /**

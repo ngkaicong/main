@@ -31,6 +31,7 @@ public class DisplayCommandParser implements Parser<DisplayCommand> {
 
         String category;
         Boolean ascending;
+
         String[] argList = trimmedArgs.split("\\s+");
 
         if ((argList.length) == ONLY_CATEGORY_OR_ORDER_SPECIFIED) {

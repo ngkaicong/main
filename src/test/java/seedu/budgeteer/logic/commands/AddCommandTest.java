@@ -18,7 +18,6 @@ import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.ObservableList;
 import seedu.budgeteer.commons.core.GuiSettings;
 import seedu.budgeteer.logic.CommandHistory;
-import seedu.budgeteer.logic.commands.exceptions.CommandException;
 import seedu.budgeteer.model.EntriesBook;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.ReadOnlyEntriesBook;
@@ -51,17 +50,6 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEntry), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEntry), modelStub.entrysAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
-    }
-
-    @Test
-    public void execute_duplicateEntry_throwsCommandException() throws Exception {
-        Entry validEntry = new EntryBuilder().build();
-        AddCommand addCommand = new AddCommand(validEntry);
-        ModelStub modelStub = new ModelStubWithEntry(validEntry);
-
-        thrown.expect(CommandException.class);
-        thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_ENTRY);
-        addCommand.execute(modelStub, commandHistory);
     }
 
     @Test
