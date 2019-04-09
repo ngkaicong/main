@@ -1,33 +1,35 @@
 package seedu.budgeteer.logic.commands;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_ENTRYS_LISTED_OVERVIEW;
-import static seedu.budgeteer.testutil.TypicalEntrys.INDO;
-import static seedu.budgeteer.testutil.TypicalEntrys.CAIFAN;
-import static seedu.budgeteer.testutil.TypicalEntrys.WORK;
-import static seedu.budgeteer.testutil.TypicalEntrys.CHICKENRICE;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.Test;
 
-import seedu.budgeteer.model.EntriesBook;
+import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.ModelManager;
 import seedu.budgeteer.model.UserPrefs;
-import seedu.budgeteer.model.entry.*;
-import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.entry.CashFlowContainsSpecifiedKeywordsPredicate;
+import seedu.budgeteer.model.entry.DateContainsSpecifiedKeywordsPredicate;
+import seedu.budgeteer.model.entry.NameContainsKeywordsPredicate;
+import seedu.budgeteer.model.entry.TagContainsSpecifiedKeywordsPredicate;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
+
 
     @Test
     public void equals() {
@@ -81,25 +83,35 @@ public class FilterCommandTest {
      * Find entry(s) by name(s).
      */
 
+
+
     @Test
     public void execute_zeroKeywords_invalidCommandFormat() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 0);
-        FilterCommand command = prepareFindByNameCommand(" ");
-        assertCommandSuccess(command, expectedMessage, Collections.emptyList());
+        Predicate predicate = prepareFindByNamePredicate(" ");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
+
     }
 
     @Test
-    public void execute_findElleByName_oneEntryFound() {
+    public void execute_findMalaByName_oneEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 1);
-        FilterCommand command = prepareFindByNameCommand("Elle");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(WORK));
+        Predicate predicate = prepareFindByNamePredicate("Mala");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
+
 
     @Test
     public void execute_findMultipleNames_multipleEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 3);
-        FilterCommand command = prepareFindByNameCommand("Kurz Elle Kunz");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(CAIFAN, WORK, CHICKENRICE));
+        Predicate predicate = prepareFindByNamePredicate("mala Ida Bursary");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     /**
@@ -108,33 +120,40 @@ public class FilterCommandTest {
     @Test
     public void execute_findEllebyDate_oneEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 1);
-        FilterCommand command = prepareFindByDateCommand("12-12-2018");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(WORK));
+        Predicate predicate = prepareFindByDatePredicate("19-02-2019");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_findMultipleDates_multipleEntryFound() {
-        String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 3);
-        FilterCommand command = prepareFindByDateCommand("12-12-2018 12-12-2018 12-12-2018");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(CAIFAN, WORK, CHICKENRICE));
+        String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 5);
+        Predicate predicate = prepareFindByDatePredicate("19-02-2019 18-02-2019 10-02-2019");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     /**
-     * Find entry(s) by email(s).
+     * Find entry(s) by cashflow(s).
      */
     @Test
-    public void execute_findEllebyCashFlow_oneEntryFound() {
+    public void execute_findMalabyCashFlow_oneEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 1);
-        FilterCommand command = prepareFindByCashFlowCommand("+100");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(WORK));
+        Predicate predicate = prepareFindByCashFlowPredicate("-$10.50");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_findMultipleCashFlows_multipleEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 3);
-        FilterCommand command =
-                prepareFindByCashFlowCommand("+100 -100 +100");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(CAIFAN, WORK, CHICKENRICE));
+        Predicate predicate = prepareFindByCashFlowPredicate("-$5.60 -$10.50 +$60.00");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     /**
@@ -143,15 +162,19 @@ public class FilterCommandTest {
     @Test
     public void execute_findATag_noEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 0);
-        FilterCommand command = prepareFindByTagCommand("[BOSS]");
-        assertCommandSuccess(command, expectedMessage, Collections.emptyList());
+        Predicate predicate = prepareFindByTagPredicate("[BOSS]");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_findMultipleTags_noEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 1);
-        FilterCommand command = prepareFindByTagCommand("[owesMoney] [friend]");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(INDO));
+        Predicate predicate = prepareFindByTagPredicate("[owesCash] [friend]");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
     }
 
     /**
@@ -160,10 +183,9 @@ public class FilterCommandTest {
      * @param inputString full string of name(s) to find
      * @return a new FilterCommand using {@code NameContainsKeywordsPredicate}
      */
-    private FilterCommand prepareFindByNameCommand (String inputString) {
-        FilterCommand command = new FilterCommand(
-                new NameContainsKeywordsPredicate(Arrays.asList(inputString.split("\\s+"))));
-        return command;
+    private Predicate prepareFindByNamePredicate (String inputString) {
+
+        return new NameContainsKeywordsPredicate(Arrays.asList(inputString.split("\\s+")));
     }
 
     /**
@@ -172,10 +194,9 @@ public class FilterCommandTest {
      * @param inputString full string of phone(s) to find
      * @return a new FilterCommand using {@code DateContainsSpecifiedKeywordsPredicate}
      */
-    private FilterCommand prepareFindByDateCommand (String inputString) {
-        FilterCommand command = new FilterCommand(
-                new DateContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+"))));
-        return command;
+    private Predicate prepareFindByDatePredicate (String inputString) {
+
+        return new DateContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+")));
     }
 
     /**
@@ -184,11 +205,11 @@ public class FilterCommandTest {
      * @param inputString full string of email(s) to find
      * @return a new FilterCommand using {@code CashFlowContainsSpecifiedKeywordsPredicate}
      */
-    private FilterCommand prepareFindByCashFlowCommand (String inputString) {
-        FilterCommand command = new FilterCommand(
-                new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+"))));
-        return command;
+    private Predicate prepareFindByCashFlowPredicate (String inputString) {
+
+        return new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+")));
     }
+
 
     /**
      * Creates a new FilterCommand using {@code TagContainsSpecifiedKeywordsPredicate}
@@ -196,24 +217,9 @@ public class FilterCommandTest {
      * @param inputString full string of Tag(s) to find
      * @return a new FilterCommand using {@code TagContainsSpecifiedKeywordsPredicate}
      */
-    private FilterCommand prepareFindByTagCommand (String inputString) {
-        FilterCommand command = new FilterCommand(
-                new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+"))));
-        return command;
-    }
+    private Predicate prepareFindByTagPredicate (String inputString) {
 
-    /**
-     * Asserts that {@code command} is successfully executed, and<br>
-     *     - the command feedback is equal to {@code expectedMessage}<br>
-     *     - the {@code FilteredList<Entry>} is equal to {@code expectedList}<br>
-     *     - the {@code EntriesBook} in model remains the same after executing the {@code command}
-     */
-    private void assertCommandSuccess(FilterCommand command, String expectedMessage,
-                                      List<Entry> expectedList) {
-        EntriesBook expectedEntriesBook = new EntriesBook(model.getAddressBook());
-
-        assertEquals(expectedList, model.getFilteredEntryList());
-        assertEquals(expectedEntriesBook, model.getAddressBook());
+        return new TagContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+")));
     }
 
 }

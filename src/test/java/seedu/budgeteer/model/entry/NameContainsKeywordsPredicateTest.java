@@ -69,8 +69,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new EntryBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and budgeteer, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList(IDA.getName().toString(), IDA.getDate().toString(),
-                IDA.getCashFlow().toString()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("IDA"));
         assertFalse(predicate.test(new EntryBuilder().withName("Alice").withDate(IDA.getDate().toString())
                 .withCashFlow(IDA.getCashFlow().toString()).build()));
     }

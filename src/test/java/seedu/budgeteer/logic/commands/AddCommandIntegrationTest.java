@@ -1,6 +1,5 @@
 package seedu.budgeteer.logic.commands;
 
-import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 
@@ -37,13 +36,6 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddCommand(validEntry), model, commandHistory,
                 String.format(AddCommand.MESSAGE_SUCCESS, validEntry), expectedModel);
-    }
-
-    @Test
-    public void execute_duplicateEntry_throwsCommandException() {
-        Entry entryInList = model.getAddressBook().getEntryList().get(0);
-        assertCommandFailure(new AddCommand(entryInList), model, commandHistory,
-                AddCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
 }

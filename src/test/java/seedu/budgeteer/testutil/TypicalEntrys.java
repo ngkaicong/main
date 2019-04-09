@@ -22,14 +22,14 @@ import seedu.budgeteer.model.entry.Entry;
 public class TypicalEntrys {
 
     public static final Entry INDO = new EntryBuilder().withName("Indo")
-            .withCashFlow("-5.6").withDate("18-02-2019").withTags("friends").build();
-    public static final Entry CAIFAN = new EntryBuilder().withName("caifan")
+            .withCashFlow("-5.60").withDate("19-02-2019").withTags("friends").build();
+    public static final Entry CAIFAN = new EntryBuilder().withName("caifan with Benson Daniel")
             .withCashFlow("-3.80").withDate("18-02-2019").withTags("owesCash", "friends").build();
     public static final Entry WORK = new EntryBuilder().withName("Income from work").withDate("10-02-2019")
-            .withCashFlow("+60.0").build();
+            .withCashFlow("+60.00").build();
     public static final Entry ZT = new EntryBuilder().withName("Payment from ZT").withDate("10-02-2019")
             .withCashFlow("+5.90").withTags("friends").build();
-    public static final Entry MALA = new EntryBuilder().withName("Payment for mala").withDate("10-02-2019")
+    public static final Entry MALA = new EntryBuilder().withName("Payment for mala to Carl").withDate("10-02-2019")
             .withCashFlow("-10.50").build();
     public static final Entry CHICKENRICE = new EntryBuilder().withName("Payment for chicken rice")
             .withDate("20-12-2018").withCashFlow("-0.90").build();
@@ -37,12 +37,14 @@ public class TypicalEntrys {
             .withCashFlow("+14.50").build();
 
     // Manually added
-    public static final Entry BURSARY = new EntryBuilder().withName("Income from bursary").withDate("31-4-2080")
+    public static final Entry BURSARY = new EntryBuilder().withName("Income from bursary").withDate("31-03-2018")
             .withCashFlow("+110.50").build();
-    public static final Entry IDA = new EntryBuilder().withName("Payment to Ida").withDate("4-10-2030")
+    public static final Entry IDA = new EntryBuilder().withName("Payment to Ida and Benson Daniel")
+            .withDate("04-10-2019")
             .withCashFlow("-12.30").build();
 
-    // Manually added - Entry's details found in {@code CommandTestUtil}
+    // Manually added - Entry's details found in {@code C
+    // ommandTestUtil}
     public static final Entry AMY = new EntryBuilder().withName(VALID_NAME_AMY).withDate(VALID_DATE_AMY)
             .withCashFlow(VALID_CASHFLOW_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Entry BOB = new EntryBuilder().withName(VALID_NAME_BOB).withDate(VALID_DATE_BOB)
@@ -65,6 +67,6 @@ public class TypicalEntrys {
     }
 
     public static List<Entry> getTypicalEntrys() {
-        return new ArrayList<>(Arrays.asList(INDO, CAIFAN, WORK, ZT, MALA, CHICKENRICE, RANDOM));
+        return new ArrayList<>(Arrays.asList(INDO, CAIFAN, WORK, ZT, MALA, CHICKENRICE, BURSARY, IDA));
     }
 }

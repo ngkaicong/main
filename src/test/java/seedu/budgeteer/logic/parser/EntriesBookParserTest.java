@@ -20,12 +20,12 @@ import seedu.budgeteer.logic.commands.DeleteCommand;
 import seedu.budgeteer.logic.commands.EditCommand;
 import seedu.budgeteer.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.budgeteer.logic.commands.ExitCommand;
+import seedu.budgeteer.logic.commands.FilterCommand;
 import seedu.budgeteer.logic.commands.FindCommand;
 import seedu.budgeteer.logic.commands.HelpCommand;
 import seedu.budgeteer.logic.commands.HistoryCommand;
 import seedu.budgeteer.logic.commands.ListCommand;
 import seedu.budgeteer.logic.commands.RedoCommand;
-import seedu.budgeteer.logic.commands.FilterCommand;
 import seedu.budgeteer.logic.commands.SelectCommand;
 import seedu.budgeteer.logic.commands.UndoCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
@@ -124,12 +124,12 @@ public class EntriesBookParserTest {
         assertEquals(new SelectCommand(INDEX_FIRST_ENTRY), command);
     }
 
-//    @Test
-//    public void parseCommand_report() throws Exception {
-//        ReportCommand command = (ReportCommand) parser.parseCommand(
-//                ReportCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
-//        assertEquals(new ReportCommand(), command);
-//    }
+    //    @Test
+    //    public void parseCommand_report() throws Exception {
+    //        ReportCommand command = (ReportCommand) parser.parseCommand(
+    //                ReportCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased());
+    //        assertEquals(new ReportCommand(), command);
+    //    }
 
     @Test
     public void parseCommand_redoCommandWord_returnsRedoCommand() throws Exception {

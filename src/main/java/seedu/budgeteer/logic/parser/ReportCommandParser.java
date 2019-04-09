@@ -1,8 +1,8 @@
 package seedu.budgeteer.logic.parser;
 
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_INSIGHT;
 import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_INSIGHT;
 import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
@@ -68,29 +68,19 @@ public class ReportCommandParser implements Parser<ReportCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_INSIGHT)) {
             showDetailedReport = true;
-        }
-
-        else {
+        } else {
             showDetailedReport = false;
         }
 
         if (endDate != null && startDate != null && startDate.isAfter(endDate)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReportCommand.MESSAGE_USAGE));
-        }
-
-        else if (endDate != null && startDate != null && !startDate.isAfter(endDate)) {
+        } else if (endDate != null && startDate != null && !startDate.isAfter(endDate)) {
             finalPredicate = afterStartPredicate.and(beforeEndPredicate);
-        }
-
-        else if (endDate == null && startDate == null) {
+        } else if (endDate == null && startDate == null) {
             finalPredicate = PREDICATE_SHOW_ALL_ENTRYS;
-        }
-
-        else {
+        } else {
             finalPredicate = (afterStartPredicate == null) ? beforeEndPredicate : afterStartPredicate;
         }
-
-
         return new ReportCommand(finalPredicate);
     }
 

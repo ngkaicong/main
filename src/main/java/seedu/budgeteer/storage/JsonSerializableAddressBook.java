@@ -49,9 +49,9 @@ class JsonSerializableAddressBook {
         EntriesBook entriesBook = new EntriesBook();
         for (JsonAdaptedEntry jsonAdaptedEntry : entrys) {
             Entry entry = jsonAdaptedEntry.toModelType();
-            if (entriesBook.hasEntry(entry)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
-            }
+            //if (entriesBook.hasEntry(entry)) {
+            //    throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
+            //}
             entriesBook.addEntry(entry);
         }
         return entriesBook;

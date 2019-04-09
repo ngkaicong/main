@@ -29,8 +29,8 @@ public class DisplayCommand extends Command {
     public static final String CATEGORY_CASH = "cash";
     public static final String CATEGORY_DATE = "date";
 
-    public static final String ORDER_ASCENDING = "in ascending order";
-    public static final String ORDER_DESCENDING = "in descending order";
+    public static final String ORDER_ASCENDING = "in ascending order.\n";
+    public static final String ORDER_DESCENDING = "in descending order.\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays sorted entrys in the currently list "
             + "by the specified category and order.\n"
@@ -55,8 +55,8 @@ public class DisplayCommand extends Command {
         model.sortFilteredEntryList(category, ascending);
         String returnMessageCategory = category;
         String returnMessageOrder = ascending ? ORDER_ASCENDING : ORDER_DESCENDING;
-        return new CommandResult(MESSAGE_SUCCESS + returnMessageCategory + " "
-                + returnMessageOrder + ".\n");
+        return new CommandResult(MESSAGE_SUCCESS + returnMessageCategory
+                + returnMessageOrder);
     }
 
     @Override

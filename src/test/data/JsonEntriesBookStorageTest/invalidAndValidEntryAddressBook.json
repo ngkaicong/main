@@ -2,10 +2,10 @@
   "persons": [ {
     "name": "Valid Entry",
     "date": "11-11-2019",
-    "cashFlow": "hans@example.com"
+    "cashFlow": "+100"
   }, {
     "name": "Entry With Invalid date Field",
     "date": "948asdf2424",
-    "cashFlow": "4th street"
+    "cashFlow": "-100"
   } ]
 }

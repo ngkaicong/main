@@ -1,5 +1,10 @@
 package seedu.budgeteer.ui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.logging.Logger;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +18,7 @@ import seedu.budgeteer.logic.parser.ReportCommandParser;
 import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.ReportEntryList;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.logging.Logger;
+
 
 /**
  * Controller for a help page
@@ -69,6 +71,9 @@ public class ReportWindow extends UiPart<Stage> {
         this(new Stage(), logic);
     }
 
+    /**
+     * Refreshes the display with updated filtered entry list.
+     */
     private void refresh() {
         ObservableList<Entry> filteredReportList = logic.getFilteredEntryList();
         ReportEntryList reportEntryList = new ReportEntryList(filteredReportList);
@@ -98,8 +103,7 @@ public class ReportWindow extends UiPart<Stage> {
             expenseBreakdownLabel.setManaged(false);
             incomeBreakdownLabel.setManaged(false);
             isDetailsHidden = true;
-        }
-        else if (ReportCommandParser.isRequireDetailedReport() && isDetailsHidden) {
+        } else if (ReportCommandParser.isRequireDetailedReport() && isDetailsHidden) {
             expenseInsightPieChart.setVisible(true);
             incomeInsightPieChart.setVisible(true);
             expenseBreakdownLabel.setVisible(true);
@@ -185,8 +189,8 @@ public class ReportWindow extends UiPart<Stage> {
         HashMap<String, Double> incomeInsight = reportEntryList.getIncomeCompositionMap();
         Iterator it = incomeInsight.entrySet().iterator();
         while (it.hasNext()) {
-            HashMap.Entry pair = (HashMap.Entry)it.next();
-            PieChart.Data pieData = new PieChart.Data((String)pair.getKey(), (Double)pair.getValue());
+            HashMap.Entry pair = (HashMap.Entry) it.next();
+            PieChart.Data pieData = new PieChart.Data((String) pair.getKey(), (Double) pair.getValue());
             pieChartDataArr.add(pieData);
             it.remove(); // avoids a ConcurrentModificationException
         }
@@ -208,8 +212,8 @@ public class ReportWindow extends UiPart<Stage> {
         HashMap<String, Double> expenseInsight = reportEntryList.getExpenseCompositionMap();
         Iterator it = expenseInsight.entrySet().iterator();
         while (it.hasNext()) {
-            HashMap.Entry pair = (HashMap.Entry)it.next();
-            PieChart.Data pieData = new PieChart.Data((String)pair.getKey(), (Double)pair.getValue());
+            HashMap.Entry pair = (HashMap.Entry) it.next();
+            PieChart.Data pieData = new PieChart.Data((String) pair.getKey(), (Double) pair.getValue());
             pieChartDataArr.add(pieData);
             it.remove(); // avoids a ConcurrentModificationException
         }
