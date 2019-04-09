@@ -151,7 +151,13 @@ public class CryptoUtil {
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             String output = br.readLine();
-            price = Float.parseFloat(output.substring(14, 19));
+            if (cryptoType == "BTC") {
+                price = Float.parseFloat(output.substring(14, 18));
+            } else if (cryptoType == "ETH") {
+                price = Float.parseFloat(output.substring(14, 17));
+            } else if (cryptoType == "LTC") {
+                price = Float.parseFloat(output.substring(14, 17));
+            }
             conn.disconnect();
         } catch (MalformedURLException e) {
             e.printStackTrace();
