@@ -543,15 +543,6 @@ Examples:
 * `export d/31-3-1999 31-3-2019 dir/C:\`
 
 
-There will be two sheets in the Excel file, namely *RECORD DATA* and *SUMMARY DATA*.
-
-* *RECORD DATA* stores all the data of entry the user want to export, there are 4 columns: Name, date, money and tags, the tags names will be separated by ..., for visual benefit.
-
-* *SUMMARY DATA* stored the summary statistics for the period you exported, and there is a *Line Chart* next to the table for visual statistic [refer to *Draw a line chart automatically inside the Excel sheet* part in *User guide* for more information].
-
-* As the size of the Chart is fixed initially. Sometimes, when user exports too many dates, the distance between each date on the chart might be tight. It is suggesting that the user justify the size of the chart by himself/herself.
-
-
 // end::exportexcel[]
 
 
