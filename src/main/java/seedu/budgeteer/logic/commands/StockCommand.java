@@ -33,11 +33,11 @@ public class StockCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "MSFT";
 
-    private static String MESSAGE_SUCCESS = "The price of the stock ";
+    private static final String MESSAGE_SUCCESS = "The price of the stock ";
 
-    public String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
-    public String stock = "MSFT";
-    public String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
+    private String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
+    private String stock = "MSFT";
+    private String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
 
     private final Name name;
 
@@ -48,6 +48,7 @@ public class StockCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
+        String messageReturn = MESSAGE_SUCCESS;
         try {
             model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
             ObservableList<Entry> filteredList = model.getFilteredEntryList();
@@ -78,9 +79,9 @@ public class StockCommand extends Command {
             }
 
             if (full == null) {
-                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock. Please try again.";
+                messageReturn = "Sorry, your input is not a valid stock. Please try again.";
             } else if (full.length() < 30) {
-                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock. Please try again.";
+                messageReturn = "Sorry, your input is not a valid stock. Please try again.";
             } else {
                 price = Float.parseFloat(full.substring(22, 30));
                 Double printPrice = (double) Math.round(price * 100.0) / 100.0;
@@ -90,8 +91,8 @@ public class StockCommand extends Command {
                 amount = (double) Math.round(amount * 100.0) / 100.0;
                 String second = first + amount + " " + stock + " stock. ";
 
-                MESSAGE_SUCCESS = second + "The price of the stock " + name.fullName +
-                        " is $" + printPrice.toString() + ".";
+                messageReturn = second + "The price of the stock " + name.fullName
+                        + " is $" + printPrice.toString() + ".";
             }
 
             conn.disconnect();
@@ -102,6 +103,6 @@ public class StockCommand extends Command {
             e.printStackTrace();
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(messageReturn);
     }
 }
