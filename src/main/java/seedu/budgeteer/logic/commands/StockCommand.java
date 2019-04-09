@@ -3,19 +3,19 @@ package seedu.budgeteer.logic.commands;
 import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
-import javafx.collections.ObservableList;
-import seedu.budgeteer.logic.CommandHistory;
-import seedu.budgeteer.model.Model;
-import seedu.budgeteer.model.entry.Entry;
-import seedu.budgeteer.model.entry.Name;
-import seedu.budgeteer.model.entry.ReportEntryList;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import javafx.collections.ObservableList;
+import seedu.budgeteer.logic.CommandHistory;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.ReportEntryList;
 
 
 /**
@@ -33,11 +33,11 @@ public class StockCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "MSFT";
 
-    public static String MESSAGE_SUCCESS = "The price of the stock ";
+    private static String MESSAGE_SUCCESS = "The price of the stock ";
 
-    public String firstURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
+    public String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
     public String stock = "MSFT";
-    public String secondURL = "&apikey=Y6G36I3BIPQL5I2";
+    public String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
 
     private final Name name;
 
@@ -55,7 +55,7 @@ public class StockCommand extends Command {
             Double total = reportList.getTotal();
 
             stock = name.fullName;
-            String temp = firstURL + stock + secondURL;
+            String temp = firstUrl + stock + secondUrl;
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -86,11 +86,12 @@ public class StockCommand extends Command {
                 Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
                 String first = "You are able to buy ";
-                Double amount = total/price;
+                Double amount = total / price;
                 amount = (double) Math.round(amount * 100.0) / 100.0;
                 String second = first + amount + " " + stock + " stock. ";
 
-                MESSAGE_SUCCESS = second + "The price of the stock " + name.fullName + " is $" + printPrice.toString() + ".";
+                MESSAGE_SUCCESS = second + "The price of the stock " + name.fullName +
+                        " is $" + printPrice.toString() + ".";
             }
 
             conn.disconnect();
