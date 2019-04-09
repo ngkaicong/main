@@ -1,12 +1,5 @@
 package seedu.budgeteer.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.budgeteer.logic.CommandHistory;
-import seedu.budgeteer.model.Model;
-import seedu.budgeteer.model.entry.Entry;
-import seedu.budgeteer.model.entry.Name;
-import seedu.budgeteer.model.entry.ReportEntryList;
-
 import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 import java.io.BufferedReader;
@@ -16,9 +9,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javafx.collections.ObservableList;
 import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.ReportEntryList;
+
 
 /**
  * Returns how much stock you can buy at the current market price.
