@@ -58,6 +58,7 @@ public class ExportExcelCommand extends Command {
         this.endDate = null;
         this.directoryPath = DirectoryPath.WORKING_DIRECTORY_STRING;
         this.predicate = PREDICATE_SHOW_ALL_ENTRYS;
+
     }
 
     public ExportExcelCommand(String directoryPath) {
