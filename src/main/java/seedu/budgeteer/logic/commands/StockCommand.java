@@ -32,7 +32,7 @@ public class StockCommand extends Command {
 
     private final Name name;
 
-    private String stock = "MSFT";
+    private String stock = "NFLX";
 
 
     public StockCommand(Name name) {
