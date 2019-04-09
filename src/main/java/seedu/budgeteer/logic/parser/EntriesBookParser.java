@@ -27,6 +27,7 @@ import seedu.budgeteer.logic.commands.RedoCommand;
 import seedu.budgeteer.logic.commands.ReportCommand;
 import seedu.budgeteer.logic.commands.SelectCommand;
 import seedu.budgeteer.logic.commands.UndoCommand;
+import seedu.budgeteer.logic.commands.ExportExcelCommand;
 
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
 
@@ -117,6 +118,9 @@ public class EntriesBookParser {
 
         case LockCommand.COMMAND_WORD:
             return new LockCommandParser().parse(arguments);
+
+        case ExportExcelCommand.COMMAND_WORD:
+            return new ExportExcelCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

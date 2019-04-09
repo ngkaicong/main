@@ -1,6 +1,6 @@
 package seedu.budgeteer.commons.util;
 
-import org.apache.poi.ss.excelant.util;
+//import org.apache.poi.ss.excelant.util;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.charts.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -254,7 +254,7 @@ public class ExcelUtil {
         writeDataIntoCell(startingRow, SECOND_COLUMN, INCOME_TITLE);
         writeDataIntoCell(startingRow, THIRD_COLUMN, OUTCOME_TITLE);
         writeDataIntoCell(startingRow, FOURTH_COLUMN, TOTAL_MONEY);
-        daySummaryEntryList.sort(CompareUtil.compareTimeStampAttribute());
+        //daySummaryEntryList.sort(CompareUtil.compareTimeStampAttribute());
         for (SummaryEntry summaryEntry : daySummaryEntryList) {
             Row row = sheet.createRow(++rowNum);
             writeDataIntoCell(row, FIRST_COLUMN,
