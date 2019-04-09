@@ -73,7 +73,7 @@ public class TestApp extends MainApp {
      */
     public EntriesBook readStorageAddressBook() {
         try {
-            return new EntriesBook(storage.readAddressBook().get());
+            return new EntriesBook(storage.readEntriesBook().get());
         } catch (DataConversionException dce) {
             throw new AssertionError("Data is not in the EntriesBook format.", dce);
         } catch (IOException ioe) {

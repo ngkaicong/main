@@ -53,14 +53,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyEntriesBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyEntriesBook> readEntriesBook() throws DataConversionException, IOException {
+        return readEntriesBook(addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyEntriesBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyEntriesBook> readEntriesBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return addressBookStorage.readEntriesBook(filePath);
     }
 
     @Override

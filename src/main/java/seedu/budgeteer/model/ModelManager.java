@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.budgeteer.commons.core.GuiSettings;
 import seedu.budgeteer.commons.core.LogsCenter;
+import seedu.budgeteer.model.entry.Date;
 import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.exceptions.EntryNotFoundException;
 
@@ -23,7 +24,7 @@ import seedu.budgeteer.model.entry.exceptions.EntryNotFoundException;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private static final Date DATE_SPECIAL_FOR_MONTHLY = new Date("01-01-9999");
     private final VersionedEntriesBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredEntrys;
@@ -47,15 +48,15 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new EntriesBook(), new UserPrefs());
     }
+
     /**
      * removes tag from all entrys
+     *
      * @return
      */
 
 
-
     //=========== UserPrefs ==================================================================================
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
@@ -248,3 +249,4 @@ public class ModelManager implements Model {
     }
 
 }
+
