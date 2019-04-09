@@ -87,7 +87,8 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel} <br>
      * - the {@code actualCommandHistory} remains unchanged.
      */
-    public static void assertCommandSuccessWithoutString(Command command, Model actualModel, CommandHistory actualCommandHistory,
+    public static void assertCommandSuccessWithoutString(Command command, Model actualModel,
+                                                         CommandHistory actualCommandHistory,
                                                          Model expectedModel) {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
