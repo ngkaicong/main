@@ -1,13 +1,7 @@
 package seedu.budgeteer.logic.commands;
 
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javafx.collections.ObservableList;
 import seedu.budgeteer.logic.CommandHistory;
@@ -15,6 +9,13 @@ import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.Name;
 import seedu.budgeteer.model.entry.ReportEntryList;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 /**
@@ -25,15 +26,20 @@ public class StockCommand extends Command {
     public static final String COMMAND_WORD = "stock";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain stock you can buy.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "STOCK NAME "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "MSFT";
 
-    private static final String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
-    private static final String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
+    public static String MESSAGE_SUCCESS = "The price of the stock ";
+
+    public String firstURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
+    public String stock = "MSFT";
+    public String secondURL = "&apikey=Y6G36I3BIPQL5I2";
 
     private final Name name;
-
-    private String stock = "NFLX";
-
 
     public StockCommand(Name name) {
         this.name = name;
@@ -42,7 +48,6 @@ public class StockCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         double price = 0.0;
-        String successMessage = "";
         try {
             model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
             ObservableList<Entry> filteredList = model.getFilteredEntryList();
@@ -50,7 +55,7 @@ public class StockCommand extends Command {
             Double total = reportList.getTotal();
 
             stock = name.fullName;
-            String temp = firstUrl + stock + secondUrl;
+            String temp = firstURL + stock + secondURL;
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -72,15 +77,20 @@ public class StockCommand extends Command {
                 y -= 1;
             }
 
-
             if (full == null) {
-                successMessage = "Sorry, your input is not a valid stock.";
+                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock. Please try again.";
             } else if (full.length() < 30) {
-                successMessage = "Sorry, your input is not a valid stock.";
+                MESSAGE_SUCCESS = "Sorry, your input is not a valid stock. Please try again.";
             } else {
                 price = Float.parseFloat(full.substring(22, 30));
-                Double amount = (double) Math.round(price * 100.0) / 100.0;
-                successMessage = "The price of the stock " + name.fullName + " is $" + amount.toString() + ".";
+                Double printPrice = (double) Math.round(price * 100.0) / 100.0;
+
+                String first = "You are able to buy ";
+                Double amount = total/price;
+                amount = (double) Math.round(amount * 100.0) / 100.0;
+                String second = first + amount + " " + stock + " stock. ";
+
+                MESSAGE_SUCCESS = second + "The price of the stock " + name.fullName + " is $" + printPrice.toString() + ".";
             }
 
             conn.disconnect();
@@ -91,6 +101,6 @@ public class StockCommand extends Command {
             e.printStackTrace();
         }
 
-        return new CommandResult(successMessage);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
