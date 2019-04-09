@@ -19,7 +19,6 @@ public class JsonSerializableEntriesBookTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableEntriesBookTest");
     private static final Path TYPICAL_ENTRYS_FILE = TEST_DATA_FOLDER.resolve("typicalEntrysAddressBook.json");
     private static final Path INVALID_ENTRY_FILE = TEST_DATA_FOLDER.resolve("invalidEntryAddressBook.json");
-    private static final Path DUPLICATE_ENTRY_FILE = TEST_DATA_FOLDER.resolve("duplicateEntryAddressBook.json");
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -38,15 +37,6 @@ public class JsonSerializableEntriesBookTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_ENTRY_FILE,
                 JsonSerializableAddressBook.class).get();
         thrown.expect(IllegalValueException.class);
-        dataFromFile.toModelType();
-    }
-
-    @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ENTRY_FILE,
-                JsonSerializableAddressBook.class).get();
-        thrown.expect(IllegalValueException.class);
-        thrown.expectMessage(JsonSerializableAddressBook.MESSAGE_DUPLICATE_ENTRY);
         dataFromFile.toModelType();
     }
 

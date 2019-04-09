@@ -5,11 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.io.File;
 import java.io.IOException;
 
-import seedu.budgeteer.logic.PasswordCenter;
-import seedu.budgeteer.logic.PasswordAccepted;
 import seedu.budgeteer.commons.exceptions.WrongPasswordException;
 import seedu.budgeteer.commons.util.EncryptionUtil;
 import seedu.budgeteer.commons.util.FileUtil;
+import seedu.budgeteer.logic.PasswordAccepted;
+import seedu.budgeteer.logic.PasswordCenter;
 import seedu.budgeteer.model.UserPrefs;
 
 

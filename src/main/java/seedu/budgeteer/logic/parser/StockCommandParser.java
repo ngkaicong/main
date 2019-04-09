@@ -1,7 +1,7 @@
 package seedu.budgeteer.logic.parser;
 
 import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgeteer.logic.parser.CliSyntax.*;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
@@ -21,12 +21,13 @@ public class StockCommandParser implements Parser<StockCommand> {
      */
     public StockCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StockCommand.MESSAGE_USAGE));
         }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         return new StockCommand(name);
     }

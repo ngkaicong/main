@@ -93,10 +93,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + VALID_CASHFLOW_BOB ,
                 expectedMessage);
 
-        // missing budgeteer prefix
-        assertParseFailure(parser, NAME_DESC_BOB + DATE_DESC_BOB + CASHFLOW_DESC_BOB ,
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_DATE_BOB + VALID_CASHFLOW_BOB ,
                 expectedMessage);

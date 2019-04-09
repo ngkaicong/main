@@ -1,11 +1,11 @@
 package seedu.budgeteer.model.entry;
 
-
-import javafx.collections.ObservableList;
-import seedu.budgeteer.model.tag.Tag;
-
 import java.util.HashMap;
 import java.util.Set;
+
+import javafx.collections.ObservableList;
+
+import seedu.budgeteer.model.tag.Tag;
 
 
 /**
@@ -18,12 +18,12 @@ public class ReportEntryList {
     private Double total;
     private Double totalIncome;
     private Double totalExpense;
-    private ObservableList<Entry>  filteredEntries;
+    private ObservableList<Entry> filteredEntries;
     private HashMap<String, Double> expenseCompositionMap;
     private HashMap<String, Double> incomeCompositionMap;
     private double bitcoin;
 
-    public ReportEntryList(ObservableList<Entry>  filteredEntries) {
+    public ReportEntryList(ObservableList<Entry> filteredEntries) {
         this.total = 0.0;
         this.totalIncome = 0.0;
         this.totalExpense = 0.0;
@@ -47,9 +47,13 @@ public class ReportEntryList {
         return this.totalExpense;
     }
 
-    public HashMap<String, Double> getExpenseCompositionMap() { return this.expenseCompositionMap; }
+    public HashMap<String, Double> getExpenseCompositionMap() {
+        return this.expenseCompositionMap;
+    }
 
-    public HashMap<String, Double> getIncomeCompositionMap() { return this.incomeCompositionMap; }
+    public HashMap<String, Double> getIncomeCompositionMap() {
+        return this.incomeCompositionMap;
+    }
 
 
     /**
@@ -80,30 +84,27 @@ public class ReportEntryList {
             CashFlow icf = i.getCashFlow();
             Set<Tag> iTags = i.getTags();
             String tagStr = iTags.toString();
-            if (tagStr.equalsIgnoreCase("[]"))
+            if (tagStr.equalsIgnoreCase("[]")) {
                 tagStr = "Uncategorized";
+            }
             tagStr = tagStr.replaceAll("\\[", "").replaceAll("\\]", "");
 
             Double value = icf.valueDouble;
             total += value;
             if (value < 0) {
-                totalExpense +=  (-1 * value);
+                totalExpense += (-1 * value);
                 if (expenseComposition.containsKey(tagStr)) {
                     Double oldVal = expenseComposition.get(tagStr);
-                    expenseComposition.replace(tagStr, (oldVal + (-1*value)));
-                }
-                else {
+                    expenseComposition.replace(tagStr, (oldVal + (-1 * value)));
+                } else {
                     expenseComposition.put(tagStr, (-1 * value));
                 }
-            }
-
-            else {
+            } else {
                 totalIncome += value;
                 if (incomeComposition.containsKey(tagStr)) {
                     Double oldVal = incomeComposition.get(tagStr);
                     incomeComposition.replace(tagStr, (oldVal + value));
-                }
-                else {
+                } else {
                     incomeComposition.put(tagStr, value);
                 }
             }
@@ -112,37 +113,6 @@ public class ReportEntryList {
         this.incomeCompositionMap = incomeComposition;
         this.expenseCompositionMap = expenseComposition;
     }
-    /*
-    public Double getBitcoin() {
-        double price = 0.0;
-        try {
-            URL url = new URL("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=SGD");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
 
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
-            }
-
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-            String output = br.readLine();
-
-            price = Float.parseFloat(output.substring(14, 21));
-
-            Double amount = total / price;
-            price = (double) Math.round(amount * 100.0) / 100.0;
-
-            conn.disconnect();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return price;
-    }
-    */
 
 }
