@@ -1,14 +1,14 @@
 package seedu.budgeteer.logic.commands;
 
+import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
+
 import org.junit.Test;
 
 import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.ModelManager;
 import seedu.budgeteer.model.UserPrefs;
-
-import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
-import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
 
 public class BitcoinCommandTest {
 
