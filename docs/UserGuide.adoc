@@ -313,7 +313,7 @@ image::RI3.PNG[width="790"]
 *Screenshot of app displaying income breakdown when `report insight d/11-11-2018 12-12-2019` is run*
 
 image::RI4.PNG[width="790"]
-*Screenshot of app displaying expense breakdown when `report insight d/11-11-2018 12-12-2019` is run*
+*Screenshot of app displaying expense breakdown wgithen `report insight d/11-11-2018 12-12-2019` is run*
 
 // end::report insight[]
 
