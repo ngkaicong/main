@@ -22,6 +22,8 @@ public class BitcoinCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_HEADER = "You are able to buy ";
 
+//    public static String CURRENT_MESSAGE_SUCCESS = "";
+
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
@@ -43,6 +45,7 @@ public class BitcoinCommand extends Command {
 
         String currentPrice = " The current price of bitcoin is $" + roundOff + ".";
         successMessage = successMessage + currentPrice;
+//        CURRENT_MESSAGE_SUCCESS = successMessage;
         return new CommandResult(successMessage);
     }
 }
