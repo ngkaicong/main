@@ -494,6 +494,67 @@ Address book data are saved in the hard disk automatically after any command tha
 There is no need to save manually.
 
 
+
+=== Export the entry data from Budgeter to the Excel file: `export`
+
+Exports the entries into an Excel file. +
+
+There are 6 modes, default mode, single argument mode and dual argument mode (for Date) and single argument mode (Directory Path). +
+
+Format: +
+
+****
+* *Default mode* `export` will list down all entries in Budgeter and exports all of them to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
+
+* *Single argument Date mode* `export d/DATE` will list down all entries with the specified date and exports all shown entries to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
+
+* *Dual argument Date mode* `export d/START_DATE END_DATE` will list down all entries with the date that fall on either dates or between both dates and exports all shown entries to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
+
+* *Single argument Directory Path mode* `export dir/DIRECTORY_PATH` will list down all entries in Savee and exports all of them to an Excel file and store the file in the chosen Directory Path.
+
+* *Single argument Date mode + Single argument Directory path mode* `export d/DATE dir/DIRECTORY_PATH` will list down all entries with the specified date and exports all shown entries to an Excel file and store the file in the chosen Directory Path.
+
+* *Dual argument Date mode + Single argument Directory path mode* `export d/START_DATE END_DATE dir/DIRECTORY_PATH` will list down all entries with the date that fall on either dates or between both dates and exports all shown entries to an Excel file and store the file in the chosen Directory Path.
++
+****
+
+If the command is in *Dual argument Date mode*, START_DATE (the first `Date`) should be earlier than or equal to the END_DATE (the second `Date`). +
+Date should follow the same configurations as date parameters required when adding entries. It is in the form of *dd-mm-yyyy* where *dd* represents day, *mm* represents month and *yyyy* represents the year. *dd* and *mm* both require 1 to 2 digits while *yyyy* requires exactly 4 digits.
+
+The Excel file name will be named based on the command, relating to Date: +
+
+* *Default mode*: The Excel file will be named `ENTRIES_ALL.xlsx`
+* *Single argument Date mode*: The Excel file will be named `ENTRIES_dd-mm-yyyy.xlsx`
+* *Dual argument Date*: The Excel file will be named `ENTRIES_dd-mm-yyyy_dd-mm-yyyy.xlsx`
+
+If the Excel file with the same name and stored in same Directory exists, it will be overwritten. However, it *must* be closed before we enter the command.
+
+After you enter the `export` command, you should *wait for few seconds* for the Excel file to be written.
+
+Please note that `undo` and `redo` command can only affect Budgeter but the *not* the Excel file created, meaning that when you enter `undo` command after you enter the `export` command, the Budgeter will inform the user that *No more command to undo*, the entries remain the same and the Excel file created will *not* be deleted.
+
+Examples:
+
+* `export`
+* `export d/31-3-1999`
+* `export dir/C:\`
+* `export d/31-3-1999 31-03-2019`
+* `export d/31-3-1999 dir/C:\`
+* `export d/31-3-1999 31-3-2019 dir/C:\`
+
+
+There will be two sheets in the Excel file, namely *RECORD DATA* and *SUMMARY DATA*.
+
+* *RECORD DATA* stores all the data of entry the user want to export, there are 4 columns: Name, date, money and tags, the tags names will be separated by ..., for visual benefit.
+
+* *SUMMARY DATA* stored the summary statistics for the period you exported, and there is a *Line Chart* next to the table for visual statistic [refer to *Draw a line chart automatically inside the Excel sheet* part in *User guide* for more information].
+
+* As the size of the Chart is fixed initially. Sometimes, when user exports too many dates, the distance between each date on the chart might be tight. It is suggesting that the user justify the size of the chart by himself/herself.
+
+
+// end::exportexcel[]
+
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
@@ -527,3 +588,4 @@ e.g. `stock n/MSFT`
 * *Filter* : `filter`
 * *Display* : `display`
 * *Lock* : `lock`
+* *Export to Excel* : `export`
