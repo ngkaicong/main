@@ -1,5 +1,14 @@
 package seedu.budgeteer.logic.commands;
 
+import javafx.collections.ObservableList;
+import seedu.budgeteer.logic.CommandHistory;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.ReportEntryList;
+
+import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,6 +47,11 @@ public class StockCommand extends Command {
         double price = 0.0;
         String successMessage = "";
         try {
+            model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
+            ObservableList<Entry> filteredList = model.getFilteredEntryList();
+            ReportEntryList reportList = new ReportEntryList(filteredList);
+            Double total = reportList.getTotal();
+
             stock = name.fullName;
             String temp = firstUrl + stock + secondUrl;
             URL url = new URL(temp);
