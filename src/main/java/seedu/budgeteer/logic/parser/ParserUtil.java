@@ -107,7 +107,9 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
+    /**
+     * Parses {@code Directory Path} into a {@code DirectoryPath}
+     */
     public static String parseDirectoryString(String dirPath) throws ParseException {
         requireNonNull(dirPath);
         if (!DirectoryPath.isValidDirectory(dirPath)) {

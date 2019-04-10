@@ -10,8 +10,23 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.charts.*;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Chart;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.charts.AxisCrosses;
+import org.apache.poi.ss.usermodel.charts.AxisPosition;
+import org.apache.poi.ss.usermodel.charts.ChartAxis;
+import org.apache.poi.ss.usermodel.charts.ChartDataSource;
+import org.apache.poi.ss.usermodel.charts.ChartLegend;
+import org.apache.poi.ss.usermodel.charts.DataSources;
+import org.apache.poi.ss.usermodel.charts.LegendPosition;
+import org.apache.poi.ss.usermodel.charts.LineChartData;
+import org.apache.poi.ss.usermodel.charts.LineChartSeries;
+import org.apache.poi.ss.usermodel.charts.ValueAxis;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -252,7 +267,6 @@ public class ExcelUtil {
         writeDataIntoCell(startingRow, SECOND_COLUMN, INCOME_TITLE);
         writeDataIntoCell(startingRow, THIRD_COLUMN, OUTCOME_TITLE);
         writeDataIntoCell(startingRow, FOURTH_COLUMN, TOTAL_MONEY);
-        //daySummaryEntryList.sort(CompareUtil.compareTimeStampAttribute());
         for (SummaryEntry summaryEntry : daySummaryEntryList) {
             Row row = sheet.createRow(++rowNum);
             writeDataIntoCell(row, FIRST_COLUMN,
