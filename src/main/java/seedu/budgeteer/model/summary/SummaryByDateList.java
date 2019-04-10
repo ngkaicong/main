@@ -1,18 +1,21 @@
 package seedu.budgeteer.model.summary;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.budgeteer.commons.util.CompareUtil;
 import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Date;
 import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.ui.SummaryEntry;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * This class represents a list containing all Summary objects computed from a given list of records
