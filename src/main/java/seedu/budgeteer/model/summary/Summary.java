@@ -1,11 +1,11 @@
 package seedu.budgeteer.model.summary;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.budgeteer.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.budgeteer.commons.util.MoneyUtil;
 import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Entry;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.budgeteer.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * This class represents a summary in EntriesBook which records can be added to. Type T is the class of the

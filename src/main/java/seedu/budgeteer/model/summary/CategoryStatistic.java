@@ -1,10 +1,12 @@
 package seedu.budgeteer.model.summary;
 
+import java.util.Set;
+
 import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.tag.Tag;
 
-import java.util.Set;
+
 
 /**
  * This class represents a in memory model of the statistic of a category. It contains totalIncome and totalExpenses.

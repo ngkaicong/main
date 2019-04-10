@@ -1,15 +1,13 @@
 package seedu.budgeteer.model;
 
-import seedu.budgeteer.commons.core.LogsCenter;
-import seedu.budgeteer.commons.core.Messages;
+import static java.util.Objects.requireNonNull;
+import static seedu.budgeteer.commons.util.AppUtil.checkArgument;
 
 import java.io.File;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.budgeteer.commons.util.AppUtil.checkArgument;
-
-
+import seedu.budgeteer.commons.core.LogsCenter;
+import seedu.budgeteer.commons.core.Messages;
 /**
  * File path is used to store the preferable location to store the Excel File when user want to export the Data
  * in Excel or the user want to archive the data.

@@ -1,13 +1,13 @@
 package seedu.budgeteer.model.entry;
 
-import seedu.budgeteer.commons.core.LogsCenter;
+import static seedu.budgeteer.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.budgeteer.commons.util.DateUtil.isEarlierThan;
+import static seedu.budgeteer.commons.util.DateUtil.isLaterThan;
 
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import static seedu.budgeteer.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.budgeteer.commons.util.DateUtil.isEarlierThan;
-import static seedu.budgeteer.commons.util.DateUtil.isLaterThan;
+import seedu.budgeteer.commons.core.LogsCenter;
 
 /**
  * Tests that a {@code Entry}'s {@code Date} falls within the time interval from {@code startDate} to {@code endDate}
