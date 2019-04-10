@@ -626,7 +626,7 @@ Step 4. The resulting information is displayed to the user with a message.
 ** Pros: Will use less memory.
 ** Cons: If changes are made to the list of interested crypto assets, must make frequent calls.
 
-=== Export the entries from Budgeter to the Excel file.
+=== Export entries from Budgeter to Excel file.
 ==== Current implementation
 The export into excel file mechanism is facilitated by `ModelManager` with the help of `ExcelUtil`, the utility created to handle all methods relating to Excel. It represents an in-memory model of the Savee and is the component which manages the interactions between the commands, `ExcelUtil` and the `VersionedEntriesBook`. ExportExcelCommand calls `ModelManager#updateFilteredRecords` and passes in different predicates depending on the argument mode.
 The List<Record> is retrieved by calling `ModelManager#getFilteredRecordList`. Meanwhile, it also called `ModelManager#getEntriesBook` to get the `ReadOnlyEntriesBook`. The SummaryByDateList is constructed after the ReadOnlyEntriesBook together with the predicate are passed into the construction of SummaryByDateList. The List<SummaryEntry> is easily retrieved from SummaryByDateList by calling `SummaryByDateList#getSummaryList`. `ExcelUtil#setNameExcelFile` is called to make the Excel name based on the condition of startDate and endDate. After that, `ExcelUtil#setPathFile` is called to set the Path file, which is the location of the Excel file stored in future.
@@ -652,10 +652,6 @@ The `ExportExcelCommand` has four constructors which makes use of overloading to
 * The second constructor takes in 2 `Date` arguments and assigns the predicate `DateIsWithinDateIntervalPredicate` which will only show items within the date interval and the Directory path is *User's Working Directory*.
 * The third constructor takes in 1 `Directory Path` argument and assigns the predicate as `PREDICATE_SHOW_ALL_RECORDS`, which will show all items in the list and the Directory path is the entered directory path.
 * The fourth constructor takes in 1 `Directory Path` and 2 `Date` arguments and assigns the predicate as `DateIsWithinDateIntervalPredicate` which will only show items within the date interval and the Directory path is the entered Directory Path.
-
-The following sequence diagram shows how the list operation works:
-
-image::ExportExcelSequenceDiagram.png[width:800]
 
 If the Excel file with the same name and stored in same Directory exists, it will be overwritten. However, it *must* be closed before we enter the command. +
 
