@@ -14,8 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.budgeteer.model.EntriesBook;
-import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.Date;
+import seedu.budgeteer.model.entry.Entry;
+
 
 /**
  * A utility class containing a list of {@code Entry} objects to be used in tests.
