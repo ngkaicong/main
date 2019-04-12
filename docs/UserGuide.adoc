@@ -333,7 +333,7 @@ Coming soon
 //end::bitcoin[]
 
 
-// tag::lcok[]
+// tag::lock[]
 === Lock : `lock`
 
 Set a password for Budgeter to protect data entry, privacy and unwanted tampering.
