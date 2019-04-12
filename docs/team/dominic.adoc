@@ -58,12 +58,13 @@ the the entire user input and provide a variable range of suggestions. While it 
 performed its role successfully for most of the functions in our software.
 
 
-*_Minor Enhancement #2_*: ability to prevent tampering of data by locking it
+*_Minor Enhancement_#2*: ability to prevent tampering of data by locking it
+
 ** *Function*: it secures the application via passwords and data encryption
 ** *Highlights*: The implementation of a password not only provided a layer of security but a means to prove the identity of the user.
-It locks and encrypts the password that is cannot be viewed. he implementation of a password requires an extensive analysis of design alternatives.
+It locks and encrypts the password that is cannot be viewed. The implementation of a password requires an extensive analysis of design alternatives.
 ** *Justification*: Financial data is important as it reveals spending and earning pattern that can be sold to marketers. Needs to be protected.
-=
+
 
 === *Other Contributions*
 
