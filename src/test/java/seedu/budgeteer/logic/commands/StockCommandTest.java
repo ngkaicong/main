@@ -1,14 +1,15 @@
 package seedu.budgeteer.logic.commands;
 
+import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
+import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
+
 import org.junit.Test;
+
 import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.ModelManager;
 import seedu.budgeteer.model.UserPrefs;
 import seedu.budgeteer.model.entry.Name;
-
-import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
-import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 
 public class StockCommandTest {
 
