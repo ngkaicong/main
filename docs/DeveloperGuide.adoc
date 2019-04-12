@@ -395,7 +395,7 @@ Hence, the user has to know at least 1 exact detail( out of name, date, tags ) t
 
 // end::filter[]
 
-
+// tag::display[]
 === Display Entries Mechanism
 ==== Current Implementation
 The display command function is facilitated by `ModelManager`.
@@ -453,6 +453,7 @@ image::DisplaySeqDg.PNG[width:800]
 the read only data.
 ** Cons: Unable to sort a FilteredList as it does not support it, implementations could instead use SortedList but it
 will not be able to perform the filtering function
+// end::display[]
 
 // tag::encryption[]
 === Data Encryption
@@ -492,7 +493,7 @@ Replace files in library with Java Cryptography Extension (JCE) Unlimited Streng
 
 // end::encryption[]
 
-// tag::lock]
+// tag::lock[]
 === Lock feature
 
 ==== Current Implementation
@@ -534,8 +535,9 @@ image::lock.PNG[width="800"]
 ** Cons: Data folder with the password need to be locked with shell file otherwise it is accessible for developers
 
 
-//end:: report[]
+//end:: lock[]
 
+//tag:: report[]
 === Report feature
 
 ==== Current Implementation

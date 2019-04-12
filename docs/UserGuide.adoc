@@ -365,6 +365,7 @@ Returns your litecoin purchasing power, as well as the current price of litecoin
 
 //end::litecoin[]
 
+=======
 //tag:stock[]
 === Returns purchasing power regarding an inputted stock: `stock`
 
