@@ -83,7 +83,8 @@ public class StockCommand extends Command {
             } else if (full.length() < 30) {
                 messageReturn = "Sorry, your input is not a valid stock. Please try again.";
             } else {
-                price = Float.parseFloat(full.substring(22, 30));
+                System.out.println(full.substring(22, 28));
+                price = Float.parseFloat(full.substring(22, 28));
                 Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
                 String first = "You are able to buy ";
