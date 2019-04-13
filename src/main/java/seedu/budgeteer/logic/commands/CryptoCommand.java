@@ -51,7 +51,6 @@ public class CryptoCommand extends Command {
         String ret = "";
         try {
             String temp = firstUrl + name.fullName.toUpperCase() + secondUrl;
-            System.out.println(temp);
 
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -65,8 +64,6 @@ public class CryptoCommand extends Command {
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             ret = br.readLine();
-
-            System.out.println(ret);
 
             conn.disconnect();
 
@@ -93,20 +90,17 @@ public class CryptoCommand extends Command {
         if (full == null) {
             messageReturn = "Sorry, your input is not a valid cryptocurrency. Please try again.";
         } else {
-            System.out.println(full);
             full = full.substring(14);
-            System.out.println(full);
             full = full.substring(0, full.length()-2);
-            System.out.println(full);
             price = Float.parseFloat(full);
             Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
             String first = "You are able to buy ";
             Double amount = total / price;
             amount = (double) Math.round(amount * 100.0) / 100.0;
-            String second = first + amount + " " + name.fullName + " cryptocurrency. ";
+            String second = first + amount + " " + name.fullName.toUpperCase() + ". ";
 
-            messageReturn = second + "The price of the cryptocurrency " + name.fullName
+            messageReturn = second + "The price of the cryptocurrency " + name.fullName.toUpperCase()
                     + " is $" + printPrice.toString() + ".";
         }
 

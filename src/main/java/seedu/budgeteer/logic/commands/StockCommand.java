@@ -35,7 +35,6 @@ public class StockCommand extends Command {
     private static final String MESSAGE_SUCCESS = "The price of the stock ";
 
     private String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
-    private String stock = "MSFT";
     private String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
 
     private final Name name;
@@ -50,7 +49,7 @@ public class StockCommand extends Command {
     public String stockPrice() {
         String ret = "";
         try {
-            String temp = firstUrl + name.fullName + secondUrl;
+            String temp = firstUrl + name.fullName.toUpperCase() + secondUrl;
 
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -105,9 +104,9 @@ public class StockCommand extends Command {
             String first = "You are able to buy ";
             Double amount = total / price;
             amount = (double) Math.round(amount * 100.0) / 100.0;
-            String second = first + amount + " " + name.fullName + " stock. ";
+            String second = first + amount + " " + name.fullName.toUpperCase() + " stock. ";
 
-            messageReturn = second + "The price of the stock " + name.fullName
+            messageReturn = second + "The price of the stock " + name.fullName.toUpperCase()
                     + " is $" + printPrice.toString() + ".";
         }
 
