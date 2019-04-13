@@ -365,7 +365,6 @@ Returns your litecoin purchasing power, as well as the current price of litecoin
 
 //end::litecoin[]
 
-=======
 //tag:stock[]
 === Returns purchasing power regarding an inputted stock: `stock`
 
@@ -389,7 +388,6 @@ Returns your purchasing power of the stock for Netflix, as well as the current p
 Returns "Sorry, your input is not a valid stock. Please try again." as this is not a valid stock name
 
 //end::stock[]
-
 
 // tag::lock[]
 === Lock : `lock`
