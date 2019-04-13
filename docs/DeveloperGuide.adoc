@@ -612,6 +612,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
+// tag::crypto[]
 === Crypto Tracker
 ==== Current Implementation
 This feature will be a command facilitated by `BitcoinCommand`. It returns how much bitcoin you can buy with your current balance with real-time market prices.
@@ -640,6 +641,7 @@ Step 4. The resulting information is displayed to the user with a message.
 * **Alternative 2:** Only save the information of related crypto assets.
 ** Pros: Will use less memory.
 ** Cons: If changes are made to the list of interested crypto assets, must make frequent calls.
+// tag::crypto[]
 
 // tag::exportexcel[]
 === Export entries from Budgeteer to Excel file.
