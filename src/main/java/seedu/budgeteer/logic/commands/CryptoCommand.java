@@ -34,9 +34,9 @@ public class CryptoCommand extends Command {
 
     private static final String MESSAGE_SUCCESS = "The price of the cryptocurrency ";
 
-    private String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
+    private String firstUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=";
     private String crypto = "MSFT";
-    private String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
+    private String secondUrl = "&tsyms=SGD";
 
     private final Name name;
 
@@ -50,7 +50,8 @@ public class CryptoCommand extends Command {
     public String cryptoPrice() {
         String ret = "";
         try {
-            String temp = firstUrl + name.fullName + secondUrl;
+            String temp = firstUrl + name.fullName.toUpperCase() + secondUrl;
+            System.out.println(temp);
 
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -63,14 +64,9 @@ public class CryptoCommand extends Command {
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            ret = br.readLine();
 
-            String output;
-            int lineNumber = 7;
-            while (lineNumber > 0) {
-                output = br.readLine();
-                ret = output;
-                lineNumber -= 1;
-            }
+            System.out.println(ret);
 
             conn.disconnect();
 
@@ -96,10 +92,13 @@ public class CryptoCommand extends Command {
 
         if (full == null) {
             messageReturn = "Sorry, your input is not a valid cryptocurrency. Please try again.";
-        } else if (full.length() < 30) {
-            messageReturn = "Sorry, your input is not a valid cryptocurrency. Please try again.";
         } else {
-            price = Float.parseFloat(full.substring(22, 28));
+            System.out.println(full);
+            full = full.substring(14);
+            System.out.println(full);
+            full = full.substring(0, full.length()-2);
+            System.out.println(full);
+            price = Float.parseFloat(full);
             Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
             String first = "You are able to buy ";
