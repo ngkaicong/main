@@ -21,17 +21,15 @@ The application revolves around usage of the CLI to manage one's finances.
 
 *_Major enhancements_* : Feature to return purchasing power and price of an entered stock
 
-** `Reason for enhancement`: Some people are more familiar with using excel and prefer to see their finances on a spreadsheet. They may also want to store it somewhere outside of their current computer and keep it safe.
-** `Highlights`: This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
-** `My contributions`: This excel exporting command can take in six kinds of inputs, which is complex and thus requires a long time to debug and test.
-** `Credits`: Apache POI library was used to implement this feature.
+** `Reason for enhancement`: People who use Budgeteer responsibly to record earnings and costs may want to know about how to turn potential savings into stock investments. Rather than using a separate application to get stock prices and to calculate how much you can purchase, it's possible to access this information from the command line.
+** `Highlights`: The implementation required extensive use of the cashflow implementation, and required parsing information from an external API. I had to read the documentation of the API to figure out how to retrieve the data and implement a useful scenario for it.
+** `Credits`: The Alpha Vantage API was incorporated to implement this feature.
 
 *_Major enhancements_* : Feature to return purchasing power and price of an entered cryptocurrency
 
-** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeteer and still see a visual representation of their financial status.
-** `Highlights`:This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
-** `My contributions`: The line chart is automatically created after the budgeteer exports the data to the Excel file
-** `Credits`: Apache POI library was used to implement this feature.
+** `Reason for enhancement`: People who use Budgeteer responsibly to record earnings and costs may want to know about how to turn potential savings into cryptocurrency investments. Rather than using a separate application to get cryptocurrency prices and to calculate how much you can purchase, it's possible to access this information from the command line.
+** `Highlights`: The implementation required extensive use of the cashflow implementation, and required parsing information from an external API. I had to read the documentation of the API to figure out how to retrieve the data and implement a useful scenario for it.
+** `Credits`: The Crypto Compare API was incorporated to implement this feature.
 
 *_Major enhancements_* : Feature for rapid price returns of bitcoin, ethereum, and litecoin
 
@@ -55,7 +53,7 @@ The application revolves around usage of the CLI to manage one's finances.
 ** Wrote tests to increase coverage of the project
 
 * *_Tools_* :
-** Integrated a third party library to the project and the team repo
+** Incorporated the Alpha Vantage and Crypto Compare APIs into commands, and Reposense for contributions
 
 * *_Team Management_* :
 ** Coordinated some team meetings
