@@ -19,25 +19,26 @@ The application revolves around usage of the CLI to manage one's finances.
 
 == Summary of Contributions
 
-*_Major enhancements_* : Function to export data from budgeteer to excel file
+*_Major enhancements_* : Feature to return purchasing power and price of an entered stock
 
 ** `Reason for enhancement`: Some people are more familiar with using excel and prefer to see their finances on a spreadsheet. They may also want to store it somewhere outside of their current computer and keep it safe.
 ** `Highlights`: This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
 ** `My contributions`: This excel exporting command can take in six kinds of inputs, which is complex and thus requires a long time to debug and test.
 ** `Credits`: Apache POI library was used to implement this feature.
 
-*_Major enhancements_* : Added a feature to draw a line chart in the summary tab to track financials in Excel file.
+*_Major enhancements_* : Feature to return purchasing power and price of an entered cryptocurrency
 
 ** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeteer and still see a visual representation of their financial status.
 ** `Highlights`:This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
 ** `My contributions`: The line chart is automatically created after the budgeteer exports the data to the Excel file
 ** `Credits`: Apache POI library was used to implement this feature.
 
+*_Major enhancements_* : Feature for rapid price returns of bitcoin, ethereum, and litecoin
 
-Reason for enhancement: A line chart into Excel file will be drawn next to the summary data after executing the exportexcel or archive command. This line chart will offer the user a visual display of income, outcome and net financial status based on date.
-
-Highlights: : This major enhancement requires significant effort and time, as initially, the library is not included in Java 10 library, I have to read the documentation as well as learn how to utilize the library in the short time. Therefore, it is reasonable to consider this feature as advanced feature.
-
+** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeteer and still see a visual representation of their financial status.
+** `Highlights`:This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
+** `My contributions`: The line chart is automatically created after the budgeteer exports the data to the Excel file
+** `Credits`: Apache POI library was used to implement this feature.
 
 === *Other Contributions*
 
