@@ -33,7 +33,7 @@ image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
 
 Role: Developer +
-Responsibilities: Summary Features
+Responsibilities: Export Feature
 
 '''
 
