@@ -84,14 +84,14 @@ public class MainApp extends Application {
      * or an empty budgeteer book will be used instead if errors occur when reading {@code storage}'s budgeteer book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyEntriesBook> addressBookOptional;
+        Optional<ReadOnlyEntriesBook> entrieskOptional;
         ReadOnlyEntriesBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            entrieskOptional = storage.readEntriesBook();
+            if (!entrieskOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EntriesBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = entrieskOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty EntriesBook");
             initialData = new EntriesBook();

@@ -24,12 +24,12 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyEntriesBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyEntriesBook> readEntriesBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyEntriesBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyEntriesBook> readEntriesBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyEntriesBook} to the storage.
