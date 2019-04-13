@@ -44,18 +44,11 @@ public class StockCommand extends Command {
         this.name = name;
     }
 
-    @Override
-    public CommandResult execute(Model model, CommandHistory history) {
-        double price = 0.0;
-        String messageReturn = MESSAGE_SUCCESS;
+    public String stockPrice() {
+        String ret = "";
         try {
-            model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
-            ObservableList<Entry> filteredList = model.getFilteredEntryList();
-            ReportEntryList reportList = new ReportEntryList(filteredList);
-            Double total = reportList.getTotal();
+            String temp = firstUrl + name.fullName + secondUrl;
 
-            stock = name.fullName;
-            String temp = firstUrl + stock + secondUrl;
             URL url = new URL(temp);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -68,30 +61,12 @@ public class StockCommand extends Command {
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-            String full = "temp";
             String output;
-            int y = 7;
-            while (y > 0) {
+            int lineNumber = 7;
+            while (lineNumber > 0) {
                 output = br.readLine();
-                full = output;
-                y -= 1;
-            }
-
-            if (full == null) {
-                messageReturn = "Sorry, your input is not a valid stock. Please try again.";
-            } else if (full.length() < 30) {
-                messageReturn = "Sorry, your input is not a valid stock. Please try again.";
-            } else {
-                price = Float.parseFloat(full.substring(22, 28));
-                Double printPrice = (double) Math.round(price * 100.0) / 100.0;
-
-                String first = "You are able to buy ";
-                Double amount = total / price;
-                amount = (double) Math.round(amount * 100.0) / 100.0;
-                String second = first + amount + " " + stock + " stock. ";
-
-                messageReturn = second + "The price of the stock " + name.fullName
-                        + " is $" + printPrice.toString() + ".";
+                ret = output;
+                lineNumber -= 1;
             }
 
             conn.disconnect();
@@ -100,6 +75,37 @@ public class StockCommand extends Command {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return ret;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory history) {
+        double price;
+        String messageReturn;
+
+        model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
+        ObservableList<Entry> filteredList = model.getFilteredEntryList();
+        ReportEntryList reportList = new ReportEntryList(filteredList);
+        Double total = reportList.getTotal();
+
+        String full = stockPrice();
+
+        if (full == null) {
+            messageReturn = "Sorry, your input is not a valid stock. Please try again.";
+        } else if (full.length() < 30) {
+            messageReturn = "Sorry, your input is not a valid stock. Please try again.";
+        } else {
+            price = Float.parseFloat(full.substring(22, 28));
+            Double printPrice = (double) Math.round(price * 100.0) / 100.0;
+
+            String first = "You are able to buy ";
+            Double amount = total / price;
+            amount = (double) Math.round(amount * 100.0) / 100.0;
+            String second = first + amount + " " + name.fullName + " stock. ";
+
+            messageReturn = second + "The price of the stock " + name.fullName
+                    + " is $" + printPrice.toString() + ".";
         }
 
         return new CommandResult(messageReturn);
