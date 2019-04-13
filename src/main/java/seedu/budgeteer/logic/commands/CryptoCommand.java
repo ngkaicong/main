@@ -18,35 +18,36 @@ import seedu.budgeteer.model.entry.Name;
 import seedu.budgeteer.model.entry.ReportEntryList;
 
 /**
- * Returns how much stock you can buy at the current market price.
+ * Returns how much cryptocurrency you can buy at the current market price.
  */
-public class StockCommand extends Command {
+public class CryptoCommand extends Command {
 
-    public static final String COMMAND_WORD = "stock";
+    public static final String COMMAND_WORD = "crypto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain stock you can buy.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain "
+            + "cryptocurrency you can buy.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "STOCK NAME "
+            + PREFIX_NAME + "CRYPTOCURRENCY NAME "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "MSFT";
 
-    private static final String MESSAGE_SUCCESS = "The price of the stock ";
+    private static final String MESSAGE_SUCCESS = "The price of the cryptocurrency ";
 
-    private String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
-    private String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
+    private String firstUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=";
+    private String secondUrl = "&tsyms=SGD";
 
     private final Name name;
 
-    public StockCommand(Name name) {
+    public CryptoCommand(Name name) {
         this.name = name;
     }
 
     /**
-     * Function that calls the stock API and returns the JSON in string format
+     * Function that calls the crypto API and returns the JSON in string format
      */
-    public String stockPrice() {
+    public String cryptoPrice() {
         String ret = "";
         try {
             String temp = firstUrl + name.fullName.toUpperCase() + secondUrl;
@@ -62,14 +63,7 @@ public class StockCommand extends Command {
             }
 
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
-            String output;
-            int lineNumber = 7;
-            while (lineNumber > 0) {
-                output = br.readLine();
-                ret = output;
-                lineNumber -= 1;
-            }
+            ret = br.readLine();
 
             conn.disconnect();
 
@@ -91,22 +85,22 @@ public class StockCommand extends Command {
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();
 
-        String full = stockPrice();
+        String full = cryptoPrice();
 
         if (full == null) {
-            messageReturn = "Sorry, your input is not a valid stock. Please try again.";
-        } else if (full.length() < 30) {
-            messageReturn = "Sorry, your input is not a valid stock. Please try again.";
+            messageReturn = "Sorry, your input is not a valid cryptocurrency. Please try again.";
         } else {
-            price = Float.parseFloat(full.substring(22, 28));
+            full = full.substring(14);
+            full = full.substring(0, full.length() - 2);
+            price = Float.parseFloat(full);
             Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
             String first = "You are able to buy ";
             Double amount = total / price;
             amount = (double) Math.round(amount * 100.0) / 100.0;
-            String second = first + amount + " " + name.fullName.toUpperCase() + " stock. ";
+            String second = first + amount + " " + name.fullName.toUpperCase() + ". ";
 
-            messageReturn = second + "The price of the stock " + name.fullName.toUpperCase()
+            messageReturn = second + "The price of the cryptocurrency " + name.fullName.toUpperCase()
                     + " is $" + printPrice.toString() + ".";
         }
 
