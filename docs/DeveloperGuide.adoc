@@ -679,7 +679,8 @@ Please note that `undo` and `redo` command can only affect Budgeter but the *not
 === Draw a line chart automatically inside the Excel sheet
 ==== Current implementation
 
-This feature will automatically uses the the summary data from the `SUMMARY DATA` sheet in the Excel sheet after the command `archive` or `export_excel` is called. The feature mechanism is facilitated by `ExcelUtil`, the utility created to handle all methods relating to Excel. It is the component which manages the interactions between the ExportExcelCommand or the ArchiveCommand with `ExcelUtil#drawChart`.
+This feature will automatically uses the the summary data from the `SUMMARY DATA` sheet in the Excel sheet after the command `export` is typed by user.
+The feature mechanism is facilitated by `ExcelUtil`, which handles all methods related to Excel. It is the component which manages the interactions between the ExportExcelCommand with `ExcelUtil#drawChart`.
 
 // end::draw_line_chart[]
 == Documentation
