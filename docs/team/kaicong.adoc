@@ -41,8 +41,6 @@ Highlights: : This major enhancement requires significant effort and time, as in
 
 === *Other Contributions*
 
-** [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-12&timeframe=day&reverse=false&repoSort=true]
-
 * *_Project management_* :
 ** Raised milestones and organized the group to complete each milestones before deadline.
 ** Ensured that milestone objectives were met and submitted to relevant PRs to module repo
