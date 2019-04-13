@@ -1,0 +1,89 @@
+= Ng Kai Cong - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets/
+:stylesheet: gh-kaicong-pages.css
+
+
+== Project: 'Budgeteer' - A Desktop Financial Manager to track expenses and incomes so as to better understand savings and earnings for financial freedom
+
+== Overview
+
+=== Project & Product Information
+
+'Budgeteer' is a desktop financial planner application my team of 4 created for our Software Engineering Principles module.
+Our main project was to morph an existing code into any other software we opted to.
+
+Budgeteer has a command-line interface (CLI) and graphical user interface created using JavaFX. It is for users who enjoy typing to manage their finances responsibly using a desktop interface.
+The application revolves around usage of the CLI to manage one's finances.
+
+== Summary of Contributions
+
+*_Major enhancements_* : Function to export data from budgeteer to excel file
+
+** `Reason for enhancement`: Some people are more familiar with using excel and prefer to see their finances on a spreadsheet. They may also want to store it somewhere outside of their current computer and keep it safe.
+** `Highlights`: This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
+** `My contributions`: This excel exporting command can take in six kinds of inputs, which is complex and thus requires a long time to debug and test.
+** `Credits`: Apache POI library was used to implement this feature.
+
+*_Major enhancements_* : Added a feature to draw a line chart in the summary tab to track financials in Excel file.
+
+** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeteer and still see a visual representation of their financial status.
+** `Highlights`:This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
+** `My contributions`: The line chart is automatically created after the budgeteer exports the data to the Excel file
+** `Credits`: Apache POI library was used to implement this feature.
+
+
+Reason for enhancement: A line chart into Excel file will be drawn next to the summary data after executing the exportexcel or archive command. This line chart will offer the user a visual display of income, outcome and net financial status based on date.
+
+Highlights: : This major enhancement requires significant effort and time, as initially, the library is not included in Java 10 library, I have to read the documentation as well as learn how to utilize the library in the short time. Therefore, it is reasonable to consider this feature as advanced feature.
+
+
+=== *Other Contributions*
+
+** [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-12&timeframe=day&reverse=false&repoSort=true]
+
+* *_Project management_* :
+** Raised milestones and organized the group to complete each milestones before deadline.
+** Ensured that milestone objectives were met and submitted to relevant PRs to module repo
+** Support for issues tracker and PRs
+
+* *_Documentation_* :
+** Did cosmetic tweaks to existing contents of the User Guide and Developer Guide.
+** Proof-read, organised documentation to maintain its coherence.
+
+* *_Testing_*:
+** Wrote tests to increase coverage of the project
+
+* *_Tools_* :
+** Integrated a third party library to the project and the team repo
+
+* *_Team Management_* :
+** Coordinated some team meetings
+
+== Contributions to the User Guide
+
+|===
+|_Given below are sections I contributed to the <<../UserGuide, User Guide>>. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=lock]
+
+include::../UserGuide.adoc[tag=filter]
+
+include::../UserGuide.adoc[tag=display]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=CommandsUISupport]
+
+include::../DeveloperGuide.adoc[tag=lock]
+
+include::../DeveloperGuide.adoc[tag=filter]
+
+include::../DeveloperGuide.adoc[tag=display]
+

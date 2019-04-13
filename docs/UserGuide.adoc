@@ -493,7 +493,7 @@ Entries book data are saved in the hard disk automatically after any command tha
 There is no need to save manually.
 
 
-
+// tag::exportexcel[]
 === Export the entry data from Budgeter to the Excel file: `export`
 
 Exports the entries into an Excel file. +
@@ -541,10 +541,23 @@ Examples:
 * `export d/31-3-1999 dir/C:\`
 * `export d/31-3-1999 31-3-2019 dir/C:\`
 
-
 // end::exportexcel[]
 
+// tag::draw_line_chart[]
 
+=== Creates line chart automatically inside the Excel sheet : `Requires no command`
+
+Automatically takes the summary data from the *SUMMARY DATA* tab in the Excel sheet after the command `export` is called and creates an line chart.
+The screenshot below, in the *SUMMARY DATA* tab, shows the line chart.
+
+image::linechart.png[width="500"]
+
+* On the top left of the chart shows the legend with 3 lines, namely Income, Outcome, and Net.
+** The blue line shows the Income based on Date.
+** The orange line shows the Outcome based on Date
+** The grey line shows the Net (total of income and outcome) based on Date.
+
+// end::draw_line_chart[]
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
