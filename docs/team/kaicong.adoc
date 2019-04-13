@@ -67,11 +67,8 @@ Highlights: : This major enhancement requires significant effort and time, as in
 |_Given below are sections I contributed to the <<../UserGuide, User Guide>>. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=lock]
-
-include::../UserGuide.adoc[tag=filter]
-
-include::../UserGuide.adoc[tag=display]
+include::../UserGuide.adoc[tag=exportexcel]
+include::../UserGuide.adoc[tag=draw_line_chart]
 
 == Contributions to the Developer Guide
 
@@ -79,11 +76,5 @@ include::../UserGuide.adoc[tag=display]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=CommandsUISupport]
-
-include::../DeveloperGuide.adoc[tag=lock]
-
-include::../DeveloperGuide.adoc[tag=filter]
-
-include::../DeveloperGuide.adoc[tag=display]
-
+include::../DeveloperGuide.adoc[tag=exportexcel]
+include::../DeveloperGuide.adoc[tag=draw_line_chart]
