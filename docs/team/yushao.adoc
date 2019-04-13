@@ -1,0 +1,119 @@
+= Yu Shao - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets/
+:stylesheet: gh-yushao-pages.css
+:sectnums:
+
+== Project: 'Budgeteer' - A Desktop Financial Manager to track expenses and incomes so as to better understand savings and earnings for financial freedom
+
+== Overview
+
+=== Project & Product Information
+
+'Budgeteer' is a desktop financial planner application my team of 4 created for our Software Engineering Principles module.
+Our main project was to morph an existing code into any other software we opted to. We were evaluated based on our ability to work with existing base code and the quality of our new modifications to
+the existing code.
+
+Budgeteer has a command-line interface (CLI) and graphical user interface created using JavaFX. It is for users who enjoy typing to manage their finances responsibly using a desktop interface.
+The application revolves around usage of the CLI to manage one's finances. Users can store an `entry` consisting of
+`name`, `cashflow`, `date` and `tags` of any form of financial activity in the application.
+
+== Summary of Contributions
+
+*_Major enhancements_* : Morphed the AddressBook4 to Budgeteer.
+
+** `Reason for enhancement`: To enable Budgeteer to keep track of the financial income and expenses of the person.
+** `Highlights`: Time taken to read all 10 kLoc to understand and modify the code.
+** `My contributions`: Re-factored functions together with variables across classes to make the components compatible and consistent for the application.
+Managed to restructure some parts to make it more cohesive.
+
+*_Major Enhancement_*: Generation of report of entries in Budgeteer
+
+** *Function*: To provide the user with a report highlighting their total expenditure as well as income, the user is
+able to specify a date range to generate a report for only the entries that fall within the specified date range.
+
+** *Highlights*: Allows the user to have an overview of their total expenditure for the user to have a better idea of
+the percentage of their expenses as well as income.
+
+** *Justification*: Even though the application allows the user to add details of their expenses and income, there is
+no way for the users to get any insights of their expenditure and income. The report command thus provides the users a
+platform which allows them to obtain basic information of the percentage of their spending versus income for the
+specified time period
+
+*_Major Enhancement_*: Added optional insights for the report generation feature
+
+** *Function*: Allows the user to generate a more detailed report with additional insights.
+** *Highlights*: This feature improves the utility of the report feature by providing additional insights for the
+composition of the expenses and income for the user.
+
+** *Justification*: It allows the user to have additional information such as the composition of the income and
+expenses of the entries in the specified date period, and is categorised by the tags as set by the user.
+
+
+*_Minor Enhancement_#1*: Improved responsiveness of the Cryptocurrencies functions
+
+** *Function*: Allows the commands to get the amount of purchasable cryptocurrncies to be executed instantaneously.
+** *Highlights*: Improved the interactiveness of the app as there was a significant time lag due to the HTTP calls.
+This is done by fetching the prices only once per 15 minutes and storing them locally, which allows the prices to be
+fetched internally which allows the app to be more responsive.
+
+** *Justification*: This enhancement has been implemented with the aim of improving interactivity and responsiveness
+of the application.
+
+
+*_Minor Enhancement_#2*: ability to prevent tampering of data by locking it
+
+** *Function*: it secures the application via passwords and data encryption
+** *Highlights*: The implementation of a password not only provided a layer of security but a means to prove the identity of the user.
+It locks and encrypts the password that is cannot be viewed. The implementation of a password requires an extensive analysis of design alternatives.
+** *Justification*: Financial data is important as it reveals spending and earning pattern that can be sold to marketers. Needs to be protected.
+
+
+=== *Other Contributions*
+
+** [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-12&timeframe=day&reverse=false&repoSort=true]
+
+* *_Project management_* :
+** Raised milestones and organized the group to complete each milestones before deadline.
+** Ensured that milestone objectives were met and submitted to relevant PRs to module repo
+** Pushed jar releases onto the team repo.
+** Reviewed PRs to ensure that the incoming changes are coherent with the current upstream build.
+
+* *_Documentation_* :
+** Did cosmetic tweaks to existing contents of the User Guide and Developer Guide.
+** Proof-read, organised documentation to maintain its coherence.
+
+* *_Testing_*:
+** Modified a few test cases in order to ensure that it is still relevant to the morphed end product.
+
+* *_Tools_* :
+** Integrated a third party library to the project and the team repo
+
+* *_Debugging team members code_* :
+** Modified most of the team members' codes in order to pass the TravisCI build process.
+** Modified team members' codes to ensure that the style of implementation is the same in the project.
+
+* *_Team Management_* :
+** Coordinated with Dominic with the sourcing of venues for some of the team meetings
+** Ensured that team members meet feature deadlines set within the team
+
+== Contributions to the User Guide
+
+|===
+|_Given below are sections I contributed to the <<../UserGuide, User Guide>>. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=Report]
+
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=Report]
+
+
+
