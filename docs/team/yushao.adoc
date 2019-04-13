@@ -1,0 +1,6 @@
+= Yushao - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets/
+:stylesheet: gh-dominic-pages.css
+:sectnums:

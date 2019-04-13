@@ -18,6 +18,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SET = new Prefix("set/");
     public static final Prefix PREFIX_CHANGE = new Prefix("change/");
     public static final Prefix PREFIX_REMOVE = new Prefix("remove/");
+    public static final Prefix PREFIX_DIR = new Prefix("dir/");
 
 
 }

@@ -14,7 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.budgeteer.model.EntriesBook;
+import seedu.budgeteer.model.entry.Date;
 import seedu.budgeteer.model.entry.Entry;
+
 
 /**
  * A utility class containing a list of {@code Entry} objects to be used in tests.
@@ -35,6 +37,15 @@ public class TypicalEntrys {
             .withDate("20-12-2018").withCashFlow("-0.90").build();
     public static final Entry RANDOM = new EntryBuilder().withName("Random income").withDate("23-10-2018")
             .withCashFlow("+14.50").build();
+
+    public static final Date TYPICAL_START_DATE = new Date("25-9-2018");
+    public static final Date TYPICAL_END_DATE = new Date("26-9-2018");
+
+
+    public static final Date TYPICAL_START_DATE1 = new Date ("31-03-1999");
+    public static final Date TYPICAL_END_DATE1 = new Date ("1-4-1999");
+    public static final Date TYPICAL_START_FAR_DATE = new Date("1-1-0000");
+    public static final Date TYPICAL_END_FAR_DATE = new Date ("31-12-9999");
 
     // Manually added
     public static final Entry BURSARY = new EntryBuilder().withName("Income from bursary").withDate("31-03-2018")
