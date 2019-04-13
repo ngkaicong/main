@@ -80,6 +80,13 @@ public class EntriesBook implements ReadOnlyEntriesBook {
     }
 
     /**
+     * returns true if there are two limits share the same dates.
+     * @param limitin
+     * @return
+     */
+
+
+    /**
      * Replaces the given entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the budgeteer book.
      * The entry identity of {@code editedEntry} must not be the same as another existing entry in the budgeteer book.
@@ -148,4 +155,5 @@ public class EntriesBook implements ReadOnlyEntriesBook {
     public void sortEntrys(String category, Boolean ascending) {
         entrys.sortEntrys(category, ascending);
     }
+
 }

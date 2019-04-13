@@ -34,7 +34,7 @@ public class CashFlow {
     public final String value;
     public final Double valueDouble;
 
-    private CashFlow(String cashFlow) {
+    public CashFlow(String cashFlow) {
         requireNonNull(cashFlow);
         checkArgument(isValidMoneyFlow(cashFlow), MESSAGE_CONSTRAINTS);
         cashFlow = cashFlow.replace("$", "");

@@ -15,6 +15,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRYS = unused -> true;
 
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

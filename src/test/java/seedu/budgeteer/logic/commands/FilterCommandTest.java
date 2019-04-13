@@ -58,7 +58,6 @@ public class FilterCommandTest {
 
         // same object -> returns true
         assertTrue(findFirstDateCommand.equals(findFirstDateCommand));
-
         // same object -> returns true
         assertTrue(findFirstCashFlowCommand.equals(findFirstCashFlowCommand));
 
@@ -94,7 +93,6 @@ public class FilterCommandTest {
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
 
     }
-
     @Test
     public void execute_findMalaByName_oneEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRYS_LISTED_OVERVIEW, 1);
@@ -209,7 +207,6 @@ public class FilterCommandTest {
 
         return new CashFlowContainsSpecifiedKeywordsPredicate(Arrays.asList(inputString.split("\\s+")));
     }
-
 
     /**
      * Creates a new FilterCommand using {@code TagContainsSpecifiedKeywordsPredicate}

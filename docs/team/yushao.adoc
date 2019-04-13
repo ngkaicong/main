@@ -114,6 +114,3 @@ include::../UserGuide.adoc[tag=Report]
 |===
 
 include::../DeveloperGuide.adoc[tag=Report]
-
-
-

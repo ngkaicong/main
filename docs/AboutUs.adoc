@@ -4,7 +4,7 @@
 :imagesDir: images
 :stylesDir: stylesheets
 
-Budgeter was developed by T11/3.
+Budgeteer was developed by T11/3.
 
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
@@ -15,7 +15,7 @@ image::yushao2.png[width="150", align="left"]
 {empty}[https://github.com/yushao2[github]]
 
 Role: Developer +
-Respobsibilities:
+
 
 '''
 
@@ -24,7 +24,7 @@ image::frankquekch.png[width="150", align="left"]
 {empty}[http://github.com/frankquekch[github]]
 
 Role: Developer +
-Responsibilities:
+
 
 '''
 
@@ -33,7 +33,7 @@ image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
 
 Role: Developer +
-Responsibilities: Summary Features
+
 
 '''
 
@@ -42,7 +42,7 @@ image::jacobhan.png[width="150", align="left"]
 {empty}[http://github.com/jacobhan[github]]
 
 Role: Developer +
-Responsibilities: TBC
+
 
 '''
 
