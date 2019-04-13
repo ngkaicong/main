@@ -24,8 +24,8 @@ public class CryptoCommand extends Command {
 
     public static final String COMMAND_WORD = "crypto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain " +
-            "cryptocurrency you can buy.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays how much of a certain "
+            + "cryptocurrency you can buy.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
