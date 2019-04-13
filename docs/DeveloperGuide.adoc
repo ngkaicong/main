@@ -641,7 +641,8 @@ Step 4. The resulting information is displayed to the user with a message.
 ** Pros: Will use less memory.
 ** Cons: If changes are made to the list of interested crypto assets, must make frequent calls.
 
-=== Export entries from Budgeter to Excel file.
+// tag::exportexcel[]
+=== Export entries from Budgeteer to Excel file.
 ==== Current implementation
 The export into excel file mechanism is facilitated by `ModelManager` with the help of `ExcelUtil`, the utility created to handle all methods relating to Excel. It represents an in-memory model of the Savee and is the component which manages the interactions between the commands, `ExcelUtil` and the `VersionedEntriesBook`. ExportExcelCommand calls `ModelManager#updateFilteredRecords` and passes in different predicates depending on the argument mode.
 The List<Record> is retrieved by calling `ModelManager#getFilteredRecordList`. Meanwhile, it also called `ModelManager#getEntriesBook` to get the `ReadOnlyEntriesBook`. The SummaryByDateList is constructed after the ReadOnlyEntriesBook together with the predicate are passed into the construction of SummaryByDateList. The List<SummaryEntry> is easily retrieved from SummaryByDateList by calling `SummaryByDateList#getSummaryList`. `ExcelUtil#setNameExcelFile` is called to make the Excel name based on the condition of startDate and endDate. After that, `ExcelUtil#setPathFile` is called to set the Path file, which is the location of the Excel file stored in future.
@@ -671,8 +672,16 @@ The `ExportExcelCommand` has four constructors which makes use of overloading to
 If the Excel file with the same name and stored in same Directory exists, it will be overwritten. However, it *must* be closed before we enter the command. +
 
 Please note that `undo` and `redo` command can only affect Budgeter but the *not* the Excel file created, meaning that when you enter `undo` command after you enter the `export` command, Budgeter will inform the user that *No more command to undo*, the entries remain the same and the Excel file created will *not* be deleted.
+// end::exportexcel[]
 
+// tag::draw_line_chart[]
 
+=== Draw a line chart automatically inside the Excel sheet
+==== Current implementation
+
+This feature will automatically uses the the summary data from the `SUMMARY DATA` sheet in the Excel sheet after the command `archive` or `export_excel` is called. The feature mechanism is facilitated by `ExcelUtil`, the utility created to handle all methods relating to Excel. It is the component which manages the interactions between the ExportExcelCommand or the ArchiveCommand with `ExcelUtil#drawChart`.
+
+// end::draw_line_chart[]
 == Documentation
 
 We use asciidoc for writing documentation.
