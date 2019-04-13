@@ -1,11 +1,7 @@
 package seedu.budgeteer.logic.commands;
 
-import javafx.collections.ObservableList;
-import seedu.budgeteer.logic.CommandHistory;
-import seedu.budgeteer.model.Model;
-import seedu.budgeteer.model.entry.Entry;
-import seedu.budgeteer.model.entry.Name;
-import seedu.budgeteer.model.entry.ReportEntryList;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,8 +10,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.budgeteer.model.Model.PREDICATE_SHOW_ALL_ENTRYS;
+import javafx.collections.ObservableList;
+import seedu.budgeteer.logic.CommandHistory;
+import seedu.budgeteer.model.Model;
+import seedu.budgeteer.model.entry.Entry;
+import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.ReportEntryList;
 
 /**
  * Returns how much cryptocurrency you can buy at the current market price.
@@ -91,7 +91,7 @@ public class CryptoCommand extends Command {
             messageReturn = "Sorry, your input is not a valid cryptocurrency. Please try again.";
         } else {
             full = full.substring(14);
-            full = full.substring(0, full.length()-2);
+            full = full.substring(0, full.length() - 2);
             price = Float.parseFloat(full);
             Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 

@@ -152,7 +152,7 @@ public class CryptoUtil {
             BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
             String output = br.readLine();
             output = output.substring(14);
-            output = output.substring(0, output.length()-2);
+            output = output.substring(0, output.length() - 2);
             price = Float.parseFloat(output);
 
             conn.disconnect();
