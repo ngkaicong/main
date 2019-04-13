@@ -6,29 +6,28 @@ import static seedu.budgeteer.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-import seedu.budgeteer.logic.commands.Command;
-import seedu.budgeteer.logic.commands.HelpCommand;
 import seedu.budgeteer.logic.commands.AddCommand;
-import seedu.budgeteer.logic.commands.EditCommand;
-import seedu.budgeteer.logic.commands.SelectCommand;
-import seedu.budgeteer.logic.commands.DeleteCommand;
-import seedu.budgeteer.logic.commands.ClearCommand;
-import seedu.budgeteer.logic.commands.FindCommand;
-import seedu.budgeteer.logic.commands.ListCommand;
-import seedu.budgeteer.logic.commands.DisplayCommand;
-import seedu.budgeteer.logic.commands.HistoryCommand;
 import seedu.budgeteer.logic.commands.BitcoinCommand;
-import seedu.budgeteer.logic.commands.EthereumCommand;
-import seedu.budgeteer.logic.commands.LitecoinCommand;
-import seedu.budgeteer.logic.commands.StockCommand;
+import seedu.budgeteer.logic.commands.ClearCommand;
 import seedu.budgeteer.logic.commands.CryptoCommand;
+import seedu.budgeteer.logic.commands.Command;
+import seedu.budgeteer.logic.commands.DeleteCommand;
+import seedu.budgeteer.logic.commands.DisplayCommand;
+import seedu.budgeteer.logic.commands.EditCommand;
+import seedu.budgeteer.logic.commands.EthereumCommand;
 import seedu.budgeteer.logic.commands.ExitCommand;
-import seedu.budgeteer.logic.commands.UndoCommand;
-import seedu.budgeteer.logic.commands.RedoCommand;
 import seedu.budgeteer.logic.commands.FilterCommand;
-import seedu.budgeteer.logic.commands.ReportCommand;
+import seedu.budgeteer.logic.commands.FindCommand;
+import seedu.budgeteer.logic.commands.HelpCommand;
+import seedu.budgeteer.logic.commands.HistoryCommand;
+import seedu.budgeteer.logic.commands.ListCommand;
+import seedu.budgeteer.logic.commands.LitecoinCommand;
 import seedu.budgeteer.logic.commands.LockCommand;
+import seedu.budgeteer.logic.commands.RedoCommand;
+import seedu.budgeteer.logic.commands.ReportCommand;
+import seedu.budgeteer.logic.commands.SelectCommand;
+import seedu.budgeteer.logic.commands.StockCommand;
+import seedu.budgeteer.logic.commands.UndoCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
 
 /**
