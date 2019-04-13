@@ -66,6 +66,7 @@ Highlights: : This major enhancement requires significant effort and time, as in
 |===
 
 include::../UserGuide.adoc[tag=exportexcel]
+
 include::../UserGuide.adoc[tag=draw_line_chart]
 
 == Contributions to the Developer Guide
@@ -75,4 +76,5 @@ include::../UserGuide.adoc[tag=draw_line_chart]
 |===
 
 include::../DeveloperGuide.adoc[tag=exportexcel]
+
 include::../DeveloperGuide.adoc[tag=draw_line_chart]
