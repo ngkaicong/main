@@ -17,7 +17,6 @@ import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.Name;
 import seedu.budgeteer.model.entry.ReportEntryList;
 
-
 /**
  * Returns how much stock you can buy at the current market price.
  */
@@ -83,7 +82,6 @@ public class StockCommand extends Command {
             } else if (full.length() < 30) {
                 messageReturn = "Sorry, your input is not a valid stock. Please try again.";
             } else {
-                System.out.println(full.substring(22, 28));
                 price = Float.parseFloat(full.substring(22, 28));
                 Double printPrice = (double) Math.round(price * 100.0) / 100.0;
 
