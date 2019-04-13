@@ -31,12 +31,9 @@ The application revolves around usage of the CLI to manage one's finances.
 ** `Highlights`: The implementation required extensive use of the cashflow implementation, and required parsing information from an external API. I had to read the documentation of the API to figure out how to retrieve the data and implement a useful scenario for it.
 ** `Credits`: The Crypto Compare API was incorporated to implement this feature.
 
-*_Major enhancements_* : Feature for rapid price returns of bitcoin, ethereum, and litecoin
+*_Major enhancements_* : Feature for price returns of bitcoin, ethereum, and litecoin
 
-** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeteer and still see a visual representation of their financial status.
-** `Highlights`:This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
-** `My contributions`: The line chart is automatically created after the budgeteer exports the data to the Excel file
-** `Credits`: Apache POI library was used to implement this feature.
+** `Credits`: The Crypto Compare API was incorporated to implement this feature.
 
 === *Other Contributions*
 
