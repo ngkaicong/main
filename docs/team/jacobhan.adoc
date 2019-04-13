@@ -64,9 +64,15 @@ The application revolves around usage of the CLI to manage one's finances.
 |_Given below are sections I contributed to the <<../UserGuide, User Guide>>. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=exportexcel]
+include::../UserGuide.adoc[tag=bitcoin]
 
-include::../UserGuide.adoc[tag=draw_line_chart]
+include::../UserGuide.adoc[tag=ethereum]
+
+include::../UserGuide.adoc[tag=litecoin]
+
+include::../UserGuide.adoc[tag=stock]
+
+include::../UserGuide.adoc[tag=crypto]
 
 == Contributions to the Developer Guide
 
