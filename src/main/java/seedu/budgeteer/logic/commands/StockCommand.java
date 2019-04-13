@@ -44,6 +44,9 @@ public class StockCommand extends Command {
         this.name = name;
     }
 
+    /**
+     * Function that calls the stock API and returns the JSON in string format
+     */
     public String stockPrice() {
         String ret = "";
         try {
