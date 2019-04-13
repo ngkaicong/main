@@ -365,6 +365,30 @@ Returns your litecoin purchasing power, as well as the current price of litecoin
 
 //end::litecoin[]
 
+//tag:crypto[]
+=== Returns purchasing power regarding an inputted crypto: `crypto`
+
+Returns how much cryptocurrency you can buy with your current balance with real-time market prices. +
+Format: `crypto n/NAME"
+
+[NOTE]
+====
+* Lower and upper case do not matter when inputting cryptocurrency names. Calling 'cryptocurrency' with an invalid cryptocurrency name will return "Sorry, your input is not a valid cryptocurrency. Please try again."
+====
+
+Examples:
+
+* `crypto n/BTC` +
+Returns your purchasing power of the cryptocurrency Bitcoin, as well as the current price of cryptocurrency. +
+
+* `crypto n/XRP` +
+Returns your purchasing power of the cryptocurrency Ripple, as well as the current price of cryptocurrency. +
+
+* `crypto n/asdfasdf` +
+Returns "Sorry, your input is not a valid cryptocurrency. Please try again." as this is not a valid cryptocurrency name
+
+//end::crypto[]
+
 //tag:stock[]
 === Returns purchasing power regarding an inputted stock: `stock`
 

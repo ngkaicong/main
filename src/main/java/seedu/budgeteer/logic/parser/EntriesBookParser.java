@@ -6,8 +6,8 @@ import static seedu.budgeteer.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.budgeteer.logic.commands.*;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
+import seedu.budgeteer.logic.commands.*;
 
 /**
  * Parses user input.

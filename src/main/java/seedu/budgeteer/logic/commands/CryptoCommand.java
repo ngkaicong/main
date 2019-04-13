@@ -36,7 +36,6 @@ public class CryptoCommand extends Command {
     private static final String MESSAGE_SUCCESS = "The price of the cryptocurrency ";
 
     private String firstUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=";
-    private String crypto = "MSFT";
     private String secondUrl = "&tsyms=SGD";
 
     private final Name name;
