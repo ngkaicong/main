@@ -19,18 +19,30 @@ public class StockCommandTest {
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
-        Name temp = new Name("msft");
 
-        assertCommandSuccessWithoutString(new StockCommand(temp), model, commandHistory, expectedModel);
+        Name letters = new Name("msft");
+        assertCommandSuccessWithoutString(new StockCommand(letters), model, commandHistory, expectedModel);
+
+        Name numbers = new Name("1234");
+        assertCommandSuccessWithoutString(new StockCommand(numbers), model, commandHistory, expectedModel);
+
+        Name both = new Name("a1b2");
+        assertCommandSuccessWithoutString(new StockCommand(both), model, commandHistory, expectedModel);
     }
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Name temp = new Name("msft");
 
-        assertCommandSuccessWithoutString(new StockCommand(temp), model, commandHistory, expectedModel);
+        Name letters = new Name("msft");
+        assertCommandSuccessWithoutString(new StockCommand(letters), model, commandHistory, expectedModel);
+
+        Name numbers = new Name("1234");
+        assertCommandSuccessWithoutString(new StockCommand(numbers), model, commandHistory, expectedModel);
+
+        Name both = new Name("a1b2");
+        assertCommandSuccessWithoutString(new StockCommand(both), model, commandHistory, expectedModel);
     }
 
 }
