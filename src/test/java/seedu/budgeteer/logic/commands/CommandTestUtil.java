@@ -127,31 +127,6 @@ public class CommandTestUtil {
         }
     }
 
-//    /**
-//     * Executes the given {@code command}, confirms that <br>
-//     * - a {@code CommandException} is thrown <br>
-//     * - the CommandException message matches {@code expectedMessage} <br>
-//     * - the budgeteer book and the filtered entry list in the {@code actualModel} remain unchanged <br>
-//     * - {@code actualCommandHistory} remains unchanged.
-//     */
-//    public static void assertCommandFailureWithoutString(Command command, Model actualModel, CommandHistory actualCommandHistory) {
-//        // we are unable to defensively copy the model for comparison later, so we can
-//        // only do so by copying its components.
-//        EntriesBook expectedEntriesBook = new EntriesBook(actualModel.getAddressBook());
-//        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEntryList());
-//
-//        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
-//
-//        try {
-//            command.execute(actualModel, actualCommandHistory);
-//            throw new AssertionError("The expected CommandException was not thrown.");
-//        } catch (CommandException e) {
-//            assertEquals(expectedEntriesBook, actualModel.getAddressBook());
-//            assertEquals(expectedFilteredList, actualModel.getFilteredEntryList());
-//            assertEquals(expectedCommandHistory, actualCommandHistory);
-//        }
-//    }
-
     /**
      * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
      * {@code model}'s budgeteer book.
