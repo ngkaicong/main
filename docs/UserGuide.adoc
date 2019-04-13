@@ -324,7 +324,8 @@ Returns how much bitcoin you can buy with your current balance with real-time ma
 Format: `bitcoin`
 
 [NOTE]
-Calling 'bitcoin' without any entries will just return 0 as you don't have a balance, as well as the current price of bitcoin.
+Calling 'bitcoin' without any entries will just return 0 as you don't have a balance yet. However, it will still return
+the current price of bitcoin.
 
 Examples:
 
@@ -340,7 +341,8 @@ Returns how much ethereum you can buy with your current balance with real-time m
 Format: `ethereum`
 
 [NOTE]
-Calling 'ethereum' without any entries will just return 0 as you don't have a balance, as well as the current price of ethereum.
+Calling 'ethereum' without any entries will just return 0 as you don't have a balance yet. However, it will still return
+the current price of ethereum.
 
 Examples:
 
@@ -356,7 +358,8 @@ Returns how much litecoin you can buy with your current balance with real-time m
 Format: `litecoin`
 
 [NOTE]
-Calling 'litecoin' without any entries will just return 0 as you don't have a balance, as well as the current price of litecoin.
+Calling 'litecoin' without any entries will just return 0 as you don't have a balance yet. However, it will still return
+the current price of litecoin.
 
 Examples:
 
@@ -371,18 +374,19 @@ Returns your litecoin purchasing power, as well as the current price of litecoin
 Returns how much cryptocurrency you can buy with your current balance with real-time market prices. +
 Format: `crypto n/NAME"
 
+[TIP]
+Lower and upper case do not matter when inputting cryptocurrency names.
+
 [NOTE]
-====
-* Lower and upper case do not matter when inputting cryptocurrency names. Calling 'cryptocurrency' with an invalid cryptocurrency name will return "Sorry, your input is not a valid cryptocurrency. Please try again."
-====
+Calling 'cryptocurrency' with an invalid cryptocurrency name will return "Sorry, your input is not a valid cryptocurrency. Please try again."
 
 Examples:
 
 * `crypto n/BTC` +
-Returns your purchasing power of the cryptocurrency Bitcoin, as well as the current price of cryptocurrency. +
+Returns your purchasing power of the cryptocurrency Bitcoin, as well as the current price of the cryptocurrency. +
 
-* `crypto n/XRP` +
-Returns your purchasing power of the cryptocurrency Ripple, as well as the current price of cryptocurrency. +
+* `crypto n/xrp` +
+Returns your purchasing power of the cryptocurrency Ripple, as well as the current price of the cryptocurrency. +
 
 * `crypto n/asdfasdf` +
 Returns "Sorry, your input is not a valid cryptocurrency. Please try again." as this is not a valid cryptocurrency name
@@ -395,10 +399,11 @@ Returns "Sorry, your input is not a valid cryptocurrency. Please try again." as 
 Returns how much stock you can buy with your current balance with real-time market prices. +
 Format: `stock n/NAME"
 
+[TIP]
+Lower and upper case do not matter when inputting the stock names.
+
 [NOTE]
-====
-* Lower and upper case do not matter when inputting the stock names. Calling 'stock' with an invalid stock name will return "Sorry, your input is not a valid stock. Please try again."
-====
+Calling 'stock' with an invalid stock name will return "Sorry, your input is not a valid stock. Please try again."
 
 Examples:
 
