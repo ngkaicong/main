@@ -1,13 +1,13 @@
 package seedu.budgeteer.logic.parser;
 
-import seedu.budgeteer.logic.commands.CryptoCommand;
-import seedu.budgeteer.logic.parser.exceptions.ParseException;
-import seedu.budgeteer.model.entry.Name;
+import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_NAME;
+import seedu.budgeteer.logic.commands.CryptoCommand;
+import seedu.budgeteer.logic.parser.exceptions.ParseException;
+import seedu.budgeteer.model.entry.Name;
 
 /**
  * Parses input arguments and creates a new FindCommand object
