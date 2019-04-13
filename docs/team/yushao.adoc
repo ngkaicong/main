@@ -116,6 +116,7 @@ include::../UserGuide.adoc[tag=Report]
 include::../DeveloperGuide.adoc[tag=Report]
 
 
+<<<<<<< HEAD
 
 =======
 = Yushao - Project Portfolio
@@ -128,3 +129,5 @@ include::../DeveloperGuide.adoc[tag=Report]
 =======
 >>>>>>> ee919029a88cd056f30893120c0d2bed20703fe0
 >>>>>>> 386380100ca94c5691649811d037cc376af8713f
+=======
+>>>>>>> 34580cbae0f778f0a3bd54e7a393ce4ce15af3f8
