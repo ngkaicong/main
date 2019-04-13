@@ -317,7 +317,7 @@ image::RI4.PNG[width="790"]
 
 // end::report insight[]
 
-//tag:bitcoin[]
+// tag::bitcoin[]
 === Returns purchasing power regarding bitcoin: `bitcoin`
 
 Returns how much bitcoin you can buy with your current balance with real-time market prices. +
@@ -332,9 +332,9 @@ Examples:
 * `bitcoin` +
 Returns your bitcoin purchasing power, as well as the current price of bitcoin in SGD.
 
-//end::bitcoin[]
+// end::bitcoin[]
 
-//tag:ethereum[]
+// tag::ethereum[]
 === Returns purchasing power regarding ethereum: `ethereum`
 
 Returns how much ethereum you can buy with your current balance with real-time market prices. +
@@ -349,9 +349,9 @@ Examples:
 * `ethereum` +
 Returns your ethereum purchasing power, as well as the current price of ethereum in SGD.
 
-//end::ethereum[]
+// end::ethereum[]
 
-//tag:litecoin[]
+// tag::litecoin[]
 === Returns purchasing power regarding litecoin: `litecoin`
 
 Returns how much litecoin you can buy with your current balance with real-time market prices. +
@@ -366,9 +366,9 @@ Examples:
 * `litecoin` +
 Returns your litecoin purchasing power, as well as the current price of litecoin in SGD.
 
-//end::litecoin[]
+// end::litecoin[]
 
-//tag:crypto[]
+// tag::crypto[]
 === Returns purchasing power regarding an inputted crypto: `crypto`
 
 Returns how much cryptocurrency you can buy with your current balance with real-time market prices. +
@@ -391,9 +391,9 @@ Returns your purchasing power of the cryptocurrency Ripple, as well as the curre
 * `crypto n/asdfasdf` +
 Returns "Sorry, your input is not a valid cryptocurrency. Please try again." as this is not a valid cryptocurrency name
 
-//end::crypto[]
+// end::crypto[]
 
-//tag:stock[]
+// tag::stock[]
 === Returns purchasing power regarding an inputted stock: `stock`
 
 Returns how much stock you can buy with your current balance with real-time market prices. +
@@ -416,7 +416,7 @@ Returns your purchasing power of the stock for Netflix, as well as the current p
 * `stock n/asdfasdf` +
 Returns "Sorry, your input is not a valid stock. Please try again." as this is not a valid stock name
 
-//end::stock[]
+// end::stock[]
 
 // tag::lock[]
 === Lock : `lock`
