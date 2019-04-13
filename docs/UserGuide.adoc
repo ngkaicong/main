@@ -608,6 +608,8 @@ e.g.`select 2`
 * *Litecoin* : `litecoin`
 * *Stock* `stock n/NAME` +
 e.g. `stock n/MSFT`
+* *Crypto* `crypto n/NAME` +
+e.g. `crypto n/XRP`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Report* : `report`
