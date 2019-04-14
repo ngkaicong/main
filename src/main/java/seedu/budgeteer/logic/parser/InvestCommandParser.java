@@ -13,6 +13,7 @@ import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Date;
 import seedu.budgeteer.model.entry.Entry;
 import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.Number;
 import seedu.budgeteer.model.tag.Tag;
 
 /**
@@ -34,10 +35,10 @@ public class InvestCommandParser implements Parser<InvestCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InvestCommand.MESSAGE_USAGE));
         }
 
-        Name interest = ParserUtil.parseName(argMultimap.getValue(PREFIX_INTEREST).get());
-        Name year = ParserUtil.parseName(argMultimap.getValue(PREFIX_YEARS).get());
+        Number interest = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_INTEREST).get());
+        Number year = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_YEARS).get());
 
-        Name temp = new Name(interest.fullName + " " + year.fullName);
+        Number temp = new Number(interest.fullNumber + " " + year.fullNumber);
 
         return new InvestCommand(temp);
     }

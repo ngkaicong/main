@@ -14,6 +14,7 @@ import seedu.budgeteer.model.DirectoryPath;
 import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Date;
 import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.Number;
 import seedu.budgeteer.model.tag.Tag;
 
 /**
@@ -49,6 +50,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Number parseNumber(String num) throws ParseException {
+        requireNonNull(num);
+        String trimmedName = num.trim();
+        if (!Number.isValidNumber(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Number(trimmedName);
     }
 
     /**

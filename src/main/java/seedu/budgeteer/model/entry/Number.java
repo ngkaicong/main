@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgeteer.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Entry's name in the budgeteer book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Entry's number in the budgeteer book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNumber(String)}
  */
 public class Number {
 
@@ -21,20 +21,20 @@ public class Number {
     public final String fullNumber;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Number}.
      *
      * @param number A valid number.
      */
     public Number(String number) {
         requireNonNull(number);
-        checkArgument(isValidName(number), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNumber(number), MESSAGE_CONSTRAINTS);
         fullNumber = number;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid number.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidNumber(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
