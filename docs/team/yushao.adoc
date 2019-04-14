@@ -1,4 +1,4 @@
-= Yu Shao - Project Portfolio
+= Pang Yu Shao - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets/
@@ -62,14 +62,6 @@ fetched internally which allows the app to be more responsive.
 of the application.
 
 
-*_Minor Enhancement_#2*: ability to prevent tampering of data by locking it
-
-** *Function*: it secures the application via passwords and data encryption
-** *Highlights*: The implementation of a password not only provided a layer of security but a means to prove the identity of the user.
-It locks and encrypts the password that is cannot be viewed. The implementation of a password requires an extensive analysis of design alternatives.
-** *Justification*: Financial data is important as it reveals spending and earning pattern that can be sold to marketers. Needs to be protected.
-
-
 === *Other Contributions*
 
 ** [https://nuscs2113-ay1819s2.github.io/dashboard-beta/#search=&sort=displayName&since=2019-02-10&until=2019-04-12&timeframe=day&reverse=false&repoSort=true]
@@ -104,7 +96,9 @@ It locks and encrypts the password that is cannot be viewed. The implementation 
 |_Given below are sections I contributed to the <<../UserGuide, User Guide>>. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=Report]
+include::../UserGuide.adoc[tag=report]
+include::../UserGuide.adoc[tag=report insight/]
+
 
 
 == Contributions to the Developer Guide
@@ -113,21 +107,4 @@ include::../UserGuide.adoc[tag=Report]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=Report]
-
-
-<<<<<<< HEAD
-
-=======
-= Yushao - Project Portfolio
-:site-section: AboutUs
-:imagesDir: ../images
-:stylesDir: ../stylesheets/
-:stylesheet: gh-dominic-pages.css
-:sectnums:
-<<<<<<< HEAD
-=======
->>>>>>> ee919029a88cd056f30893120c0d2bed20703fe0
->>>>>>> 386380100ca94c5691649811d037cc376af8713f
-=======
->>>>>>> 34580cbae0f778f0a3bd54e7a393ce4ce15af3f8
+include::../DeveloperGuide.adoc[tag=report]
