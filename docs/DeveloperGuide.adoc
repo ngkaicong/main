@@ -149,7 +149,7 @@ image::LogicClassDiagram.png[width="800"]
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 .Component interactions for `delete 1` command
-image::SDforDeletePerson.png[width="800"]
+image::SDforDeleteEntry.png[width="800"]
 
 The sections below give more details of each component.
 
@@ -161,7 +161,7 @@ image::UiClassDiagram.png[width="800"]
 
 *API* : link:{repoURL}/src/main/java/seedu/budgeteer/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/budgeteer/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -189,7 +189,7 @@ link:{repoURL}/src/main/java/seedu/budgeteer/logic/Logic.java[`Logic.java`]
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
-image::DeletePersonSdForLogic.png[width="800"]
+image::DeleteEntrySdForLogic.png[width="800"]
 
 [[Design-Model]]
 === Model component
@@ -202,12 +202,12 @@ image::ModelClassDiagram.png[width="800"]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Budgeteer data.
+* exposes an unmodifiable `ObservableList<Entry>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Budgeteer`, which `Entry` can reference. This would allow `Budgeteer` to only require one `Tag` object per unique `Tag`, instead of each `Entry` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:ModelClassBetterOopDiagram.png[width="800"]
 
@@ -222,7 +222,7 @@ image::StorageClassDiagram.png[width="800"]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save the Budgeteer data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -864,7 +864,7 @@ Here are the steps to create a new release.
 
 === Managing Dependencies
 
-A project often depends on third-party libraries. For example, Address Book depends on the https://github.com/FasterXML/jackson[Jackson library] for JSON parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:
+A project often depends on third-party libraries. For example, Budgeteer depends on the https://github.com/FasterXML/jackson[Jackson library] for JSON parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:
 
 [loweralpha]
 . Include those libraries in the repo (this bloats the repo size)
@@ -920,7 +920,7 @@ Do take a look at <<Design-Model>> before attempting to modify the `Model` compo
 * Hints
 ** The link:{repoURL}/src/main/java/seedu/budgeteer/model/Model.java[`Model`] and the link:{repoURL}/src/main/java/seedu/budgeteer/model/EntriesBook.java[`EntriesBook`] API need to be updated.
 ** Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?
-**  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/budgeteer/model/EntriesBook.java[`EntriesBook`] and link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Person.java[`Person`] classes can be used to implement the tag removal logic. link:{repoURL}/src/main/java/seedu/budgeteer/model/EntriesBook.java[`EntriesBook`] allows you to update a person, and link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Person.java[`Person`] allows you to update the tags.
+**  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/budgeteer/model/EntriesBook.java[`EntriesBook`] and link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Entry.java[`Entry`] classes can be used to implement the tag removal logic. link:{repoURL}/src/main/java/seedu/budgeteer/model/EntriesBook.java[`EntriesBook`] allows you to update a person, and link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Entry.java[`Entry`] allows you to update the tags.
 * Solution
 ** Implement a `removeTag(Tag)` method in link:{repoURL}/src/main/java/seedu/budgeteer/model/EntriesBook.java[`EntriesBook`]. Loop through each person, and remove the `tag` from each person.
 ** Add a new API method `deleteTag(Tag)` in link:{repoURL}/src/main/java/seedu/budgeteer/model/ModelManager.java[`ModelManager`]. Your link:{repoURL}/src/main/java/seedu/budgeteer/model/ModelManager.java[`ModelManager`] should call `EntriesBook#removeTag(Tag)`.
@@ -948,11 +948,11 @@ image::getting-started-ui-tag-after.png[width="300"]
 +
 ****
 * Hints
-** The tag labels are created inside link:{repoURL}/src/main/java/seedu/budgeteer/ui/PersonCard.java[the `PersonCard` constructor] (`new Label(tag.tagName)`). https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html[JavaFX's `Label` class] allows you to modify the style of each Label, such as changing its color.
+** The tag labels are created inside link:{repoURL}/src/main/java/seedu/budgeteer/ui/EntryCard.java[the `EntryCard` constructor] (`new Label(tag.tagName)`). https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html[JavaFX's `Label` class] allows you to modify the style of each Label, such as changing its color.
 ** Use the .css attribute `-fx-background-color` to add a color.
 ** You may wish to modify link:{repoURL}/src/main/resources/view/DarkTheme.css[`DarkTheme.css`] to include some pre-defined colors using css, especially if you have experience with web-based css.
 * Solution
-** You can modify the existing test methods for `PersonCard` 's to include testing the tag's color as well.
+** You can modify the existing test methods for `EntryCard` 's to include testing the tag's color as well.
 ** See this https://github.com/se-edu/budgeteer-level4/pull/798[PR] for the full solution.
 *** The PR uses the hash code of the tag names to generate a color. This is deliberately designed to ensure consistent colors each time the application runs. You may wish to expand on this design to include additional features, such as allowing users to set their own tag colors, and directly saving the colors to storage, so that tags retain their colors even if the hash code algorithm changes.
 ****
@@ -1070,41 +1070,41 @@ Let's teach the application to parse arguments that our `remark` command will ac
 for `RemarkCommandParser`.
 . Modify link:{repoURL}/src/test/java/seedu/budgeteer/logic/parser/EntriesBookParserTest.java[`EntriesBookParserTest`] to test that the correct command is generated according to the user input.
 
-===== [Step 3] Ui: Add a placeholder for remark in `PersonCard`
-Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/budgeteer/ui/PersonCard.java[`PersonCard`] s to display a remark for each person later.
+===== [Step 3] Ui: Add a placeholder for remark in `EntryCard`
+Let's add a placeholder on all our link:{repoURL}/src/main/java/seedu/budgeteer/ui/EntryCard.java[`EntryCard`] s to display a remark for each person later.
 
 **Main:**
 
-. Add a `Label` with any random text inside link:{repoURL}/src/main/resources/view/PersonListCard.fxml[`PersonListCard.fxml`].
-. Add FXML annotation in link:{repoURL}/src/main/java/seedu/budgeteer/ui/PersonCard.java[`PersonCard`] to tie the variable to the actual label.
+. Add a `Label` with any random text inside link:{repoURL}/src/main/resources/view/EntryListCard.fxml[`EntryListCard.fxml`].
+. Add FXML annotation in link:{repoURL}/src/main/java/seedu/budgeteer/ui/EntryCard.java[`EntryCard`] to tie the variable to the actual label.
 
 **Tests:**
 
-. Modify link:{repoURL}/src/test/java/guitests/guihandles/PersonCardHandle.java[`PersonCardHandle`] so that future tests can read the contents of the remark label.
+. Modify link:{repoURL}/src/test/java/guitests/guihandles/EntryCardHandle.java[`EntryCardHandle`] so that future tests can read the contents of the remark label.
 
 ===== [Step 4] Model: Add `Remark` class
-We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Person.java[`Person`] class. Instead of just using a `String`, let's follow the conventional class structure that the codebase already uses by adding a `Remark` class.
+We have to properly encapsulate the remark in our link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Entry.java[`Entry`] class. Instead of just using a `String`, let's follow the conventional class structure that the codebase already uses by adding a `Remark` class.
 
 **Main:**
 
-. Add `Remark` to model component (you can copy from link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Address.java[`Address`], remove the regex and change the names accordingly).
+. Add `Remark` to model component (you can copy from link:{repoURL}/src/main/java/seedu/budgeteer/model/person/CashFlow.java[`CashFlow`], remove the regex and change the names accordingly).
 . Modify `RemarkCommand` to now take in a `Remark` instead of a `String`.
 
 **Tests:**
 
 . Add test for `Remark`, to test the `Remark#equals()` method.
 
-===== [Step 5] Model: Modify `Person` to support a `Remark` field
-Now we have the `Remark` class, we need to actually use it inside link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Person.java[`Person`].
+===== [Step 5] Model: Modify `Entry` to support a `Remark` field
+Now we have the `Remark` class, we need to actually use it inside link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Entry.java[`Entry`].
 
 **Main:**
 
-. Add `getRemark()` in link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Person.java[`Person`].
+. Add `getRemark()` in link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Entry.java[`Entry`].
 . You may assume that the user will not be able to use the `add` and `edit` commands to modify the remarks field (i.e. the person will be created without a remark).
 . Modify link:{repoURL}/src/main/java/seedu/budgeteer/model/util/SampleDataUtil.java/[`SampleDataUtil`] to add remarks for the sample data (delete your `data/budgeteer.json` so that the application will load the sample data when you launch it.)
 
-===== [Step 6] Storage: Add `Remark` field to `JsonAdaptedPerson` class
-We now have `Remark` s for `Person` s, but they will be gone when we exit the application. Let's modify link:{repoURL}/src/main/java/seedu/budgeteer/storage/JsonAdaptedPerson.java[`JsonAdaptedPerson`] to include a `Remark` field so that it will be saved.
+===== [Step 6] Storage: Add `Remark` field to `JsonAdaptedEntry` class
+We now have `Remark` s for `Entry` s, but they will be gone when we exit the application. Let's modify link:{repoURL}/src/main/java/seedu/budgeteer/storage/JsonAdaptedEntry.java[`JsonAdaptedEntry`] to include a `Remark` field so that it will be saved.
 
 **Main:**
 
@@ -1112,26 +1112,26 @@ We now have `Remark` s for `Person` s, but they will be gone when we exit the ap
 
 **Tests:**
 
-. Fix `invalidAndValidPersonEntriesBook.json`, `typicalPersonsEntriesBook.json`, `validEntriesBook.json` etc., such that the JSON tests will not fail due to a missing `remark` field.
+. Fix `invalidAndValidEntryEntriesBook.json`, `typicalEntrysEntriesBook.json`, `validEntriesBook.json` etc., such that the JSON tests will not fail due to a missing `remark` field.
 
-===== [Step 6b] Test: Add withRemark() for `PersonBuilder`
-Since `Person` can now have a `Remark`, we should add a helper method to link:{repoURL}/src/test/java/seedu/budgeteer/testutil/PersonBuilder.java[`PersonBuilder`], so that users are able to create remarks when building a link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Person.java[`Person`].
+===== [Step 6b] Test: Add withRemark() for `EntryBuilder`
+Since `Entry` can now have a `Remark`, we should add a helper method to link:{repoURL}/src/test/java/seedu/budgeteer/testutil/EntryBuilder.java[`EntryBuilder`], so that users are able to create remarks when building a link:{repoURL}/src/main/java/seedu/budgeteer/model/person/Entry.java[`Entry`].
 
 **Tests:**
 
-. Add a new method `withRemark()` for link:{repoURL}/src/test/java/seedu/budgeteer/testutil/PersonBuilder.java[`PersonBuilder`]. This method will create a new `Remark` for the person that it is currently building.
-. Try and use the method on any sample `Person` in link:{repoURL}/src/test/java/seedu/budgeteer/testutil/TypicalPersons.java[`TypicalPersons`].
+. Add a new method `withRemark()` for link:{repoURL}/src/test/java/seedu/budgeteer/testutil/EntryBuilder.java[`EntryBuilder`]. This method will create a new `Remark` for the person that it is currently building.
+. Try and use the method on any sample `Entry` in link:{repoURL}/src/test/java/seedu/budgeteer/testutil/TypicalEntrys.java[`TypicalEntrys`].
 
-===== [Step 7] Ui: Connect `Remark` field to `PersonCard`
-Our remark label in link:{repoURL}/src/main/java/seedu/budgeteer/ui/PersonCard.java[`PersonCard`] is still a placeholder. Let's bring it to life by binding it with the actual `remark` field.
+===== [Step 7] Ui: Connect `Remark` field to `EntryCard`
+Our remark label in link:{repoURL}/src/main/java/seedu/budgeteer/ui/EntryCard.java[`EntryCard`] is still a placeholder. Let's bring it to life by binding it with the actual `remark` field.
 
 **Main:**
 
-. Modify link:{repoURL}/src/main/java/seedu/budgeteer/ui/PersonCard.java[`PersonCard`]'s constructor to bind the `Remark` field to the `Person` 's remark.
+. Modify link:{repoURL}/src/main/java/seedu/budgeteer/ui/EntryCard.java[`EntryCard`]'s constructor to bind the `Remark` field to the `Entry` 's remark.
 
 **Tests:**
 
-. Modify link:{repoURL}/src/test/java/seedu/budgeteer/ui/testutil/GuiTestAssert.java[`GuiTestAssert#assertCardDisplaysPerson(...)`] so that it will compare the now-functioning remark label.
+. Modify link:{repoURL}/src/test/java/seedu/budgeteer/ui/testutil/GuiTestAssert.java[`GuiTestAssert#assertCardDisplaysEntry(...)`] so that it will compare the now-functioning remark label.
 
 ===== [Step 8] Logic: Implement `RemarkCommand#execute()` logic
 We now have everything set up... but we still can't modify the remarks. Let's finish it up by adding in actual logic for our `remark` command.
