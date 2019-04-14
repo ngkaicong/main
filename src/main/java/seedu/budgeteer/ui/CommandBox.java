@@ -39,7 +39,8 @@ public class CommandBox extends UiPart<Region> {
         "find n/ or d/ or c/ or t/",
         "edit", "edit n/ d/ c/ t/", "help",
         "list", "select", "undo", "redo",
-        "bitcoin", "ethereum", "litecoin", "stock n/, crypto n/"};
+        "bitcoin", "ethereum", "litecoin", "stock n/, crypto n/",
+        "invest interest/ years/"};
     private final Logger logger = LogsCenter.getLogger(CommandBox.class);
     private final CommandExecutor commandExecutor;
     private final List<String> history;
