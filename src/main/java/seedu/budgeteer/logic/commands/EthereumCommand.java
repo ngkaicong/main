@@ -34,7 +34,7 @@ public class EthereumCommand extends Command {
 
         Double amount = total / price;
         amount = (double) Math.round(amount * 100.0) / 100.0;
-        
+
         String successMessage = MESSAGE_SUCCESS_HEADER + amount.toString() + " ETH.";
 
         int roundOff = (int) Math.round(price);

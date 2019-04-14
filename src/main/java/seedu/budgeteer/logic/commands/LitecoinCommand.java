@@ -24,9 +24,8 @@ public class LitecoinCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
-        double price = 0.0;
         CryptoUtil cryptoUtil = CryptoUtil.getInstance();
-        price = cryptoUtil.getLtc();
+        double price = cryptoUtil.getLtc();
 
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
@@ -35,7 +34,6 @@ public class LitecoinCommand extends Command {
 
         Double amount = total / price;
         amount = (double) Math.round(amount * 100.0) / 100.0;
-
 
         String successMessage = MESSAGE_SUCCESS_HEADER + amount.toString() + " LTC.";
 
