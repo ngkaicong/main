@@ -7,7 +7,7 @@ import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_YEARS;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.budgeteer.logic.commands.AddCommand;
+import seedu.budgeteer.logic.commands.InvestCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
 import seedu.budgeteer.model.entry.CashFlow;
 import seedu.budgeteer.model.entry.Date;
@@ -18,26 +18,26 @@ import seedu.budgeteer.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class InvestCommandParser implements Parser<AddCommand> {
+public class InvestCommandParser implements Parser<InvestCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public InvestCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INTEREST, PREFIX_YEARS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INTEREST, PREFIX_YEARS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InvestCommand.MESSAGE_USAGE));
         }
 
         Name interest = ParserUtil.parseName(argMultimap.getValue(PREFIX_INTEREST).get());
         Name year = ParserUtil.parseName(argMultimap.getValue(PREFIX_YEARS).get());
 
-        Name temp = new Name(interest.fullName + " " + year.fullName)
+        Name temp = new Name(interest.fullName + " " + year.fullName);
 
         return new InvestCommand(temp);
     }
