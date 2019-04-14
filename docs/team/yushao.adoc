@@ -108,4 +108,3 @@ include::../UserGuide.adoc[tag=report insight/]
 |===
 
 include::../DeveloperGuide.adoc[tag=report]
-

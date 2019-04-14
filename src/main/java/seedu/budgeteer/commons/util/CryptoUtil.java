@@ -12,7 +12,7 @@ import seedu.budgeteer.commons.exceptions.IllegalValueException;
 
 /**
  * Utility class to fetch the crypto-currencies prices from the internet using multithreading
- * and to store them for fast retreival.
+ * and to store them for fast retrieval.
  * Once an interval of time has passed, the prices are deemed to be expired and will be fetched again.
  * This reduces the amount of lag due to fetching from the internet.
  */

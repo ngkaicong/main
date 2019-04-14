@@ -32,8 +32,6 @@ public class StockCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "MSFT";
 
-    private static final String MESSAGE_SUCCESS = "The price of the stock ";
-
     private String firstUrl = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=";
     private String secondUrl = "&apikey=Y6G36I3BIPQL5I2";
 

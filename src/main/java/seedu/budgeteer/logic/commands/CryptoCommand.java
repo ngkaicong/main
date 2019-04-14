@@ -87,7 +87,7 @@ public class CryptoCommand extends Command {
 
         String full = cryptoPrice();
 
-        if (full == null) {
+        if (full == null || full.length() > 40) {
             messageReturn = "Sorry, your input is not a valid cryptocurrency. Please try again.";
         } else {
             full = full.substring(14);
