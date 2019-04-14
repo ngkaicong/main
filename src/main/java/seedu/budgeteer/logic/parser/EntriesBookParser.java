@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.budgeteer.logic.commands.*;
-//import seedu.budgeteer.logic.commands.ExportExcelCommand;
+import seedu.budgeteer.logic.commands.ExportExcelCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
 
 /**
@@ -104,8 +104,8 @@ public class EntriesBookParser {
         case LockCommand.COMMAND_WORD:
             return new LockCommandParser().parse(arguments);
 
-//        case ExportExcelCommand.COMMAND_WORD:
-//            return new ExportExcelCommand();
+        case ExportExcelCommand.COMMAND_WORD:
+            return new ExportExcelCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
