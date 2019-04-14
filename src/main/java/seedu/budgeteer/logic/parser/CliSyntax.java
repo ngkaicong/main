@@ -11,6 +11,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+    public static final Prefix PREFIX_INTEREST = new Prefix("int/");
+    public static final Prefix PREFIX_YEARS = new Prefix("yr/");
+
     public static final Prefix PREFIX_STARTDATE = new Prefix("s/");
     public static final Prefix PREFIX_ENDDATE = new Prefix("e/");
     public static final Prefix PREFIX_INSIGHT = new Prefix("insight/");
