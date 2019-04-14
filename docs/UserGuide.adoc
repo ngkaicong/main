@@ -232,7 +232,7 @@ Examples:
 * `display cashflow des` - Sorts entries by cashflow in descending order.
 // end::display[]
 
-//tag:report[]
+// tag:: report[]
 === Generates Report : `report`
 
 Shows a visual pie chart listing specified by the user when user type the command report. +
@@ -260,8 +260,9 @@ image::ReportD.PNG[width="790"]
 
 image::Report2.PNG[width="790"]
 
-//end::report[]
-// tag::report insight[]
+// end:: report[]
+
+// tag:: report_insight[]
 === Report Insight : `report insight/`
 Further to report feature, users want to know more and understand their spending pattern so as to
 improve on what they can consume or earn.
@@ -315,7 +316,7 @@ image::RI3.PNG[width="790"]
 image::RI4.PNG[width="790"]
 *Screenshot of app displaying expense breakdown wgithen `report insight d/11-11-2018 12-12-2019` is run*
 
-// end::report insight[]
+// end:: report_insight[]
 
 // tag::bitcoin[]
 === Returns purchasing power regarding bitcoin: `bitcoin`
