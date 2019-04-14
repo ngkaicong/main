@@ -71,10 +71,18 @@ include::../UserGuide.adoc[tag=stock]
 
 include::../UserGuide.adoc[tag=crypto]
 
+include::../UserGuide.adoc[tag=invest]
+
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+include::../DeveloperGuide.adoc[tag=stock]
+
 include::../DeveloperGuide.adoc[tag=crypto]
+
+include::../DeveloperGuide.adoc[tag=rapidcrypto]
+
+include::../DeveloperGuide.adoc[tag=invest]
