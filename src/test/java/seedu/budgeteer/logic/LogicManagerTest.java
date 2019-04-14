@@ -28,7 +28,7 @@ import seedu.budgeteer.model.ModelManager;
 import seedu.budgeteer.model.ReadOnlyEntriesBook;
 import seedu.budgeteer.model.UserPrefs;
 import seedu.budgeteer.model.entry.Entry;
-import seedu.budgeteer.storage.JsonAddressBookStorage;
+import seedu.budgeteer.storage.JsonBudgeteerStorage;
 import seedu.budgeteer.storage.JsonUserPrefsStorage;
 import seedu.budgeteer.storage.StorageManager;
 import seedu.budgeteer.testutil.EntryBuilder;
@@ -48,7 +48,7 @@ public class LogicManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(temporaryFolder.newFile().toPath());
+        JsonBudgeteerStorage addressBookStorage = new JsonBudgeteerStorage(temporaryFolder.newFile().toPath());
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.newFile().toPath());
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -77,9 +77,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() throws Exception {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.newFile().toPath());
+        // Setup LogicManager with JsonBudgeteerIoExceptionThrowingStub
+        JsonBudgeteerStorage addressBookStorage =
+                new JsonBudgeteerIoExceptionThrowingStub(temporaryFolder.newFile().toPath());
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.newFile().toPath());
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -174,8 +174,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonBudgeteerIoExceptionThrowingStub extends JsonBudgeteerStorage {
+        private JsonBudgeteerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
