@@ -62,7 +62,7 @@ public class ParserUtil {
         requireNonNull(num);
         String trimmedName = num.trim();
         if (!Number.isValidNumber(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Number.MESSAGE_CONSTRAINTS);
         }
         return new Number(trimmedName);
     }

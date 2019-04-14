@@ -15,7 +15,8 @@ public class Number {
      */
     //TODO: May need to change the constraints
     public static final String VALIDATION_REGEX = "[\\p{Digit}\\.][\\p{Digit}\\. ]*";
-    public static final String MESSAGE_CONSTRAINTS = "Numbers can only contain numbers and periods, "
+    public static final String MESSAGE_CONSTRAINTS = "Numbers can only contain numbers and potentially "
+            + "one decimal point, "
             + "and it should not be blank";
 
     public final String fullNumber;
