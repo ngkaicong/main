@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.budgeteer.logic.commands.*;
-import seedu.budgeteer.logic.commands.ExportExcelCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
 
 /**
@@ -78,7 +77,7 @@ public class EntriesBookParser {
             return new StockCommandParser().parse(arguments);
 
         case CryptoCommand.COMMAND_WORD:
-                return new CryptoCommandParser().parse(arguments);
+            return new CryptoCommandParser().parse(arguments);
 
         case InvestCommand.COMMAND_WORD:
             return new InvestCommandParser().parse(arguments);

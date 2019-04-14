@@ -73,17 +73,20 @@ public class InvestCommandTest {
 
         // invalid interest input
         Number invalidInterest = new Number("10..12 1012");
-        assertCommandSuccess(new InvestCommand(invalidInterest), model, commandHistory, "Sorry, you entered an invalid number.\n"
+        assertCommandSuccess(new InvestCommand(invalidInterest), model, commandHistory,
+                "Sorry, you entered an invalid number.\n"
                 + "Numbers can only have one decimal point.", expectedModel);
 
         // invalid years input
         Number invalidYears = new Number("1012 10..12");
-        assertCommandSuccess(new InvestCommand(invalidYears), model, commandHistory, "Sorry, you entered an invalid number.\n"
+        assertCommandSuccess(new InvestCommand(invalidYears), model, commandHistory,
+                "Sorry, you entered an invalid number.\n"
                 + "Numbers can only have one decimal point.", expectedModel);
 
         // invalid years input
         Number invalidBoth = new Number("10..12 10..12");
-        assertCommandSuccess(new InvestCommand(invalidBoth), model, commandHistory, "Sorry, you entered an invalid number.\n"
+        assertCommandSuccess(new InvestCommand(invalidBoth), model, commandHistory,
+                "Sorry, you entered an invalid number.\n"
                 + "Numbers can only have one decimal point.", expectedModel);
 
     }

@@ -18,7 +18,8 @@ public class InvestCommand extends Command {
 
     public static final String COMMAND_WORD = "invest";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Calculate long term investments based on current balance.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Calculate long term investments based on current balance.\n"
             + "Parameters: "
             + PREFIX_INTEREST + "INTEREST RATE "
             + PREFIX_YEARS + "YEARS "
@@ -46,7 +47,7 @@ public class InvestCommand extends Command {
         int yearCount = splitted[1].length() - splitted[1].replace(".", "").length();
         if ((interestCount > 1) || (yearCount > 1)) {
             messageReturn = "Sorry, you entered an invalid number.\n"
-            + "Numbers can only have one decimal point.";
+                + "Numbers can only have one decimal point.";
         } else {
             double interestRate = Double.parseDouble(splitted[0]);
             double numYears = Double.parseDouble(splitted[1]);
