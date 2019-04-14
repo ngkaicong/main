@@ -82,3 +82,7 @@ include::../UserGuide.adoc[tag=invest]
 include::../DeveloperGuide.adoc[tag=stock]
 
 include::../DeveloperGuide.adoc[tag=crypto]
+
+include::../DeveloperGuide.adoc[tag=rapidcrypto]
+
+include::../DeveloperGuide.adoc[tag=invest]
