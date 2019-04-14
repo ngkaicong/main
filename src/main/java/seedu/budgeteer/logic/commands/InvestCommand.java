@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.entry.Entry;
-import seedu.budgeteer.model.entry.Name;
+import seedu.budgeteer.model.entry.Number;
 import seedu.budgeteer.model.entry.ReportEntryList;
 
 /**
@@ -26,10 +26,10 @@ public class InvestCommand extends Command {
             + PREFIX_INTEREST + "5 "
             + PREFIX_YEARS + "20 ";
 
-    private final Name name;
+    private final Number num;
 
-    public InvestCommand(Name name) {
-        this.name = name;
+    public InvestCommand(Number num) {
+        this.num = num;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class InvestCommand extends Command {
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();
 
-        String[] splited = name.fullName.split("\\s+");
+        String[] splited = num.fullNumber.split("\\s+");
         double interestRate = Double.parseDouble(splited[0]);
         double numYears = Double.parseDouble(splited[1]);
 
@@ -49,8 +49,8 @@ public class InvestCommand extends Command {
         double investment = (double) Math.round(compound * 100.0) / 100.0;
 
         String pre = "Your current balance is S$" + total + ".\n";
-        String first = " At an interest rate of " + interestRate + "% for " + numYears + " years,";
-        String second = " you would have S$" + investment + ". Congratulations!";
+        String first = "At an interest rate of " + interestRate + "% for " + numYears + " years,";
+        String second = " you would have S$" + investment + ".\nCongratulations!";
 
         messageReturn = pre + first + second;
 
