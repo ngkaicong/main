@@ -27,8 +27,8 @@ import seedu.budgeteer.model.ReadOnlyEntriesBook;
 import seedu.budgeteer.model.ReadOnlyUserPrefs;
 import seedu.budgeteer.model.UserPrefs;
 import seedu.budgeteer.model.util.SampleDataUtil;
-import seedu.budgeteer.storage.AddressBookStorage;
-import seedu.budgeteer.storage.JsonAddressBookStorage;
+import seedu.budgeteer.storage.BudgeteerStorage;
+import seedu.budgeteer.storage.JsonBudgeteerStorage;
 import seedu.budgeteer.storage.JsonUserPrefsStorage;
 import seedu.budgeteer.storage.Storage;
 import seedu.budgeteer.storage.StorageManager;
@@ -64,8 +64,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        BudgeteerStorage budgeteerStorage = new JsonBudgeteerStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(budgeteerStorage, userPrefsStorage);
 
         CryptoUtil.getInstance(); //Initialize the crypto prices
 

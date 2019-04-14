@@ -14,7 +14,7 @@ import seedu.budgeteer.model.Model;
 import seedu.budgeteer.model.ModelManager;
 import seedu.budgeteer.model.ReadOnlyEntriesBook;
 import seedu.budgeteer.model.UserPrefs;
-import seedu.budgeteer.storage.JsonAddressBookStorage;
+import seedu.budgeteer.storage.JsonBudgeteerStorage;
 import seedu.budgeteer.storage.UserPrefsStorage;
 import seedu.budgeteer.testutil.TestUtil;
 import systemtests.ModelHelper;
@@ -42,7 +42,7 @@ public class TestApp extends MainApp {
 
         // If some initial local data has been provided, write those to the file
         if (initialDataSupplier.get() != null) {
-            JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(saveFileLocation);
+            JsonBudgeteerStorage jsonAddressBookStorage = new JsonBudgeteerStorage(saveFileLocation);
             try {
                 jsonAddressBookStorage.saveAddressBook(initialDataSupplier.get());
             } catch (IOException ioe) {

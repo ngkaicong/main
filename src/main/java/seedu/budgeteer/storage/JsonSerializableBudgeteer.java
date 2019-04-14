@@ -17,26 +17,26 @@ import seedu.budgeteer.model.entry.Entry;
  * An Immutable EntriesBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableBudgeteer {
 
     public static final String MESSAGE_DUPLICATE_ENTRY = "Entrys list contains duplicate entry(s).";
 
     private final List<JsonAdaptedEntry> entrys = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given entrys.
+     * Constructs a {@code JsonSerializableBudgeteer} with the given entrys.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("entrys") List<JsonAdaptedEntry> entrys) {
+    public JsonSerializableBudgeteer(@JsonProperty("entrys") List<JsonAdaptedEntry> entrys) {
         this.entrys.addAll(entrys);
     }
 
     /**
      * Converts a given {@code ReadOnlyEntriesBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableBudgeteer}.
      */
-    public JsonSerializableAddressBook(ReadOnlyEntriesBook source) {
+    public JsonSerializableBudgeteer(ReadOnlyEntriesBook source) {
         entrys.addAll(source.getEntryList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));
     }
 

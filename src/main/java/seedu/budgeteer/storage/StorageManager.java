@@ -17,13 +17,13 @@ import seedu.budgeteer.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private BudgeteerStorage budgeteerStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(BudgeteerStorage budgeteerStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.budgeteerStorage = budgeteerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,29 +49,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+        return budgeteerStorage.getAddressBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyEntriesBook> readEntriesBook() throws DataConversionException, IOException {
-        return readEntriesBook(addressBookStorage.getAddressBookFilePath());
+        return readEntriesBook(budgeteerStorage.getAddressBookFilePath());
     }
 
     @Override
     public Optional<ReadOnlyEntriesBook> readEntriesBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readEntriesBook(filePath);
+        return budgeteerStorage.readEntriesBook(filePath);
     }
 
     @Override
     public void saveAddressBook(ReadOnlyEntriesBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+        saveAddressBook(addressBook, budgeteerStorage.getAddressBookFilePath());
     }
 
     @Override
     public void saveAddressBook(ReadOnlyEntriesBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        budgeteerStorage.saveAddressBook(addressBook, filePath);
     }
 
 }

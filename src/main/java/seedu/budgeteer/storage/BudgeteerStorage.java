@@ -11,7 +11,7 @@ import seedu.budgeteer.model.ReadOnlyEntriesBook;
 /**
  * Represents a storage for {@link EntriesBook}.
  */
-public interface AddressBookStorage {
+public interface BudgeteerStorage {
 
     /**
      * Returns the file path of the data file.

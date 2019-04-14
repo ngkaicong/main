@@ -17,13 +17,13 @@ import seedu.budgeteer.model.ReadOnlyEntriesBook;
 /**
  * A class to access EntriesBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonBudgeteerStorage implements BudgeteerStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonBudgeteerStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonBudgeteerStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -45,8 +45,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     public Optional<ReadOnlyEntriesBook> readEntriesBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableBudgeteer> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableBudgeteer.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableBudgeteer(addressBook), filePath);
     }
 
 }

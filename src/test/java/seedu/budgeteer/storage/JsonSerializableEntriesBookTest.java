@@ -25,8 +25,8 @@ public class JsonSerializableEntriesBookTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ENTRYS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableBudgeteer dataFromFile = JsonUtil.readJsonFile(TYPICAL_ENTRYS_FILE,
+                JsonSerializableBudgeteer.class).get();
         EntriesBook entriesBookFromFile = dataFromFile.toModelType();
         EntriesBook typicalPersonsEntriesBook = TypicalEntrys.getTypicalAddressBook();
         assertEquals(entriesBookFromFile, typicalPersonsEntriesBook);
@@ -34,8 +34,8 @@ public class JsonSerializableEntriesBookTest {
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_ENTRY_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableBudgeteer dataFromFile = JsonUtil.readJsonFile(INVALID_ENTRY_FILE,
+                JsonSerializableBudgeteer.class).get();
         thrown.expect(IllegalValueException.class);
         dataFromFile.toModelType();
     }
