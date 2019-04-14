@@ -673,6 +673,51 @@ Step 4. The resulting information regarding price and purchasing power is displa
 ** Cons: There are countless cryptocurrencies for users to choose from, the effort to implement threading would be significant. However, this is tackled in another one of the features of Budgeter.
 // end::crypto[]
 
+    // tag::rapidcrypto[]
+    === Rapid Cryptocurrency Purchasing Power Feature
+    ==== Current Implementation
+    The feature will be facilitated by 'CryptoUtil' but have the commands 'bitcoin', 'ethereum', and 'litecoin'. It will return how much of these three cryptocurrencies you can buy with your current
+    balance with real-time market prices. However, the way that it's different from crypto command stated earlier is that it uses threading for rapid calls, and is easier to call from the command line.
+    This type of feature takes advantage of external APIs, which provide the necessary financial information that can be displayed to the users.
+    The rapid crypto command uses the Crypto Compare API.
+
+    * `CryptoUtil#getCrypto()` - Calls the Crypto Compare API and returns the price of the inputted crypocurrency
+    * `CryptoUtil#checkIntervalAndUpdate()` - Using the threads created, updates them if the difference time between the calls is over 10 minutes
+    * `BitcoinCommand#execute()` - Either pulls the bitcoin price from the current thread or updates them with a new call
+    * `EthereumCommand#execute()` - Either pulls the ethereum price from the current thread or updates them with a new call
+    * `LitecoinCommand#execute()` - Either pulls the litecoin price from the current thread or updates them with a new call
+
+    Given below is an example scenario of how the crypto command mechanism behaves at each step.
+
+    Step 1. The user launches the application, and makes earnings and cost entries to the Budgeter object.
+
+    Step 2. The user inputs the command 'bitcoin', and in the `CryptoUtil#checkIntervalAndUpdate()` method, it checks to see if over 10 minutes has passed since the last call.
+    a call is made to the Crypto Compare API and the price is returned.
+
+    Step 3. If it hasn't, then in `CryptoUtil#ruin()`, the most recent price from the thread is returned. If it has been over 10 minutes, then `CryptoUtil#getCrypto()` is
+    called to get the updated price of bitcoin.
+
+    Step 4. In the `BitcoinCommand#execute()` method, the current balance is pulled from 'ReportEntryList' and is used with the price from earlier to calculate purchasing power.
+
+    Step 5. The resulting information regarding price and purchasing power is displayed to the user with a message. If the inputted stock is invalid, an error message will show.
+
+    [NOTE]
+    The example scenario is shown above with the case of the input 'bitcoin', but a similar process is also done for the inputs 'ethereum' and 'litecoin' as well.
+
+    ==== Design Considerations
+
+    ===== Aspect: How to deal with the API call
+
+    * **Alternative 1 (current choice):** Use threading to save the prices of each input.
+    ** Pros: Will make the calls much faster because the price information is already saved to memory.
+    ** Cons: There are countless cryptocurrencies for users to choose from, the effort to implement threading is significant.
+    However, because the combination of bitcoin, ethereum, and litecoin have a dominance of nearly three-quarters of the market cap,
+    it can be assumed that a user would want to invest in these three cryptocurrencies. That is why threading is used in this case but not for stocks.
+    * **Alternative 2:** Call the Crypto Compare API with every input.
+    ** Pros: Easy to implement.
+    ** Cons: Requires more wait time for each input, and may have issues regarding overall performance if the call takes longer.
+    // end::crypto[]
+
 // tag::exportexcel[]
 === Export entries from Budgeteer to Excel file.
 ==== Current implementation
