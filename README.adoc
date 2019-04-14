@@ -15,8 +15,28 @@ image::images/Ui.png[width="600"]
 endif::[]
 
 * This is a desktop Financial Planner application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-** More test cases, including automated GUI testing.
-** Support for _Build Automation_ using Gradle and for _Continuous Integration_ using Travis CI.
+
+*This app is mainly for users who want to:*
+
+* Understand and reconcile their financial entries to make better financial decisions
+* Organise their financial information using mostly CLI
+* Have a visual representation of their financial data
+* Store and retrieve their financial data efficiently
+
+*This app is mainly written in an OOP fashion.* +
+
+*What’s good about this project:*
+
+* The app has a sophisticated GUI that includes a list panel, a table panel and also report panels
+
+* The app has the ability to show detailed visual representations of the financial spendings and income data stored in the application.
+
+* The app has suggestive command UI built in to aid in the typing.
+
+* Contains many test cases, including automated GUI testing.
+
+* Supports for Build Automation using Gradle and for Continuous Integration using Travis CI.
+
 
 == Site Map
 
