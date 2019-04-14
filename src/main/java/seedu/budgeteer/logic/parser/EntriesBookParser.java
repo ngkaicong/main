@@ -21,6 +21,7 @@ import seedu.budgeteer.logic.commands.FilterCommand;
 import seedu.budgeteer.logic.commands.FindCommand;
 import seedu.budgeteer.logic.commands.HelpCommand;
 import seedu.budgeteer.logic.commands.HistoryCommand;
+import seedu.budgeteer.logic.commands.InvestCommand;
 import seedu.budgeteer.logic.commands.ListCommand;
 import seedu.budgeteer.logic.commands.LitecoinCommand;
 import seedu.budgeteer.logic.commands.LockCommand;
