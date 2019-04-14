@@ -12,28 +12,40 @@
 === Project & Product Information
 
 'Budgeteer' is a desktop financial planner application my team of 4 created for our Software Engineering Principles module.
-Our main project was to morph an existing code into any other software we opted to.
+Our main project was to morph an existing code into any other software we opted to. We were evaluated based on our ability to work with existing base code and the quality of our new modifications to
+the existing code.
 
 Budgeteer has a command-line interface (CLI) and graphical user interface created using JavaFX. It is for users who enjoy typing to manage their finances responsibly using a desktop interface.
-The application revolves around usage of the CLI to manage one's finances.
+The application revolves around usage of the CLI to manage one's finances. Users can store an `entry` consisting of `name`, `cashflow`, `date` and `tags` of any form of financial activity in the application.
 
 == Summary of Contributions
 
-*_Major enhancements_* : Feature to return purchasing power and price of an entered stock
+*_Major enhancements_* : Added feature to return purchasing power and price of an entered stock
 
-** `Reason for enhancement`: People who use Budgeteer responsibly to record earnings and costs may want to know about how to turn potential savings into stock investments. Rather than using a separate application to get stock prices and to calculate how much you can purchase, it's possible to access this information from the command line.
-** `Highlights`: The implementation required extensive use of the cashflow implementation, and required parsing information from an external API. I had to read the documentation of the API to figure out how to retrieve the data and implement a useful scenario for it.
+** `Reason for enhancement`: People who use Budgeteer responsibly to record earnings and costs may want to know about how to turn potential savings into stock investments. Rather than using a separate application to get stock prices and to calculate how much you can purchase, it's possible to access this information from the command line so that you can immediately see how your savings can turn into investments.
+** `Highlights`: The implementation required extensive use of the cash flow and report implementation, and required parsing information from an external API. I had to read the documentation of the Alpha Vantage API to figure out how to retrieve the data and implement it within the application.
+** `My contributions`: Created new command ('stock'), parser, and methods that interacted with existing ones as well as the Alpha Vantage API to return stock purchasing power and prices.
 ** `Credits`: The Alpha Vantage API was incorporated to implement this feature.
 
-*_Major enhancements_* : Feature to return purchasing power and price of an entered cryptocurrency
+*_Major enhancements_* : Added feature to return purchasing power and price of an entered cryptocurrency
 
-** `Reason for enhancement`: People who use Budgeteer responsibly to record earnings and costs may want to know about how to turn potential savings into cryptocurrency investments. Rather than using a separate application to get cryptocurrency prices and to calculate how much you can purchase, it's possible to access this information from the command line.
-** `Highlights`: The implementation required extensive use of the cashflow implementation, and required parsing information from an external API. I had to read the documentation of the API to figure out how to retrieve the data and implement a useful scenario for it.
+** `Reason for enhancement`: People who use Budgeteer responsibly to record earnings and costs may want to know about how to turn potential savings into cryptocurrency investments. Rather than using a separate application to get cryptocurrency prices and to calculate how much you can purchase, it's possible to access this information from the command line so that you can immediately see how your savings can turn into investment.
+** `Highlights`: The implementation required extensive use of the cash flow and report implementation, and required parsing information from an external API. I had to read the documentation of the Crypto Compare API to figure out how to retrieve the data and implement it within the application.
+** `My contributions`: Created new command ('crypto'), parser, and methods that interacted with existing ones as well as the Crypto Compare API to return cryptocurrency purchasing power and prices
 ** `Credits`: The Crypto Compare API was incorporated to implement this feature.
 
-*_Major enhancements_* : Feature for price returns of bitcoin, ethereum, and litecoin
+*_Minor enhancements_* : Added feature for rapid crypto returns of bitcoin, ethereum, and litecoin
 
-** `Credits`: The Crypto Compare API was incorporated to implement this feature.
+** `Reason for enhancement`: This is an extension of the earlier feature, but it can be time-consuming to wait for an API call for every command line input. Because a large part of the cryptocurrency market cap is held by a small number of cryptocurrencies, we can use threading for the top three (Bitcoin, Ethereum, Litecoin which hold nearly three-fourths of the total market cap) for rapid calls. This also makes it easier for people to enter in the commands without knowing the abbreviations for cryptocurrencies.
+** `Highlights`: The implementation required extensive use of the cash flow and report implementation, and required parsing information from an external API. I had to read the documentation of the Crypto Compare API to figure out how to retrieve the data and implement it within the application.
+** `My contributions`: Created new commands ('bitcoin', 'ethereum', 'litecoin'), parsers, and methods that interacted with existing ones as well as the Crypto Compare API to return cryptocurrency purchasing power and prices
+** `Credits`: In addition to using the Crypto Compare API, this enhancement required threading. Yushao grealty helped me in the implementation of the threads.
+
+*_Minor enhancements_* : Added feature for calculating hypothetical long term balance based on interest rate and time
+
+** `Reason for enhancement`: For those who are more used to traditional investments, those who use Budgeter to record potential savings might want to know how much their savings would be worth in the long term if they are used for investments. They can see how much their savings would be worth based on a fixed interest rate over a certain amount of time.
+** `Highlights`: The implementation required extensive use of the cash flow and report information, and implementation of the compound interest formula.
+** `My contributions`: Created new commands ('invest'), parsers, and methods that interacted with existing ones to return hypothetical balance based on interest rate and time
 
 === *Other Contributions*
 
