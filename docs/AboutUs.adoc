@@ -13,8 +13,9 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 === Pang Yu Shao
 image::yushao2.png[width="150", align="left"]
 {empty}[https://github.com/yushao2[github]]
+{empty}[https://cs2113-ay1819s2-t11-3.github.io/main/team/yushao.html[portfolio]]
 
-Role: Developer +
+Role: Developer, QA +
 
 
 '''
@@ -22,6 +23,8 @@ Role: Developer +
 === Dominic
 image::frankquekch.png[width="150", align="left"]
 {empty}[http://github.com/frankquekch[github]]
+{empty}[https://cs2113-ay1819s2-t11-3.github.io/main/team/dominic.html[portfolio]]
+
 
 Role: Developer +
 
@@ -31,6 +34,7 @@ Role: Developer +
 === Ng Kai Cong
 image::ngkaicong.png[width="150", align="left"]
 {empty}[http://github.com/ngkaicong[github]]
+{empty}[https://cs2113-ay1819s2-t11-3.github.io/main/team/kaicong.html[portfolio]]
 
 Role: Developer +
 
@@ -40,6 +44,8 @@ Role: Developer +
 === Jacob
 image::jacobhan.png[width="150", align="left"]
 {empty}[http://github.com/jacobhan[github]]
+{empty}[https://cs2113-ay1819s2-t11-3.github.io/main/team/jacobhan.html[portfolio]]
+
 
 Role: Developer +
 
