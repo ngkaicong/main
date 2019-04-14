@@ -727,7 +727,8 @@ Given below is an example scenario of how the crypto command mechanism behaves a
 
 Step 1. The user launches the application, and makes earnings and cost entries to the Budgeter object.
 
-Step 2. The user inputs the command 'invest'.
+Step 2. The user inputs the command 'invest' with the interest rate after 'interest' and number of years after 'years'. Only numbers are allowed as well
+    as maximum of one decimal point per input.
 
 Step 3. In the `InvestCommand#execute()` method, the current balance is pulled from 'ReportEntryList' and is used with the
 inputs interest rate and years to calculate hypothetical balance.
