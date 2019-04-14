@@ -716,46 +716,35 @@ it can be assumed that a user would want to invest in these three cryptocurrenci
 ** Cons: Requires more wait time for each input, and may have issues regarding overall performance if the call takes longer.
 // end::rapidcrypto[]
 
-    // tag::invest[]
-    === Invest with Compound Interest Feature
-    ==== Current Implementation
-    The feature will be facilitated by 'InvestCommand''. It will return your hypothetical balance at a fixed interest rate over a certain number of years.
+// tag::invest[]
+=== Invest with Compound Interest Feature
+==== Current Implementation
+The feature will be facilitated by 'InvestCommand''. It will return your hypothetical balance at a fixed interest rate over a certain number of years.
 
-    * `CryptoUtil#getCrypto()` - Calls the Crypto Compare API and returns the price of the inputted crypocurrency
-    * `CryptoUtil#checkIntervalAndUpdate()` - Using the threads created, updates them if the difference time between the calls is over 10 minutes
-    * `BitcoinCommand#execute()` - Either pulls the bitcoin price from the current thread or updates them with a new call
-    * `EthereumCommand#execute()` - Either pulls the ethereum price from the current thread or updates them with a new call
-    * `LitecoinCommand#execute()` - Either pulls the litecoin price from the current thread or updates them with a new call
+* `InvestCommand#execute()` - Uses current balance to calculate hypothetical balance using the inputs interest rate and years, and displays it to user
 
-    Given below is an example scenario of how the crypto command mechanism behaves at each step.
+Given below is an example scenario of how the crypto command mechanism behaves at each step.
 
-    Step 1. The user launches the application, and makes earnings and cost entries to the Budgeter object.
+Step 1. The user launches the application, and makes earnings and cost entries to the Budgeter object.
 
-    Step 2. The user inputs the command 'invest'.
+Step 2. The user inputs the command 'invest'.
 
-    Step 3. If it hasn't, then in `CryptoUtil#ruin()`, the most recent price from the thread is returned. If it has been over 10 minutes, then `CryptoUtil#getCrypto()` is
-    called to get the updated price of bitcoin.
+Step 3. In the `InvestCommand#execute()` method, the current balance is pulled from 'ReportEntryList' and is used with the
+inputs interest rate and years to calculate hypothetical balance.
 
-    Step 4. In the `BitcoinCommand#execute()` method, the current balance is pulled from 'ReportEntryList' and is used with the price from earlier to calculate purchasing power.
+Step 4. The resulting information is displayed to the user with a message. If either or both the inputs are invalid, an error message will show.
 
-    Step 5. The resulting information regarding price and purchasing power is displayed to the user with a message. If the inputted stock is invalid, an error message will show.
+==== Design Considerations
 
-    [NOTE]
-    The example scenario is shown above with the case of the input 'bitcoin', but a similar process is also done for the inputs 'ethereum' and 'litecoin' as well.
+===== Aspect: How to deal with the API call
 
-    ==== Design Considerations
-
-    ===== Aspect: How to deal with the API call
-
-    * **Alternative 1 (current choice):** Use threading to save the prices of each input.
-    ** Pros: Will make the calls much faster because the price information is already saved to memory.
-    ** Cons: There are countless cryptocurrencies for users to choose from, the effort to implement threading is significant.
-    However, because the combination of bitcoin, ethereum, and litecoin have a dominance of nearly three-quarters of the market cap,
-    it can be assumed that a user would want to invest in these three cryptocurrencies. That is why threading is used in this case but not for stocks.
-    * **Alternative 2:** Call the Crypto Compare API with every input.
-    ** Pros: Easy to implement.
-    ** Cons: Requires more wait time for each input, and may have issues regarding overall performance if the call takes longer.
-    // end::invest[]
+* **Alternative 1 (current choice):** Allow only two inputs of interest rate and number of years
+** Pros: It is a simple feature that is easy to implement that gives users insight into potential future finances.
+** Cons: It's a very limited feature that doesn't show additional contributions over time.
+* **Alternative 2:** Allow for detailing contributions over time in the command line
+** Pros: Will be more accurate and will be a better representation of how people actually save and invest over time.
+** Cons: Would be very complicated to do from the command line, so more work for the user and potentially confusing.
+// end::invest[]
 
 // tag::exportexcel[]
 === Export entries from Budgeteer to Excel file.
