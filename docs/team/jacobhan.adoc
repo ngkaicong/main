@@ -71,6 +71,8 @@ include::../UserGuide.adoc[tag=stock]
 
 include::../UserGuide.adoc[tag=crypto]
 
+include::../UserGuide.adoc[tag=invest]
+
 == Contributions to the Developer Guide
 
 |===

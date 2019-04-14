@@ -607,35 +607,70 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: `config.json`).
 
-// tag::crypto[]
-=== Crypto Tracker
+// tag::stock[]
+=== Stock Purchasing Power Feature
 ==== Current Implementation
-This feature will be a command facilitated by `BitcoinCommand`. It returns how much bitcoin you can buy with your current balance with real-time market prices.
-This feature is to be extended towards additional cryptocurrencies, and is planned to have more functionality rather than just simply viewing prices.
+The feature will be a command facilitated by 'StockCommand'. It will return how much of an inputted stock you can buy with your current
+balance with real-time market prices.
+This type of feature takes advantage of external APIs, which provide the necessary financial information that can be displayed to the users.
+The stock command uses the Alpha Vantage API.
 
-* `BitcoinCommand#execute()` - Display a message regarding the current bitcoin price and how much you will be able to purchase
-* `BitcoinCommand#switch()` - This is a planned method of possibly switching to another cryptocurrency
+* `StockCommand#stockPrice()` - Calls the Alpha Vantage API and returns the price of the inputted stock
+* `StockCommand#execute()` - Calculates how much of the stock you can purchase given your current cash flow, and displays that amount to the user as well as the price
 
-Given below is an example scenario of how the bitcoin command mechanism behaves at each step.
+Given below is an example scenario of how the stock command mechanism behaves at each step.
 
-Step 1. The user launches the application, and changes are made to the `Budgeter` object.
+Step 1. The user launches the application, and makes earnings and cost entries to the Budgeter object.
 
-Step 2. The user inputs the bitcoin command, and in the `BitcoinCommand#execute()` method, it pulls the current balance from the `Budgeter` object.
+Step 2. The user inputs the stock command, and in the `StockCommand#stockPrice()` method, a call is made to the Alpha Vantage API and the price is returned.
 
-Step 3. The method calls the CryptoCompare API to return current market prices of bitcoin, and stores that data.
+Step 3. In the `StockCommand#execute()` method, the current balance is pulled from 'ReportEntryList' and is used with the price from Step 2 to calculate purchasing power.
 
-Step 4. The resulting information is displayed to the user with a message.
+Step 4. The resulting information regarding price and purchasing power is displayed to the user with a message. If the inputted stock is invalid, an error message will show.
 
 ==== Design Considerations
 
 ===== Aspect: How to deal with the API call
 
-* **Alternative 1 (current choice):** Save the entire call.
+* **Alternative 1 (current choice):** Call the Alpha Vantage API with every input.
 ** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Only save the information of related crypto assets.
-** Pros: Will use less memory.
-** Cons: If changes are made to the list of interested crypto assets, must make frequent calls.
+** Cons: Requires more wait time for each input, and may have issues regarding overall performance if the call takes longer.
+* **Alternative 2:** Use threading to save the prices of each input.
+** Pros: Will make the calls much faster because the price information is already saved to memory.
+** Cons: There are countless stocks for users to choose from, the effort to implement threading would be significant.
+// end::stock[]
+
+// tag::crypto[]
+=== Cryptocurrency Purchasing Power Feature
+==== Current Implementation
+The feature will be a command facilitated by 'CryptoCommand'. It will return how much of an inputted cryptocurrency you can buy with your current
+balance with real-time market prices.
+This type of feature takes advantage of external APIs, which provide the necessary financial information that can be displayed to the users.
+The crypto command uses the Crypto Compare API.
+
+* `CryptoCommand#cryptoPrice()` - Calls the Crypto Compare API and returns the price of the inputted crypocurrency
+* `CryptoCommand#execute()` - Calculates how much of the cryptocurrency you can purchase given your current cash flow, and displays that amount to the user as well as the price
+
+Given below is an example scenario of how the crypto command mechanism behaves at each step.
+
+Step 1. The user launches the application, and makes earnings and cost entries to the Budgeter object.
+
+Step 2. The user inputs the crypto command, and in the `CryptoCommand#cryptoPrice()` method, a call is made to the Crypto Compare API and the price is returned.
+
+Step 3. In the `CryptoCommand#execute()` method, the current balance is pulled from 'ReportEntryList' and is used with the price from Step 2 to calculate purchasing power.
+
+Step 4. The resulting information regarding price and purchasing power is displayed to the user with a message. If the inputted stock is invalid, an error message will show.
+
+==== Design Considerations
+
+===== Aspect: How to deal with the API call
+
+* **Alternative 1 (current choice):** Call the Crypto Compare API with every input.
+** Pros: Easy to implement.
+** Cons: Requires more wait time for each input, and may have issues regarding overall performance if the call takes longer.
+* **Alternative 2:** Use threading to save the prices of each input.
+** Pros: Will make the calls much faster because the price information is already saved to memory.
+** Cons: There are countless cryptocurrencies for users to choose from, the effort to implement threading would be significant. However, this is tackled in another one of the features of Budgeter.
 // end::crypto[]
 
 // tag::exportexcel[]
