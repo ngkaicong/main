@@ -1,7 +1,7 @@
 package seedu.budgeteer.logic.commands;
 
-import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
 import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.budgeteer.logic.commands.CommandTestUtil.assertCommandSuccessWithoutString;
 import static seedu.budgeteer.testutil.TypicalEntrys.getTypicalAddressBook;
 
 import org.junit.Test;
@@ -67,7 +67,7 @@ public class InvestCommandTest {
     }
 
     @Test
-    public void execute_AddressBook_failure() {
+    public void execute_addressBook_failure() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
