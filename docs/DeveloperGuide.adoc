@@ -716,7 +716,7 @@ Step 4. The resulting information regarding price and purchasing power is displa
     * **Alternative 2:** Call the Crypto Compare API with every input.
     ** Pros: Easy to implement.
     ** Cons: Requires more wait time for each input, and may have issues regarding overall performance if the call takes longer.
-    // end::crypto[]
+    // end::rapidcrypto[]
 
 // tag::exportexcel[]
 === Export entries from Budgeteer to Excel file.
