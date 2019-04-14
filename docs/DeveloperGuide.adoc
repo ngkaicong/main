@@ -614,8 +614,14 @@ The feature will be a command facilitated by 'StockCommand'. It will return how 
 This type of feature takes advantage of external APIs, which provide the necessary financial information that's used in calculations and displayed to users.
 The stock command uses the Alpha Vantage API.
 
+The command takes in one required argument: `n/`
+
+`n/` (Stock Name): The abbreviated name of the stock
+
 * `StockCommand#stockPrice()` - Calls the Alpha Vantage API and returns the price of the inputted stock
 * `StockCommand#execute()` - Calculates how much of the stock you can purchase given your current cash flow, and displays that amount to the user as well as the price
+
+image::StockDiagram.png[width="800"]
 
 Given below is an example scenario of how the stock command mechanism behaves at each step.
 
@@ -645,6 +651,10 @@ Step 4. The resulting information regarding price and purchasing power is displa
 The feature will be a command facilitated by 'CryptoCommand'. It will return how much of an inputted cryptocurrency you can buy with your current balance with real-time market prices.
 This type of feature takes advantage of external APIs, which provide the necessary financial information that's used in calculations and displayed to users.
 The crypto command uses the Crypto Compare API.
+
+The command takes in one required argument: `n/`
+
+`n/` (Cryptocurrency Name): The abbreviated name of the cryptocurrency
 
 * `CryptoCommand#cryptoPrice()` - Calls the Crypto Compare API and returns the price of the inputted crypocurrency
 * `CryptoCommand#execute()` - Calculates how much of the cryptocurrency you can purchase given your current cash flow, and displays that amount to the user as well as the price
@@ -722,6 +732,11 @@ it can be assumed that a user would want to invest in these three cryptocurrenci
 The feature will be facilitated by 'InvestCommand''. It will return your hypothetical balance at a fixed interest rate over a certain number of years.
 
 * `InvestCommand#execute()` - Uses current balance to calculate hypothetical balance using the inputs interest rate and years, and displays it to user
+
+The command takes in two required argument: `interest/` and 'years/'
+
+`interest/` (Interest Rate): The interest rate that you want
+`years/` (Years): The number of years that this interest should accumulate
 
 Given below is an example scenario of how the crypto command mechanism behaves at each step.
 
