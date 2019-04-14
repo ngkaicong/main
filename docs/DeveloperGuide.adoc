@@ -533,8 +533,6 @@ image::lock.PNG[width="800"]
 * **Alternative :** Password will be stored in a plain text file
 ** Pros: Easier to store and retrieve password
 ** Cons: Data folder with the password need to be locked with shell file otherwise it is accessible for developers
-
-
 //end:: lock[]
 
 // tag::report[]
