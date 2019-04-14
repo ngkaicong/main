@@ -42,17 +42,24 @@ public class InvestCommand extends Command {
         Double total = reportList.getTotal();
 
         String[] splited = num.fullNumber.split("\\s+");
-        double interestRate = Double.parseDouble(splited[0]);
-        double numYears = Double.parseDouble(splited[1]);
+        int interestCount = splited[0].length() - splited[0].replace(".", "").length();
+        int yearCount = splited[1].length() - splited[1].replace(".", "").length();
+        if ((interestCount > 1) || (yearCount > 1)) {
+            messageReturn = "Sorry, you entered an invalid number.\n"
+            + "Numbers can only have one decimal point.";
+        } else {
+            double interestRate = Double.parseDouble(splited[0]);
+            double numYears = Double.parseDouble(splited[1]);
 
-        double compound = total * (Math.pow((1 + interestRate / 100), numYears));
-        double investment = (double) Math.round(compound * 100.0) / 100.0;
+            double compound = total * (Math.pow((1 + interestRate / 100), numYears));
+            double investment = (double) Math.round(compound * 100.0) / 100.0;
 
-        String pre = "Your current balance is S$" + total + ".\n";
-        String first = "At an interest rate of " + interestRate + "% for " + numYears + " years,";
-        String second = " you would have S$" + investment + ".\nCongratulations!";
+            String pre = "Your current balance is S$" + total + ".\n";
+            String first = "At an interest rate of " + interestRate + "% for " + numYears + " years,";
+            String second = " you would have S$" + investment + ".\nCongratulations!";
 
-        messageReturn = pre + first + second;
+            messageReturn = pre + first + second;
+        }
 
         return new CommandResult(messageReturn);
     }
