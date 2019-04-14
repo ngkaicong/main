@@ -537,7 +537,7 @@ image::lock.PNG[width="800"]
 
 //end:: lock[]
 
-//tag:: report[]
+// tag::report[]
 === Report feature
 
 ==== Current Implementation
@@ -586,11 +586,8 @@ To aid in the time complexity, the internal implementation of EntryList was done
 constant time random access.. However, the initial filtering is close to linear time complexity which could slow down the app if many entries are inside.
 Also, the list had to be created every time `summary` is called which could be slow if the command is called multiple times.
 
-* **Alternative:** Use a data structure to store the  information when there is mutation of data
-** Pros:  Since the data are constantly updated, whenever the command is called, system can read directly and not have to recompute.
-** Cons: Adds overhead to usual operations. Benefits may not be visible if the command is not called frequently.
 
-//end:: report[]
+// end::report[]
 
 === Logging
 
