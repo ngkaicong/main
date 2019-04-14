@@ -23,7 +23,7 @@ public class InvestCommand extends Command {
             + PREFIX_INTEREST + "INTEREST RATE "
             + PREFIX_YEARS + "YEARS "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_INTEREST + "5 "
+            + PREFIX_INTEREST + "5.5 "
             + PREFIX_YEARS + "20 ";
 
     private final Number num;
@@ -41,15 +41,15 @@ public class InvestCommand extends Command {
         ReportEntryList reportList = new ReportEntryList(filteredList);
         Double total = reportList.getTotal();
 
-        String[] splited = num.fullNumber.split("\\s+");
-        int interestCount = splited[0].length() - splited[0].replace(".", "").length();
-        int yearCount = splited[1].length() - splited[1].replace(".", "").length();
+        String[] splitted = num.fullNumber.split("\\s+");
+        int interestCount = splitted[0].length() - splitted[0].replace(".", "").length();
+        int yearCount = splitted[1].length() - splitted[1].replace(".", "").length();
         if ((interestCount > 1) || (yearCount > 1)) {
             messageReturn = "Sorry, you entered an invalid number.\n"
             + "Numbers can only have one decimal point.";
         } else {
-            double interestRate = Double.parseDouble(splited[0]);
-            double numYears = Double.parseDouble(splited[1]);
+            double interestRate = Double.parseDouble(splitted[0]);
+            double numYears = Double.parseDouble(splitted[1]);
 
             double compound = total * (Math.pow((1 + interestRate / 100), numYears));
             double investment = (double) Math.round(compound * 100.0) / 100.0;

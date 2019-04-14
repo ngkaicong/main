@@ -4,17 +4,11 @@ import static seedu.budgeteer.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.budgeteer.logic.parser.CliSyntax.PREFIX_YEARS;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.budgeteer.logic.commands.InvestCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
-import seedu.budgeteer.model.entry.CashFlow;
-import seedu.budgeteer.model.entry.Date;
-import seedu.budgeteer.model.entry.Entry;
-import seedu.budgeteer.model.entry.Name;
 import seedu.budgeteer.model.entry.Number;
-import seedu.budgeteer.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
