@@ -422,9 +422,14 @@ Returns "Sorry, your input is not a valid stock. Please try again." as this is n
 // tag::lock[]
 === Lock : `lock`
 
-Set a password for Budgeter to protect data entry, privacy and unwanted tampering.
+Set a password for Budgeteer to protect data entry, privacy and unwanted tampering.
 No password required to access the program when using for the first time. +
 Format: `lock`
+
+The current version of setting the password is not instant so after locking the Budgeteer,
+one is advised to close the application and restart the application.
+After opening the app, the data entries will be locked and prevented from being edited.
+To remove or change the passwords, please refer to the examples below:
 
 Examples:
 
