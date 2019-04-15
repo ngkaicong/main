@@ -419,6 +419,27 @@ Returns "Sorry, your input is not a valid stock. Please try again." as this is n
 
 // end::stock[]
 
+// tag::invest[]
+=== Returns hypothetical balance over time based on compound interest: `invest`
+
+Returns how much you would have at a fixed interest rate over a certain number of years. +
+Format: `invest interest/INTEREST RATE years/YEARS"
+
+[NOTE]
+Enter the interest rate in percentage. For example, 5.5% would be inputted as 5.5.
+
+[NOTE]
+Only numbers and at most one decimal point is allowed for each numerical input. Anything else will error.
+
+Examples:
+
+* `invest interest/5.5 years/20` +
+Returns your current balance and balance after 20 years with an interest rate of 5.5%. +
+
+* `invest interest/3 years/45.6` +
+Returns your current balance and balance after 45.6 years with an interest rate of 3%.
+// end::invest[]
+
 // tag::lock[]
 === Lock : `lock`
 
@@ -621,6 +642,8 @@ e.g.`select 2`
 e.g. `stock n/MSFT`
 * *Crypto* `crypto n/NAME` +
 e.g. `crypto n/XRP`
+* *Invest* `invest interest/INTEREST RATE years/YEARS` +
+e.g. `invest interest/5.5 years/20`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Report* : `report`

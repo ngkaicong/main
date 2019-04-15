@@ -21,7 +21,6 @@ public class ReportEntryList {
     private ObservableList<Entry> filteredEntries;
     private HashMap<String, Double> expenseCompositionMap;
     private HashMap<String, Double> incomeCompositionMap;
-    private double bitcoin;
 
     public ReportEntryList(ObservableList<Entry> filteredEntries) {
         this.total = 0.0;

@@ -21,6 +21,7 @@ import seedu.budgeteer.logic.commands.FilterCommand;
 import seedu.budgeteer.logic.commands.FindCommand;
 import seedu.budgeteer.logic.commands.HelpCommand;
 import seedu.budgeteer.logic.commands.HistoryCommand;
+import seedu.budgeteer.logic.commands.InvestCommand;
 import seedu.budgeteer.logic.commands.ListCommand;
 import seedu.budgeteer.logic.commands.LitecoinCommand;
 import seedu.budgeteer.logic.commands.LockCommand;
@@ -100,6 +101,9 @@ public class EntriesBookParser {
 
         case CryptoCommand.COMMAND_WORD:
             return new CryptoCommandParser().parse(arguments);
+
+        case InvestCommand.COMMAND_WORD:
+            return new InvestCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

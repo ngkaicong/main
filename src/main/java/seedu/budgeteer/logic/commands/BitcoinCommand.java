@@ -25,9 +25,8 @@ public class BitcoinCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
-        double price = 0.0;
         CryptoUtil cryptoUtil = CryptoUtil.getInstance();
-        price = cryptoUtil.getBtc();
+        double price = cryptoUtil.getBtc();
 
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRYS);
         ObservableList<Entry> filteredList = model.getFilteredEntryList();
