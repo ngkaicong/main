@@ -14,7 +14,7 @@ import guitests.guihandles.HelpWindowHandle;
 import seedu.budgeteer.logic.commands.DeleteCommand;
 import seedu.budgeteer.logic.commands.HelpCommand;
 import seedu.budgeteer.logic.commands.SelectCommand;
-import seedu.budgeteer.ui.BrowserPanel;
+//import seedu.budgeteer.ui.BrowserPanel;
 import seedu.budgeteer.ui.StatusBarFooter;
 
 /**
