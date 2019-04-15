@@ -447,21 +447,17 @@ Set a password for Budgeteer to protect data entry, privacy and unwanted tamperi
 No password required to access the program when using for the first time. +
 Format: `lock`
 
-The current version of setting the password is not instant so after locking the Budgeteer,
-one is advised to close the application and restart the application.
-After opening the app, the data entries will be locked and prevented from being edited.
-To remove or change the passwords, please refer to the examples below:
+The current version of setting the password is instant so after locking the Budgeteer,
+will see that it is locked and to unlock, simply follow the given examples.
+The application will hide all data entries when locked and encrypt the password accordingly.
 
 Examples:
 
 * `lock set/yourpassword` +
 Password will be set as yourpassword.
 
-* `lock change/yournewpassword` +
-Password will be changed to yournewpassword.
-
-* `lock remove/yourexistingpassword` +
-Password will be removed.
+* `yourpassword` +
+Application will be unlocked.
 
 [NOTE]
 ====
@@ -650,5 +646,6 @@ e.g. `invest interest/5.5 years/20`
 * *Report insight* : `Report insight`
 * *Filter* : `filter`
 * *Display* : `display name des`
-* *Lock* : `lock`
+* *Lock* : `lock set/123`
+* *Unlock* : `123`
 * *Export to Excel* : `export`
