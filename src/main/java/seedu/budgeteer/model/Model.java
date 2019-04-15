@@ -14,6 +14,9 @@ import seedu.budgeteer.model.entry.Entry;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRYS = unused -> true;
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Entry> PREDICATE_HIDE_ALL_ENTRYS = unused -> false;
+
 
 
     /**

@@ -42,10 +42,21 @@ public class LogicManager implements Logic {
         this.storage = storage;
         history = new CommandHistory();
         entriesBookParser = new EntriesBookParser();
-        this.isLocked = PasswordManager.passwordExists();
+        updateLockedStatus();
 
         // Set addressBookModified to true whenever the models' budgeteer book is modified.
         model.getAddressBook().addListener(observable -> addressBookModified = true);
+
+    }
+
+    /**
+     * Check and updates the locked status within the class. If locked, hide all entries
+     */
+    private void updateLockedStatus() {
+        this.isLocked = PasswordManager.passwordExists();
+        if (isLocked) {
+            model.updateFilteredEntryList(Model.PREDICATE_HIDE_ALL_ENTRYS);
+        }
 
     }
 
@@ -53,7 +64,7 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         addressBookModified = false;
-
+        updateLockedStatus();
         CommandResult commandResult;
 
         if (isLocked) {
@@ -62,6 +73,8 @@ public class LogicManager implements Logic {
                 throw new CommandException(LockCommand.MESSAGE_WRONG_PASSWORD);
             } else {
                 decryptFile();
+                model.updateFilteredEntryList(Model.PREDICATE_SHOW_ALL_ENTRYS);
+                new LockCommand(new LockCommand.ClearLock(commandText)).execute(model, history);
                 return new CommandResult("Welcome to Budgeter");
             }
         }
@@ -71,6 +84,7 @@ public class LogicManager implements Logic {
             commandResult = command.execute(model, history);
         } finally {
             history.add(commandText);
+            updateLockedStatus();
         }
 
         if (addressBookModified) {

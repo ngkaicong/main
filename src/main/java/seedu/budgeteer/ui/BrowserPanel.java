@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebView;
 import seedu.budgeteer.MainApp;
@@ -30,6 +30,14 @@ public class BrowserPanel extends UiPart<Region> {
 
     @FXML
     private WebView browser;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label cashFlowLabel;
+    @FXML
+    private Label tagsLabel;
 
     public BrowserPanel(ObservableValue<Entry> selectedEntry) {
         super(FXML);
@@ -49,19 +57,27 @@ public class BrowserPanel extends UiPart<Region> {
         loadDefaultPage();
     }
 
+    /**
+     * Loads a page based on given entry
+     * @param entry
+     */
     private void loadEntryPage(Entry entry) {
-        loadPage(SEARCH_PAGE_URL + entry.getName().fullName);
+        nameLabel.setText("Name: " + entry.getName().fullName);
+        dateLabel.setText("Date: " + entry.getDate().getValue());
+        cashFlowLabel.setText("Cashflow: " + entry.getCashFlow().value);
+        tagsLabel.setText("Tags: " + entry.getTags().toString());
     }
 
-    public void loadPage(String url) {
-        Platform.runLater(() -> browser.getEngine().load(url));
-    }
+
 
     /**
      * Loads a default HTML file with a background that matches the general theme.
      */
     private void loadDefaultPage() {
-        loadPage(DEFAULT_PAGE.toExternalForm());
+        nameLabel.setText("");
+        dateLabel.setText("");
+        cashFlowLabel.setText("");
+        tagsLabel.setText("");
     }
 
 }
