@@ -603,10 +603,10 @@ The screenshot below, in the *SUMMARY DATA* tab, shows the line chart.
 
 image::linechart.png[width="500"]
 
-* On the top left of the chart shows the legend with 3 lines, namely Income, Outcome, and Net.
+* On the top left of the chart shows the legend with 3 lines, namely Income, Expense, and Nett.
 ** The blue line shows the Income based on Date.
-** The orange line shows the Outcome based on Date
-** The grey line shows the Net (total of income and outcome) based on Date.
+** The orange line shows the Expense based on Date
+** The grey line shows the Nett (total of income and expense) based on Date.
 
 // end::draw_line_chart[]
 == FAQ
