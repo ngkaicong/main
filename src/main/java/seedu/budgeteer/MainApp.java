@@ -86,6 +86,17 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyEntriesBook> entrieskOptional;
         ReadOnlyEntriesBook initialData;
+
+        File file = new File(userPrefs.getPasswordFilePath());
+        try {
+            if (FileUtil.isPassExists(file)) {
+                File book = new File(String.valueOf(userPrefs.getAddressBookFilePath()));
+                EncryptionUtil.decrypt(book);
+            }
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the password file");
+        }
+
         try {
             entrieskOptional = storage.readEntriesBook();
             if (!entrieskOptional.isPresent()) {
@@ -99,15 +110,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty EntriesBook");
             initialData = new EntriesBook();
         }
-        File file = new File(userPrefs.getPasswordFilePath());
-        try {
-            if (FileUtil.isPassExists(file)) {
-                File book = new File(String.valueOf(userPrefs.getAddressBookFilePath()));
-                EncryptionUtil.encrypt(book);
-            }
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the password file");
-        }
+
         return new ModelManager(initialData, userPrefs);
     }
 

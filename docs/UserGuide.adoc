@@ -443,20 +443,21 @@ Returns your current balance and balance after 45.6 years with an interest rate 
 // tag::lock[]
 === Lock : `lock`
 
-Set a password for Budgeter to protect data entry, privacy and unwanted tampering.
+Set a password for Budgeteer to protect data entry, privacy and unwanted tampering.
 No password required to access the program when using for the first time. +
 Format: `lock`
+
+The current version of setting the password is instant so after locking the Budgeteer,
+will see that it is locked and to unlock, simply follow the given examples.
+The application will hide all data entries when locked and encrypt the password accordingly.
 
 Examples:
 
 * `lock set/yourpassword` +
 Password will be set as yourpassword.
 
-* `lock change/yournewpassword` +
-Password will be changed to yournewpassword.
-
-* `lock remove/yourexistingpassword` +
-Password will be removed.
+* `yourpassword` +
+Application will be unlocked.
 
 [NOTE]
 ====
@@ -645,5 +646,6 @@ e.g. `invest interest/5.5 years/20`
 * *Report insight* : `Report insight`
 * *Filter* : `filter`
 * *Display* : `display name des`
-* *Lock* : `lock`
+* *Lock* : `lock set/123`
+* *Unlock* : `123`
 * *Export to Excel* : `export`

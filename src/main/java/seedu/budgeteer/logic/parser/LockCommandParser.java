@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import seedu.budgeteer.logic.commands.LockCommand;
 import seedu.budgeteer.logic.parser.exceptions.ParseException;
 
-//@@author limzk1994
 
 /**
  * Parses the inputs and create a LockCommand object

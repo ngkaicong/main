@@ -15,12 +15,10 @@ import seedu.budgeteer.storage.PasswordManager;
 public class LockCommand extends Command {
 
     public static final String COMMAND_WORD = "lock";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Set, change or remove password\n"
-            + "Set Password Parameters:" + COMMAND_WORD + " set/yourchosenpassword\n"
-            + "Change Password Parameters:" + COMMAND_WORD + " change/yournewpassword\n"
-            + "Remove Password Parameters: " + COMMAND_WORD + " remove/youroldpassword\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Set password and unlock using the password\n"
+            + "Set Password Parameters:" + COMMAND_WORD + " set/yourchosenpassword\n";
 
-    public static final String MESSAGE_SUCCESS = "Password set!";
+    public static final String MESSAGE_SUCCESS = "Locked!";
     public static final String MESSAGE_PASSWORD_CHANGE = "Password successfully changed!";
     public static final String MESSAGE_PASSWORD_EXISTS = "Password already exists!";
     public static final String MESSAGE_PASSWORD_REMOVE = "Password removed!";

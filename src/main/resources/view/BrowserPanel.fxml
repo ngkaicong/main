@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.web.WebView?>
 
+<?import javafx.scene.control.Label?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1">
-  <WebView fx:id="browser"/>
+  <Label fx:id="nameLabel" text="" translateX="10" translateY="0"/>
+  <Label fx:id="dateLabel" text="" translateX="10" translateY="20"/>
+  <Label fx:id="cashFlowLabel" text="" translateX="10" translateY="40"/>
+  <Label fx:id="tagsLabel" text="" translateX="10" translateY="60"/>
 </StackPane>
