@@ -1,12 +1,12 @@
 package seedu.budgeteer.logic.commands;
 
+import java.io.IOException;
+
 import seedu.budgeteer.commons.exceptions.WrongPasswordException;
 import seedu.budgeteer.logic.CommandHistory;
 import seedu.budgeteer.logic.commands.exceptions.CommandException;
 import seedu.budgeteer.model.Model;
 import seedu.budgeteer.storage.PasswordManager;
-
-import java.io.IOException;
 
 
 /**
