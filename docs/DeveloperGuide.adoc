@@ -761,7 +761,7 @@ Step 4. The resulting information is displayed to the user with a message. If ei
 ** Pros: Will be more accurate and will be a better representation of how people actually save and invest over time.
 ** Cons: Would be very complicated to do from the command line, so more work for the user and potentially confusing.
 // end::invest[]
-
+//@@author ngkaicong
 // tag::exportexcel[]
 === Export entries from Budgeteer to Excel file.
 ==== Current implementation
@@ -804,6 +804,7 @@ The feature mechanism is facilitated by `ExcelUtil`, which handles all methods r
 
 // end::draw_line_chart[]
 == Documentation
+//@@author 
 
 We use asciidoc for writing documentation.
 
