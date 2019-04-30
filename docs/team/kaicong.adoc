@@ -66,9 +66,70 @@ Highlights: : This major enhancement requires significant effort and time, as in
 |_Given below are sections I contributed to the <<../UserGuide, User Guide>>. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=exportexcel]
+=== Export the entry data from Budgeter to the Excel file: `export`
 
-include::../UserGuide.adoc[tag=draw_line_chart]
+Exports the entries into an Excel file. +
+
+There are 6 modes, default mode, single argument mode and dual argument mode (for Date) and single argument mode (Directory Path). +
+
+Format: +
+
+****
+* *Default mode* `export` will list down all entries in Budgeter and exports all of them to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
+
+* *Single argument Date mode* `export d/DATE` will list down all entries with the specified date and exports all shown entries to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
+
+* *Dual argument Date mode* `export d/START_DATE END_DATE` will list down all entries with the date that fall on either dates or between both dates and exports all shown entries to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
+
+* *Single argument Directory Path mode* `export dir/DIRECTORY_PATH` will list down all entries in Savee and exports all of them to an Excel file and store the file in the chosen Directory Path.
+
+* *Single argument Date mode + Single argument Directory path mode* `export d/DATE dir/DIRECTORY_PATH` will list down all entries with the specified date and exports all shown entries to an Excel file and store the file in the chosen Directory Path.
+
+* *Dual argument Date mode + Single argument Directory path mode* `export d/START_DATE END_DATE dir/DIRECTORY_PATH` will list down all entries with the date that fall on either dates or between both dates and exports all shown entries to an Excel file and store the file in the chosen Directory Path.
++
+****
+
+If the command is in *Dual argument Date mode*, START_DATE (the first `Date`) should be earlier than or equal to the END_DATE (the second `Date`). +
+Date should follow the same configurations as date parameters required when adding entries. It is in the form of *dd-mm-yyyy* where *dd* represents day, *mm* represents month and *yyyy* represents the year. *dd* and *mm* both require 1 to 2 digits while *yyyy* requires exactly 4 digits.
+
+The Excel file name will be named based on the command, relating to Date: +
+
+* *Default mode*: The Excel file will be named `ENTRIES_ALL.xlsx`
+* *Single argument Date mode*: The Excel file will be named `ENTRIES_dd-mm-yyyy.xlsx`
+* *Dual argument Date*: The Excel file will be named `ENTRIES_dd-mm-yyyy_dd-mm-yyyy.xlsx`
+
+If the Excel file with the same name and stored in same Directory exists, it will be overwritten. However, it *must* be closed before we enter the command.
+
+After you enter the `export` command, you should *wait for few seconds* for the Excel file to be written.
+
+Please note that `undo` and `redo` command can only affect Budgeter but the *not* the Excel file created, meaning that when you enter `undo` command after you enter the `export` command, the Budgeter will inform the user that *No more command to undo*, the entries remain the same and the Excel file created will *not* be deleted.
+
+Examples:
+
+* `export`
+* `export d/31-3-1999`
+* `export dir/C:\`
+* `export d/31-3-1999 31-03-2019`
+* `export d/31-3-1999 dir/C:\`
+* `export d/31-3-1999 31-3-2019 dir/C:\`
+
+// end::exportexcel[]
+
+// tag::draw_line_chart[]
+
+=== Creates line chart automatically inside the Excel sheet : `Requires no command`
+
+Automatically takes the summary data from the *SUMMARY DATA* tab in the Excel sheet after the command `export` is called and creates an line chart.
+The screenshot below, in the *SUMMARY DATA* tab, shows the line chart.
+
+image::linechart.png[width="500"]
+
+* On the top left of the chart shows the legend with 3 lines, namely Income, Expense, and Nett.
+** The blue line shows the Income based on Date.
+** The orange line shows the Expense based on Date
+** The grey line shows the Nett (total of income and expense) based on Date.
+
+// end::draw_line_chart[]
 
 == Contributions to the Developer Guide
 
@@ -76,6 +137,43 @@ include::../UserGuide.adoc[tag=draw_line_chart]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=exportexcel]
+=== Export entries from Budgeteer to Excel file.
+==== Current implementation
+The export into excel file mechanism is facilitated by `ModelManager` with the help of `ExcelUtil`, the utility created to handle all methods relating to Excel. It represents an in-memory model of the Budgeteer and is the component which manages the interactions between the commands, `ExcelUtil` and the `VersionedEntriesBook`. ExportExcelCommand calls `ModelManager#updateFilteredEntries` and passes in different predicates depending on the argument mode.
+The List<Entry> is retrieved by calling `ModelManager#getFilteredEntryList`. Meanwhile, it also called `ModelManager#getEntriesBook` to get the `ReadOnlyEntriesBook`. The SummaryByDateList is constructed after the ReadOnlyEntriesBook together with the predicate are passed into the construction of SummaryByDateList. The List<SummaryEntry> is easily retrieved from SummaryByDateList by calling `SummaryByDateList#getSummaryList`. `ExcelUtil#setNameExcelFile` is called to make the Excel name based on the condition of startDate and endDate. After that, `ExcelUtil#setPathFile` is called to set the Path file, which is the location of the Excel file stored in future.
+The Path file is constructed based on the name of the Excel file we retrieve above and the directory Path, it can be either optionally entered by the user or the default *User's Working Directory*. With the sufficient information, `List<Entry> entries`, `List<SummaryByDateEntry> summaryList`, `file path`, `ExportExcelCommand#exportDataIntoExcelSheetWithGivenEntries` is called to start the processing of producing Excel file.
 
-include::../DeveloperGuide.adoc[tag=draw_line_chart]
+There are 6 modes for this feature [refer to *Export the entry data from Budgeter to the Excel file* part in *User Guide*]. The mechanism that facilitates these modes can be found in the `ExportExcelCommandParser#parse`. Below is a overview of the mechanism:
+
+. Method `ExportExcelCommandParser#createExportExcelCommand` takes the input argument and further analyse it.
+. The input given by the user is passed to `ArgumentTokeniser#tokenise` to split the input separated by prefixes.
+. This returns a `ArgumentMultiMap` which contains a map with prefixes as keys and their associated input arguments as the value.
+. The string associated with `d/`
+.. It is then passed into `ExportExcelCommandParser#splitByWhitespace` for further processing and returns an array. This string will be split into sub-strings and each of them will be construct as a date type variable. The the size of the array exceed 2, error wil be thrown to inform invalid command format. *If the size of the string equals 1*, it is constructed as a date type variable after being passed to `ParseUtil#parseDate`, it must follow the format dd-mm-yyyy. Error will be thrown if the format is *not* correct or the date entered is *not* real. *If the size of the string equals 2*, each sub-string is constructed as a date type variable after being passed to `ParseUtil#parseDate`, and an additional check is conducted to check if the first date entered, known as Start date is smaller than or equal to the second date entered, known as End Date.
+. The String associated with `dir/`
+.. It is then passed into `ParseUtil#parseDirectoryString` to check if the Directory path given is existing. *If the Directory path is unreal*, an error is thrown to inform the user.
+. Please take note that:
+.. If the prefix `d/` is *not* entered in the input, meaning that all the entries will be included in the Excel sheet.
+.. If the prefix `dir/` is *not* entered in the input, meaning that the Directory Path is default as the *User's Working Directory*.
+
+The `ExportExcelCommand` has four constructors which makes use of overloading to reduce code complexity.
+
+* One constructor has no arguments and assigns default predicate for the `FilteredList` in `ModelManager`,
+`PREDICATE_SHOW_ALL_ENTRIES` which will show all items in the list and the Directory path is *User's Working Directory*.
+* The second constructor takes in 2 `Date` arguments and assigns the predicate `DateIsWithinDateIntervalPredicate` which will only show items within the date interval and the Directory path is *User's Working Directory*.
+* The third constructor takes in 1 `Directory Path` argument and assigns the predicate as `PREDICATE_SHOW_ALL_ENTRIES`, which will show all items in the list and the Directory path is the entered directory path.
+* The fourth constructor takes in 1 `Directory Path` and 2 `Date` arguments and assigns the predicate as `DateIsWithinDateIntervalPredicate` which will only show items within the date interval and the Directory path is the entered Directory Path.
+
+If the Excel file with the same name and stored in same Directory exists, it will be overwritten. However, it *must* be closed before we enter the command. +
+
+// end::exportexcel[]
+
+// tag::draw_line_chart[]
+
+=== Draw a line chart automatically inside the Excel sheet
+==== Current implementation
+
+This feature will automatically uses the the summary data from the `SUMMARY DATA` sheet in the Excel sheet after the command `export` is typed by user.
+The feature mechanism is facilitated by `ExcelUtil`, which handles all methods related to Excel. It is the component which manages the interactions between the ExportExcelCommand with `ExcelUtil#drawChart`.
+
+// end::draw_line_chart[]
