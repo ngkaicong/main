@@ -81,7 +81,7 @@ Format: +
 
 * *Dual argument Date mode* `export d/START_DATE END_DATE` will list down all entries with the date that fall on either dates or between both dates and exports all shown entries to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
 
-* *Single argument Directory Path mode* `export dir/DIRECTORY_PATH` will list down all entries in Savee and exports all of them to an Excel file and store the file in the chosen Directory Path.
+* *Single argument Directory Path mode* `export dir/DIRECTORY_PATH` will list down all entries in Budgeteer and exports all of them to an Excel file and store the file in the chosen Directory Path.
 
 * *Single argument Date mode + Single argument Directory path mode* `export d/DATE dir/DIRECTORY_PATH` will list down all entries with the specified date and exports all shown entries to an Excel file and store the file in the chosen Directory Path.
 
