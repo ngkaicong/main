@@ -76,8 +76,8 @@ public class ExcelUtil {
     private static final String MONEY_TITLE = "MONEY";
     private static final String TAG_TITLE = "TAGS";
     private static final String INCOME_TITLE = "INCOME";
-    private static final String OUTCOME_TITLE = "OUTCOME";
-    private static final String TOTAL_MONEY = "TOTAL";
+    private static final String EXPENSE_TITLE = "EXPENSE";
+    private static final String TOTAL_MONEY = "NET";
     private static final String TAG_SEPARATOR = "  ... ";
 
     private static Logger logger = LogsCenter.getLogger(ExcelUtil.class);
@@ -116,8 +116,8 @@ public class ExcelUtil {
             final int lastColumnSheet = firstColumnSheet;
             final int firstColumnIncome = firstColumnSheet + SECOND_COLUMN;
             final int lastColumnIncome = firstColumnIncome;
-            final int firstColumnOutcome = firstColumnSheet + THIRD_COLUMN;
-            final int lastColumnOutcome = firstColumnOutcome;
+            final int firstColumnExpense = firstColumnSheet + THIRD_COLUMN;
+            final int lastColumnExpense = firstColumnExpense;
             final int firstColumnNet = firstColumnSheet + FOURTH_COLUMN;
             final int lastColumnNet = firstColumnNet;
             final int widthChart = 20;
@@ -147,15 +147,15 @@ public class ExcelUtil {
                     sheet, new CellRangeAddress(firstRowSheet, lastRowSheet, firstColumnSheet, lastColumnSheet));
             ChartDataSource<Number> yIncome = DataSources.fromNumericCellRange(
                     sheet, new CellRangeAddress(firstRowSheet, lastRowSheet, firstColumnIncome, lastColumnIncome));
-            ChartDataSource<Number> yOutcome = DataSources.fromNumericCellRange(
-                    sheet, new CellRangeAddress(firstRowSheet, lastRowSheet, firstColumnOutcome, lastColumnOutcome));
+            ChartDataSource<Number> yExpense = DataSources.fromNumericCellRange(
+                    sheet, new CellRangeAddress(firstRowSheet, lastRowSheet, firstColumnExpense, lastColumnExpense));
             ChartDataSource<Number> yNet = DataSources.fromNumericCellRange(
                     sheet, new CellRangeAddress(firstRowSheet, lastRowSheet, firstColumnNet, lastColumnNet));
 
             LineChartSeries series1 = data.addSeries(xDate, yIncome);
             series1.setTitle("Income");
-            LineChartSeries series2 = data.addSeries(xDate, yOutcome);
-            series2.setTitle("Outcome");
+            LineChartSeries series2 = data.addSeries(xDate, yExpense);
+            series2.setTitle("Expense");
             LineChartSeries series3 = data.addSeries(xDate, yNet);
             series3.setTitle("Net");
 
@@ -265,7 +265,7 @@ public class ExcelUtil {
         Row startingRow = sheet.createRow(rowNum);
         writeDataIntoCell(startingRow, FIRST_COLUMN, DATE_TITLE);
         writeDataIntoCell(startingRow, SECOND_COLUMN, INCOME_TITLE);
-        writeDataIntoCell(startingRow, THIRD_COLUMN, OUTCOME_TITLE);
+        writeDataIntoCell(startingRow, THIRD_COLUMN, EXPENSE_TITLE);
         writeDataIntoCell(startingRow, FOURTH_COLUMN, TOTAL_MONEY);
         for (SummaryEntry summaryEntry : daySummaryEntryList) {
             Row row = sheet.createRow(++rowNum);
