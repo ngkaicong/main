@@ -122,7 +122,7 @@ Examples:
 Automatically takes the summary data from the *SUMMARY DATA* tab in the Excel sheet after the command `export` is called and creates an line chart.
 The screenshot below, in the *SUMMARY DATA* tab, shows the line chart.
 
-image::linechart.png[width="500"]
+image::linechart2.png[width="500"]
 
 * On the top left of the chart shows the legend with 3 lines, namely Income, Expense, and Nett.
 ** The blue line shows the Income based on Date.
