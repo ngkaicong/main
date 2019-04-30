@@ -6,21 +6,21 @@
 :stylesheet: gh-kaicong-pages.css
 
 
-== Project: 'Budgeteer' - A Desktop Financial Manager to track expenses and incomes so as to better understand savings and earnings for financial freedom
+== Project: 'Budgeter' - A Desktop Financial Manager to track expenses and incomes so as to better understand savings and earnings for financial freedom
 
 == Overview
 
 === Project & Product Information
 
-'Budgeteer' is a desktop financial planner application my team of 4 created for our Software Engineering Principles module.
+'Budgeter' is a desktop financial planner application my team of 4 created for our Software Engineering Principles module.
 Our main project was to morph an existing code into any other software we opted to.
 
-Budgeteer has a command-line interface (CLI) and graphical user interface created using JavaFX. It is for users who enjoy typing to manage their finances responsibly using a desktop interface.
+Budgeter has a command-line interface (CLI) and graphical user interface created using JavaFX. It is for users who enjoy typing to manage their finances responsibly using a desktop interface.
 The application revolves around usage of the CLI to manage one's finances.
 
 == Summary of Contributions
 
-*_Major enhancements_* : Function to export data from budgeteer to excel file
+*_Major enhancements_* : Function to export data from budgeter to excel file
 
 ** `Reason for enhancement`: Some people are more familiar with using excel and prefer to see their finances on a spreadsheet. They may also want to store it somewhere outside of their current computer and keep it safe.
 ** `Highlights`: This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
@@ -29,9 +29,9 @@ The application revolves around usage of the CLI to manage one's finances.
 
 *_Major enhancements_* : Added a feature to draw a line chart in the summary tab to track financials in Excel file.
 
-** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeteer and still see a visual representation of their financial status.
+** `Reason for enhancement`: After the user exports the data to the excel file, they may open the file at their convenience without the Budgeter and still see a visual representation of their financial status.
 ** `Highlights`:This major enhancement is not an easy implementation as the library is not included in Java 10 library, I had to read the documentation and figure how to implement my feature in a short time.
-** `My contributions`: The line chart is automatically created after the budgeteer exports the data to the Excel file
+** `My contributions`: The line chart is automatically created after the budgeter exports the data to the Excel file
 ** `Credits`: Apache POI library was used to implement this feature.
 
 
@@ -81,7 +81,7 @@ Format: +
 
 * *Dual argument Date mode* `export d/START_DATE END_DATE` will list down all entries with the date that fall on either dates or between both dates and exports all shown entries to an Excel file and store the file in the default *Working Directory*, it will *detect automatically user's Working Directory*.
 
-* *Single argument Directory Path mode* `export dir/DIRECTORY_PATH` will list down all entries in Budgeteer and exports all of them to an Excel file and store the file in the chosen Directory Path.
+* *Single argument Directory Path mode* `export dir/DIRECTORY_PATH` will list down all entries in Budgeter and exports all of them to an Excel file and store the file in the chosen Directory Path.
 
 * *Single argument Date mode + Single argument Directory path mode* `export d/DATE dir/DIRECTORY_PATH` will list down all entries with the specified date and exports all shown entries to an Excel file and store the file in the chosen Directory Path.
 
@@ -137,9 +137,9 @@ image::linechart.png[width="500"]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-=== Export entries from Budgeteer to Excel file.
+=== Export entries from Budgeter to Excel file.
 ==== Current implementation
-The export into excel file mechanism is facilitated by `ModelManager` with the help of `ExcelUtil`, the utility created to handle all methods relating to Excel. It represents an in-memory model of the Budgeteer and is the component which manages the interactions between the commands, `ExcelUtil` and the `VersionedEntriesBook`. ExportExcelCommand calls `ModelManager#updateFilteredEntries` and passes in different predicates depending on the argument mode.
+The export into excel file mechanism is facilitated by `ModelManager` with the help of `ExcelUtil`, the utility created to handle all methods relating to Excel. It represents an in-memory model of the Budgeter and is the component which manages the interactions between the commands, `ExcelUtil` and the `VersionedEntriesBook`. ExportExcelCommand calls `ModelManager#updateFilteredEntries` and passes in different predicates depending on the argument mode.
 The List<Entry> is retrieved by calling `ModelManager#getFilteredEntryList`. Meanwhile, it also called `ModelManager#getEntriesBook` to get the `ReadOnlyEntriesBook`. The SummaryByDateList is constructed after the ReadOnlyEntriesBook together with the predicate are passed into the construction of SummaryByDateList. The List<SummaryEntry> is easily retrieved from SummaryByDateList by calling `SummaryByDateList#getSummaryList`. `ExcelUtil#setNameExcelFile` is called to make the Excel name based on the condition of startDate and endDate. After that, `ExcelUtil#setPathFile` is called to set the Path file, which is the location of the Excel file stored in future.
 The Path file is constructed based on the name of the Excel file we retrieve above and the directory Path, it can be either optionally entered by the user or the default *User's Working Directory*. With the sufficient information, `List<Entry> entries`, `List<SummaryByDateEntry> summaryList`, `file path`, `ExportExcelCommand#exportDataIntoExcelSheetWithGivenEntries` is called to start the processing of producing Excel file.
 
